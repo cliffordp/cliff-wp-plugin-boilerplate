@@ -10,7 +10,7 @@ use WP_Plugin_Name\Inc\Common as Common;
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @link       http://example.com
+ * @link       http://example.com/
  * @since      1.0.0
  *
  * @author     Your Name or Your Company

@@ -5,7 +5,7 @@ namespace WP_Plugin_Name\Inc\Core;
 /**
  * Register all actions and filters for the plugin
  *
- * @link       http://example.com
+ * @link       http://example.com/
  * @since      1.0.0
  *
  * @author     Your Name or Your Company

@@ -11,7 +11,7 @@ use WP_Plugin_Name\Inc\Frontend as Frontend;
  * The core plugin class.
  * Defines internationalization, admin-specific hooks, and public-facing site hooks.
  *
- * @link       http://example.com
+ * @link       http://example.com/
  * @since      1.0.0
  *
  * @author     Your Name or Your Company

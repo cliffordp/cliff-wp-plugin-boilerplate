@@ -7,7 +7,7 @@ namespace WP_Plugin_Name\Inc\Core;
  *
  * This class defines all code necessary to run during the plugin's deactivation.
  *
- * @link       http://example.com
+ * @link       http://example.com/
  * @since      1.0.0
  *
  * @author     Your Name or Your Company

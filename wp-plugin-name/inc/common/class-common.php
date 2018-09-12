@@ -10,7 +10,7 @@ namespace WP_Plugin_Name\Inc\Common;
  * affects both back-end and front-end.
  * Everything should be 'public static...' unless only useful as a hook within \WP_Plugin_Name\Inc\Core\Init::define_common_hooks()
  *
- * @link       http://example.com
+ * @link       http://example.com/
  * @since      1.0.0
  *
  * @author     Your Name or Your Company

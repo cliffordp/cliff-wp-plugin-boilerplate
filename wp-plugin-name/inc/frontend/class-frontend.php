@@ -9,7 +9,7 @@ use WP_Plugin_Name\Inc\Common as Common;
  *
  * Enqueues the public-facing stylesheet and JavaScript and other front-end stuff.
  *
- * @link       http://example.com
+ * @link       http://example.com/
  * @since      1.0.0
  *
  * @author     Your Name or Your Company

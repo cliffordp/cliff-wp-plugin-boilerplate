@@ -7,7 +7,7 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://example.com
+ * @link              http://example.com/
  * @since             1.0.0
  * @package           WP_Plugin_Name
  *
