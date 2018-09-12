@@ -100,5 +100,9 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
+##### September 12, 2018
+* Add a few nice helper methods to Common
+* Improved readme.txt
+
 ##### September 3, 2018
 * Initial Release

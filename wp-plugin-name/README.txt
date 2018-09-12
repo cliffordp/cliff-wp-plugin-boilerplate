@@ -41,15 +41,19 @@ you put the stable version, in order to eliminate any doubt.
 
 This section describes how to install the plugin and get it working.
 
-e.g.
-
-1. Upload `wp-plugin-name.php` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('plugin_name_hook'); ?>` in your templates
+1. Install the plugin:
+  1. Upload the `wp-plugin-name.zip` file at wp-admin > Plugins > Add New menu
+  1. Or, via SFTP, upload the `wp-plugin-name` directory to the `/wp-content/plugins/` directory
+1. Activate the plugin:
+  1. Visit wp-admin > Plugins
+  1. Find the `WordPress Plugin Boilerplate` plugin in the list
+  1. Click its "Activate" link
+1. Use the plugin:
+  1. Visit the wp-admin "Users" screen to be able to do new things
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
+= Where's the first question? =
 
 An answer to that question.
 
@@ -60,10 +64,12 @@ Answer to foo bar dilemma.
 == Changelog ==
 
 = 1.0.1 =
+* December 1, 2018
 * A change since the previous version.
 * Another change.
 
 = 1.0.0 =
+* October 1, 2018
 * List versions from most recent at top to oldest at bottom.
 * Reference https://semver.org/ for determine your version numbers.
 * Make sure to update the readme.txt header, the wp-plugin-name.php header, and the `PLUGIN_VERSION` constant each time you release a new version.
@@ -72,6 +78,17 @@ Answer to foo bar dilemma.
 
 = 1.0.1 =
 Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
+
+== Screenshots ==
+
+See https://developer.wordpress.org/plugins/wordpress-org/plugin-assets/ for image dimensions
+
+Screenshot images should be in your SVN directory (not this plugin's directory) and named `screenshot-1.png`, `screenshot-2.png`, etc. to match these captions:
+
+1. A caption for `screenshot-1.png`
+
+2. A caption for `screenshot-2.png`
+
 
 == Arbitrary section ==
 
