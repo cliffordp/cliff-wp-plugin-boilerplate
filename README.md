@@ -100,6 +100,9 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
+##### September 13, 2018
+* Add 'ABSPATH' checks at the beginning of all PHP files
+
 ##### September 12, 2018
 * Add a few nice helper methods to Common
 * Improved readme.txt
