@@ -23,13 +23,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Common {
 
 	/**
-	 * The ID of this plugin.
+	 * The text domain of this plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   public
-	 * @var      string $plugin_name The ID of this plugin.
+	 * @var      array $plugin_text_domain The text domain of this plugin.
 	 */
-	public static $plugin_name;
+	public static $plugin_text_domain;
 
 	/**
 	 * The version of this plugin.
@@ -39,15 +39,6 @@ class Common {
 	 * @var      string $version The current version of this plugin.
 	 */
 	public static $version;
-
-	/**
-	 * The text domain of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   public
-	 * @var      array $plugin_text_domain The text domain of this plugin.
-	 */
-	public static $plugin_text_domain;
 
 	/**
 	 * Shortcodes to register.
@@ -65,14 +56,23 @@ class Common {
 	 *
 	 * @since       1.0.0
 	 *
-	 * @param       string $plugin_name        The name of this plugin.
-	 * @param       string $version            The version of this plugin.
 	 * @param       string $plugin_text_domain The text domain of this plugin.
+	 * @param       string $version            The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version, $plugin_text_domain ) {
-		self::$plugin_name        = $plugin_name;
-		self::$version            = $version;
+	public function __construct( $plugin_text_domain, $version ) {
 		self::$plugin_text_domain = $plugin_text_domain;
+		self::$version            = $version;
+	}
+
+	/**
+	 * Get this plugin's text domain with underscores instead of hyphens.
+	 *
+	 * Useful for building dynamic hook names.
+	 *
+	 * @return string 'wp_plugin_name'
+	 */
+	public static function plugin_text_domain_underscores() {
+		return str_replace( '-', '_', self::$plugin_text_domain );
 	}
 
 	/**

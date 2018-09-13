@@ -62,7 +62,6 @@ class Init {
 	 * Initialize and define the core functionality of the plugin.
 	 */
 	public function __construct() {
-		$this->plugin_name        = NS\PLUGIN_NAME;
 		$this->version            = NS\PLUGIN_VERSION;
 		$this->plugin_basename    = NS\PLUGIN_BASENAME;
 		$this->plugin_text_domain = NS\PLUGIN_TEXT_DOMAIN;
@@ -103,14 +102,6 @@ class Init {
 	}
 
 	/**
-	 * The name of the plugin used to uniquely identify it within the context of
-	 * WordPress and to define internationalization functionality.
-	 */
-	public function get_plugin_name() {
-		return $this->plugin_name;
-	}
-
-	/**
 	 * Retrieve the version number of the plugin.
 	 *
 	 * @since     1.0.0
@@ -137,7 +128,7 @@ class Init {
 	 * @access    private
 	 */
 	private function define_common_hooks() {
-		$plugin_common = new Common\Common( $this->get_plugin_name(), $this->get_version(), $this->get_plugin_text_domain() );
+		$plugin_common = new Common\Common( $this->get_plugin_text_domain(), $this->get_version() );
 
 		// Add all the shortcodes
 		foreach ( $plugin_common::$shortcodes as $shortcode ) {

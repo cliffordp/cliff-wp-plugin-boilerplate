@@ -24,7 +24,7 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
 
 * Copy wp-plugin-name to your plugin's directory and rename it to your plugin's name
 * Perform a find and replace at the project level as follows:
-  1. Find the text `wp-plugin-name` and replace with `your-plugin-name` in all files
+  1. Find the text `wp-plugin-name` and replace with `your-plugin-name` in all files. This **must** match your plugin directory and its text domain.
   1. Find the text `wp_plugin_name` and replace with `your_plugin_name` in all files
   1. Find the text `WordPress Plugin Boilerplate` and replace with `Your Plugin Name` in all files
   1. Find the text `WP_Plugin_Name` and replace with `Your_Plugin_Name` in all files
@@ -101,10 +101,13 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 Documenting this project's progress...
 
 ##### September 13, 2018
-* Add 'ABSPATH' checks at the beginning of all PHP files
+* Added 'ABSPATH' checks at the beginning of all PHP files
+* Added `wp_plugin_name_get_plugin_display_name()` to main plugin file
+* Removed `PLUGIN_NAME` constant and replaced all usage with `PLUGIN_TEXT_DOMAIN` since they were duplicates (as they should have been). Kept it as "plugin_text_domain" in the name instead of something like "plugin_id" or "plugin_slug" to help IDE autocomplete suggestions when using translation functions.
+* Added `plugin_text_domain_underscores()` to Common
 
 ##### September 12, 2018
-* Add a few nice helper methods to Common
+* Added a few nice helper methods to Common
 * Improved readme.txt
 
 ##### September 3, 2018

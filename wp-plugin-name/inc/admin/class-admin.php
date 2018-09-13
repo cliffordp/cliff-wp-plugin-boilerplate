@@ -23,13 +23,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Admin {
 
 	/**
-	 * The ID of this plugin.
+	 * The text domain of this plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string $plugin_name The ID of this plugin.
+	 * @var      string $plugin_text_domain The text domain of this plugin.
 	 */
-	private $plugin_name;
+	private $plugin_text_domain;
 
 	/**
 	 * The version of this plugin.
@@ -41,23 +41,13 @@ class Admin {
 	private $version;
 
 	/**
-	 * The text domain of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string $plugin_text_domain The text domain of this plugin.
-	 */
-	private $plugin_text_domain;
-
-	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since       1.0.0
 	 */
 	public function __construct() {
-		$this->plugin_name        = Common\Common::$plugin_name;
-		$this->version            = Common\Common::$version;
 		$this->plugin_text_domain = Common\Common::$plugin_text_domain;
+		$this->version            = Common\Common::$version;
 	}
 
 	/**
@@ -78,7 +68,7 @@ class Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-plugin-name-admin.css', [], $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_text_domain, plugin_dir_url( __FILE__ ) . 'css/wp-plugin-name-admin.css', [], $this->version, 'all' );
 	}
 
 	/**
@@ -99,6 +89,6 @@ class Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-plugin-name-admin.js', [ 'jquery' ], $this->version, false );
+		wp_enqueue_script( $this->plugin_text_domain, plugin_dir_url( __FILE__ ) . 'js/wp-plugin-name-admin.js', [ 'jquery' ], $this->version, false );
 	}
 }

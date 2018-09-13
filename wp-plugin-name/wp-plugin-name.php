@@ -35,10 +35,10 @@ if ( ! defined( 'WPINC' ) ) {
  * Define Constants
  */
 
-// `WP_Plugin_Name\PLUGIN_NAME` is defined
 define( __NAMESPACE__ . '\NS', __NAMESPACE__ . '\\' );
 
-define( NS . 'PLUGIN_NAME', 'wp-plugin-name' ); // Must match the plugin's directory and its main PHP filename
+// `WP_Plugin_Name\PLUGIN_TEXT_DOMAIN` is defined
+define( NS . 'PLUGIN_TEXT_DOMAIN', 'wp-plugin-name' ); // Must match the plugin's directory and its main PHP filename
 
 define( NS . 'PLUGIN_VERSION', '1.0.0' ); // TODO: Keep current
 
@@ -48,7 +48,6 @@ define( NS . 'PLUGIN_NAME_URL', plugin_dir_url( __FILE__ ) );
 
 define( NS . 'PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 
-define( NS . 'PLUGIN_TEXT_DOMAIN', 'wp-plugin-name' );
 
 
 /**
@@ -165,11 +164,11 @@ class WP_Plugin_Name {
 	 * @return bool
 	 */
 	private static function has_required_plugins() {
-		// The file in which \is_plugin_active() is located.
-		require_once( \ABSPATH . 'wp-admin/includes/plugin.php' );
+		// The file in which is_plugin_active() is located.
+		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
-		// Required to use \current_user_can()
-		require_once( \ABSPATH . 'wp-includes/pluggable.php' );
+		// Required to use current_user_can()
+		require_once( ABSPATH . 'wp-includes/pluggable.php' );
 
 		$result = true;
 
@@ -180,14 +179,14 @@ class WP_Plugin_Name {
 
 			self::$missing_plugin = $plugin;
 
-			$result = \is_plugin_active( $plugin );
+			$result = is_plugin_active( $plugin );
 		}
 
 		if (
 			empty( $result )
-			&& \current_user_can( 'activate_plugins' )
+			&& current_user_can( 'activate_plugins' )
 		) {
-			add_action( 'admin_notices', [ \get_called_class(), 'notice_missing_required_plugin' ] );
+			add_action( 'admin_notices', [ get_called_class(), 'notice_missing_required_plugin' ] );
 		}
 
 		return $result;
@@ -199,7 +198,7 @@ class WP_Plugin_Name {
 	public static function notice_old_php_version() {
 		$message = sprintf(
 			__( '%1$s requires at least PHP version %2$s in order to work.', PLUGIN_TEXT_DOMAIN ),
-			'<strong>' . PLUGIN_NAME . '</strong>',
+			'<strong>' . wp_plugin_name_get_plugin_display_name() . '</strong>',
 			'<strong>' . self::$min_php . '</strong>'
 		);
 
@@ -213,7 +212,7 @@ class WP_Plugin_Name {
 	 * @param string $type
 	 */
 	public static function do_admin_notice( $message, $type = 'error' ) {
-		$class = sprintf( '%s %s', $type, \sanitize_html_class( PLUGIN_NAME ) );
+		$class = sprintf( '%s %s', $type, sanitize_html_class( PLUGIN_TEXT_DOMAIN ) );
 
 		printf( '<div class="%s"><p>%s</p></div>', $class, $message );
 	}
@@ -224,7 +223,7 @@ class WP_Plugin_Name {
 	public static function notice_missing_required_plugin() {
 		$admin_link = '';
 
-		$current_screen = \get_current_screen();
+		$current_screen = get_current_screen();
 
 		if (
 			empty( $current_screen->base )
@@ -235,13 +234,24 @@ class WP_Plugin_Name {
 
 		$message = sprintf(
 			__( 'The %1$s plugin requires the %2$s plugin to be active in order to work.%3$s', PLUGIN_TEXT_DOMAIN ),
-			'<strong>' . PLUGIN_NAME . '</strong>',
+			'<strong>' . wp_plugin_name_get_plugin_display_name() . '</strong>',
 			'<strong>' . self::$missing_plugin . '</strong>',
 			$admin_link
 		);
 
 		self::do_admin_notice( $message );
 	}
+}
+
+/**
+ * Get the plugin's display name.
+ *
+ * Useful for headings, for example.
+ *
+ * @return string
+ */
+function wp_plugin_name_get_plugin_display_name() {
+	return esc_html_x( 'WordPress Plugin Boilerplate', 'Plugin name for display', PLUGIN_TEXT_DOMAIN );
 }
 
 /**
