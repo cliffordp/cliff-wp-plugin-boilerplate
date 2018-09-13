@@ -64,14 +64,14 @@ require_once( PLUGIN_NAME_DIR . 'inc/libraries/autoloader.php' );
  * This action is documented in inc/core/class-activator.php
  */
 
-register_activation_hook( __FILE__, array( NS . 'Inc\Core\Activator', 'activate' ) );
+register_activation_hook( __FILE__, [ NS . 'Inc\Core\Activator', 'activate' ] );
 
 /**
  * The code that runs during plugin deactivation.
  * This action is documented inc/core/class-deactivator.php
  */
 
-register_deactivation_hook( __FILE__, array( NS . 'Inc\Core\Deactivator', 'deactivate' ) );
+register_deactivation_hook( __FILE__, [ NS . 'Inc\Core\Deactivator', 'deactivate' ] );
 
 
 /**
