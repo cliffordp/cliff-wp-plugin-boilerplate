@@ -7,6 +7,11 @@ use WP_Plugin_Name\Inc\Admin as Admin;
 use WP_Plugin_Name\Inc\Common as Common;
 use WP_Plugin_Name\Inc\Frontend as Frontend;
 
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * The core plugin class.
  * Defines internationalization, admin-specific hooks, and public-facing site hooks.
@@ -81,7 +86,6 @@ class Init {
 	 */
 	private function load_dependencies() {
 		$this->loader = new Loader();
-
 	}
 
 	/**
@@ -93,11 +97,9 @@ class Init {
 	 * @access    private
 	 */
 	private function set_locale() {
-
 		$plugin_i18n = new Internationalization_I18n( $this->plugin_text_domain );
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-
 	}
 
 	/**

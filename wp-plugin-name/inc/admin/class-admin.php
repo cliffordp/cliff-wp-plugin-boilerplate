@@ -4,6 +4,11 @@ namespace WP_Plugin_Name\Inc\Admin;
 
 use WP_Plugin_Name\Inc\Common as Common;
 
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -61,7 +66,6 @@ class Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
-
 		/**
 		 * This function is provided for demonstration purposes only.
 		 *
@@ -75,7 +79,6 @@ class Admin {
 		 */
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-plugin-name-admin.css', [], $this->version, 'all' );
-
 	}
 
 	/**
@@ -97,7 +100,5 @@ class Admin {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-plugin-name-admin.js', [ 'jquery' ], $this->version, false );
-
 	}
-
 }

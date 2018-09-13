@@ -2,6 +2,11 @@
 
 namespace WP_Plugin_Name\Inc\Core;
 
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Register all actions and filters for the plugin
  *
@@ -38,10 +43,8 @@ class Loader {
 	 * Initialize the collections used to maintain the actions and filters.
 	 */
 	public function __construct() {
-
 		$this->actions = [];
 		$this->filters = [];
-
 	}
 
 	/**
@@ -76,7 +79,6 @@ class Loader {
 	 * @return   array                                  The collection of actions and filters registered with WordPress.
 	 */
 	private function add( $hooks, $hook, $component, $callback, $priority, $accepted_args ) {
-
 		$hooks[] = [
 			'hook'          => $hook,
 			'component'     => $component,
@@ -86,7 +88,6 @@ class Loader {
 		];
 
 		return $hooks;
-
 	}
 
 	/**
@@ -110,7 +111,6 @@ class Loader {
 	 * @since    1.0.0
 	 */
 	public function run() {
-
 		foreach ( $this->filters as $hook ) {
 			add_filter( $hook['hook'], [ $hook['component'], $hook['callback'] ], $hook['priority'], $hook['accepted_args'] );
 		}
@@ -118,7 +118,5 @@ class Loader {
 		foreach ( $this->actions as $hook ) {
 			add_action( $hook['hook'], [ $hook['component'], $hook['callback'] ], $hook['priority'], $hook['accepted_args'] );
 		}
-
 	}
-
 }

@@ -2,6 +2,11 @@
 
 namespace WP_Plugin_Name\Inc\Common;
 
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * The functionality shared between the admin and public-facing areas
  * of the plugin.

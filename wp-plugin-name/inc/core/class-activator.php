@@ -2,6 +2,11 @@
 
 namespace WP_Plugin_Name\Inc\Core;
 
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Fired during plugin activation
  *
@@ -23,5 +28,4 @@ class Activator {
 	 */
 	public static function activate() {
 	}
-
 }

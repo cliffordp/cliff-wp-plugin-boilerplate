@@ -4,6 +4,11 @@ namespace WP_Plugin_Name\Inc\Frontend;
 
 use WP_Plugin_Name\Inc\Common as Common;
 
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * The public-facing functionality of the plugin.
  *
