@@ -54,16 +54,6 @@ class Init {
 	protected $plugin_text_domain;
 
 	/**
-	 * Shortcodes to register.
-	 *
-	 * The shortcode tag must match the 'public static' method name within Common.
-	 *
-	 * @since 1.0.0
-	 */
-	private $shortcodes = [
-	];
-
-	/**
 	 * Initialize and define the core functionality of the plugin.
 	 */
 	public function __construct() {
@@ -148,7 +138,7 @@ class Init {
 		$plugin_common = new Common\Common( $this->get_plugin_name(), $this->get_version(), $this->get_plugin_text_domain() );
 
 		// Add all the shortcodes
-		foreach ( $this->shortcodes as $shortcode ) {
+		foreach ( $plugin_common::$shortcodes as $shortcode ) {
 			$method = '\\' . NS . '\Inc\Common\Common::' . $shortcode;
 			add_shortcode( $shortcode, $method );
 		}

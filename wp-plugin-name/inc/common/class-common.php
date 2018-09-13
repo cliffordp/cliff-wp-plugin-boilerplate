@@ -45,6 +45,17 @@ class Common {
 	public static $plugin_text_domain;
 
 	/**
+	 * Shortcodes to register.
+	 *
+	 * The shortcode tag must match the 'public static' method name within Common.
+	 *
+	 * @since 1.0.0
+	 */
+	public static $shortcodes = [
+		'tk_get',
+	];
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since       1.0.0
@@ -88,6 +99,44 @@ class Common {
 			} else {
 				return false;
 			}
+		}
+	}
+
+	/**
+	 * Get the specified parameter from $_GET (URL query parameters).
+	 *
+	 * @link https://secure.php.net/manual/reserved.variables.get.php About $_GET
+	 * @link https://secure.php.net/manual/en/filter.filters.sanitize.php Filter types.
+	 *
+	 * @param $atts
+	 *
+	 * @return string The string value of the query parameter, if any, after stripping tags.
+	 */
+	public static function tk_get( $atts ) {
+		// Protect against passing a string value, such as if used directly via PHP function instead of as a shortcode.
+		if ( is_string( $atts ) ) {
+			$atts = [ 'parameter' => $atts ];
+		}
+
+		$defaults = [
+			'parameter' => '',
+		];
+
+		$atts = shortcode_atts( $defaults, $atts, __FUNCTION__ );
+
+		if ( empty( $atts['parameter'] ) ) {
+			return '';
+		}
+
+		$result = filter_input( INPUT_GET, $atts['parameter'], FILTER_SANITIZE_STRING );
+
+		if (
+			false === $result
+			|| null === $result
+		) {
+			return '';
+		} else {
+			return $result;
 		}
 	}
 
