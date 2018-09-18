@@ -15,28 +15,28 @@ if ( ! defined( 'ABSPATH' ) ) {
  * affects both back-end and front-end.
  * Everything should be 'public static...' unless only useful as a hook within \WP_Plugin_Name\Inc\Core\Init::define_common_hooks()
  *
- * @link       http://example.com/
- * @since      1.0.0
+ * @link   http://example.com/
+ * @since  1.0.0
  *
- * @author     Your Name or Your Company
+ * @author Your Name or Your Company
  */
 class Common {
 
 	/**
 	 * The text domain of this plugin.
 	 *
-	 * @since    1.0.0
-	 * @access   public
-	 * @var      array $plugin_text_domain The text domain of this plugin.
+	 * @since  1.0.0
+	 * @access public
+	 * @var    string $plugin_text_domain The text domain of this plugin.
 	 */
 	public static $plugin_text_domain;
 
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    1.0.0
-	 * @access   public
-	 * @var      string $version The current version of this plugin.
+	 * @since  1.0.0
+	 * @access public
+	 * @var    string $version The current version of this plugin.
 	 */
 	public static $version;
 
@@ -48,16 +48,16 @@ class Common {
 	 * @since 1.0.0
 	 */
 	public static $shortcodes = [
-		'tk_get',
+		'tk_request',
 	];
 
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since       1.0.0
+	 * @since 1.0.0
 	 *
-	 * @param       string $plugin_text_domain The text domain of this plugin.
-	 * @param       string $version            The version of this plugin.
+	 * @param string $plugin_text_domain The text domain of this plugin.
+	 * @param string $version            The version of this plugin.
 	 */
 	public function __construct( $plugin_text_domain, $version ) {
 		self::$plugin_text_domain = $plugin_text_domain;
@@ -67,7 +67,7 @@ class Common {
 	/**
 	 * Get this plugin's text domain with underscores instead of hyphens.
 	 *
-	 * Useful for building dynamic hook names.
+	 * Useful for building dynamic hook names, class names, URLs, etc.
 	 *
 	 * @return string 'wp_plugin_name'
 	 */
@@ -108,20 +108,24 @@ class Common {
 	}
 
 	/**
-	 * Get the specified parameter from $_GET (URL query parameters).
+	 * Get the specified parameter from $_REQUEST ($_GET or $_POST).
 	 *
-	 * @link https://secure.php.net/manual/reserved.variables.get.php About $_GET
+	 * @link https://secure.php.net/manual/reserved.variables.request.php About $_REQUEST
 	 * @link https://secure.php.net/manual/en/filter.filters.sanitize.php Filter types.
 	 *
-	 * @param $atts
+	 * @see sanitize_text_field()
+	 *
+	 * @param array|string $atts
 	 *
 	 * @return string The string value of the query parameter, if any, after stripping tags.
 	 */
-	public static function tk_get( $atts ) {
+	public static function tk_request( $atts ) {
 		// Protect against passing a string value, such as if used directly via PHP function instead of as a shortcode.
 		if ( is_string( $atts ) ) {
 			$atts = [ 'parameter' => $atts ];
 		}
+
+		$atts['parameter'] = sanitize_text_field( $atts['parameter'] );
 
 		$defaults = [
 			'parameter' => '',
@@ -133,7 +137,18 @@ class Common {
 			return '';
 		}
 
-		$result = filter_input( INPUT_GET, $atts['parameter'], FILTER_SANITIZE_STRING );
+		if (
+			'GET' !== $_SERVER['REQUEST_METHOD']
+			&& 'POST' !== $_SERVER['REQUEST_METHOD']
+		) {
+			return '';
+		}
+
+		if ( 'GET' === $_SERVER['REQUEST_METHOD'] ) {
+			$result = filter_input( INPUT_GET, $atts['parameter'], FILTER_SANITIZE_STRING );
+		} else {
+			$result = filter_input( INPUT_POST, $atts['parameter'], FILTER_SANITIZE_STRING );
+		}
 
 		if (
 			false === $result

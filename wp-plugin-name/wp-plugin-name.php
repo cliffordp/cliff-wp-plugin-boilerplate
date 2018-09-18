@@ -34,7 +34,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Define Constants
  */
-
+// `WP_Plugin_Name\` is defined
 define( __NAMESPACE__ . '\NS', __NAMESPACE__ . '\\' );
 
 // `WP_Plugin_Name\PLUGIN_TEXT_DOMAIN` is defined

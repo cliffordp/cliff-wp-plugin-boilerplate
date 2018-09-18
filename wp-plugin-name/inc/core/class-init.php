@@ -132,7 +132,7 @@ class Init {
 
 		// Add all the shortcodes
 		foreach ( $plugin_common::$shortcodes as $shortcode ) {
-			$method = '\\' . NS . '\Inc\Common\Common::' . $shortcode;
+			$method = '\\WP_Plugin_Name\Inc\Common\Common::' . $shortcode;
 			add_shortcode( $shortcode, $method );
 		}
 
