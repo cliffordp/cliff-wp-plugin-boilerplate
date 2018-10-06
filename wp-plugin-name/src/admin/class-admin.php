@@ -1,8 +1,8 @@
 <?php
 
-namespace WP_Plugin_Name\Inc\Admin;
+namespace WP_Plugin_Name\Admin;
 
-use WP_Plugin_Name\Inc\Common as Common;
+use WP_Plugin_Name\Common as Common;
 
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @link       http://example.com/
+ * @link       https://www.example.com/
  * @since      1.0.0
  *
  * @author     Your Name or Your Company

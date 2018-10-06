@@ -1,6 +1,6 @@
 <?php
 
-namespace WP_Plugin_Name\Inc\Core;
+namespace WP_Plugin_Name\Core;
 
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -8,16 +8,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Fired during plugin activation
+ * Fired during plugin deactivation
  *
- * This class defines all code necessary to run during the plugin's activation.
+ * This class defines all code necessary to run during the plugin's deactivation.
  *
- * @link       http://example.com/
+ * @link       https://www.example.com/
  * @since      1.0.0
  *
  * @author     Your Name or Your Company
  **/
-class Activator {
+class Deactivator {
 
 	/**
 	 * Short Description.
@@ -26,6 +26,6 @@ class Activator {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function activate() {
+	public static function deactivate() {
 	}
 }

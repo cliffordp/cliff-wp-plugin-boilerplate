@@ -1,11 +1,11 @@
 <?php
 
-namespace WP_Plugin_Name\Inc\Core;
+namespace WP_Plugin_Name\Core;
 
 use WP_Plugin_Name as NS;
-use WP_Plugin_Name\Inc\Admin as Admin;
-use WP_Plugin_Name\Inc\Common as Common;
-use WP_Plugin_Name\Inc\Frontend as Frontend;
+use WP_Plugin_Name\Admin as Admin;
+use WP_Plugin_Name\Common as Common;
+use WP_Plugin_Name\Frontend as Frontend;
 
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * The core plugin class.
  * Defines internationalization, admin-specific hooks, and public-facing site hooks.
  *
- * @link       http://example.com/
+ * @link       https://www.example.com/
  * @since      1.0.0
  *
  * @author     Your Name or Your Company
@@ -132,7 +132,7 @@ class Init {
 
 		// Add all the shortcodes
 		foreach ( $plugin_common::$shortcodes as $shortcode ) {
-			$method = '\\WP_Plugin_Name\Inc\Common\Common::' . $shortcode;
+			$method = '\\WP_Plugin_Name\Common\Common::' . $shortcode;
 			add_shortcode( $shortcode, $method );
 		}
 

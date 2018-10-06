@@ -2,22 +2,30 @@
 /**
  * The plugin bootstrap file
  *
+ * https://github.com/cliffordp/cliff-wp-plugin-boilerplate#plugin-structure
+ * Plugin structure if you want to include your own classes, or third-party libraries:
+ * wp-plugin-name/src/admin - admin-specific functionality
+ * wp-plugin-name/src/core - plugin core to register hooks, load files etc
+ * wp-plugin-name/src/frontend - public-facing functionality
+ * wp-plugin-name/src/common - functionality shared between the admin area and the public-facing parts
+ * wp-plugin-name/src/libraries - libraries that the plugin may use that aren't able to be included via Composer
+ *
  * This file is read by WordPress to generate the plugin information in the plugin
  * admin area. This file also includes all of the dependencies used by the plugin,
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://example.com/
+ * @link              https://www.example.com/
  * @since             1.0.0
  * @package           WP_Plugin_Name
  *
  * @wordpress-plugin
  * Plugin Name:       WordPress Plugin Boilerplate
- * Plugin URI:        http://example.com/wp-plugin-name-uri/
+ * Plugin URI:        https://www.example.com/wp-plugin-name-uri/
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
  * Version:           1.0.0
  * Author:            Your Name or Your Company
- * Author URI:        http://example.com/
+ * Author URI:        https://www.example.com/
  * License:           GPL version 3 or any later version
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain:       wp-plugin-name
@@ -51,26 +59,25 @@ define( NS . 'PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 
 
 /**
- * Autoload Classes
+ * Autoloading, via Composer.
  *
- * Each class' filename should start with `class-`, be lower-cased, and spaces should be hyphenated.
- * For example: `class Internationalization_I18n` has filename `class-internationalization-i18n.php`
+ * @link https://getcomposer.org/doc/01-basic-usage.md#autoloading
  */
-require_once( PLUGIN_NAME_DIR . 'inc/libraries/autoloader.php' );
+require_once( __DIR__ . '/vendor/autoload.php' );
 
 /**
  * Register Activation and Deactivation Hooks
- * This action is documented in inc/core/class-activator.php
+ * This action is documented in src/core/class-activator.php
  */
 
-register_activation_hook( __FILE__, [ NS . 'Inc\Core\Activator', 'activate' ] );
+register_activation_hook( __FILE__, [ NS . 'Core\Activator', 'activate' ] );
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented inc/core/class-deactivator.php
+ * This action is documented src/core/class-deactivator.php
  */
 
-register_deactivation_hook( __FILE__, [ NS . 'Inc\Core\Deactivator', 'deactivate' ] );
+register_deactivation_hook( __FILE__, [ NS . 'Core\Deactivator', 'deactivate' ] );
 
 
 /**
@@ -126,7 +133,7 @@ class WP_Plugin_Name {
 		}
 
 		if ( null === self::$init ) {
-			self::$init = new Inc\Core\Init();
+			self::$init = new Core\Init();
 			self::$init->run();
 		}
 

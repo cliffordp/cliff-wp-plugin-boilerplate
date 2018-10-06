@@ -1,6 +1,6 @@
 <?php
 
-namespace WP_Plugin_Name\Inc\Core;
+namespace WP_Plugin_Name\Core;
 
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Register all actions and filters for the plugin
  *
- * @link       http://example.com/
+ * @link       https://www.example.com/
  * @since      1.0.0
  *
  * @author     Your Name or Your Company

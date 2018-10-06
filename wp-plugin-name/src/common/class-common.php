@@ -1,6 +1,6 @@
 <?php
 
-namespace WP_Plugin_Name\Inc\Common;
+namespace WP_Plugin_Name\Common;
 
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,9 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * Useful for things like utilities or hooking into something that
  * affects both back-end and front-end.
- * Everything should be 'public static...' unless only useful as a hook within \WP_Plugin_Name\Inc\Core\Init::define_common_hooks()
+ * Everything should be 'public static...' unless only useful as a hook within \WP_Plugin_Name\Core\Init::define_common_hooks()
  *
- * @link   http://example.com/
+ * @link   https://www.example.com/
  * @since  1.0.0
  *
  * @author Your Name or Your Company
@@ -108,24 +108,26 @@ class Common {
 	}
 
 	/**
-	 * Get the specified parameter from $_REQUEST ($_GET or $_POST).
+	 * Get the specified parameter from $_REQUEST ($_GET then $_POST).
 	 *
 	 * @link https://secure.php.net/manual/reserved.variables.request.php About $_REQUEST
-	 * @link https://secure.php.net/manual/en/filter.filters.sanitize.php Filter types.
 	 *
-	 * @see sanitize_text_field()
+	 * @see  filter_input() Although we could have gone this way, there were a number of things to workaround,
+	 *                     particularly when manually changing _GET or _POST or modifying _GET during a _POST request.
 	 *
-	 * @param array|string $atts
+	 * @param array|string $atts    If using the shortcode, this will be an array. If using PHP function, array or string.
+	 * @param string       $default The default value to return if the parameter is not present.
+	 * @param bool         $escape  True to pass the result through `esc_html()`. False to allow the raw value (don't trust it).
 	 *
-	 * @return string The string value of the query parameter, if any, after stripping tags.
+	 * @return string The string value of the query parameter, if any.
 	 */
-	public static function tk_request( $atts ) {
+	public static function tk_request( $atts, $default = '', $escape = true ) {
 		// Protect against passing a string value, such as if used directly via PHP function instead of as a shortcode.
 		if ( is_string( $atts ) ) {
 			$atts = [ 'parameter' => $atts ];
 		}
 
-		$atts['parameter'] = sanitize_text_field( $atts['parameter'] );
+		$atts['parameter'] = urlencode( $atts['parameter'] );
 
 		$defaults = [
 			'parameter' => '',
@@ -133,30 +135,42 @@ class Common {
 
 		$atts = shortcode_atts( $defaults, $atts, __FUNCTION__ );
 
-		if ( empty( $atts['parameter'] ) ) {
+		$param = $atts['parameter'];
+
+		// bad request
+		if ( empty( $param ) ) {
 			return '';
 		}
 
-		if (
-			'GET' !== $_SERVER['REQUEST_METHOD']
-			&& 'POST' !== $_SERVER['REQUEST_METHOD']
-		) {
-			return '';
-		}
-
+		// If a GET request, ignore POST.
 		if ( 'GET' === $_SERVER['REQUEST_METHOD'] ) {
-			$result = filter_input( INPUT_GET, $atts['parameter'], FILTER_SANITIZE_STRING );
-		} else {
-			$result = filter_input( INPUT_POST, $atts['parameter'], FILTER_SANITIZE_STRING );
+			if ( isset( $_GET[$param] ) ) {
+				$result = $_GET[$param];
+			}
 		}
 
-		if (
-			false === $result
-			|| null === $result
-		) {
-			return '';
+		// If not explicitly GET, check POST first, then GET, just like REQUEST does.
+		if ( ! isset( $result ) ) {
+			if ( isset( $_POST[$param] ) ) {
+				$result = $_POST[$param];
+			}
+
+			if ( ! isset( $result ) ) {
+				if ( isset( $_GET[$param] ) ) {
+					$result = $_GET[$param];
+				}
+			}
+		}
+
+		if ( isset( $result ) ) {
+			if ( $escape ) {
+				return esc_html( $result );
+			} else {
+				// WARNING: Full, untrusted HTML is allowed!
+				return $result;
+			}
 		} else {
-			return $result;
+			return $default;
 		}
 	}
 

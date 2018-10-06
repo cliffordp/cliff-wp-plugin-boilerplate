@@ -1,6 +1,6 @@
 === WordPress Plugin Boilerplate ===
 Contributors: cliffpaulick
-Donate link: http://example.com/
+Donate link: https://www.example.com/
 Tags:
 Requires at least: 4.5
 Tested up to: 4.9.8
@@ -9,32 +9,32 @@ Stable tag: 1.0.0
 License: GPL version 3 or any later version
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+Here is a short description of the plugin. This should be no more than 150 characters. No markup here.
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+This is the long description. No limit, and you can use Markdown (as well as in the following sections).
 
 For backwards compatibility, if this section is missing, the full length of the short description will be used, and
 Markdown parsed.
 
 A few notes about the sections above:
 
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin (maximum of 3-5 tags)
-*   "Requires at least" is the lowest version of WordPress that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
+* "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
+* "Tags" is a comma separated list of tags that apply to the plugin (maximum of 3-5 tags)
+* "Requires at least" is the lowest version of WordPress that the plugin will work on
+* "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on higher versions... this is just the highest one you've verified.
+* Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
 stable.
 
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
+Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
 if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
+for displaying information about the plugin. In this situation, the only thing considered from the trunk `readme.txt`
+is the stable tag pointer. Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
 your in-development version, without having that information incorrectly disclosed about the current stable version
 that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
 
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
+If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
 you put the stable version, in order to eliminate any doubt.
 
 == Installation ==
@@ -42,14 +42,14 @@ you put the stable version, in order to eliminate any doubt.
 This section describes how to install the plugin and get it working.
 
 1. Install the plugin:
-  1. Upload the `wp-plugin-name.zip` file at wp-admin > Plugins > Add New menu
-  1. Or, via SFTP, upload the `wp-plugin-name` directory to the `/wp-content/plugins/` directory
+    1. Upload the `wp-plugin-name.zip` file at wp-admin > Plugins > Add New menu
+    1. Or, via SFTP, upload the `wp-plugin-name` directory to the `/wp-content/plugins/` directory
 1. Activate the plugin:
-  1. Visit wp-admin > Plugins
-  1. Find the `WordPress Plugin Boilerplate` plugin in the list
-  1. Click its "Activate" link
+    1. Visit wp-admin > Plugins
+    1. Find the `WordPress Plugin Boilerplate` plugin in the list
+    1. Click its "Activate" link
 1. Use the plugin:
-  1. Visit the wp-admin "Users" screen to be able to do new things
+    1. Visit the wp-admin "Users" screen to be able to do new things
 
 == Frequently Asked Questions ==
 
@@ -77,7 +77,7 @@ Answer to foo bar dilemma.
 == Upgrade Notice ==
 
 = 1.0.1 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
+Upgrade notices describe the reason a user should upgrade. No more than 300 characters.
 
 == Screenshots ==
 
@@ -92,9 +92,9 @@ Screenshot images should be in your SVN directory (not this plugin's directory) 
 
 == Arbitrary section ==
 
-You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
+You may provide arbitrary sections, in the same format as the ones above. This may be of use for extremely complicated
 plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation."  Arbitrary sections will be shown below the built-in sections outlined above.
+"installation." Arbitrary sections will be shown below the built-in sections outlined above.
 
 == A brief Markdown Example ==
 
@@ -114,9 +114,9 @@ Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") and
 Titles are optional, naturally.
 
 [markdown syntax]: http://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
+Markdown is what the parser uses to process much of the readme file
 
 Markdown uses email style notation for blockquotes and I've been told:
-> Asterisks for *emphasis*. Double it up  for **strong**.
+> Asterisks for *emphasis*. Double it up for **strong**.
 
 `<?php code(); // goes in backticks ?>`
