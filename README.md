@@ -24,26 +24,52 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
 
 * Copy wp-plugin-name to your plugin's directory and rename it to your plugin's name
 * Perform a find and replace at the project level as follows:
-  1. Find the text `wp-plugin-name` and replace with `your-plugin-name` in all files. This **must** match your plugin directory and its text domain.
-  1. Find the text `wp_plugin_name` and replace with `your_plugin_name` in all files
-  1. Find the text `WordPress Plugin Boilerplate` and replace with `Your Plugin Name` in all files
-  1. Find the text `WP_Plugin_Name` and replace with `Your_Plugin_Name` in all files
-  1. Rename the `css` and `js` files under `inc\admin\css`, `inc\admin\js\`, `inc\views\js`, `inc\views\css` and replace the string `wp-plugin-name` with `your-plugin-name`
-  1. Rename the `pot` file under `languages` and replace the string `wp-plugin-name` with `your-plugin-name`
-  1. Find the text `http://example.com/` and replace with your URI in all files
-  1. Find the text `Your Name or Your Company` and replace with your name in all files
-  1. Find the text `cliffpaulick` and replace with your WordPress.org username (or delete it) in `readme.txt`
+    1. Find the text `wp-plugin-name` and replace with `your-plugin-name` in all files. This **must** match your plugin directory and its text domain.
+    1. Find the text `wp_plugin_name` and replace with `your_plugin_name` in all files
+    1. Find the text `WordPress Plugin Boilerplate` and replace with `Your Plugin Name` in all files
+    1. Find the text `WP_Plugin_Name` and replace with `Your_Plugin_Name` in all files (the *namespace*)
+    1. Rename the `css` and `js` files under `src/admin/css`, `src/admin/js/`, `src/views/js`, `src/views/css` and replace the string `wp-plugin-name` with `your-plugin-name`
+    1. Rename the `pot` file under `languages` and replace the string `wp-plugin-name` with `your-plugin-name`
+    1. Find the text `https://www.example.com/` and replace with your URI in all files
+    1. Find the text `Your Name or Your Company` and replace with your name in all files
+    1. Find the text `your@email.address` and replace with your email address in `composer.json`
+    1. Find the text `cliffpaulick` and replace with your WordPress.org username (or delete it) in `readme.txt`
+* Make sure everything in `composer.json` is appropriate to your project.
+* Run Composer `install`
 * Activate the plugin
+
+### Using Composer
+
+#### Getting Started
+
+Visit https://getcomposer.org/ to learn all about it.
+
+Here are some quick notes about Composer, in general, and this project's use of it:
+1. You need to [install Composer](https://getcomposer.org/download/) on your desktop/laptop, not your server. You can download it right into your `wp-plugin-name` directory.
+1. The `composer.json` file is the *instructions* file that tells the `composer.phar` how to build your `vendor` directory (which includes the autoloader), and possibly do other things.
+1. Run `php composer.phar install` to generate your `composer.lock` file.
+1. Because `composer.json` has `"optimize-autoloader": true` inside the config key, *you will need to run Composer's `update` if you ever add a new PHP class*
+    1. See https://getcomposer.org/doc/articles/autoloader-optimization.md for more details.
+    1. It is set this way to lean toward distribution convenience more than development convenience.
+
+#### Generating and Distributing the .zip
+
+1. **Once ready to build the finalized .zip to distribute to your site or to others...**
+    1. `php composer.phar archive --file wp-plugin-name` *(name yours correctly)*
+    1. Because we did not set a `--dir` argument for the `archive` command, Composer will create the .zip right in the project's directory. *#Convenient!*
+1. Unzip this newly-created `wp-plugin-name.zip` file to make sure it got built correctly (excluding files like .gitignore, composer.json, etc).
+1. Upload this .zip to your production site or wherever you want to distribute it.
+1. Delete this .zip file from your hard drive.
 
 ### Plugin Structure
 
 Following is the pre-built plugin structure. You can add your own new class files (include `namespace` and `use` at the top) by naming them correctly and putting the files in the most appropriate location.
 
-* `wp-plugin-name/inc/admin` - admin-specific functionality
-* `wp-plugin-name/inc/core` - plugin core to register hooks, load files etc
-* `wp-plugin-name/inc/frontend` - public-facing functionality
-* `wp-plugin-name/inc/common` - functionality shared between the admin area and the public-facing parts
-* `wp-plugin-name/inc/libraries` - third-party libraries that the plugin uses (like a Composer `vendor` directory)
+* `wp-plugin-name/src/admin` - admin-specific functionality
+* `wp-plugin-name/src/core` - plugin core to register hooks, load files etc
+* `wp-plugin-name/src/frontend` - public-facing functionality
+* `wp-plugin-name/src/common` - functionality shared between the admin area and the public-facing parts
+* `wp-plugin-name/src/libraries` - third-party libraries that the plugin uses (like a Composer `vendor` directory)
 
 ### PHP Version
 
@@ -99,6 +125,10 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 # Boilerplate's Changelog
 
 Documenting this project's progress...
+
+##### October 6, 2018
+* Now requires Composer. See instructions in this file.
+* Fix `Common::tk_request()` and add new `$default` and `$escape` parameters.
 
 ##### September 13, 2018
 * Added 'ABSPATH' checks at the beginning of all PHP files

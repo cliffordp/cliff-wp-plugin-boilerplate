@@ -1,8 +1,8 @@
 <?php
 
-namespace WP_Plugin_Name\Inc\Frontend;
+namespace WP_Plugin_Name\Frontend;
 
-use WP_Plugin_Name\Inc\Common as Common;
+use WP_Plugin_Name\Common as Common;
 
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * Enqueues the public-facing stylesheet and JavaScript and other front-end stuff.
  *
- * @link       http://example.com/
+ * @link       https://www.example.com/
  * @since      1.0.0
  *
  * @author     Your Name or Your Company

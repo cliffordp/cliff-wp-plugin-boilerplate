@@ -1,0 +1,35 @@
+{
+  "name": "wp-plugin-name",
+  "description": "Here is a short description of the plugin.",
+  "type": "project",
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "Your Name or Your Company",
+      "email": "your@email.address"
+    }
+  ],
+  "minimum-stability": "stable",
+  "archive": {
+    "exclude": [
+      "*.zip",
+      ".gitignore",
+      ".github",
+      ".travis.yml",
+      "composer.phar",
+      "composer.json",
+      "composer.lock",
+      "phpunit.xml",
+      "README.md"
+    ]
+  },
+  "autoload": {
+    "psr-4": {
+      "WP_Plugin_Name\\": "src/"
+    }
+  },
+  "config": {
+    "archive-format": "zip",
+    "optimize-autoloader": true
+  }
+}

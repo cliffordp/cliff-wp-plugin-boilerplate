@@ -1,6 +1,6 @@
 === WordPress Plugin Boilerplate ===
 Contributors: cliffpaulick
-Donate link: http://example.com/
+Donate link: https://www.example.com/
 Tags:
 Requires at least: 4.5
 Tested up to: 4.9.8
@@ -42,14 +42,14 @@ you put the stable version, in order to eliminate any doubt.
 This section describes how to install the plugin and get it working.
 
 1. Install the plugin:
-  1. Upload the `wp-plugin-name.zip` file at wp-admin > Plugins > Add New menu
-  1. Or, via SFTP, upload the `wp-plugin-name` directory to the `/wp-content/plugins/` directory
+    1. Upload the `wp-plugin-name.zip` file at wp-admin > Plugins > Add New menu
+    1. Or, via SFTP, upload the `wp-plugin-name` directory to the `/wp-content/plugins/` directory
 1. Activate the plugin:
-  1. Visit wp-admin > Plugins
-  1. Find the `WordPress Plugin Boilerplate` plugin in the list
-  1. Click its "Activate" link
+    1. Visit wp-admin > Plugins
+    1. Find the `WordPress Plugin Boilerplate` plugin in the list
+    1. Click its "Activate" link
 1. Use the plugin:
-  1. Visit the wp-admin "Users" screen to be able to do new things
+    1. Visit the wp-admin "Users" screen to be able to do new things
 
 == Frequently Asked Questions ==
 
