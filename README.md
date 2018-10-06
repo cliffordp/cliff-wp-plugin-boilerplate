@@ -127,7 +127,7 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 Documenting this project's progress...
 
 ##### October 6, 2018
-* Now requires Composer. See instructions in this file.
+* Now requires Composer. [See instructions, above.](https://github.com/cliffordp/cliff-wp-plugin-boilerplate#using-composer)
 * Fix `Common::tk_request()` and add new `$default` and `$escape` parameters.
 
 ##### September 13, 2018
