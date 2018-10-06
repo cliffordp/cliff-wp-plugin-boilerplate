@@ -69,7 +69,7 @@ Following is the pre-built plugin structure. You can add your own new class file
 * `wp-plugin-name/src/core` - plugin core to register hooks, load files etc
 * `wp-plugin-name/src/frontend` - public-facing functionality
 * `wp-plugin-name/src/common` - functionality shared between the admin area and the public-facing parts
-* `wp-plugin-name/src/libraries` - third-party libraries that the plugin uses (like a Composer `vendor` directory)
+* `wp-plugin-name/src/libraries` - third-party libraries that the plugin uses (like a Composer `vendor` directory but for stuff that isn't able to be installed via Composer)
 
 ### PHP Version
 
@@ -109,7 +109,7 @@ This WordPress Plugin Boilerplate is licensed under *GPL version 3 or any later 
 
 If you opt to use third-party code that is not compatible with this software's license, then you may need to switch to using code that is compatible.
 
-As an example, [here's a discussion](http://make.wordpress.org/themes/2013/03/04/licensing-note-apache-and-gpl/) that states GPLv2-only plugins could not bundle work licensed with Apache 2.0, such as [Bootstrap](http://twitter.github.io/bootstrap/).
+As an example, [here's a discussion](http://make.wordpress.org/themes/2013/03/04/licensing-note-apache-and-gpl/) that states GPLv2-only plugins could not bundle work licensed with Apache 2.0.
 
 
 # Credits
