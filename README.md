@@ -1,4 +1,4 @@
-# WordPress Plugin Boilerplate with Namespace and Autoloader Support
+# WordPress Plugin Boilerplate with Support for Composer and Namespaces
 
 
 ## Contents
@@ -117,7 +117,7 @@ As an example, [here's a discussion](http://make.wordpress.org/themes/2013/03/04
 
 The WordPress Plugin Boilerplate was started in 2011, by [Tom McFarlin](http://twitter.com/tommcfarlin/) and has since included a number of great contributions. In March of 2015, the project was handed over by Tom to Devin Vinson.
 
-This plugin boilerplate was created by [Clifford Paulick](https://github.com/cliffordp/) in 2018, as a fork of [WordPress Plugin Boilerplate with Namespace and Autoloader Support](https://github.com/karannagupta/WordPress-Plugin-Boilerplate), which forked the [WordPress Plugin Boilerplate](https://github.com/DevinVinson/WordPress-Plugin-Boilerplate) project to add support for Namespaces and Autoloading.
+This plugin boilerplate was created by [Clifford Paulick](https://github.com/cliffordp/) in 2018, as a fork of [WordPress Plugin Boilerplate with Namespace and Autoloader Support](https://github.com/karannagupta/WordPress-Plugin-Boilerplate), which forked the [WordPress Plugin Boilerplate](https://github.com/DevinVinson/WordPress-Plugin-Boilerplate) project to add support for Composer (including autoloading) and namespaces.
 
 # Contributing
 
