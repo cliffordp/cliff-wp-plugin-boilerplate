@@ -38,13 +38,19 @@ class Frontend {
 	private $version;
 
 	/**
-	 * Initialize the class and set its properties.
+	 * Get the Common instance.
 	 *
-	 * @since       1.0.0
+	 * @var \WP_Plugin_Name\Common\Common
+	 */
+	private $common;
+
+	/**
+	 * Initialize the class and set its properties.
 	 */
 	public function __construct() {
-		$this->plugin_text_domain = Common\Common::$plugin_text_domain;
-		$this->version            = Common\Common::$version;
+		$this->plugin_text_domain = \WP_Plugin_Name\PLUGIN_TEXT_DOMAIN;
+		$this->version            = \WP_Plugin_Name\PLUGIN_VERSION;
+		$this->common             = \WP_Plugin_Name\Common\Common::get_instance();
 	}
 
 	/**

@@ -8,17 +8,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * The functionality shared between the admin and public-facing areas
- * of the plugin.
+ * The functionality shared between the admin and public-facing areas of the plugin.
  *
- * Useful for things like utilities or hooking into something that
- * affects both back-end and front-end.
- * Everything should be 'public static...' unless only useful as a hook within \WP_Plugin_Name\Core\Init::define_common_hooks()
+ * Useful for things like utilities or hooking into something that affects both back-end and front-end.
  *
  * @link  https://www.example.com/
  * @since 1.0.0
  */
 class Common {
+
+	/**
+	 * Common's instance.
+	 */
+	private static $instance;
 
 	/**
 	 * The text domain of this plugin.
@@ -27,7 +29,7 @@ class Common {
 	 * @access public
 	 * @var    string $plugin_text_domain The text domain of this plugin.
 	 */
-	public static $plugin_text_domain;
+	public $plugin_text_domain;
 
 	/**
 	 * The version of this plugin.
@@ -36,16 +38,16 @@ class Common {
 	 * @access public
 	 * @var    string $version The current version of this plugin.
 	 */
-	public static $version;
+	public $version;
 
 	/**
 	 * Shortcodes to register.
 	 *
-	 * The shortcode tag must match the 'public static' method name within Common.
+	 * The shortcode tag must match the method name within Common (must be public and cannot be static).
 	 *
 	 * @since 1.0.0
 	 */
-	public static $shortcodes = [
+	public $shortcodes = [
 		'tk_request',
 	];
 
@@ -53,13 +55,32 @@ class Common {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @param string $plugin_text_domain The text domain of this plugin.
-	 * @param string $version            The version of this plugin.
 	 */
-	public function __construct( $plugin_text_domain, $version ) {
-		self::$plugin_text_domain = $plugin_text_domain;
-		self::$version            = $version;
+	public function __construct() {
+		$this->plugin_text_domain = \WP_Plugin_Name\PLUGIN_TEXT_DOMAIN;
+		$this->version            = \WP_Plugin_Name\PLUGIN_VERSION;
+	}
+
+	/**
+	 * Get Common's instance.
+	 *
+	 * @link https://www.alainschlesser.com/singletons-shared-instances/ Maybe we could do better than using a singleton.
+	 *
+	 * @return Common
+	 */
+	public static function get_instance() {
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
+	 * Make it possible to unset/reset Common's instance.
+	 */
+	public function reset_instance() {
+		self::$instance = null;
 	}
 
 	/**
@@ -69,8 +90,8 @@ class Common {
 	 *
 	 * @return string 'wp_plugin_name'
 	 */
-	public static function plugin_text_domain_underscores() {
-		return str_replace( '-', '_', self::$plugin_text_domain );
+	public function plugin_text_domain_underscores() {
+		return str_replace( '-', '_', $this->plugin_text_domain );
 	}
 
 	/**
@@ -82,7 +103,7 @@ class Common {
 	 *
 	 * @return int|false
 	 */
-	public static function post_id_helper( $post = null ) {
+	public function post_id_helper( $post = null ) {
 		if (
 			! is_null( $post )
 			&& is_numeric( $post ) > 0
@@ -119,7 +140,7 @@ class Common {
 	 *
 	 * @return string The string value of the query parameter, if any.
 	 */
-	public static function tk_request( $atts, $default = '', $escape = true ) {
+	public function tk_request( $atts, $default = '', $escape = true ) {
 		// Protect against passing a string value, such as if used directly via PHP function instead of as a shortcode.
 		if ( is_string( $atts ) ) {
 			$atts = [ 'parameter' => $atts ];
@@ -177,7 +198,7 @@ class Common {
 	 *
 	 * @return false|array False if user is not logged-in. Array (may be empty) if user is logged-in.
 	 */
-	public static function get_all_current_author_post_ids() {
+	public function get_all_current_author_post_ids() {
 		$current_user = wp_get_current_user();
 
 		// User is not logged-in
@@ -202,7 +223,7 @@ class Common {
 	 *
 	 * @return array
 	 */
-	public static function get_all_post_ids() {
+	public function get_all_post_ids() {
 		$args = [
 			'fields'         => 'ids',
 			'posts_per_page' => - 1,
@@ -221,7 +242,7 @@ class Common {
 	 *
 	 * @return \DateTime|bool
 	 */
-	public static function get_current_time_wp_tz_date_object() {
+	public function get_current_time_wp_tz_date_object() {
 		$time_zone = get_option( 'timezone_string' );
 
 		if ( ! in_array( $time_zone, timezone_identifiers_list() ) ) {
@@ -243,7 +264,7 @@ class Common {
 	 *
 	 * @return float|int
 	 */
-	public static function round_up( $value, $places = 0 ) {
+	public function round_up( $value, $places = 0 ) {
 		$value = (float) $value;
 
 		// Avoid dividing by zero
@@ -269,7 +290,7 @@ class Common {
 	 *
 	 * @return int
 	 */
-	public static function round_up_to_next( $value = 0, $interval = 0 ) {
+	public function round_up_to_next( $value = 0, $interval = 0 ) {
 		if (
 			empty( $value )
 			|| ! is_numeric( $value )
