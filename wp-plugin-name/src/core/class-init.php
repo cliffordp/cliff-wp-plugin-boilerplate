@@ -126,12 +126,11 @@ class Init {
 	 * @access    private
 	 */
 	private function define_common_hooks() {
-		$plugin_common = new Common\Common( $this->get_plugin_text_domain(), $this->get_version() );
+		$plugin_common = new Common\Common();
 
 		// Add all the shortcodes
-		foreach ( $plugin_common::$shortcodes as $shortcode ) {
-			$method = '\\WP_Plugin_Name\Common\Common::' . $shortcode;
-			add_shortcode( $shortcode, $method );
+		foreach ( $plugin_common->shortcodes as $shortcode ) {
+			add_shortcode( $shortcode, [ $plugin_common, $shortcode ] );
 		}
 
 		// Example: $this->loader->add_filter( 'gform_currencies', $plugin_common, 'gf_currency_usd_whole_dollars', 50 );

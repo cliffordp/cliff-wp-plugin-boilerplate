@@ -97,7 +97,7 @@ class WP_Plugin_Name {
 	private static $min_php = '5.6.0';
 
 	/**
-	 * The list of required plugins, as passed to \is_plugin_active()
+	 * The list of required plugins, as passed to is_plugin_active()
 	 *
 	 * @since    1.0.0
 	 */
@@ -123,13 +123,15 @@ class WP_Plugin_Name {
 	private static $init;
 
 	/**
-	 * Loads the plugin
+	 * Loads the plugin.
 	 *
-	 * @access    public
+	 * @access public
+	 *
+	 * @return null|WP_Plugin_Name
 	 */
 	public static function init() {
 		if ( ! self::is_ready() ) {
-			return false;
+			return null;
 		}
 
 		if ( null === self::$init ) {
@@ -149,7 +151,7 @@ class WP_Plugin_Name {
 		$success = true;
 
 		if ( version_compare( PHP_VERSION, self::$min_php, '<' ) ) {
-			add_action( 'admin_notices', [ \get_called_class(), 'notice_old_php_version' ] );
+			add_action( 'admin_notices', [ get_called_class(), 'notice_old_php_version' ] );
 			$success = false;
 		}
 
@@ -165,8 +167,8 @@ class WP_Plugin_Name {
 	 *
 	 * If not all are, the first one detected missing will display an admin error notice.
 	 *
-	 * @see \is_plugin_active()
-	 * @see \current_user_can()
+	 * @see is_plugin_active()
+	 * @see current_user_can()
 	 *
 	 * @return bool
 	 */
