@@ -10,10 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Register all actions and filters for the plugin
  *
- * @link       https://www.example.com/
- * @since      1.0.0
- *
- * @author     Your Name or Your Company
+ * @link  https://www.example.com/
+ * @since 1.0.0
  */
 
 /**

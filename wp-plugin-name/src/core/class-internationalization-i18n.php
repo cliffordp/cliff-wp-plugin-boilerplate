@@ -13,10 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @link       https://www.example.com/
- * @since      1.0.0
- *
- * @author     Your Name or Your Company
+ * @link  https://www.example.com/
+ * @since 1.0.0
  */
 class Internationalization_I18n {
 

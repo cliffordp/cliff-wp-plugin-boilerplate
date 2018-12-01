@@ -14,10 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * Enqueues the public-facing stylesheet and JavaScript and other front-end stuff.
  *
- * @link       https://www.example.com/
- * @since      1.0.0
- *
- * @author     Your Name or Your Company
+ * @link  https://www.example.com/
+ * @since 1.0.0
  */
 class Frontend {
 
