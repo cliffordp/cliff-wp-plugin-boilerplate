@@ -131,6 +131,7 @@ Documenting this project's progress...
 * `Common` class: Use a singleton instead of static methods.
 * Removed all `@author` DocBlocks, [per WordPress' best practices](https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/php/#other-tags):
   * > It is WordPress policy not to use the `@author` tag, except in the case of maintaining it in external libraries. We do not want to imply any sort of "ownership" over code that might discourage contribution.
+* Fix `Common::post_id_helper()` to not return `0` when passed `0`. Instead, will go through to the logic to automatically determine the Post ID.
 
 ##### October 6, 2018
 * Now requires Composer. [See instructions, above.](https://github.com/cliffordp/cliff-wp-plugin-boilerplate#using-composer)

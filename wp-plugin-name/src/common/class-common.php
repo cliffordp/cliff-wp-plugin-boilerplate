@@ -106,7 +106,8 @@ class Common {
 	public function post_id_helper( $post = null ) {
 		if (
 			! is_null( $post )
-			&& is_numeric( $post ) > 0
+			&& is_numeric( $post )
+			&& absint( $post ) > 0
 		) {
 			return (int) $post;
 		} elseif (
