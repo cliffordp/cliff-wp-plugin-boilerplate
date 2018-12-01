@@ -12,10 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * This class defines all code necessary to run during the plugin's activation.
  *
- * @link       https://www.example.com/
- * @since      1.0.0
- *
- * @author     Your Name or Your Company
+ * @link  https://www.example.com/
+ * @since 1.0.0
  **/
 class Activator {
 

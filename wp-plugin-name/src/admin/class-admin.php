@@ -15,10 +15,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @link       https://www.example.com/
- * @since      1.0.0
- *
- * @author     Your Name or Your Company
+ * @link  https://www.example.com/
+ * @since 1.0.0
  */
 class Admin {
 

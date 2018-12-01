@@ -16,10 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * The core plugin class.
  * Defines internationalization, admin-specific hooks, and public-facing site hooks.
  *
- * @link       https://www.example.com/
- * @since      1.0.0
- *
- * @author     Your Name or Your Company
+ * @link  https://www.example.com/
+ * @since 1.0.0
  */
 class Init {
 

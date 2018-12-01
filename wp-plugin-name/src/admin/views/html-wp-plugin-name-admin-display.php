@@ -10,10 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * This file is used to markup the admin-facing aspects of the plugin.
  *
- * @link       https://www.example.com/
- * @since      1.0.0
- *
- * @author     Your Name or Your Company
+ * @link  https://www.example.com/
+ * @since 1.0.0
  */
 
 ?>

@@ -15,10 +15,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * affects both back-end and front-end.
  * Everything should be 'public static...' unless only useful as a hook within \WP_Plugin_Name\Core\Init::define_common_hooks()
  *
- * @link   https://www.example.com/
- * @since  1.0.0
- *
- * @author Your Name or Your Company
+ * @link  https://www.example.com/
+ * @since 1.0.0
  */
 class Common {
 
