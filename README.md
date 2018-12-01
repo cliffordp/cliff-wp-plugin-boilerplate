@@ -128,6 +128,7 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 Documenting this project's progress...
 
 ##### December 1, 2018
+* Improve main plugin class' loading, removing static methods and singleton.
 * `Common` class: Use a singleton instead of static methods.
 * Removed all `@author` DocBlocks, [per WordPress' best practices](https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/php/#other-tags):
   * > It is WordPress policy not to use the `@author` tag, except in the case of maintaining it in external libraries. We do not want to imply any sort of "ownership" over code that might discourage contribution.

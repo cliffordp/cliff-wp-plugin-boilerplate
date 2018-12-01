@@ -85,23 +85,23 @@ register_deactivation_hook( __FILE__, [ NS . 'Core\Deactivator', 'deactivate' ] 
  *
  * Maintains a single copy of the plugin app object
  *
- * @since    1.0.0
+ * @since 1.0.0
  */
 class WP_Plugin_Name {
 
 	/**
 	 * The required version of PHP.
 	 *
-	 * @since    1.0.0
+	 * @since 1.0.0
 	 */
-	private static $min_php = '5.6.0';
+	private $min_php = '5.6.0';
 
 	/**
 	 * The list of required plugins, as passed to is_plugin_active()
 	 *
-	 * @since    1.0.0
+	 * @since 1.0.0
 	 */
-	private static $required_plugins = [
+	private $required_plugins = [
 		// 'gravityforms/gravityforms.php',
 		// 'types/wpcf.php',
 		// 'woocommerce/woocommerce.php',
@@ -110,53 +110,25 @@ class WP_Plugin_Name {
 	/**
 	 * The plugin that is missing, if any.
 	 *
-	 * @since    1.0.0
+	 * @since 1.0.0
 	 */
-	private static $missing_plugin = '';
-
-	/**
-	 * The instance of the plugin.
-	 *
-	 * @since    1.0.0
-	 * @var      Init $init Instance of the plugin.
-	 */
-	private static $init;
-
-	/**
-	 * Loads the plugin.
-	 *
-	 * @access public
-	 *
-	 * @return null|WP_Plugin_Name
-	 */
-	public static function init() {
-		if ( ! self::is_ready() ) {
-			return null;
-		}
-
-		if ( null === self::$init ) {
-			self::$init = new Core\Init();
-			self::$init->run();
-		}
-
-		return self::$init;
-	}
+	private $missing_plugin = '';
 
 	/**
 	 * Check if we have everything that is required.
 	 *
 	 * @return bool
 	 */
-	private static function is_ready() {
+	public function is_ready() {
 		$success = true;
 
-		if ( version_compare( PHP_VERSION, self::$min_php, '<' ) ) {
-			add_action( 'admin_notices', [ get_called_class(), 'notice_old_php_version' ] );
+		if ( version_compare( PHP_VERSION, $this->min_php, '<' ) ) {
+			add_action( 'admin_notices', [ $this, 'notice_old_php_version' ] );
 			$success = false;
 		}
 
 		if ( $success ) {
-			$success = self::has_required_plugins();
+			$success = $this->has_required_plugins();
 		}
 
 		return $success;
@@ -172,7 +144,7 @@ class WP_Plugin_Name {
 	 *
 	 * @return bool
 	 */
-	private static function has_required_plugins() {
+	private function has_required_plugins() {
 		// The file in which is_plugin_active() is located.
 		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
@@ -181,12 +153,12 @@ class WP_Plugin_Name {
 
 		$result = true;
 
-		foreach ( self::$required_plugins as $plugin ) {
+		foreach ( $this->required_plugins as $plugin ) {
 			if ( empty( $result ) ) {
 				break;
 			}
 
-			self::$missing_plugin = $plugin;
+			$this->missing_plugin = $plugin;
 
 			$result = is_plugin_active( $plugin );
 		}
@@ -195,7 +167,7 @@ class WP_Plugin_Name {
 			empty( $result )
 			&& current_user_can( 'activate_plugins' )
 		) {
-			add_action( 'admin_notices', [ get_called_class(), 'notice_missing_required_plugin' ] );
+			add_action( 'admin_notices', [ $this, 'notice_missing_required_plugin' ] );
 		}
 
 		return $result;
@@ -204,14 +176,14 @@ class WP_Plugin_Name {
 	/**
 	 * Output a message about a required plugin missing, and link to Plugins page.
 	 */
-	public static function notice_old_php_version() {
+	public function notice_old_php_version() {
 		$message = sprintf(
 			__( '%1$s requires at least PHP version %2$s in order to work.', PLUGIN_TEXT_DOMAIN ),
 			'<strong>' . wp_plugin_name_get_plugin_display_name() . '</strong>',
-			'<strong>' . self::$min_php . '</strong>'
+			'<strong>' . $this->min_php . '</strong>'
 		);
 
-		self::do_admin_notice( $message );
+		$this->do_admin_notice( $message );
 	}
 
 	/**
@@ -220,7 +192,7 @@ class WP_Plugin_Name {
 	 * @param        $message
 	 * @param string $type
 	 */
-	public static function do_admin_notice( $message, $type = 'error' ) {
+	public function do_admin_notice( $message, $type = 'error' ) {
 		$class = sprintf( '%s %s', $type, sanitize_html_class( PLUGIN_TEXT_DOMAIN ) );
 
 		printf( '<div class="%s"><p>%s</p></div>', $class, $message );
@@ -229,7 +201,7 @@ class WP_Plugin_Name {
 	/**
 	 * Output a message about a required plugin missing, and link to Plugins page.
 	 */
-	public static function notice_missing_required_plugin() {
+	public function notice_missing_required_plugin() {
 		$admin_link = '';
 
 		$current_screen = get_current_screen();
@@ -244,11 +216,11 @@ class WP_Plugin_Name {
 		$message = sprintf(
 			__( 'The %1$s plugin requires the %2$s plugin to be active in order to work.%3$s', PLUGIN_TEXT_DOMAIN ),
 			'<strong>' . wp_plugin_name_get_plugin_display_name() . '</strong>',
-			'<strong>' . self::$missing_plugin . '</strong>',
+			'<strong>' . $this->missing_plugin . '</strong>',
 			$admin_link
 		);
 
-		self::do_admin_notice( $message );
+		$this->do_admin_notice( $message );
 	}
 }
 
@@ -274,7 +246,15 @@ function wp_plugin_name_get_plugin_display_name() {
  * can interact with the plugin's hooks contained within.
  **/
 function wp_plugin_name_init() {
-	return WP_Plugin_Name::init();
+	$plugin = new WP_Plugin_Name();
+
+	if ( $plugin->is_ready() ) {
+		$core = new Core\Init();
+		$core->run();
+		return true;
+	} else {
+		return false;
+	}
 }
 
 wp_plugin_name_init();
