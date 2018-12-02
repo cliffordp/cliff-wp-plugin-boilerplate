@@ -145,150 +145,6 @@ class WP_Plugin_Name {
 	];
 
 	/**
-	 * Check if we have everything that is required.
-	 *
-	 * @return bool
-	 */
-	public function is_ready() {
-		$success = true;
-
-		if ( version_compare( PHP_VERSION, $this->min_php, '<' ) ) {
-			add_action( 'admin_notices', [ $this, 'notice_old_php_version' ] );
-			$success = false;
-		}
-
-		if ( $success ) {
-			$success = $this->required_plugins_are_active();
-		}
-
-		// Plugins check passed so now check theme
-		if ( $success ) {
-			$success = $this->required_theme_is_active();
-
-			if ( ! $success ) {
-				// Admin notices for required plugins will be handled via TGM Plugin Activation, but not for the theme
-
-				// Required to use current_user_can()
-				require_once( ABSPATH . 'wp-includes/pluggable.php' );
-
-				if ( current_user_can( 'switch_themes' ) ) {
-					add_action( 'admin_notices', [ $this, 'notice_missing_required_theme' ] );
-				}
-			}
-		}
-
-		add_action( 'tgmpa_register', [ $this, 'tgmpa_register_required_plugins' ] );
-
-		return $success;
-	}
-
-	/**
-	 * Checks if all of the required plugins are active.
-	 *
-	 * @see is_plugin_active()
-	 *
-	 * @link https://github.com/TGMPA/TGM-Plugin-Activation/issues/760 This method won't be required if this gets added.
-	 *
-	 * @return bool
-	 * @return string Either file path for plugin if installed, or just the plugin slug.
-	 */
-	private function required_plugins_are_active() {
-		// The file in which is_plugin_active() is located.
-		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-
-		$result = true;
-
-		foreach ( $this->required_plugins as $required_plugin ) {
-			if ( empty( $result ) ) {
-				break;
-			}
-
-			// Only check plugins that are *required*, not the ones that are just *recommended*.
-			if ( empty( $required_plugin['required'] ) ) {
-				continue;
-			}
-
-			// Check if active
-			$basename = $this->get_plugin_basename_from_slug( $required_plugin['slug'] );
-
-			$active = is_plugin_active( $basename );
-
-			if ( ! $active ) {
-				$result = false;
-				break;
-			}
-
-			// Is active so check sufficient version
-			if ( empty( $required_plugin['version'] ) ) {
-				continue;
-			}
-
-			$plugin_data = get_plugin_data( plugin_dir_path( __DIR__ ) . $basename );
-
-			if (
-				empty( $plugin_data['Version'] )
-				|| version_compare( $required_plugin['version'], $plugin_data['Version'], '>' )
-			) {
-				$result = false;
-			}
-		}
-
-		return $result;
-	}
-
-	/**
-	 * Get the file path of the plugin file from the plugin slug, if the plugin is installed.
-	 *
-	 * @see TGM_Plugin_Activation::_get_plugin_basename_from_slug()
-	 *
-	 * @param string $slug Plugin slug (typically folder name) as provided by the developer.
-	 *
-	 * @return string Either file path for plugin directory, or just the plugin file slug.
-	 */
-	private function get_plugin_basename_from_slug( $slug ) {
-		$keys = array_keys( get_plugins() );
-
-		foreach ( $keys as $key ) {
-			if ( preg_match( '|^' . $slug . '/|', $key ) ) {
-				return $key;
-			}
-		}
-
-		return $slug;
-	}
-
-	/**
-	 * Check if the required parent theme and/or child theme is active.
-	 *
-	 * @return bool True if no requirements set or they are met. False if requirements exist and are not met.
-	 */
-	private function required_theme_is_active() {
-		$current_theme = wp_get_theme();
-
-		// Check Parent
-		if ( ! empty( $this->required_theme['parent'] ) ) {
-			if (
-				empty( $current_theme->get_template() )
-				|| $this->required_theme['parent'] !== $current_theme->get_template()
-			) {
-				return false;
-			}
-		}
-
-		// Check Child
-		if ( ! empty( $this->required_theme['child'] ) ) {
-			if (
-				empty( $current_theme->get_template() )
-				|| $this->required_theme['child'] !== $current_theme->get_stylesheet()
-			) {
-				return false;
-			}
-		}
-
-		return true;
-	}
-
-	/**
 	 * Register the required plugins.
 	 *
 	 * @link https://github.com/TGMPA/TGM-Plugin-Activation/blob/master/example.php How/What to put in here.
@@ -429,6 +285,151 @@ class WP_Plugin_Name {
 
 		$this->do_admin_notice( $message );
 	}
+
+	/**
+	 * Check if we have everything that is required.
+	 *
+	 * @return bool
+	 */
+	public function is_ready() {
+		$success = true;
+
+		if ( version_compare( PHP_VERSION, $this->min_php, '<' ) ) {
+			add_action( 'admin_notices', [ $this, 'notice_old_php_version' ] );
+			$success = false;
+		}
+
+		if ( $success ) {
+			$success = $this->required_plugins_are_active();
+		}
+
+		// Plugins check passed so now check theme
+		if ( $success ) {
+			$success = $this->required_theme_is_active();
+
+			if ( ! $success ) {
+				// Admin notices for required plugins will be handled via TGM Plugin Activation, but not for the theme
+
+				// Required to use current_user_can()
+				require_once( ABSPATH . 'wp-includes/pluggable.php' );
+
+				if ( current_user_can( 'switch_themes' ) ) {
+					add_action( 'admin_notices', [ $this, 'notice_missing_required_theme' ] );
+				}
+			}
+		}
+
+		add_action( 'tgmpa_register', [ $this, 'tgmpa_register_required_plugins' ] );
+
+		return $success;
+	}
+
+	/**
+	 * Checks if all of the required plugins are active.
+	 *
+	 * @see  is_plugin_active()
+	 *
+	 * @link https://github.com/TGMPA/TGM-Plugin-Activation/issues/760 This method won't be required if this gets added.
+	 *
+	 * @return bool
+	 * @return string Either file path for plugin if installed, or just the plugin slug.
+	 */
+	private function required_plugins_are_active() {
+		// The file in which is_plugin_active() is located.
+		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
+		$result = true;
+
+		foreach ( $this->required_plugins as $required_plugin ) {
+			if ( empty( $result ) ) {
+				break;
+			}
+
+			// Only check plugins that are *required*, not the ones that are just *recommended*.
+			if ( empty( $required_plugin['required'] ) ) {
+				continue;
+			}
+
+			// Check if active
+			$basename = $this->get_plugin_basename_from_slug( $required_plugin['slug'] );
+
+			$active = is_plugin_active( $basename );
+
+			if ( ! $active ) {
+				$result = false;
+				break;
+			}
+
+			// Is active so check sufficient version
+			if ( empty( $required_plugin['version'] ) ) {
+				continue;
+			}
+
+			$plugin_data = get_plugin_data( plugin_dir_path( __DIR__ ) . $basename );
+
+			if (
+				empty( $plugin_data['Version'] )
+				|| version_compare( $required_plugin['version'], $plugin_data['Version'], '>' )
+			) {
+				$result = false;
+			}
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Get the file path of the plugin file from the plugin slug, if the plugin is installed.
+	 *
+	 * @see TGM_Plugin_Activation::_get_plugin_basename_from_slug()
+	 *
+	 * @param string $slug Plugin slug (typically folder name) as provided by the developer.
+	 *
+	 * @return string Either file path for plugin directory, or just the plugin file slug.
+	 */
+	private function get_plugin_basename_from_slug( $slug ) {
+		$keys = array_keys( get_plugins() );
+
+		foreach ( $keys as $key ) {
+			if ( preg_match( '|^' . $slug . '/|', $key ) ) {
+				return $key;
+			}
+		}
+
+		return $slug;
+	}
+
+	/**
+	 * Check if the required parent theme and/or child theme is active.
+	 *
+	 * @return bool True if no requirements set or they are met. False if requirements exist and are not met.
+	 */
+	private function required_theme_is_active() {
+		$current_theme = wp_get_theme();
+
+		// Check Parent
+		if ( ! empty( $this->required_theme['parent'] ) ) {
+			if (
+				empty( $current_theme->get_template() )
+				|| $this->required_theme['parent'] !== $current_theme->get_template()
+			) {
+				return false;
+			}
+		}
+
+		// Check Child
+		if ( ! empty( $this->required_theme['child'] ) ) {
+			if (
+				empty( $current_theme->get_template() )
+				|| $this->required_theme['child'] !== $current_theme->get_stylesheet()
+			) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+}
 
 /**
  * Get the plugin's display name.
