@@ -2,7 +2,10 @@
 
 namespace WP_Plugin_Name\Common;
 
+use DateTime;
+use DateTimeZone;
 use WP_Post;
+use WP_Query;
 
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -216,7 +219,7 @@ class Common {
 			'author'         => $current_user->ID
 		];
 
-		$result = new \WP_Query( $args );
+		$result = new WP_Query( $args );
 
 		return $result->posts;
 	}
@@ -233,7 +236,7 @@ class Common {
 			'post_type'      => 'post',
 		];
 
-		$result = new \WP_Query( $args );
+		$result = new WP_Query( $args );
 
 		return $result->posts;
 	}
@@ -243,7 +246,7 @@ class Common {
 	 *
 	 * If WordPress setting is not a valid PHP time zone, fallback to Chicago (Central Time).
 	 *
-	 * @return \DateTime|bool
+	 * @return DateTime|bool
 	 */
 	public function get_current_time_wp_tz_date_object() {
 		$time_zone = get_option( 'timezone_string' );
@@ -252,7 +255,7 @@ class Common {
 			$time_zone = 'America/Chicago';
 		}
 
-		return new \DateTime( 'now', new \DateTimeZone( $time_zone ) );
+		return new DateTime( 'now', new DateTimeZone( $time_zone ) );
 	}
 
 	/**
