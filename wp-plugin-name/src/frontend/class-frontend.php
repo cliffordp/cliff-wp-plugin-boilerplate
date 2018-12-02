@@ -2,7 +2,7 @@
 
 namespace WP_Plugin_Name\Frontend;
 
-use WP_Plugin_Name\Common as Common;
+use WP_Plugin_Name\Common\Common as Common;
 
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -20,27 +20,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Frontend {
 
 	/**
-	 * The text domain of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string $plugin_text_domain The text domain of this plugin.
-	 */
-	private $plugin_text_domain;
-
-	/**
-	 * The version of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string $version The current version of this plugin.
-	 */
-	private $version;
-
-	/**
 	 * Get the Common instance.
 	 *
-	 * @var \WP_Plugin_Name\Common\Common
+	 * @var Common
 	 */
 	private $common;
 
@@ -48,9 +30,7 @@ class Frontend {
 	 * Initialize the class and set its properties.
 	 */
 	public function __construct() {
-		$this->plugin_text_domain = \WP_Plugin_Name\PLUGIN_TEXT_DOMAIN;
-		$this->version            = \WP_Plugin_Name\PLUGIN_VERSION;
-		$this->common             = \WP_Plugin_Name\Common\Common::get_instance();
+		$this->common = Common::get_instance();
 	}
 
 	/**
@@ -69,7 +49,7 @@ class Frontend {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_text_domain, plugin_dir_url( __FILE__ ) . 'css/wp-plugin-name-frontend.css', [], $this->version, 'all' );
+		wp_enqueue_style( $this->common->plugin_text_domain, plugin_dir_url( __FILE__ ) . 'css/wp-plugin-name-frontend.css', [], $this->common->version, 'all' );
 	}
 
 	/**
@@ -88,6 +68,6 @@ class Frontend {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_text_domain, plugin_dir_url( __FILE__ ) . 'js/wp-plugin-name-frontend.js', [ 'jquery' ], $this->version, false );
+		wp_enqueue_script( $this->common->plugin_text_domain, plugin_dir_url( __FILE__ ) . 'js/wp-plugin-name-frontend.js', [ 'jquery' ], $this->common->version, false );
 	}
 }

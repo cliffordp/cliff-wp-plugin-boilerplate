@@ -4,6 +4,7 @@ namespace WP_Plugin_Name\Common;
 
 use DateTime;
 use DateTimeZone;
+use WP_Plugin_Name as NS;
 use WP_Post;
 use WP_Query;
 
@@ -62,8 +63,8 @@ class Common {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		$this->plugin_text_domain = \WP_Plugin_Name\PLUGIN_TEXT_DOMAIN;
-		$this->version            = \WP_Plugin_Name\PLUGIN_VERSION;
+		$this->plugin_text_domain = NS\PLUGIN_TEXT_DOMAIN;
+		$this->version            = NS\PLUGIN_VERSION;
 	}
 
 	/**
