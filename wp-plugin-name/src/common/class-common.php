@@ -2,6 +2,8 @@
 
 namespace WP_Plugin_Name\Common;
 
+use WP_Post;
+
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -99,7 +101,7 @@ class Common {
 	 *
 	 * Helper function for getting Post ID. Accepts null or a Post ID. If no $post object exists, returns false.
 	 *
-	 * @param null|int|/WP_Post $post
+	 * @param null|int|WP_Post $post
 	 *
 	 * @return int|false
 	 */
@@ -118,7 +120,7 @@ class Common {
 		} else {
 			if (
 				! empty( $GLOBALS['post'] )
-				&& $GLOBALS['post'] instanceof \WP_Post
+				&& $GLOBALS['post'] instanceof WP_Post
 			) {
 				return get_the_ID();
 			} else {
