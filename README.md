@@ -129,6 +129,11 @@ Documenting this project's progress...
 
 ##### December 2, 2018
 * Add ability to require a parent and/or child theme.
+* Implement [TGM Plugin Activation](http://tgmpluginactivation.com/) for required plugins (does not handle requiring a theme). At this time, it does not handle non-bundled premium plugins very well (adding incorrect download links to the TGMPA admin screen), but it does enhance some functionality:
+  * displaying plugin nice name
+  * requiring a minimum version number
+  * adding the ability to mark a plugin recommended without being required
+  * adding the ability to link to the plugin (the only way to tell people where to download the plugin manually)
 
 ##### December 1, 2018
 * Improve main plugin class' loading, removing static methods and singleton.
