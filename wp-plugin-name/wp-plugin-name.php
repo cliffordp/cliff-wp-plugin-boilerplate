@@ -97,6 +97,17 @@ class WP_Plugin_Name {
 	private $min_php = '5.6.0';
 
 	/**
+	 * The required parent/child theme.
+	 *
+	 * Remove 'child' or leave blank if not required.
+	 * Parent = Stylesheet. Child = Template.
+	 */
+	private $required_theme = [
+		'parent' => '',
+		'child'  => '',
+	];
+
+	/**
 	 * The list of required plugins, as passed to is_plugin_active()
 	 *
 	 * @since 1.0.0
@@ -129,6 +140,20 @@ class WP_Plugin_Name {
 
 		if ( $success ) {
 			$success = $this->has_required_plugins();
+		}
+
+		// Plugins check passed so now check theme
+		if ( $success ) {
+			$success = $this->required_theme_is_active();
+
+			if ( ! $success ) {
+				// Required to use current_user_can()
+				require_once( ABSPATH . 'wp-includes/pluggable.php' );
+
+				if ( current_user_can( 'switch_themes' ) ) {
+					add_action( 'admin_notices', [ $this, 'notice_missing_required_theme' ] );
+				}
+			}
 		}
 
 		return $success;
@@ -181,6 +206,99 @@ class WP_Plugin_Name {
 			__( '%1$s requires at least PHP version %2$s in order to work.', PLUGIN_TEXT_DOMAIN ),
 			'<strong>' . wp_plugin_name_get_plugin_display_name() . '</strong>',
 			'<strong>' . $this->min_php . '</strong>'
+		);
+
+		$this->do_admin_notice( $message );
+	}
+
+	/**
+	 * Check if the required parent theme and/or child theme is active.
+	 *
+	 * @return bool True if no requirements set or they are met. False if requirements exist and are not met.
+	 */
+	private function required_theme_is_active() {
+		$current_theme = wp_get_theme();
+
+		// Check Parent
+		if ( ! empty( $this->required_theme['parent'] ) ) {
+			if (
+				empty( $current_theme->get_template() )
+				|| $this->required_theme['parent'] !== $current_theme->get_template()
+			) {
+				return false;
+			}
+		}
+
+		// Check Child
+		if ( ! empty( $this->required_theme['child'] ) ) {
+			if (
+				empty( $current_theme->get_template() )
+				|| $this->required_theme['child'] !== $current_theme->get_stylesheet()
+			) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/**
+	 * Output a message about the required theme missing, and link to Themes page.
+	 */
+	public function notice_missing_required_theme() {
+		$admin_link = '';
+
+		$current_screen = get_current_screen();
+
+		if (
+			empty( $current_screen->base )
+			|| 'themes' !== $current_screen->base
+		) {
+			$admin_link = sprintf( ' <a href="%1$s">%1$s</a>', admin_url( 'themes.php' ) );
+		}
+
+
+		// Check Parent
+		if ( ! empty( $this->required_theme['parent'] ) ) {
+			$parent_theme = wp_get_theme( $this->required_theme['parent'] );
+
+			if (
+				$parent_theme->exists()
+				&& ! empty( $parent_theme->get( 'Name' ) )
+			) {
+				$parent_name = $parent_theme->get( 'Name' );
+			} else {
+				$parent_name = $this->required_theme['parent'];
+			}
+		}
+
+		// Check Child
+		if ( ! empty( $this->required_theme['child'] ) ) {
+			$child_theme = wp_get_theme( $this->required_theme['child'] );
+
+			if (
+				$child_theme->exists()
+				&& ! empty( $child_theme->get( 'Name' ) )
+			) {
+				$child_name = $child_theme->get( 'Name' );
+			} else {
+				$child_name = $this->required_theme['child'];
+			}
+		}
+
+		if ( ! empty( $this->required_theme['child'] ) ) {
+			$child_message = sprintf(
+				__( ' and %1$s child theme ', PLUGIN_TEXT_DOMAIN ),
+				'<strong>' . $child_name . '</strong>'
+			);
+		}
+
+		$message = sprintf(
+			__( 'The %1$s plugin requires the %2$s parent theme%3$sin order to work.%4$s', PLUGIN_TEXT_DOMAIN ),
+			'<strong>' . wp_plugin_name_get_plugin_display_name() . '</strong>',
+			'<strong>' . $parent_name . '</strong>',
+			$child_message,
+			$admin_link
 		);
 
 		$this->do_admin_notice( $message );
