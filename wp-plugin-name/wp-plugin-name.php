@@ -236,14 +236,14 @@ function wp_plugin_name_get_plugin_display_name() {
 }
 
 /**
- * Begins execution of the plugin
+ * Begins execution of the plugin.
  *
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
+ * Since everything within the plugin is registered via hooks, then kicking off the plugin from this point in the file
+ * does not affect the page life cycle.
  *
- * Also returns copy of the app object so 3rd party developers
- * can interact with the plugin's hooks contained within.
+ * Also returns copy of the app object so 3rd party developers can interact with the plugin's hooks contained within.
+ *
+ * @return false|WP_Plugin_Name
  **/
 function wp_plugin_name_init() {
 	$plugin = new WP_Plugin_Name();
@@ -251,7 +251,7 @@ function wp_plugin_name_init() {
 	if ( $plugin->is_ready() ) {
 		$core = new Core\Init();
 		$core->run();
-		return true;
+		return $plugin;
 	} else {
 		return false;
 	}
