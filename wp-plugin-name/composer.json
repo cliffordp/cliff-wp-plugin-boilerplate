@@ -16,6 +16,7 @@
   "minimum-stability": "stable",
   "archive": {
     "exclude": [
+      "!vendor/*",
       "*.zip",
       ".gitignore",
       ".github",
