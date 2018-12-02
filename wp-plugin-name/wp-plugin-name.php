@@ -56,8 +56,6 @@ define( NS . 'PLUGIN_NAME_URL', plugin_dir_url( __FILE__ ) );
 
 define( NS . 'PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 
-
-
 /**
  * Autoloading, via Composer.
  *
@@ -199,19 +197,6 @@ class WP_Plugin_Name {
 	}
 
 	/**
-	 * Output a message about a required plugin missing, and link to Plugins page.
-	 */
-	public function notice_old_php_version() {
-		$message = sprintf(
-			__( '%1$s requires at least PHP version %2$s in order to work.', PLUGIN_TEXT_DOMAIN ),
-			'<strong>' . wp_plugin_name_get_plugin_display_name() . '</strong>',
-			'<strong>' . $this->min_php . '</strong>'
-		);
-
-		$this->do_admin_notice( $message );
-	}
-
-	/**
 	 * Check if the required parent theme and/or child theme is active.
 	 *
 	 * @return bool True if no requirements set or they are met. False if requirements exist and are not met.
@@ -240,6 +225,31 @@ class WP_Plugin_Name {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Output a message about a required plugin missing, and link to Plugins page.
+	 */
+	public function notice_old_php_version() {
+		$message = sprintf(
+			__( '%1$s requires at least PHP version %2$s in order to work.', PLUGIN_TEXT_DOMAIN ),
+			'<strong>' . wp_plugin_name_get_plugin_display_name() . '</strong>',
+			'<strong>' . $this->min_php . '</strong>'
+		);
+
+		$this->do_admin_notice( $message );
+	}
+
+	/**
+	 * Output a wp-admin notice.
+	 *
+	 * @param        $message
+	 * @param string $type
+	 */
+	public function do_admin_notice( $message, $type = 'error' ) {
+		$class = sprintf( '%s %s', $type, sanitize_html_class( PLUGIN_TEXT_DOMAIN ) );
+
+		printf( '<div class="%s"><p>%s</p></div>', $class, $message );
 	}
 
 	/**
@@ -305,18 +315,6 @@ class WP_Plugin_Name {
 	}
 
 	/**
-	 * Output a wp-admin notice.
-	 *
-	 * @param        $message
-	 * @param string $type
-	 */
-	public function do_admin_notice( $message, $type = 'error' ) {
-		$class = sprintf( '%s %s', $type, sanitize_html_class( PLUGIN_TEXT_DOMAIN ) );
-
-		printf( '<div class="%s"><p>%s</p></div>', $class, $message );
-	}
-
-	/**
 	 * Output a message about a required plugin missing, and link to Plugins page.
 	 */
 	public function notice_missing_required_plugin() {
@@ -369,6 +367,7 @@ function wp_plugin_name_init() {
 	if ( $plugin->is_ready() ) {
 		$core = new Core\Init();
 		$core->run();
+
 		return $plugin;
 	} else {
 		return false;
