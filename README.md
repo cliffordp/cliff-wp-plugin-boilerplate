@@ -127,6 +127,9 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
+##### December 2, 2018
+* Add ability to require a parent and/or child theme.
+
 ##### December 1, 2018
 * Improve main plugin class' loading, removing static methods and singleton.
 * `Common` class: Use a singleton instead of static methods.
