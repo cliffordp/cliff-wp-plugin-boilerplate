@@ -9,6 +9,10 @@
       "email": "your@email.address"
     }
   ],
+  "require": {
+    "php": ">=5.6",
+    "tgmpa/tgm-plugin-activation": "~2.6"
+  },
   "minimum-stability": "stable",
   "archive": {
     "exclude": [
