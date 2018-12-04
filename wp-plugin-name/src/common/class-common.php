@@ -143,9 +143,10 @@ class Common {
 	 *
 	 * @param array|string $atts    If using the shortcode, this will be an array. If using PHP function, array or string.
 	 * @param string       $default The default value to return if the parameter is not present.
-	 * @param bool         $escape  True to pass the result through `esc_html()`. False to allow the raw value (don't trust it).
+	 * @param bool         $escape  True to pass the result through `esc_html()`. False to allow the raw value (don't
+	 *                              trust it), but false is the only way to get an array result.
 	 *
-	 * @return string The string value of the query parameter, if any.
+	 * @return mixed The value of the query parameter, if any.
 	 */
 	public function tk_request( $atts, $default = '', $escape = true ) {
 		// Protect against passing a string value, such as if used directly via PHP function instead of as a shortcode.
