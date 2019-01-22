@@ -8,7 +8,7 @@
       "name": "Your Name or Your Company",
       "email": "your@email.address",
       "homepage": "https://www.example.com/",
-			"role": "Developer"
+      "role": "Developer"
     }
   ],
   "require": {
