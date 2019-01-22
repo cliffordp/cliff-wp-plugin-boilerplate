@@ -143,7 +143,11 @@ class Init {
 	 * @access    private
 	 */
 	private function define_admin_hooks() {
-		if ( ! is_admin() ) {
+		if (
+			! is_admin()
+			&& defined( 'DOING_AJAX' )
+			&& ! DOING_AJAX
+		) {
 			return;
 		}
 
@@ -174,7 +178,13 @@ class Init {
 	 * @access    private
 	 */
 	private function define_public_hooks() {
-		if ( is_admin() ) {
+		if (
+			is_admin()
+			|| (
+				defined( 'DOING_AJAX' )
+				&& DOING_AJAX
+			)
+		) {
 			return;
 		}
 
