@@ -127,6 +127,9 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
+##### January 22, 2019
+* Fix to allow admin hooks to run during Ajax.
+
 ##### December 2, 2018
 * Add ability to require a parent and/or child theme.
 * Implement [TGM Plugin Activation](http://tgmpluginactivation.com/) for required plugins (does not handle requiring a theme). At this time, it does not handle non-bundled premium plugins very well (adding incorrect download links to the TGMPA admin screen), but it does enhance some functionality:
