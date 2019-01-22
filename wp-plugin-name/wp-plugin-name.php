@@ -200,7 +200,7 @@ class WP_Plugin_Name {
 	}
 
 	/**
-	 * Output a message about a required plugin missing, and link to Plugins page.
+	 * Output a message about unsatisfactory version of PHP.
 	 */
 	public function notice_old_php_version() {
 		$message = sprintf(
