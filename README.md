@@ -127,8 +127,11 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
+##### January 23, 2019
+* Fix loading logic regarding Admin and Frontend to allow both to run during Ajax.
+
 ##### January 22, 2019
-* Fix to allow admin hooks to run during Ajax.
+* Fix to allow Admin hooks to run during Ajax.
 
 ##### December 2, 2018
 * Add ability to require a parent and/or child theme.

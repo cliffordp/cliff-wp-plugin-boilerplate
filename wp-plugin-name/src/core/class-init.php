@@ -137,17 +137,11 @@ class Init {
 	}
 
 	/**
-	 * Register all of the hooks related to the admin area functionality
-	 * of the plugin.
-	 *
-	 * @access    private
+	 * Register all of the hooks related to the admin area functionality of the plugin.
+	 * Also works during Ajax.
 	 */
 	private function define_admin_hooks() {
-		if (
-			! is_admin()
-			&& defined( 'DOING_AJAX' )
-			&& ! DOING_AJAX
-		) {
+		if ( ! is_admin() ) {
 			return;
 		}
 
@@ -172,18 +166,13 @@ class Init {
 	}
 
 	/**
-	 * Register all of the hooks related to the public-facing functionality
-	 * of the plugin.
-	 *
-	 * @access    private
+	 * Register all of the hooks related to the public-facing functionality of the plugin.
+	 * Also works during Ajax.
 	 */
 	private function define_public_hooks() {
 		if (
 			is_admin()
-			|| (
-				defined( 'DOING_AJAX' )
-				&& DOING_AJAX
-			)
+			&& ! wp_doing_ajax()
 		) {
 			return;
 		}
