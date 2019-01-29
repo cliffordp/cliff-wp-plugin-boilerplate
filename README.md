@@ -127,6 +127,9 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
+##### January 29, 2019
+* Add `flatten_array()` utility method to Common.
+
 ##### January 23, 2019
 * Fix loading logic regarding Admin and Frontend to allow both to run during Ajax.
 

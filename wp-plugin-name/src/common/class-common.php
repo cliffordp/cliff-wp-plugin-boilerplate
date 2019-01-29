@@ -312,4 +312,33 @@ class Common {
 
 		return (int) round( $result );
 	}
+
+	/**
+	 * Get all the values from a single or multi-dimensional array.
+	 *
+	 * Non-numeric array keys will be preserved but its value may be overwrittern, as per usual with merging arrays.
+	 *
+	 * @param $array
+	 *
+	 * @link https://gist.github.com/SeanCannon/6585889#gistcomment-2823537 Thanks to this collective effort.
+	 *
+	 * @return array
+	 */
+	public function flatten_array( $array = null ) {
+		$result = [];
+
+		if ( ! is_array( $array ) ) {
+			$array = func_get_args();
+		}
+
+		foreach ( $array as $key => $value ) {
+			if ( is_array( $value ) ) {
+				$result = array_merge( $result, $this->flatten_array( $value ) );
+			} else {
+				$result = array_merge( $result, [ $key => $value ] );
+			}
+		}
+
+		return $result;
+	}
 }
