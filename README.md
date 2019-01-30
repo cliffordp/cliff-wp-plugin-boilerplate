@@ -127,6 +127,12 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
+##### January 30, 2019
+* Add methods for getting all Customizer options, deleting all options, and getting a single option (as raw, string, or array).
+* Add a custom Customizer Control for multiple checkboxes, optionally sortable. Big thanks to [Scott Fennell](http://scottfennell.org/) for the start to the code [and permission to use](https://twitter.com/TourKick/status/1089524933133303808). The version included here is heavily modified and follows this repository's license.
+* Add example Customizer options to help get a quick start.
+* Add utility function to get public post types, sorted by their labels. 
+
 ##### January 29, 2019
 * Add `flatten_array()` utility method to Common.
 
