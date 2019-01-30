@@ -92,6 +92,17 @@ class Common {
 	}
 
 	/**
+	 * Capability required to access the settings, be shown error messages, etc.
+	 *
+	 * By default, 'customize' is mapped to 'edit_theme_options' (Administrator).
+	 *
+	 * @link  https://developer.wordpress.org/themes/customize-api/advanced-usage/
+	 */
+	public function required_capability() {
+		return apply_filters( $this->plugin_text_domain_underscores() . '_required_capability', 'customize' );
+	}
+
+	/**
 	 * Get this plugin's text domain with underscores instead of hyphens.
 	 *
 	 * Used for saving options. Also useful for building namespaced hook names, class names, URLs, etc.
