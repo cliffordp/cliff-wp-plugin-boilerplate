@@ -2,52 +2,45 @@
 
 namespace WP_Plugin_Name\Core;
 
-// If this file is called directly, abort.
+// Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/**
- * Define the internationalization functionality.
- *
- * Loads and defines the internationalization files for this plugin
- * so that it is ready for translation.
- *
- * @link  https://www.example.com/
- * @since 1.0.0
- */
-class Internationalization_I18n {
-
+if ( ! class_exists( 'Internationalization_I18n' ) ) {
 	/**
-	 * The text domain of the plugin.
+	 * Define the internationalization functionality.
 	 *
-	 * @since    1.0.0
-	 * @access   protected
-	 * @var      string $text_domain The text domain of the plugin.
+	 * Loads and defines the internationalization files for this plugin
+	 * so that it is ready for translation.
 	 */
-	private $text_domain;
+	class Internationalization_I18n {
 
-	/**
-	 * Initialize the class and set its properties.
-	 *
-	 * @since    1.0.0
-	 *
-	 * @param      string $plugin_text_domain The text domain of this plugin.
-	 */
-	public function __construct( $plugin_text_domain ) {
-		$this->text_domain = $plugin_text_domain;
-	}
+		/**
+		 * The text domain of the plugin.
+		 *
+		 * @var      string $text_domain The text domain of the plugin.
+		 */
+		private $text_domain;
 
-	/**
-	 * Load the plugin text domain for translation.
-	 *
-	 * @since    1.0.0
-	 */
-	public function load_plugin_textdomain() {
-		load_plugin_textdomain(
-			$this->text_domain,
-			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
-		);
+		/**
+		 * Initialize the class and set its properties.
+		 *
+		 * @param      string $plugin_text_domain The text domain of this plugin.
+		 */
+		public function __construct( $plugin_text_domain ) {
+			$this->text_domain = $plugin_text_domain;
+		}
+
+		/**
+		 * Load the plugin text domain for translation.
+		 */
+		public function load_plugin_textdomain() {
+			load_plugin_textdomain(
+				$this->text_domain,
+				false,
+				dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
+			);
+		}
 	}
 }

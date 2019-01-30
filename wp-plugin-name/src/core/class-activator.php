@@ -2,28 +2,25 @@
 
 namespace WP_Plugin_Name\Core;
 
-// If this file is called directly, abort.
+// Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/**
- * Fired during plugin activation
- *
- * This class defines all code necessary to run during the plugin's activation.
- *
- * @link  https://www.example.com/
- * @since 1.0.0
- **/
-class Activator {
-
+if ( ! class_exists( 'Activator' ) ) {
 	/**
-	 * Short Description.
+	 * Fired during plugin activation
 	 *
-	 * Long Description.
-	 *
-	 * @since    1.0.0
-	 */
-	public static function activate() {
+	 * This class defines all code necessary to run during the plugin's activation.
+	 **/
+	class Activator {
+
+		/**
+		 * Short Description.
+		 *
+		 * Long Description.
+		 */
+		public static function activate() {
+		}
 	}
 }
