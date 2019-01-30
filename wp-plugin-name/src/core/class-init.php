@@ -102,26 +102,6 @@ class Init {
 	}
 
 	/**
-	 * Retrieve the version number of the plugin.
-	 *
-	 * @since     1.0.0
-	 * @return    string    The version number of the plugin.
-	 */
-	public function get_version() {
-		return $this->version;
-	}
-
-	/**
-	 * Retrieve the text domain of the plugin.
-	 *
-	 * @since     1.0.0
-	 * @return    string    The text domain of the plugin.
-	 */
-	public function get_plugin_text_domain() {
-		return $this->plugin_text_domain;
-	}
-
-	/**
 	 * Register all of the hooks related to both the admin area and the
 	 * public-facing functionality of the plugin.
 	 *
@@ -206,6 +186,26 @@ class Init {
 		// Do Thing #1 here
 
 		// Do Thing #2 here
+	}
+
+	/**
+	 * Retrieve the version number of the plugin.
+	 *
+	 * @since     1.0.0
+	 * @return    string    The version number of the plugin.
+	 */
+	public function get_version() {
+		return $this->version;
+	}
+
+	/**
+	 * Retrieve the text domain of the plugin.
+	 *
+	 * @since     1.0.0
+	 * @return    string    The text domain of the plugin.
+	 */
+	public function get_plugin_text_domain() {
+		return $this->plugin_text_domain;
 	}
 
 	/**
