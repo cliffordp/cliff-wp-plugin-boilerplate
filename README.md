@@ -136,6 +136,7 @@ Documenting this project's progress...
 * Add utility function to detect current URL. 
 * Add utility function to get public post types, sorted by their labels.
 * Tweak - Add try/catch around DateTime(), although it shouldn't actually affect code.
+* Tweak - Wrap each class within `class_exists()`.
 * Tweak - Remove all `@since` and `@access` tags. Remove all `@link` tags to the example link.
 
 ##### January 29, 2019

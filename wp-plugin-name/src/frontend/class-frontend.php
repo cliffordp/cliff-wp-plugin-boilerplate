@@ -9,58 +9,60 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/**
- * The public-facing functionality of the plugin.
- *
- * Enqueues the public-facing stylesheet and JavaScript and other front-end stuff.
- */
-class Frontend {
-
+if ( ! class_exists( 'Frontend' ) ) {
 	/**
-	 * Get the Common instance.
+	 * The public-facing functionality of the plugin.
 	 *
-	 * @var Common
+	 * Enqueues the public-facing stylesheet and JavaScript and other front-end stuff.
 	 */
-	private $common;
+	class Frontend {
 
-	/**
-	 * Initialize the class and set its properties.
-	 */
-	public function __construct() {
-		$this->common = Common::get_instance();
-	}
-
-	/**
-	 * Register the stylesheets for the public-facing side of the site.
-	 */
-	public function enqueue_styles() {
 		/**
-		 * An instance of this class should be passed to the run() function
-		 * defined in Loader as all of the hooks are defined
-		 * in that particular class.
+		 * Get the Common instance.
 		 *
-		 * The Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
+		 * @var Common
 		 */
+		private $common;
 
-		wp_enqueue_style( $this->common->plugin_text_domain, plugin_dir_url( __FILE__ ) . 'css/wp-plugin-name-frontend.css', [], $this->common->version, 'all' );
-	}
-
-	/**
-	 * Register the JavaScript for the public-facing side of the site.
-	 */
-	public function enqueue_scripts() {
 		/**
-		 * An instance of this class should be passed to the run() function
-		 * defined in Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
+		 * Initialize the class and set its properties.
 		 */
+		public function __construct() {
+			$this->common = Common::get_instance();
+		}
 
-		wp_enqueue_script( $this->common->plugin_text_domain, plugin_dir_url( __FILE__ ) . 'js/wp-plugin-name-frontend.js', [ 'jquery' ], $this->common->version, false );
+		/**
+		 * Register the stylesheets for the public-facing side of the site.
+		 */
+		public function enqueue_styles() {
+			/**
+			 * An instance of this class should be passed to the run() function
+			 * defined in Loader as all of the hooks are defined
+			 * in that particular class.
+			 *
+			 * The Loader will then create the relationship
+			 * between the defined hooks and the functions defined in this
+			 * class.
+			 */
+
+			wp_enqueue_style( $this->common->plugin_text_domain, plugin_dir_url( __FILE__ ) . 'css/wp-plugin-name-frontend.css', [], $this->common->version, 'all' );
+		}
+
+		/**
+		 * Register the JavaScript for the public-facing side of the site.
+		 */
+		public function enqueue_scripts() {
+			/**
+			 * An instance of this class should be passed to the run() function
+			 * defined in Loader as all of the hooks are defined
+			 * in that particular class.
+			 *
+			 * The Loader will then create the relationship
+			 * between the defined hooks and the functions defined in this
+			 * class.
+			 */
+
+			wp_enqueue_script( $this->common->plugin_text_domain, plugin_dir_url( __FILE__ ) . 'js/wp-plugin-name-frontend.js', [ 'jquery' ], $this->common->version, false );
+		}
 	}
 }
