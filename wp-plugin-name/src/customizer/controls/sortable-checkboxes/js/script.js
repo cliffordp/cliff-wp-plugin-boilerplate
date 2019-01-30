@@ -19,10 +19,10 @@
 		// The li that wraps this whole section of the customizer. Sort of like a fieldset.
 		let el = $( '.customize-control-sortable_checkboxes' );
 
-		$( el ).msboxesCheckboxGroup();
+		$( el ).CheckboxGroup();
 	} );
 
-	$.fn.msboxesCheckboxGroup = function () {
+	$.fn.CheckboxGroup = function () {
 		/**
 		 * Create an HTML <select> menu for choosing some value related to this checkbox (if applicable).
 		 *
@@ -42,7 +42,7 @@
 
 			// TODO: Need to fix if we were to try <select>
 			// Grab our php variables.
-			let localize = msboxesCustomizeLocalize;
+			let localize = CustomizeLocalize;
 
 			// Grab the current value for this menu.
 			let current = '';
@@ -341,4 +341,4 @@
 			return that;
 		} );
 	};
-})( window.msboxes, window.wp, jQuery );
+})( window.msboxes = window.msboxes || {}, window.wp, jQuery );
