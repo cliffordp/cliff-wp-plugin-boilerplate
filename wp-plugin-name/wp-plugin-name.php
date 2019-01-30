@@ -33,9 +33,9 @@
 
 namespace WP_Plugin_Name;
 
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+// Abort if this file is called directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 /**

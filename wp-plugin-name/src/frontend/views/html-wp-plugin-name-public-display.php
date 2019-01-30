@@ -6,7 +6,7 @@
  * This file is used to markup the public-facing aspects of the plugin.
  */
 
-// If this file is called directly, abort.
+// Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

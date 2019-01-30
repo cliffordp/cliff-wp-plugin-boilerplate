@@ -11,7 +11,7 @@ use WP_Plugin_Name\Customizer\Customizer as Customizer;
 use WP_Post;
 use WP_Query;
 
-// If this file is called directly, abort.
+// Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

@@ -8,7 +8,7 @@ use WP_Plugin_Name\Common as Common;
 use WP_Plugin_Name\Customizer as Customizer;
 use WP_Plugin_Name\Frontend as Frontend;
 
-// If this file is called directly, abort.
+// Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

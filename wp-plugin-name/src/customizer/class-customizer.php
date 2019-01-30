@@ -6,7 +6,7 @@ use WP_Customize_Manager;
 use WP_Plugin_Name as NS;
 use WP_Plugin_Name\Common\Common as Common;
 
-// If this file is called directly, abort.
+// Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

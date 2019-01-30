@@ -5,7 +5,7 @@ namespace WP_Plugin_Name\Customizer;
 use WP_Customize_Control;
 use WP_Plugin_Name\Common\Common as Common;
 
-// If this file is called directly, abort.
+// Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

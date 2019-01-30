@@ -2,7 +2,7 @@
 
 namespace WP_Plugin_Name\Core;
 
-// If this file is called directly, abort.
+// Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
