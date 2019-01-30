@@ -1,4 +1,7 @@
-(function ( cpts, wp, $ ) {
+/**
+ * `msboxes` is short for Multiple Sortable Checkboxes.
+ */
+(function ( msboxes, wp, $ ) {
 	'use strict';
 
 	/**
@@ -16,10 +19,10 @@
 		// The li that wraps this whole section of the customizer. Sort of like a fieldset.
 		let el = $( '.customize-control-sortable_checkboxes' );
 
-		$( el ).cptsCheckboxGroup();
+		$( el ).msboxesCheckboxGroup();
 	} );
 
-	$.fn.cptsCheckboxGroup = function () {
+	$.fn.msboxesCheckboxGroup = function () {
 		/**
 		 * Create an HTML <select> menu for choosing some value related to this checkbox (if applicable).
 		 *
@@ -30,7 +33,7 @@
 		 */
 		function dropdown( type, visible, hiddenValArr ) {
 			// Create a select menu.
-			let select = $( '<select>' ).addClass( 'cptsCheckboxGroup-select' ).prop( 'data-type', type );
+			let select = $( '<select>' ).addClass( 'msboxesCheckboxGroup-select' ).prop( 'data-type', type );
 
 			// Maybe hide it.
 			if ( !visible ) {
@@ -39,7 +42,7 @@
 
 			// TODO: Need to fix if we were to try <select>
 			// Grab our php variables.
-			let localize = cptsCustomizeLocalize;
+			let localize = msboxesCustomizeLocalize;
 
 			// Grab the current value for this menu.
 			let current = '';
@@ -338,4 +341,4 @@
 			return that;
 		} );
 	};
-})( window.cpts, window.wp, jQuery );
+})( window.msboxes, window.wp, jQuery );
