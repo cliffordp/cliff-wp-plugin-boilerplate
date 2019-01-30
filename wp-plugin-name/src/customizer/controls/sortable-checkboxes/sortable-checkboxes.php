@@ -32,10 +32,13 @@ if ( ! class_exists( 'Sortable_Checkboxes_Control' ) ) {
 		private $common;
 
 		/**
-		 * Constructor
+		 * Initialize the class and set its properties, extending the parent class.
 		 */
 		public function __construct( $manager, $id, $args = [], $options = [] ) {
-			$this->common = Common::get_instance();
+			// Cannot use Common as a dependency in the constructor because we're extending a WordPress core class.
+			// Also not using a "setter" method for the same reason.
+			$this->common = new Common();
+
 			parent::__construct( $manager, $id, $args );
 		}
 

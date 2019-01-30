@@ -30,10 +30,12 @@ if ( ! class_exists( 'Customizer' ) ) {
 		private $common;
 
 		/**
-		 * Initialize the class and set its properties.
+		 * Initialize the class and set its properties, with Common as a dependency.
+		 *
+		 * @param Common
 		 */
-		public function __construct() {
-			$this->common = Common::get_instance();
+		public function __construct( Common $common ) {
+			$this->common = $common;
 		}
 
 		/**
