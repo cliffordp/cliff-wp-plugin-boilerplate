@@ -6,6 +6,7 @@
  * Plugin structure if you want to include your own classes, or third-party libraries:
  * wp-plugin-name/src/admin - admin-specific functionality
  * wp-plugin-name/src/core - plugin core to register hooks, load files etc
+ * wp-plugin-name/src/common - WordPress Customizer functionality
  * wp-plugin-name/src/frontend - public-facing functionality
  * wp-plugin-name/src/common - functionality shared between the admin area and the public-facing parts
  * wp-plugin-name/src/libraries - libraries that the plugin may use that aren't able to be included via Composer
