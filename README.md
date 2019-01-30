@@ -135,6 +135,7 @@ Documenting this project's progress...
 * Add example Customizer options to help get a quick start.
 * Add utility function to detect current URL. 
 * Add utility function to get public post types, sorted by their labels. 
+* Tweak - Add try/catch around DateTime(), although it shouldn't actually affect code.
 
 ##### January 29, 2019
 * Add `flatten_array()` utility method to Common.

@@ -4,6 +4,7 @@ namespace WP_Plugin_Name\Common;
 
 use DateTime;
 use DateTimeZone;
+use Exception;
 use WP_Customize_Setting;
 use WP_Plugin_Name as NS;
 use WP_Plugin_Name\Customizer\Customizer as Customizer;
@@ -261,7 +262,7 @@ class Common {
 	 *
 	 * If WordPress setting is not a valid PHP time zone, fallback to Chicago (Central Time).
 	 *
-	 * @return DateTime|bool
+	 * @return DateTime|false
 	 */
 	public function get_current_time_wp_tz_date_object() {
 		$time_zone = get_option( 'timezone_string' );
@@ -270,7 +271,14 @@ class Common {
 			$time_zone = 'America/Chicago';
 		}
 
-		return new DateTime( 'now', new DateTimeZone( $time_zone ) );
+		try {
+			$now = new DateTime( 'now', new DateTimeZone( $time_zone ) );
+		}
+		catch ( Exception $exception ) {
+			$now = false;
+		}
+
+		return $now;
 	}
 
 	/**
