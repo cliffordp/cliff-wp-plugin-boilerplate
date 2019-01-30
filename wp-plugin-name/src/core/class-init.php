@@ -90,11 +90,20 @@ if ( ! class_exists( 'Init' ) ) {
 		}
 
 		/**
+		 * Get Common so we can insert it into each class that depends on it.
+		 *
+		 * @return Common\Common
+		 */
+		private function get_common() {
+			return new Common\Common();
+		}
+
+		/**
 		 * Register all of the hooks related to both the admin area and the
 		 * public-facing functionality of the plugin.
 		 */
 		private function define_common_hooks() {
-			$plugin_common = new Common\Common();
+			$plugin_common = $this->get_common();
 
 			// Add all the shortcodes
 			foreach ( $plugin_common->shortcodes as $shortcode ) {
@@ -111,7 +120,9 @@ if ( ! class_exists( 'Init' ) ) {
 		 * We could have included in Common, since it is the same loading logic, but we separate it out for sanity.
 		 */
 		private function define_customizer_hooks() {
-			$plugin_customizer = new Customizer\Customizer();
+			$plugin_common = $this->get_common();
+
+			$plugin_customizer = new Customizer\Customizer( $plugin_common );
 
 			$this->loader->add_action( 'customize_register', $plugin_customizer, 'customizer_options' );
 		}
@@ -125,7 +136,9 @@ if ( ! class_exists( 'Init' ) ) {
 				return;
 			}
 
-			$plugin_admin = new Admin\Admin();
+			$plugin_common = $this->get_common();
+
+			$plugin_admin = new Admin\Admin( $plugin_common );
 
 			// Enqueue plugin's admin assets
 			$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
@@ -163,7 +176,9 @@ if ( ! class_exists( 'Init' ) ) {
 				return;
 			}
 
-			$plugin_public = new Frontend\Frontend();
+			$plugin_common = $this->get_common();
+
+			$plugin_public = new Frontend\Frontend( $plugin_common );
 
 			// Enqueue plugin's front-end assets
 			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );

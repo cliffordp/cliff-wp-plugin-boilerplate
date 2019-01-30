@@ -135,6 +135,7 @@ Documenting this project's progress...
 * Add example Customizer options to help get a quick start.
 * Add utility function to detect current URL. 
 * Add utility function to get public post types, sorted by their labels.
+* Tweak - `Common` as class constructor (dependency injection) instead of singleton instance. [These](https://akrabat.com/what-problem-does-dependency-injection-solve/) [articles](http://fabien.potencier.org/what-is-dependency-injection.html) provide simple examples and explanations if you are curious.
 * Tweak - Add try/catch around DateTime(), although it shouldn't actually affect code.
 * Tweak - Wrap each class within `class_exists()`.
 * Tweak - Add `ABSPATH` check to top of all PHP files.

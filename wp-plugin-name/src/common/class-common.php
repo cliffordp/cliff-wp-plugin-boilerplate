@@ -25,11 +25,6 @@ if ( ! class_exists( 'Common' ) ) {
 	class Common {
 
 		/**
-		 * Common's instance.
-		 */
-		private static $instance;
-
-		/**
 		 * The text domain of this plugin.
 		 *
 		 * @var    string $plugin_text_domain The text domain of this plugin.
@@ -58,28 +53,6 @@ if ( ! class_exists( 'Common' ) ) {
 		public function __construct() {
 			$this->plugin_text_domain = NS\PLUGIN_TEXT_DOMAIN;
 			$this->version            = NS\PLUGIN_VERSION;
-		}
-
-		/**
-		 * Get Common's instance.
-		 *
-		 * @link https://www.alainschlesser.com/singletons-shared-instances/ Maybe we could do better than using a singleton.
-		 *
-		 * @return Common
-		 */
-		public static function get_instance() {
-			if ( ! isset( self::$instance ) ) {
-				self::$instance = new self();
-			}
-
-			return self::$instance;
-		}
-
-		/**
-		 * Make it possible to unset/reset Common's instance.
-		 */
-		public function reset_instance() {
-			self::$instance = null;
 		}
 
 		/**
@@ -522,7 +495,7 @@ if ( ! class_exists( 'Common' ) ) {
 		 * @return string
 		 */
 		public function get_social_network_nice_name( $network ) {
-			$customizer = new Customizer();
+			$customizer = new Customizer( $this );
 
 			$array = $customizer->get_choices_social_networks();
 
@@ -546,7 +519,7 @@ if ( ! class_exists( 'Common' ) ) {
 		 * @return string|array
 		 */
 		public function sanitize_social_networks( $value, $setting ) {
-			$customizer = new Customizer();
+			$customizer = new Customizer( $this );
 
 			$result = $this->sanitize_multiple_values( $value, $customizer->get_choices_social_networks() );
 
