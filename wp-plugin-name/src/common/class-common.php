@@ -156,7 +156,7 @@ class Common {
 	 *                     particularly when manually changing _GET or _POST or modifying _GET during a _POST request.
 	 *
 	 * @param array|string $atts    If using the shortcode, this will be an array. If using PHP function, array or string.
-	 * @param string       $default The default value to return if the parameter is not present.
+	 * @param array|string $default The default value to return if the parameter is not present.
 	 * @param bool         $escape  True to pass the result through `esc_html()`. False to allow the raw value (don't
 	 *                              trust it), but false is the only way to get an array result.
 	 *
