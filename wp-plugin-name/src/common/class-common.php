@@ -661,4 +661,17 @@ class Common {
 
 		return $result;
 	}
+
+	/**
+	 * Detect the current URL from the WP Request.
+	 *
+	 * @return string
+	 */
+	private function get_current_url() {
+		global $wp;
+
+		$current_url = home_url( add_query_arg( [], $wp->request ) );
+
+		return $current_url;
+	}
 }
