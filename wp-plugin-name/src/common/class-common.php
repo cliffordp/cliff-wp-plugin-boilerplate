@@ -20,9 +20,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * The functionality shared between the admin and public-facing areas of the plugin.
  *
  * Useful for things like utilities or hooking into something that affects both back-end and front-end.
- *
- * @link  https://www.example.com/
- * @since 1.0.0
  */
 class Common {
 
@@ -34,8 +31,6 @@ class Common {
 	/**
 	 * The text domain of this plugin.
 	 *
-	 * @since  1.0.0
-	 * @access public
 	 * @var    string $plugin_text_domain The text domain of this plugin.
 	 */
 	public $plugin_text_domain;
@@ -43,8 +38,6 @@ class Common {
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since  1.0.0
-	 * @access public
 	 * @var    string $version The current version of this plugin.
 	 */
 	public $version;
@@ -53,8 +46,6 @@ class Common {
 	 * Shortcodes to register.
 	 *
 	 * The shortcode tag must match the method name within Common (must be public and cannot be static).
-	 *
-	 * @since 1.0.0
 	 */
 	public $shortcodes = [
 		'tk_request',
@@ -62,8 +53,6 @@ class Common {
 
 	/**
 	 * Initialize the class and set its properties.
-	 *
-	 * @since 1.0.0
 	 */
 	public function __construct() {
 		$this->plugin_text_domain = NS\PLUGIN_TEXT_DOMAIN;

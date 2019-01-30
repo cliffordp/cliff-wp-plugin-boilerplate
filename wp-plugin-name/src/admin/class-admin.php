@@ -15,9 +15,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
- *
- * @link  https://www.example.com/
- * @since 1.0.0
  */
 class Admin {
 
@@ -37,8 +34,6 @@ class Admin {
 
 	/**
 	 * Register the stylesheets for the admin area.
-	 *
-	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
 		/**
@@ -58,8 +53,6 @@ class Admin {
 
 	/**
 	 * Register the JavaScript for the admin area.
-	 *
-	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
 		/*

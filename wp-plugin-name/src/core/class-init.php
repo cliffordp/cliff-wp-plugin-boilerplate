@@ -16,9 +16,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * The core plugin class.
  * Defines internationalization, admin-specific hooks, and public-facing site hooks.
- *
- * @link  https://www.example.com/
- * @since 1.0.0
  */
 class Init {
 
@@ -33,8 +30,6 @@ class Init {
 	/**
 	 * The unique identifier of this plugin.
 	 *
-	 * @since    1.0.0
-	 * @access   protected
 	 * @var      string $plugin_base_name The string used to uniquely identify this plugin.
 	 */
 	protected $plugin_basename;
@@ -42,8 +37,6 @@ class Init {
 	/**
 	 * The current version of the plugin.
 	 *
-	 * @since    1.0.0
-	 * @access   protected
 	 * @var      string $version The current version of the plugin.
 	 */
 	protected $version;
@@ -51,8 +44,6 @@ class Init {
 	/**
 	 * The text domain of the plugin.
 	 *
-	 * @since    1.0.0
-	 * @access   protected
 	 * @var      string $version The current version of the plugin.
 	 */
 	protected $plugin_text_domain;
@@ -80,8 +71,6 @@ class Init {
 	 * - Internationalization_I18n - Defines internationalization functionality.
 	 * - Admin - Defines all hooks for the admin area.
 	 * - Frontend - Defines all hooks for the public side of the site.
-	 *
-	 * @access    private
 	 */
 	private function load_dependencies() {
 		$this->loader = new Loader();
@@ -92,8 +81,6 @@ class Init {
 	 *
 	 * Uses the Internationalization_I18n class in order to set the domain and to register the hook
 	 * with WordPress.
-	 *
-	 * @access    private
 	 */
 	private function set_locale() {
 		$plugin_i18n = new Internationalization_I18n( $this->plugin_text_domain );
@@ -104,8 +91,6 @@ class Init {
 	/**
 	 * Register all of the hooks related to both the admin area and the
 	 * public-facing functionality of the plugin.
-	 *
-	 * @access    private
 	 */
 	private function define_common_hooks() {
 		$plugin_common = new Common\Common();
@@ -191,7 +176,6 @@ class Init {
 	/**
 	 * Retrieve the version number of the plugin.
 	 *
-	 * @since     1.0.0
 	 * @return    string    The version number of the plugin.
 	 */
 	public function get_version() {
@@ -201,7 +185,6 @@ class Init {
 	/**
 	 * Retrieve the text domain of the plugin.
 	 *
-	 * @since     1.0.0
 	 * @return    string    The text domain of the plugin.
 	 */
 	public function get_plugin_text_domain() {

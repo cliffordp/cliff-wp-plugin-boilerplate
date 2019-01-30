@@ -16,8 +16,6 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              https://www.example.com/
- * @since             1.0.0
  * @package           WP_Plugin_Name
  *
  * @wordpress-plugin
@@ -83,15 +81,11 @@ register_deactivation_hook( __FILE__, [ NS . 'Core\Deactivator', 'deactivate' ] 
  * Plugin Singleton Container
  *
  * Maintains a single copy of the plugin app object
- *
- * @since 1.0.0
  */
 class WP_Plugin_Name {
 
 	/**
 	 * The required version of PHP.
-	 *
-	 * @since 1.0.0
 	 */
 	private $min_php = '5.6.0';
 

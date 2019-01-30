@@ -13,9 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * The public-facing functionality of the plugin.
  *
  * Enqueues the public-facing stylesheet and JavaScript and other front-end stuff.
- *
- * @link  https://www.example.com/
- * @since 1.0.0
  */
 class Frontend {
 
@@ -35,8 +32,6 @@ class Frontend {
 
 	/**
 	 * Register the stylesheets for the public-facing side of the site.
-	 *
-	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
 		/**
@@ -54,8 +49,6 @@ class Frontend {
 
 	/**
 	 * Register the JavaScript for the public-facing side of the site.
-	 *
-	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
 		/**
