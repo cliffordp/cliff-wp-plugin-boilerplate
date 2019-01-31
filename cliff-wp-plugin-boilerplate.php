@@ -4,12 +4,12 @@
  *
  * https://github.com/cliffordp/cliff-wp-plugin-boilerplate#plugin-structure
  * Plugin structure if you want to include your own classes, or third-party libraries:
- * wp-plugin-name/src/admin - admin-specific functionality
- * wp-plugin-name/src/common - functionality shared between the admin area and the public-facing parts
- * wp-plugin-name/src/core - plugin core to register hooks, load files etc
- * wp-plugin-name/src/customizer - WordPress Customizer functionality
- * wp-plugin-name/src/frontend - public-facing functionality
- * wp-plugin-name/src/libraries - libraries that the plugin may use that aren't able to be included via Composer
+ * cliff-wp-plugin-boilerplate/src/admin - admin-specific functionality
+ * cliff-wp-plugin-boilerplate/src/common - functionality shared between the admin area and the public-facing parts
+ * cliff-wp-plugin-boilerplate/src/core - plugin core to register hooks, load files etc
+ * cliff-wp-plugin-boilerplate/src/customizer - WordPress Customizer functionality
+ * cliff-wp-plugin-boilerplate/src/frontend - public-facing functionality
+ * cliff-wp-plugin-boilerplate/src/libraries - libraries that the plugin may use that aren't able to be included via Composer
  *
  * This file is read by WordPress to generate the plugin information in the plugin
  * admin area. This file also includes all of the dependencies used by the plugin,
@@ -20,14 +20,14 @@
  *
  * @wordpress-plugin
  * Plugin Name:       WordPress Plugin Boilerplate
- * Plugin URI:        https://www.example.com/wp-plugin-name-uri/
+ * Plugin URI:        https://www.example.com/cliff-wp-plugin-boilerplate-uri/
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
  * Version:           1.0.0
  * Author:            Your Name or Your Company
  * Author URI:        https://www.example.com/
  * License:           GPL version 3 or any later version
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
- * Text Domain:       wp-plugin-name
+ * Text Domain:       cliff-wp-plugin-boilerplate
  * Domain Path:       /languages
  */
 
@@ -45,7 +45,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( __NAMESPACE__ . '\NS', __NAMESPACE__ . '\\' );
 
 // `WP_Plugin_Name\PLUGIN_TEXT_DOMAIN` is defined
-define( NS . 'PLUGIN_TEXT_DOMAIN', 'wp-plugin-name' ); // Must match the plugin's directory and its main PHP filename
+define( NS . 'PLUGIN_TEXT_DOMAIN', 'cliff-wp-plugin-boilerplate' ); // Must match the plugin's directory and its main PHP filename
 
 define( NS . 'PLUGIN_VERSION', '1.0.0' ); // TODO: Keep current
 
