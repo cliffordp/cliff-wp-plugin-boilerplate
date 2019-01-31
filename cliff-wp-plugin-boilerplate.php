@@ -44,9 +44,9 @@
  *
  ***
  *
- *     This plugin was helped by Clifford Paulick's WordPress Plugin Boilerplate,
+ *     This plugin was helped by Clifford Paulick's Plugin Boilerplate,
  *     available free at https://github.com/cliffordp/cliff-wp-plugin-boilerplate
- *     You are invited to use it for your own projects.
+ *     You are invited to use it for your own WordPress projects.
  */
 
 namespace WP_Plugin_Name;
@@ -114,12 +114,16 @@ if ( ! class_exists( 'WP_Plugin_Name' ) ) {
 		 * Parent = Stylesheet. Child = Template.
 		 */
 		private $required_theme = [
-			'parent' => '',
-			'child'  => '',
+			'parent' => '', // stylesheet slug
+			'child'  => '', // template slug
 		];
 
 		/**
 		 * The list of required (and/or recommended) plugins, as passed to TGM Plugin Activation.
+		 *
+		 * These links may contain affiliate links to paid products, which may financially benefit the author of this
+		 * framework or this plugin but do not add to the cost of the paid products. You are not required to use
+		 * these links to obtain the listed products.
 		 *
 		 * @link http://tgmpluginactivation.com/
 		 */
@@ -129,31 +133,47 @@ if ( ! class_exists( 'WP_Plugin_Name' ) ) {
 				'slug'         => 'gravityforms',
 				'source'       => 'external',
 				'required'     => true,
-				'external_url' => 'https://www.gravityforms.com/',
-				'version'      => '2.4',
+				'external_url' => 'http://rocketgenius.pxf.io/c/1235520/445235/7938',
+				'version'      => '2.4.5.8',
 			],
 			[
 				'name'         => 'GravityView',
 				'slug'         => 'gravityview',
 				'source'       => 'external',
 				'required'     => false,
-				'external_url' => 'https://gravityview.co/',
-				'version'      => '2.2',
+				'external_url' => 'https://gravityview.co/?ref=332',
+				'version'      => '2.2.4',
 			],
 			[
 				'name'         => 'Toolset Types',
 				'slug'         => 'types',
 				'source'       => 'external',
 				'required'     => true,
-				'external_url' => 'https://toolset.com/',
-				'version'      => '3.1.1',
+				'external_url' => 'https://toolset.com/?aid=5336&affiliate_key=Lsvk04DjJOhq',
+				'version'      => '3.2.4',
+			],
+			[
+				'name'         => 'Toolset Views',
+				'slug'         => 'types',
+				'source'       => 'external',
+				'required'     => true,
+				'external_url' => 'https://toolset.com/?aid=5336&affiliate_key=Lsvk04DjJOhq',
+				'version'      => '2.7.2',
 			],
 			[
 				'name'     => 'WooCommerce',
 				'slug'     => 'woocommerce',
 				'source'   => 'repo',
 				'required' => true,
-				'version'  => '3.5.2',
+				'version'  => '3.5.4',
+			],
+			[
+				'name'         => 'WooCommerce Bookings',
+				'slug'         => 'woocommerce-bookings',
+				'source'       => 'external',
+				'required'     => true,
+				'external_url' => 'https://woocommerce.com/products/woocommerce-bookings/?aff=11845',
+				'version'      => '1.12.2',
 			],
 		];
 
