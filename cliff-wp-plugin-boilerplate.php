@@ -149,6 +149,13 @@ if ( ! class_exists( 'WP_Plugin_Name' ) ) {
 				'version'      => '3.1.1',
 			],
 			[
+				'name'         => 'Toolset Views',
+				'slug'         => 'types',
+				'source'       => 'external',
+				'required'     => true,
+				'version'      => '2.7.2',
+			],
+			[
 				'name'     => 'WooCommerce',
 				'slug'     => 'woocommerce',
 				'source'   => 'repo',
