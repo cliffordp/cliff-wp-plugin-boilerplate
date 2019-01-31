@@ -38,7 +38,7 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
     1. You do not need `tgmpa/tgm-plugin-activation` if your plugin does not require or recommend any other plugins or themes.
     1. Make sure to update the main plugin file's logic accordingly if you fully remove this library.
     1. Make sure to update the main plugin file's class properties:
-        1. `$min_php` should match 
+        1. `$min_php`
         1. `$required_theme`
         1. `$required_plugins`
 * Run Composer `install`
