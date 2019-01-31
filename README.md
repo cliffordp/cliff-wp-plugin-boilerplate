@@ -1,10 +1,6 @@
 # WordPress Plugin Boilerplate with Support for Composer and Namespaces
 
 
-## Contents
-
-The `wp-plugin-name` directory contains the source code - a fully executable WordPress plugin.
-
 ## Features
 
 * The Boilerplate is based on the [Plugin API](http://codex.wordpress.org/Plugin_API), [Coding Standards](http://codex.wordpress.org/WordPress_Coding_Standards), and [Documentation Standards](https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/php/).
@@ -27,12 +23,12 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
 
 * Go to your *wp-content/plugins* directory, copy this *cliff-wp-plugin-boilerplate* repository/directory here, and rename it to your new plugin's directory
 * Perform a *case-sensitive* search and replace at the project level as follows:
-    1. If directly copied, rename `cliff-wp-plugin-boilerplate` to `your-plugin-name`. **This is your new plugin directory.**
-    1. Find the text `wp-plugin-name` and replace with `your-plugin-name` in all files
+    1. Rename the `cliff-wp-plugin-boilerplate` directory to `your-plugin-name`. **This is your new plugin directory and must match your text domain.**
+    1. Find the text `cliff-wp-plugin-boilerplate` and replace with `your-plugin-name` in all files
     1. Find the text `wp_plugin_name` and replace with `your_plugin_name` in all files
     1. Find the text `WordPress Plugin Boilerplate` and replace with `Your Plugin Name` in all files
     1. Find the text `WP_Plugin_Name` and replace with `Your_Plugin_Name` in all files (the *namespace*)
-    1. Rename the `pot` file under `languages` and replace the string `wp-plugin-name` with `your-plugin-name`
+    1. Rename the `pot` file under `languages` and replace the string `cliff-wp-plugin-boilerplate` with `your-plugin-name`
     1. Find the text `https://www.example.com/` and replace with your URI in all files
     1. Find the text `Your Name or Your Company` and replace with your name in all files
     1. Find the text `your@email.address` and replace with your email address in `composer.json`
@@ -50,7 +46,7 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
 Visit https://getcomposer.org/ to learn all about it.
 
 Here are some quick notes about Composer, in general, and this project's use of it:
-1. You need to [install Composer](https://getcomposer.org/download/) on your desktop/laptop, not your server. You can download it right into your `wp-plugin-name` directory.
+1. You need to [install Composer](https://getcomposer.org/download/) on your desktop/laptop, not your server. You can download it right into your `cliff-wp-plugin-boilerplate` directory.
 1. The `composer.json` file is the *instructions* file that tells the `composer.phar` how to build your `vendor` directory (which includes the autoloader), and possibly do other things.
 1. Run `php composer.phar install` to generate your `composer.lock` file.
 1. Because `composer.json` has `"optimize-autoloader": true` inside the config key, *you will need to run Composer's `update` if you ever add a new PHP class*
@@ -60,9 +56,9 @@ Here are some quick notes about Composer, in general, and this project's use of 
 #### Generating and Distributing the .zip
 
 1. **Once ready to build the finalized .zip to distribute to your site or to others...**
-    1. `php composer.phar archive --file wp-plugin-name` *(name yours correctly)*
+    1. `php composer.phar archive --file cliff-wp-plugin-boilerplate` *(name yours correctly)*
     1. Because we did not set a `--dir` argument for the `archive` command, Composer will create the .zip right in the project's directory. *#Convenient!*
-1. Unzip this newly-created `wp-plugin-name.zip` file to make sure it got built correctly (excluding files like .gitignore, composer.json, etc).
+1. Unzip this newly-created `cliff-wp-plugin-boilerplate.zip` file to make sure it got built correctly (excluding files like .gitignore, composer.json, etc).
 1. Upload this .zip to your production site or wherever you want to distribute it.
 1. Delete this .zip file from your hard drive.
 
@@ -70,12 +66,12 @@ Here are some quick notes about Composer, in general, and this project's use of 
 
 Following is the pre-built plugin structure. You can add your own new class files (include `namespace` and `use` at the top) by naming them correctly and putting the files in the most appropriate location.
 
-* `wp-plugin-name/src/admin` - admin-specific functionality
-* `wp-plugin-name/src/common` - functionality shared between the admin area and the public-facing parts
-* `wp-plugin-name/src/core` - plugin core to register hooks, load files etc
-* `wp-plugin-name/src/customizer` - WordPress Customizer functionality
-* `wp-plugin-name/src/frontend` - public-facing functionality
-* `wp-plugin-name/src/libraries` - third-party libraries that the plugin uses (like a Composer `vendor` directory but for stuff that isn't able to be installed via Composer)
+* `cliff-wp-plugin-boilerplate/src/admin` - admin-specific functionality
+* `cliff-wp-plugin-boilerplate/src/common` - functionality shared between the admin area and the public-facing parts
+* `cliff-wp-plugin-boilerplate/src/core` - plugin core to register hooks, load files etc
+* `cliff-wp-plugin-boilerplate/src/customizer` - WordPress Customizer functionality
+* `cliff-wp-plugin-boilerplate/src/frontend` - public-facing functionality
+* `cliff-wp-plugin-boilerplate/src/libraries` - third-party libraries that the plugin uses (like a Composer `vendor` directory but for stuff that isn't able to be installed via Composer)
 
 ### PHP Version
 
