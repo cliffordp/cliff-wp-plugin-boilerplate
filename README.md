@@ -130,6 +130,9 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
+##### January 31, 2019
+* Simplify the CSS and JS file names to speed up initial setup by avoiding unnecessary file renaming.
+
 ##### January 30, 2019
 * Add link to plugin options screen in the Plugins List admin screen.
 * Add plugin options screen that links to WordPress Customizer panel.
