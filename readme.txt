@@ -42,8 +42,8 @@ you put the stable version, in order to eliminate any doubt.
 This section describes how to install the plugin and get it working.
 
 1. Install the plugin:
-    1. Upload the `wp-plugin-name.zip` file at wp-admin > Plugins > Add New menu
-    1. Or, via SFTP, upload the `wp-plugin-name` directory to the `/wp-content/plugins/` directory
+    1. Upload the `cliff-wp-plugin-boilerplate.zip` file at wp-admin > Plugins > Add New menu
+    1. Or, via SFTP, upload the `cliff-wp-plugin-boilerplate` directory to the `/wp-content/plugins/` directory
 1. Activate the plugin:
     1. Visit wp-admin > Plugins
     1. Find the `WordPress Plugin Boilerplate` plugin in the list
@@ -72,7 +72,7 @@ Answer to foo bar dilemma.
 * October 1, 2018
 * List versions from most recent at top to oldest at bottom.
 * Reference https://semver.org/ for determine your version numbers.
-* Make sure to update the readme.txt header, the wp-plugin-name.php header, and the `PLUGIN_VERSION` constant each time you release a new version.
+* Make sure to update the readme.txt header, the cliff-wp-plugin-boilerplate.php header, and the `PLUGIN_VERSION` constant each time you release a new version.
 
 == Upgrade Notice ==
 
