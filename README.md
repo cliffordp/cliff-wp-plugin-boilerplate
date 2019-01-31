@@ -31,7 +31,6 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
     1. Find the text `wp_plugin_name` and replace with `your_plugin_name` in all files
     1. Find the text `WordPress Plugin Boilerplate` and replace with `Your Plugin Name` in all files
     1. Find the text `WP_Plugin_Name` and replace with `Your_Plugin_Name` in all files (the *namespace*)
-    1. Rename the `css` and `js` files under `src/admin/css`, `src/admin/js/`, `src/views/js`, `src/views/css` and replace the string `wp-plugin-name` with `your-plugin-name`
     1. Rename the `pot` file under `languages` and replace the string `wp-plugin-name` with `your-plugin-name`
     1. Find the text `https://www.example.com/` and replace with your URI in all files
     1. Find the text `Your Name or Your Company` and replace with your name in all files
