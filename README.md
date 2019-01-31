@@ -17,6 +17,9 @@ The `wp-plugin-name` directory contains the source code - a fully executable Wor
 * Displays a wp-admin error notice to administrators if the required version of PHP is not met
 * Displays a wp-admin error notice to administrators if a required third-party plugin (e.g. WooCommerce) is not active
 * Easily add a new shortcode by having the shortcode named the same as a method in the `Common` class
+* Adds a wp-admin Settings page with a link to the plugin's options in the WordPress Customizer
+* Includes a custom *Sortable Checkboxes* control in the WordPress Customizer and examples how to use it
+* Includes a number of generally-helpful utility functions, such as getting all public post types, flattening an array of unknown dimensions, and option getters
 
 ## Installation
 
