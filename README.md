@@ -25,9 +25,10 @@ The `wp-plugin-name` directory contains the source code - a fully executable Wor
 
 The Boilerplate can be installed directly into your plugins folder "as-is". You will want to rename it and the classes inside of it to fit your needs.
 
-* Copy wp-plugin-name to your plugin's directory and rename it to your plugin's name
-* Perform a find and replace at the project level as follows:
-    1. Find the text `wp-plugin-name` and replace with `your-plugin-name` in all files. This **must** match your plugin directory and its text domain.
+* Go to your *wp-content/plugins* directory, copy this *cliff-wp-plugin-boilerplate* repository/directory here, and rename it to your new plugin's directory
+* Perform a *case-sensitive* search and replace at the project level as follows:
+    1. If directly copied, rename `cliff-wp-plugin-boilerplate` to `your-plugin-name`. **This is your new plugin directory.**
+    1. Find the text `wp-plugin-name` and replace with `your-plugin-name` in all files
     1. Find the text `wp_plugin_name` and replace with `your_plugin_name` in all files
     1. Find the text `WordPress Plugin Boilerplate` and replace with `Your Plugin Name` in all files
     1. Find the text `WP_Plugin_Name` and replace with `Your_Plugin_Name` in all files (the *namespace*)
@@ -40,6 +41,7 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
 * Make sure everything in `composer.json` is appropriate to your project.
 * Run Composer `install`
 * Activate the plugin
+* If it works (as it should), ***delete THIS README.md FILE***
 
 ### Using Composer
 
@@ -69,9 +71,10 @@ Here are some quick notes about Composer, in general, and this project's use of 
 Following is the pre-built plugin structure. You can add your own new class files (include `namespace` and `use` at the top) by naming them correctly and putting the files in the most appropriate location.
 
 * `wp-plugin-name/src/admin` - admin-specific functionality
-* `wp-plugin-name/src/core` - plugin core to register hooks, load files etc
-* `wp-plugin-name/src/frontend` - public-facing functionality
 * `wp-plugin-name/src/common` - functionality shared between the admin area and the public-facing parts
+* `wp-plugin-name/src/core` - plugin core to register hooks, load files etc
+* `wp-plugin-name/src/customizer` - WordPress Customizer functionality
+* `wp-plugin-name/src/frontend` - public-facing functionality
 * `wp-plugin-name/src/libraries` - third-party libraries that the plugin uses (like a Composer `vendor` directory but for stuff that isn't able to be installed via Composer)
 
 ### PHP Version
@@ -91,7 +94,7 @@ For each new version, don't forget to:
 
 ### The BoilerPlate uses a variable for the Text Domain
 
-The WordPress Plugin Boilerplate uses a **variable** (`$this->plugin_text_domain`) to store the text domain, used when internationalizing strings.
+The WordPress Plugin Boilerplate uses a **variable** (e.g. `$this->plugin_text_domain`) to store the text domain, used when internationalizing strings.
 
 If you face problems translating the strings with an automated tool/process, replace `$this->plugin_text_domain` with the literal string of your plugin's text domain throughout the plugin.
 
@@ -131,6 +134,7 @@ Documenting this project's progress...
 
 ##### January 31, 2019
 * Simplify the CSS and JS file names to speed up initial setup by avoiding unnecessary file renaming.
+* Simplify boilerplate's repository files so boilerplate can be ran as a plugin itself ("out of the box" as they say), which helps with testing things work before committing changes to the repo.
 
 ##### January 30, 2019
 * Add link to plugin options screen in the Plugins List admin screen.
