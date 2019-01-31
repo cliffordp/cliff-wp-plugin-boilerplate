@@ -114,8 +114,8 @@ if ( ! class_exists( 'WP_Plugin_Name' ) ) {
 		 * Parent = Stylesheet. Child = Template.
 		 */
 		private $required_theme = [
-			'parent' => '',
-			'child'  => '',
+			'parent' => '', // stylesheet slug
+			'child'  => '', // template slug
 		];
 
 		/**
