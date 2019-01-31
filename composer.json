@@ -9,6 +9,12 @@
       "email": "your@email.address",
       "homepage": "https://www.example.com/",
       "role": "Developer"
+    },
+    {
+      "name": "TourKick LLC (Clifford Paulick)",
+      "email": "tko@tourkick.com",
+      "homepage": "https://tourkick.com/",
+      "role": "Developer"
     }
   ],
   "require": {

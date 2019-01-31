@@ -29,6 +29,24 @@
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain:       cliff-wp-plugin-boilerplate
  * Domain Path:       /languages
+ *
+ ***
+ *
+ *     This plugin is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU General Public License as published by
+ *     the Free Software Foundation, either version 3 of the License, or
+ *     any later version.
+ *
+ *     This plugin is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *     GNU General Public License for more details.
+ *
+ ***
+ *
+ *     This plugin was helped by Clifford Paulick's WordPress Plugin Boilerplate,
+ *     available free at https://github.com/cliffordp/cliff-wp-plugin-boilerplate
+ *     You are invited to use it for your own projects.
  */
 
 namespace WP_Plugin_Name;
@@ -85,7 +103,7 @@ if ( ! class_exists( 'WP_Plugin_Name' ) ) {
 	class WP_Plugin_Name {
 
 		/**
-		 * The required version of PHP.
+		 * The required version of PHP. Should match composer.json's `"require": { "php":...`
 		 */
 		private $min_php = '5.6.0';
 
