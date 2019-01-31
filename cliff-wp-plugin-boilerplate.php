@@ -155,6 +155,13 @@ if ( ! class_exists( 'WP_Plugin_Name' ) ) {
 				'required' => true,
 				'version'  => '3.5.2',
 			],
+			[
+				'name'         => 'WooCommerce Bookings',
+				'slug'         => 'woocommerce-bookings',
+				'source'       => 'external',
+				'required'     => true,
+				'version'      => '1.12.2',
+			],
 		];
 
 		/**
