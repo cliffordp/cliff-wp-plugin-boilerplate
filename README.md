@@ -35,6 +35,12 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
     1. Find the text `cliffpaulick` and replace with your WordPress.org username (or delete it) in `readme.txt`
     1. Find the text `yourname` and replace with whatever you want [as your vendor name](https://getcomposer.org/doc/04-schema.md#name)) in `composer.json` (such as your GitHub username)
 * Make sure everything in `composer.json` is appropriate to your project.
+    1. You do not need `tgmpa/tgm-plugin-activation` if your plugin does not require or recommend any other plugins or themes.
+    1. Make sure to update the main plugin file's logic accordingly if you fully remove this library.
+    1. Make sure to update the main plugin file's class properties:
+        1. `$min_php` should match 
+        1. `$required_theme`
+        1. `$required_plugins`
 * Run Composer `install`
 * Activate the plugin
 * If it works (as it should), ***delete THIS README.md FILE***
