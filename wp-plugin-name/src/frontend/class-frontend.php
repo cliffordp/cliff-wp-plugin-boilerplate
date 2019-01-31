@@ -47,7 +47,7 @@ if ( ! class_exists( 'Frontend' ) ) {
 			 * class.
 			 */
 
-			wp_enqueue_style( $this->common->plugin_text_domain, plugin_dir_url( __FILE__ ) . 'css/wp-plugin-name-frontend.css', [], $this->common->version, 'all' );
+			wp_enqueue_style( $this->common->plugin_text_domain, plugin_dir_url( __FILE__ ) . 'css/style.css', [], $this->common->version, 'all' );
 		}
 
 		/**
@@ -64,7 +64,7 @@ if ( ! class_exists( 'Frontend' ) ) {
 			 * class.
 			 */
 
-			wp_enqueue_script( $this->common->plugin_text_domain, plugin_dir_url( __FILE__ ) . 'js/wp-plugin-name-frontend.js', [ 'jquery' ], $this->common->version, false );
+			wp_enqueue_script( $this->common->plugin_text_domain, plugin_dir_url( __FILE__ ) . 'js/script.js', [ 'jquery' ], $this->common->version, false );
 		}
 	}
 }
