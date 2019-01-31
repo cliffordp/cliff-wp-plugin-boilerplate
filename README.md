@@ -1,4 +1,4 @@
-# WordPress Plugin Boilerplate with Support for Composer and Namespaces
+# WordPress Plugin Boilerplate with Support for Composer, PHP Namespaces, and WordPress Customizer
 
 
 ## Features
