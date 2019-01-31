@@ -44,9 +44,9 @@
  *
  ***
  *
- *     This plugin was helped by Clifford Paulick's WordPress Plugin Boilerplate,
+ *     This plugin was helped by Clifford Paulick's Plugin Boilerplate,
  *     available free at https://github.com/cliffordp/cliff-wp-plugin-boilerplate
- *     You are invited to use it for your own projects.
+ *     You are invited to use it for your own WordPress projects.
  */
 
 namespace WP_Plugin_Name;
