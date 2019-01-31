@@ -1,5 +1,5 @@
 {
-  "name": "yourname/wp-plugin-name",
+  "name": "yourname/cliff-wp-plugin-boilerplate",
   "description": "Here is a short description of the plugin.",
   "type": "project",
   "license": "GPL-3.0-or-later",
