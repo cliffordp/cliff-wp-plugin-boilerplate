@@ -351,7 +351,8 @@ if ( ! class_exists( 'Common' ) ) {
 		public function get_option( $key, $default = '' ) {
 			$all_options = $this->get_all_options();
 
-			if ( ! empty( $all_options[$key] ) ) {
+			// Cannot use empty() because an unchecked checkbox is boolean false, for example.
+			if ( isset( $all_options[$key] ) ) {
 				return $all_options[$key];
 			} else {
 				return $default;
@@ -385,15 +386,14 @@ if ( ! class_exists( 'Common' ) ) {
 			$result = $this->get_option( $key, $default );
 
 			if ( is_string( $result ) ) {
-				$result = (array) json_decode( $result, true );
+				$result = json_decode( $result, true );
 			}
 
-			$result = array_filter( $result );
+			$result = (array) $result;
 
 			$result = array_keys( $result );
 
-			return (array) $result;
-
+			return $result;
 		}
 
 		/**
