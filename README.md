@@ -138,6 +138,7 @@ Documenting this project's progress...
 ##### January 31, 2019
 * Simplify the CSS and JS file names to speed up initial setup by avoiding unnecessary file renaming.
 * Simplify boilerplate's repository files so boilerplate can be ran as a plugin itself ("out of the box" as they say), which helps with testing things work before committing changes to the repo.
+* Fix logic for Common's `get_option()` and `get_option_as_array()`.
 
 ##### January 30, 2019
 * Add link to plugin options screen in the Plugins List admin screen.
