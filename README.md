@@ -135,6 +135,9 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
+##### February 1, 2019
+* Add `string_ends_with()` utility function.
+
 ##### January 31, 2019
 * Simplify the CSS and JS file names to speed up initial setup by avoiding unnecessary file renaming.
 * Simplify boilerplate's repository files so boilerplate can be ran as a plugin itself ("out of the box" as they say), which helps with testing things work before committing changes to the repo.
