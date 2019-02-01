@@ -638,7 +638,7 @@ if ( ! class_exists( 'Common' ) ) {
 		 *
 		 * @return string
 		 */
-		private function get_current_url() {
+		public function get_current_url() {
 			global $wp;
 
 			$current_url = home_url( add_query_arg( [], $wp->request ) );
