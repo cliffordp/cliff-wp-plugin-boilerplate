@@ -645,5 +645,33 @@ if ( ! class_exists( 'Common' ) ) {
 
 			return $current_url;
 		}
+
+
+		/**
+		 * Check if one string ends with another string.
+		 *
+		 * @param $subject
+		 * @param $search_for
+		 *
+		 * @return bool True if subject ends with searched string, else false.
+		 */
+		public function string_ends_with( $subject, $search_for ) {
+			if (
+				! is_string( $subject )
+				|| ! is_string( $search_for )
+			) {
+				return false;
+			}
+
+			$subject_length = strlen( $subject );
+
+			$search_for_length = strlen( $search_for );
+
+			if ( $search_for_length > $subject_length ) {
+				return false;
+			}
+
+			return substr_compare( $subject, $search_for, $subject_length - $search_for_length, $search_for_length ) === 0;
+		}
 	}
 }
