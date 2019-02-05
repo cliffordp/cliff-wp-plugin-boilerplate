@@ -134,9 +134,9 @@ if ( ! class_exists( 'Common' ) ) {
 				$mail_sent = wp_mail( $email, $subject, $email_message );
 
 				if ( $mail_sent ) {
-					$message = esc_html_x( 'Email sent.', 'Successfully emailed from ' . __FUNCTION__ . '()', $this->plugin_text_domain ) . ' ' . $message;
+					$message = esc_html_x( 'Email sent.', 'Successfully emailed from output_to_log()', $this->plugin_text_domain ) . ' ' . $message;
 				} else {
-					$message = esc_html_x( 'Email attempted but failed.', 'Unsuccessfully emailed from ' . __FUNCTION__ . '()', $this->plugin_text_domain ) . ' ' . $message;
+					$message = esc_html_x( 'Email attempted but failed.', 'Unsuccessfully emailed from output_to_log()', $this->plugin_text_domain ) . ' ' . $message;
 				}
 			}
 

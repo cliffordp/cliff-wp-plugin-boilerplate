@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WordPress Plugin Boilerplate\n"
-"POT-Creation-Date: 2019-01-31 17:28-0600\n"
-"PO-Revision-Date: 2019-01-31 17:28-0600\n"
+"POT-Creation-Date: 2019-02-05 17:34-0600\n"
+"PO-Revision-Date: 2019-02-05 17:34-0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -96,19 +96,34 @@ msgstr ""
 msgid "Edit Plugin Settings in WP Customizer"
 msgstr ""
 
-#: src/common/class-common.php:461
+#: src/common/class-common.php:115
+#, php-format
+msgid "%1$s - Message from %2$s():%3$s%4$s%5$s"
+msgstr ""
+
+#: src/common/class-common.php:137
+msgctxt "Successfully emailed from output_to_log()"
+msgid "Email sent."
+msgstr ""
+
+#: src/common/class-common.php:139
+msgctxt "Unsuccessfully emailed from output_to_log()"
+msgid "Email attempted but failed."
+msgstr ""
+
+#: src/common/class-common.php:527
 msgid "Facebook"
 msgstr ""
 
-#: src/common/class-common.php:466
+#: src/common/class-common.php:532
 msgid "Twitter"
 msgstr ""
 
-#: src/common/class-common.php:471
+#: src/common/class-common.php:537
 msgid "Pinterest"
 msgstr ""
 
-#: src/common/class-common.php:476
+#: src/common/class-common.php:542
 msgid "LinkedIn"
 msgstr ""
 
