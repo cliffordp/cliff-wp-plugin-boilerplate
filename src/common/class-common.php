@@ -78,6 +78,72 @@ if ( ! class_exists( 'Common' ) ) {
 		}
 
 		/**
+		 * Write to the PHP error log and optionally send an email with the same message.
+		 *
+		 * Will not write to debug log file if either WP_DEBUG or WP_DEBUG_LOG are false but will still send the email,
+		 * if applicable.
+		 *
+		 * @see wp_debug_mode() Just for reference how error logging is setup.
+		 *
+		 * @param string|array|object $log   The message or data to pass along.
+		 * @param string              $email Either a single email address, a comma-separated list of email addresses,
+		 *                                   or 'admin' to send to the admin email address.
+		 */
+		function output_to_log( $log = '', $email = '' ) {
+			if (
+				is_array( $log )
+				|| is_object( $log )
+			) {
+				$message = print_r( $log, true );
+			} else {
+				$message = $log;
+			}
+
+			$trace = debug_backtrace();
+
+			$who_called_me = '';
+
+			if ( ! empty( $trace[1]['class'] ) ) {
+				$who_called_me .= $trace[1]['class'] . '::';
+			}
+
+			if ( ! empty( $trace[1]['function'] ) ) {
+				$who_called_me .= $trace[1]['function'] . '(): ';
+			}
+
+			$message = sprintf(
+				esc_html__( '%1$s - Message from %2$s():%3$s%4$s%5$s', $this->plugin_text_domain ),
+				NS\get_plugin_display_name(),
+				__FUNCTION__,
+				PHP_EOL,
+				$who_called_me,
+				$message
+			);
+
+			if ( 'admin' === $email ) {
+				$email = get_bloginfo( 'admin_email' );
+			}
+
+			if ( ! empty( $email ) ) {
+				// Prefix the email's message with the server's current time, since email send or receive may be delayed
+				$email_message = sprintf( '[%s] %s', date( 'c' ), $message );
+
+				$subject = sprintf( '%s - %s()', get_home_url(), __FUNCTION__ );
+
+				// wp_mail() will convert comma-separated email string into an array for us
+				$mail_sent = wp_mail( $email, $subject, $email_message );
+
+				if ( $mail_sent ) {
+					$message = esc_html_x( 'Email sent.', 'Successfully emailed from ' . __FUNCTION__ . '()', $this->plugin_text_domain ) . ' ' . $message;
+				} else {
+					$message = esc_html_x( 'Email attempted but failed.', 'Unsuccessfully emailed from ' . __FUNCTION__ . '()', $this->plugin_text_domain ) . ' ' . $message;
+				}
+			}
+
+			error_log( $message );
+		}
+
+		/**
 		 * Get the Post ID from the current page or from a passed integer or WP_Post object.
 		 *
 		 * Helper function for getting Post ID. Accepts null or a Post ID. If no $post object exists, returns false.
