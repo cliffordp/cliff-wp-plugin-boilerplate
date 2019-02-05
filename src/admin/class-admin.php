@@ -122,8 +122,8 @@ if ( ! class_exists( 'Admin' ) ) {
 		 */
 		public function add_plugin_admin_menu() {
 			add_options_page(
-				NS\wp_plugin_name_get_plugin_display_name(),
-				NS\wp_plugin_name_get_plugin_display_name(),
+				NS\get_plugin_display_name(),
+				NS\get_plugin_display_name(),
 				$this->common->required_capability(),
 				$this->get_settings_page_slug(),
 				[ $this, 'settings_page' ]
@@ -142,7 +142,7 @@ if ( ! class_exists( 'Admin' ) ) {
 
 			?>
 			<div class="wrap">
-				<h1><?php echo NS\wp_plugin_name_get_plugin_display_name() . ' ' . $this->get_settings_word();
+				<h1><?php echo NS\get_plugin_display_name() . ' ' . $this->get_settings_word();
 					?></h1>
 
 				<p><?php esc_html_e( "This plugin uses the WordPress Customizer to set its options.", $this->common->plugin_text_domain ); ?></p>
