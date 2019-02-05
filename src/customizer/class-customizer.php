@@ -67,7 +67,7 @@ if ( ! class_exists( 'Customizer' ) ) {
 			$wp_customize->add_panel(
 				$this->common->customizer_panel_id(),
 				[
-					'title'       => NS\wp_plugin_name_get_plugin_display_name(),
+					'title'       => NS\get_plugin_display_name(),
 					'description' => esc_html__( 'Plugin options and settings', $this->common->plugin_text_domain ) . $this->common->get_link_to_customizer_panel(),
 				]
 			);

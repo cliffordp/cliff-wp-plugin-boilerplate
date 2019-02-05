@@ -135,6 +135,9 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
+##### February 5, 2019
+* Renamed `wp_plugin_name_get_plugin_display_name()` to `get_plugin_display_name()` to remove prefix since we are within our own namespace.
+
 ##### February 1, 2019
 * Add `string_ends_with()` and `get_string_between_two_strings()` utility functions.
 

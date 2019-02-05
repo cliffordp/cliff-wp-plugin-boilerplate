@@ -207,23 +207,23 @@ if ( ! class_exists( 'WP_Plugin_Name' ) ) {
 				'strings'      => [
 					'notice_can_install_required'    => _n_noop(
 					// translators: 1: plugin name(s).
-						wp_plugin_name_get_plugin_display_name() . ' requires the following plugin: %1$s.',
-						wp_plugin_name_get_plugin_display_name() . ' requires the following plugins: %1$s.',
+						get_plugin_display_name() . ' requires the following plugin: %1$s.',
+						get_plugin_display_name() . ' requires the following plugins: %1$s.',
 						PLUGIN_TEXT_DOMAIN
 					),
 					'notice_can_install_recommended' => _n_noop(
 					// translators: 1: plugin name(s).
-						wp_plugin_name_get_plugin_display_name() . ' recommends the following plugin: %1$s.',
-						wp_plugin_name_get_plugin_display_name() . ' recommends the following plugins: %1$s.',
+						get_plugin_display_name() . ' recommends the following plugin: %1$s.',
+						get_plugin_display_name() . ' recommends the following plugins: %1$s.',
 						PLUGIN_TEXT_DOMAIN
 					),
 					'notice_ask_to_update'           => _n_noop(
 					// translators: 1: plugin name(s).
-						'The following plugin needs to be updated to its latest version to ensure maximum compatibility with ' . wp_plugin_name_get_plugin_display_name() . ': %1$s.',
-						'The following plugins need to be updated to their latest version to ensure maximum compatibility with ' . wp_plugin_name_get_plugin_display_name() . ': %1$s.',
+						'The following plugin needs to be updated to its latest version to ensure maximum compatibility with ' . get_plugin_display_name() . ': %1$s.',
+						'The following plugins need to be updated to their latest version to ensure maximum compatibility with ' . get_plugin_display_name() . ': %1$s.',
 						PLUGIN_TEXT_DOMAIN
 					),
-					'plugin_needs_higher_version'    => __( 'Plugin not activated. A higher version of %s is needed for ' . wp_plugin_name_get_plugin_display_name() . '. Please update the plugin.', PLUGIN_TEXT_DOMAIN ),
+					'plugin_needs_higher_version'    => __( 'Plugin not activated. A higher version of %s is needed for ' . get_plugin_display_name() . '. Please update the plugin.', PLUGIN_TEXT_DOMAIN ),
 					// translators: 1: dashboard link.
 					'nag_type'                       => 'error', // Determines admin notice type - can only be one of the typical WP notice classes, such as 'updated', 'update-nag', 'notice-warning', 'notice-info' or 'error'. Some of which may not work as expected in older WP versions.
 				],
@@ -238,7 +238,7 @@ if ( ! class_exists( 'WP_Plugin_Name' ) ) {
 		public function notice_old_php_version() {
 			$message = sprintf(
 				__( '%1$s requires at least PHP version %2$s in order to work.', PLUGIN_TEXT_DOMAIN ),
-				'<strong>' . wp_plugin_name_get_plugin_display_name() . '</strong>',
+				'<strong>' . get_plugin_display_name() . '</strong>',
 				'<strong>' . $this->min_php . '</strong>'
 			);
 
@@ -310,7 +310,7 @@ if ( ! class_exists( 'WP_Plugin_Name' ) ) {
 
 			$message = sprintf(
 				__( 'The %1$s plugin requires the %2$s parent theme%3$sin order to work.%4$s', PLUGIN_TEXT_DOMAIN ),
-				'<strong>' . wp_plugin_name_get_plugin_display_name() . '</strong>',
+				'<strong>' . get_plugin_display_name() . '</strong>',
 				'<strong>' . $parent_name . '</strong>',
 				$child_message,
 				$admin_link
@@ -472,7 +472,7 @@ if ( ! class_exists( 'WP_Plugin_Name' ) ) {
  *
  * @return string
  */
-function wp_plugin_name_get_plugin_display_name() {
+function get_plugin_display_name() {
 	return esc_html_x( 'WordPress Plugin Boilerplate', 'Plugin name for display', PLUGIN_TEXT_DOMAIN );
 }
 
