@@ -234,7 +234,13 @@ if ( ! class_exists( 'Common' ) ) {
 
 			if ( isset( $result ) ) {
 				if ( $escape ) {
-					return esc_html( $result );
+					if ( is_array( $result ) ) {
+						$result = array_map( 'esc_html', $result );
+					} else {
+						$result = esc_html( $result );
+					}
+
+					return $result;
 				} else {
 					// WARNING: Full, untrusted HTML is allowed!
 					return $result;

@@ -135,6 +135,9 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
+##### March 13, 2019
+* Fix `tk_request()` in *Common* to better support array values
+
 ##### February 5, 2019
 * Added `output_to_log()` utility function to *Common* to enable writing to `WP_DEBUG_LOG` and optionally send an email, such as to the site administrator.
 * Renamed `wp_plugin_name_get_plugin_display_name()` to `get_plugin_display_name()` to remove prefix since we are within our own namespace.
