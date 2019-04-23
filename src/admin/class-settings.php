@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'WP_Plugin_Name\Admin\Settings' ) ) {
+if ( ! class_exists( Settings::class ) ) {
 	/**
 	 * The admin-specific settings.
 	 */

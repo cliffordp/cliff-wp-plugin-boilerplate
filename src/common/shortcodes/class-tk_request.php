@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'WP_Plugin_Name\Shortcodes\TK_Request' ) ) {
+if ( ! class_exists( TK_Request::class ) ) {
 	/**
 	 * The functionality shared between the admin and public-facing areas of the plugin.
 	 *

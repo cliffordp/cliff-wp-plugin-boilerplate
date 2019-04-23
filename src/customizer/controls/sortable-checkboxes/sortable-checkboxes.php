@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'WP_Plugin_Name\Customizer\Sortable_Checkboxes_Control' ) ) {
+if ( ! class_exists( Sortable_Checkboxes_Control::class ) ) {
 	/**
 	 * Sortable checkboxes control class.
 	 *

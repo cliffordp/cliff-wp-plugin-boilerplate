@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'WP_Plugin_Name\Frontend\Assets' ) ) {
+if ( ! class_exists( Assets::class ) ) {
 	/**
 	 * Enqueues the public-facing assets.
 	 */
