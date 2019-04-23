@@ -9,13 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Frontend' ) ) {
+if ( ! class_exists( 'Assets' ) ) {
 	/**
-	 * The public-facing functionality of the plugin.
-	 *
-	 * Enqueues the public-facing stylesheet and JavaScript and other front-end stuff.
+	 * Enqueues the public-facing assets.
 	 */
-	class Frontend {
+	class Assets {
 
 		/**
 		 * Get the Common instance.

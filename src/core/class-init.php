@@ -167,15 +167,11 @@ if ( ! class_exists( 'Init' ) ) {
 
 			$plugin_common = $this->get_common();
 
-			$plugin_public = new Frontend\Frontend( $plugin_common );
+			$assets = new Frontend\Assets( $plugin_common );
 
 			// Enqueue plugin's front-end assets
-			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
-			// Do Thing #1 here
-
-			// Do Thing #2 here
+			$this->loader->add_action( 'wp_enqueue_scripts', $assets, 'enqueue_styles' );
+			$this->loader->add_action( 'wp_enqueue_scripts', $assets, 'enqueue_scripts' );
 		}
 
 		/**
