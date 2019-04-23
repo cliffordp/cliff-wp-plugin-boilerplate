@@ -138,30 +138,19 @@ if ( ! class_exists( 'Init' ) ) {
 
 			$plugin_common = $this->get_common();
 
-			$plugin_admin = new Admin\Admin( $plugin_common );
+			$plugin_admin = new Admin\Assets( $plugin_common );
 
 			// Enqueue plugin's admin assets
 			$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 			$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
+			$plugin_settings = new Admin\Settings( $plugin_common );
+
 			// Plugin action links
-			$this->loader->add_filter( 'plugin_action_links_' . $this->plugin_basename, $plugin_admin, 'add_action_links' );
+			$this->loader->add_filter( 'plugin_action_links_' . $this->plugin_basename, $plugin_settings, 'add_action_links' );
 
 			// Admin menu
-			$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
-
-			/*
-			 * Additional Hooks go here
-			 *
-			 * e.g.
-			 *
-			 * //admin menu pages
-			 * $this->loader->add_action('admin_menu', $plugin_admin, 'add_plugin_admin_menu');
-			 *
-			 *  //plugin action links
-			 * $this->loader->add_filter( 'plugin_action_links_' . $this->plugin_basename, $plugin_admin, 'add_additional_action_link' );
-			 *
-			 */
+			$this->loader->add_action( 'admin_menu', $plugin_settings, 'add_plugin_admin_menu' );
 		}
 
 		/**
