@@ -94,7 +94,7 @@ register_activation_hook( __FILE__, [ NS . 'Core\Activator', 'activate' ] );
 
 register_deactivation_hook( __FILE__, [ NS . 'Core\Deactivator', 'deactivate' ] );
 
-if ( ! class_exists( 'WP_Plugin_Name' ) ) {
+if ( ! class_exists( 'WP_Plugin_Name\WP_Plugin_Name' ) ) {
 	/**
 	 * Plugin Singleton Container
 	 *
