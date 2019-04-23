@@ -2,7 +2,6 @@
 
 namespace WP_Plugin_Name\Admin;
 
-use WP_Plugin_Name as NS;
 use WP_Plugin_Name\Common\Common as Common;
 
 // Abort if this file is called directly.
