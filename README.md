@@ -78,7 +78,6 @@ Following is the pre-built plugin structure. You can add your own new class file
 * `cliff-wp-plugin-boilerplate/src/core` - plugin core to register hooks, load files etc
 * `cliff-wp-plugin-boilerplate/src/customizer` - WordPress Customizer functionality
 * `cliff-wp-plugin-boilerplate/src/frontend` - public-facing functionality
-* `cliff-wp-plugin-boilerplate/src/libraries` - third-party libraries that the plugin uses (like a Composer `vendor` directory but for stuff that isn't able to be installed via Composer)
 
 ### PHP Version
 
@@ -134,6 +133,9 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 # Boilerplate's Changelog
 
 Documenting this project's progress...
+
+##### April 23, 2019
+* Remove unused `libraries` and `views` directories throughout
 
 ##### March 13, 2019
 * Fix `tk_request()` in *Common* to better support array values
