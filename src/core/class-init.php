@@ -105,12 +105,33 @@ if ( ! class_exists( 'WP_Plugin_Name\Core\Init' ) ) {
 		private function define_common_hooks() {
 			$plugin_common = $this->get_common();
 
-			// Add all the shortcodes
-			foreach ( $plugin_common->shortcodes as $shortcode ) {
-				add_shortcode( $shortcode, [ $plugin_common, $shortcode ] );
-			}
+			$this->register_shortcodes();
 
 			// Example: $this->loader->add_filter( 'gform_currencies', $plugin_common, 'gf_currency_usd_whole_dollars', 50 );
+		}
+
+		/**
+		 * Register all of the shortcodes.
+		 */
+		private function register_shortcodes() {
+			$plugin_common = $this->get_common();
+
+			// Register all of the shortcode classes
+			$shortcode_namespace = 'WP_Plugin_Name\\Shortcodes\\';
+
+			foreach ( $plugin_common->shortcode_classes as $shortcode_class ) {
+				$shortcode_class = $shortcode_namespace . $shortcode_class;
+				if (
+					! class_exists( $shortcode_class )
+					|| ! is_subclass_of( $shortcode_class, $shortcode_namespace . 'Shortcode' )
+				) {
+					continue;
+				}
+
+				$shortcode = new $shortcode_class;
+
+				add_shortcode( $shortcode->get_tag(), [ $shortcode, 'process_shortcode' ] );
+			}
 		}
 
 		/**
