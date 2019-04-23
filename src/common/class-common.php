@@ -41,7 +41,7 @@ if ( ! class_exists( 'WP_Plugin_Name\Common\Common' ) ) {
 		/**
 		 * Shortcodes to register.
 		 *
-		 * Enter the class names from within the `WP_Plugin_Name\Shortcodes` namespace.
+		 * Enter the name of each class (without namespace) from within the `WP_Plugin_Name\Shortcodes` namespace.
 		 */
 		public $shortcode_classes = [
 			'TK_Request',
