@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Customizer' ) ) {
+if ( ! class_exists( 'WP_Plugin_Name\Customizer\Customizer' ) ) {
 	/**
 	 * Setup the WordPress Customizer functionality.
 	 *

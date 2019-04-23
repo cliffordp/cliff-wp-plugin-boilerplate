@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Init' ) ) {
+if ( ! class_exists( 'WP_Plugin_Name\Core\Init' ) ) {
 	/**
 	 * The core plugin class.
 	 * Defines internationalization, admin-specific hooks, and public-facing site hooks.

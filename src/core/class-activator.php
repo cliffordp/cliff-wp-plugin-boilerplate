@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Activator' ) ) {
+if ( ! class_exists( 'WP_Plugin_Name\Core\Activator' ) ) {
 	/**
 	 * Fired during plugin activation
 	 *

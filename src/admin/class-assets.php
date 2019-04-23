@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Assets' ) ) {
+if ( ! class_exists( 'WP_Plugin_Name\Admin\Assets' ) ) {
 	/**
 	 * Enqueues the admin-specific assets.
 	 */

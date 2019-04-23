@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Internationalization_I18n' ) ) {
+if ( ! class_exists( 'WP_Plugin_Name\Core\Internationalization_I18n' ) ) {
 	/**
 	 * Define the internationalization functionality.
 	 *

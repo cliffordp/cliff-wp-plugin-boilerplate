@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Common' ) ) {
+if ( ! class_exists( 'WP_Plugin_Name\Common\Common' ) ) {
 	/**
 	 * The functionality shared between the admin and public-facing areas of the plugin.
 	 *

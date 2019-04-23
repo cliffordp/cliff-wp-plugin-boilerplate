@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Deactivator' ) ) {
+if ( ! class_exists( 'WP_Plugin_Name\Core\Deactivator' ) ) {
 	/**
 	 * Fired during plugin deactivation
 	 *

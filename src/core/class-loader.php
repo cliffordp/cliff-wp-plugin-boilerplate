@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Register all actions and filters for the plugin
  */
 
-if ( ! class_exists( 'Loader' ) ) {
+if ( ! class_exists( 'WP_Plugin_Name\Core\Loader' ) ) {
 	/**
 	 * Register all actions and filters for the plugin.
 	 *

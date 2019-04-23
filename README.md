@@ -136,6 +136,7 @@ Documenting this project's progress...
 
 ##### April 23, 2019
 * Remove unused `libraries` and `views` directories throughout
+* Fix `class_exists()` checks to be namespace-aware
 
 ##### March 13, 2019
 * Fix `tk_request()` in *Common* to better support array values
