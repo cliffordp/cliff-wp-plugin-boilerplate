@@ -11,10 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( 'Assets' ) ) {
 	/**
-	 * The admin-specific functionality of the plugin.
-	 *
-	 * Defines the plugin name, version, and two examples hooks for how to
-	 * enqueue the admin-specific stylesheet and JavaScript.
+	 * Enqueues the admin-specific assets.
 	 */
 	class Assets {
 
