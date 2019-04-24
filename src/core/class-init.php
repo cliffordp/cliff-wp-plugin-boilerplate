@@ -110,13 +110,6 @@ if ( ! class_exists( Init::class ) ) {
 		}
 
 		/**
-		 * Register all of the shortcodes.
-		 */
-		private function register_shortcodes() {
-			( new Shortcodes\Manage_Shortcodes() )->register_all_shortcodes();
-		}
-
-		/**
 		 * Register all of the hooks related to the WordPress Customizer.
 		 *
 		 * Customizer must not be within Admin or Frontend or else it won't load properly.
@@ -175,6 +168,13 @@ if ( ! class_exists( Init::class ) ) {
 			// Enqueue plugin's front-end assets
 			$this->loader->add_action( 'wp_enqueue_scripts', $assets, 'enqueue_styles' );
 			$this->loader->add_action( 'wp_enqueue_scripts', $assets, 'enqueue_scripts' );
+		}
+
+		/**
+		 * Register all of the shortcodes.
+		 */
+		private function register_shortcodes() {
+			( new Shortcodes\Manage_Shortcodes() )->register_all_shortcodes();
 		}
 
 		/**

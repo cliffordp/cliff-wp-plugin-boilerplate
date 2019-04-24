@@ -49,7 +49,7 @@ if ( ! class_exists( TK_Request::class ) ) {
 
 			// bad request
 			if ( '' === $param ) {
-				return '';
+				return $this->get_error_message( 'Missing required "parameter" argument' );
 			}
 
 			// If a GET request, ignore POST.

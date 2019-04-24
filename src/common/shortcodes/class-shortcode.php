@@ -67,21 +67,29 @@ abstract class Shortcode {
 	}
 
 	/**
-	 * Get this plugin's text domain.
-	 *
-	 * @return string
-	 */
-	public function get_text_domain() {
-		return NS\PLUGIN_TEXT_DOMAIN;
-	}
-
-	/**
 	 * Get this plugin's version.
 	 *
 	 * @return string
 	 */
 	public function get_version() {
 		return NS\PLUGIN_VERSION;
+	}
+
+	/**
+	 * Get the error message text allowed to be displayed to the user.
+	 *
+	 * @param string $fallback The text to display to an unprivileged user instead of the error message.
+	 *
+	 * @return string
+	 */
+	public function get_error_message( $cause = '', $fallback = '' ) {
+		if ( current_user_can( $this->required_capability() ) ) {
+			$message = $this->get_error_message_to_user_with_cap( $cause );
+		} else {
+			$message = $fallback;
+		}
+
+		return $message;
 	}
 
 	/**
@@ -96,24 +104,44 @@ abstract class Shortcode {
 	}
 
 	/**
-	 * Get and process the attributes.
+	 * Get the error message text that a privileged user should see.
 	 *
-	 * @see shortcode_atts()
+	 * @param string $cause The reason this error is displayed. Will go through `esc_html()`.
 	 *
-	 * @param array $atts
-	 *
-	 * @return array
+	 * @return string
 	 */
-	public function get_atts( $atts = [] ) {
-		return shortcode_atts( $this->get_defaults(), $atts, $this->get_tag() );
+	public function get_error_message_to_user_with_cap( $cause = '' ) {
+		if (
+			! is_string( $cause )
+			|| '' === $cause
+		) {
+			$cause = esc_html_x( 'Unspecified', 'Default error cause text for [' . $this->get_tag() . ']', $this->get_text_domain() );
+		}
+
+		$message = sprintf(
+			esc_html_x(
+				'Your attempt to use the `%s` shortcode resulted in an error because: %s. Please reference the documentation or inspect the code and try again. (Message only shown to users with the `%s` capability.)',
+				'Shortcode error message for [' . $this->get_tag() . ']',
+				$this->get_text_domain()
+			),
+			$this->get_tag(),
+			$cause,
+			$this->required_capability()
+		);
+
+		$message = sprintf( '<p class="%s-shortcode-error shortcode-%s">%s</p>', esc_attr( $this->get_text_domain() ), esc_attr( $this->get_tag() ), $message );
+
+		return $message;
 	}
 
 	/**
-	 * An array of all the shortcode's possible attributes and their default values.
+	 * Get this plugin's text domain.
 	 *
-	 * @return array
+	 * @return string
 	 */
-	abstract public function get_defaults();
+	public function get_text_domain() {
+		return NS\PLUGIN_TEXT_DOMAIN;
+	}
 
 	/**
 	 * Logic for the shortcode.
@@ -134,4 +162,24 @@ abstract class Shortcode {
 	 * @param string $content The raw value from using an enclosing (not self-closing) shortcode.
 	 */
 	abstract public function process_shortcode( $atts = [], $content = '' );
+
+	/**
+	 * Get and process the attributes.
+	 *
+	 * @see shortcode_atts()
+	 *
+	 * @param array $atts
+	 *
+	 * @return array
+	 */
+	public function get_atts( $atts = [] ) {
+		return shortcode_atts( $this->get_defaults(), $atts, $this->get_tag() );
+	}
+
+	/**
+	 * An array of all the shortcode's possible attributes and their default values.
+	 *
+	 * @return array
+	 */
+	abstract public function get_defaults();
 }
