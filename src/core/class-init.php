@@ -128,9 +128,7 @@ if ( ! class_exists( Init::class ) ) {
 					continue;
 				}
 
-				$shortcode = new $shortcode_class;
-
-				add_shortcode( $shortcode->get_tag(), [ $shortcode, 'process_shortcode' ] );
+				$shortcode = ( new $shortcode_class )->register();
 			}
 		}
 

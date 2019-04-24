@@ -4,12 +4,67 @@ namespace WP_Plugin_Name\Shortcodes;
 
 use WP_Plugin_Name as NS;
 
+// Abort if this file is called directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * The scaffolding for creating a new shortcode.
  *
  * @see \WP_Plugin_Name\Common\Common::$shortcode_classes Manually add your child class name here to get it to load.
  */
 abstract class Shortcode {
+
+	/**
+	 * Register the shortcode to WordPress.
+	 *
+	 * @see add_shortcode()
+	 */
+	public function register() {
+		$shortcode = new static();
+
+		add_shortcode( $this->get_tag(), [ $shortcode, 'init_shortcode' ] );
+	}
+
+	/**
+	 * Get the shortcode tag.
+	 *
+	 * If `$this->tag` exists, use it, else it will be created dynamically from this class' name.
+	 * All tags force hyphens to underscores.
+	 *
+	 * @see sanitize_key()
+	 *
+	 * @return string
+	 */
+	public function get_tag() {
+		if (
+			! empty( $this->tag )
+			&& is_string( $this->tag )
+		) {
+			$tag = $this->tag;
+		} else {
+			$tag = $this->build_tag_from_class_name();
+		}
+
+		$tag = apply_filters( static::class . '::' . __FUNCTION__, $tag );
+
+		$tag = str_replace( '-', '_', $tag );
+
+		return sanitize_key( $tag );
+	}
+
+	/**
+	 * Get the shortcode tag based on this class' name.
+	 *
+	 * @return string
+	 */
+	private function build_tag_from_class_name() {
+		$tag = str_replace( __NAMESPACE__, '', static::class );
+		$tag = str_replace( '\\', '', $tag );
+
+		return strtolower( $tag );
+	}
 
 	/**
 	 * Get this plugin's text domain.
@@ -41,52 +96,42 @@ abstract class Shortcode {
 	}
 
 	/**
-	 * Get the shortcode tag.
+	 * Get and process the attributes.
 	 *
-	 * If `$this->tag` exists, use it, else it will be created dynamically from this class' name.
+	 * @see shortcode_atts()
 	 *
-	 * @return string
-	 * @see \WP_Plugin_Name\Shortcodes\Shortcode::build_tag_from_class_name()
+	 * @param array $atts
 	 *
-	 * @see sanitize_key()
+	 * @return array
 	 */
-	public function get_tag() {
-		if (
-			! empty( $this->tag )
-			&& is_string( $this->tag )
-		) {
-			$tag = $this->tag;
-		} else {
-			$tag = $this->build_tag_from_class_name();
-		}
-
-		$tag = apply_filters( __CLASS__ . '::' . __FUNCTION__, $tag );
-
-		$tag = str_replace( '-', '_', $tag );
-
-		return sanitize_key( $tag );
+	public function get_atts( $atts = [] ) {
+		return shortcode_atts( $this->get_defaults(), $atts, $this->get_tag() );
 	}
 
 	/**
-	 * Get the shortcode tag based on this class' name.
+	 * An array of all the shortcode's possible attributes and their default values.
 	 *
-	 * @return string
+	 * @return array
 	 */
-	private function build_tag_from_class_name() {
-		$tag = str_replace( __NAMESPACE__, '', static::class );
-		$tag = str_replace( '\\', '', $tag );
+	abstract public function get_defaults();
 
-		return strtolower( $tag );
+	/**
+	 * Logic for the shortcode.
+	 *
+	 * @param array  $atts    The raw attributes from the shortcode.
+	 * @param string $content The raw value from using an enclosing (not self-closing) shortcode.
+	 */
+	public function init_shortcode( $atts = [], $content = '' ) {
+		return $this->process_shortcode( $this->get_atts( $atts ), $content );
 	}
 
 	/**
 	 * Logic for the shortcode.
 	 *
-	 * @param array  $atts
-	 * @param string $content
-	 *
 	 * @see shortcode_atts()
+	 *
+	 * @param array  $atts    The processed shortcode attributes after merging with defaults via `shortcode_atts()`.
+	 * @param string $content The raw value from using an enclosing (not self-closing) shortcode.
 	 */
 	abstract public function process_shortcode( $atts = [], $content = '' );
-
 }

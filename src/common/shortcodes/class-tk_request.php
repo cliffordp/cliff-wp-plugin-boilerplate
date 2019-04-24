@@ -14,40 +14,41 @@ if ( ! class_exists( TK_Request::class ) ) {
 	 * Useful for things like utilities or hooking into something that affects both back-end and front-end.
 	 */
 	class TK_Request extends Shortcode {
+		/**
+		 * An array of all the shortcode's possible attributes and their default values.
+		 *
+		 * @return array
+		 */
+		public function get_defaults() {
+			return [
+				'parameter' => '', // Required
+				'default'   => '', // The default value to return if the parameter is not present.
+				'escape'    => 'true', // 'false' to NOT pass the result through `esc_html()` (scary - don't trust it) - but 'false' is the only way to get a non-string result, which may be what you are wanting.
+			];
+		}
 
 		/**
 		 * Get the specified parameter from $_REQUEST ($_GET then $_POST).
 		 *
 		 * @link https://secure.php.net/manual/reserved.variables.request.php About $_REQUEST
 		 *
-		 * @see  filter_input() Although we could have gone this way, there were a number of things to workaround,
-		 *                     particularly when manually changing _GET or _POST or modifying _GET during a _POST request.
+		 * @see  filter_input() We could have used this, but there were a number of things to workaround, particularly
+		 *                      when manually changing _GET or _POST or modifying _GET during a _POST request.
 		 *
-		 * @param array|string $atts    If using the shortcode, this will be an array. If using PHP function, array or string.
-		 * @param array|string $default The default value to return if the parameter is not present.
-		 * @param bool         $escape  True to pass the result through `esc_html()`. False to allow the raw value (don't
-		 *                              trust it), but false is the only way to get an array result.
+		 * @param array  $atts    The shortcode attributes.
+		 * @param string $content The value from using an enclosing (not self-closing) shortcode.
 		 *
 		 * @return mixed The value of the query parameter, if any.
 		 */
-		public function process_shortcode( $atts = [], $default = '', $escape = true ) {
-			// Protect against passing a string value, such as if used directly via PHP function instead of as a shortcode.
-			if ( is_string( $atts ) ) {
-				$atts = [ 'parameter' => $atts ];
-			}
+		public function process_shortcode( $atts = [], $content = '' ) {
+			$atts = $this->get_atts( $atts );
 
 			$atts['parameter'] = urlencode( $atts['parameter'] );
-
-			$defaults = [
-				'parameter' => '',
-			];
-
-			$atts = shortcode_atts( $defaults, $atts, $this->get_tag() );
 
 			$param = $atts['parameter'];
 
 			// bad request
-			if ( empty( $param ) ) {
+			if ( '' === $param ) {
 				return '';
 			}
 
@@ -72,7 +73,10 @@ if ( ! class_exists( TK_Request::class ) ) {
 			}
 
 			if ( isset( $result ) ) {
-				if ( $escape ) {
+				if ( 'false' === $atts['escape'] ) {
+					// WARNING: Full, untrusted HTML is allowed!
+					return $result;
+				} else {
 					if ( is_array( $result ) ) {
 						$result = array_map( 'esc_html', $result );
 					} else {
@@ -80,12 +84,9 @@ if ( ! class_exists( TK_Request::class ) ) {
 					}
 
 					return $result;
-				} else {
-					// WARNING: Full, untrusted HTML is allowed!
-					return $result;
 				}
 			} else {
-				return $default;
+				return $atts['default'];
 			}
 		}
 	}
