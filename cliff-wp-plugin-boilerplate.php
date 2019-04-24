@@ -134,7 +134,7 @@ if ( ! class_exists( WP_Plugin_Name::class ) ) {
 				'source'       => 'external',
 				'required'     => true,
 				'external_url' => 'http://rocketgenius.pxf.io/c/1235520/445235/7938',
-				'version'      => '2.4.5.8',
+				'version'      => '2.4.8.9',
 			],
 			[
 				'name'         => 'GravityView',
@@ -142,7 +142,7 @@ if ( ! class_exists( WP_Plugin_Name::class ) ) {
 				'source'       => 'external',
 				'required'     => false,
 				'external_url' => 'https://gravityview.co/?ref=332',
-				'version'      => '2.2.4',
+				'version'      => '2.3.1',
 			],
 			[
 				'name'         => 'Toolset Types',
@@ -150,7 +150,7 @@ if ( ! class_exists( WP_Plugin_Name::class ) ) {
 				'source'       => 'external',
 				'required'     => true,
 				'external_url' => 'https://toolset.com/?aid=5336&affiliate_key=Lsvk04DjJOhq',
-				'version'      => '3.2.4',
+				'version'      => '3.2.7',
 			],
 			[
 				'name'         => 'Toolset Views',
@@ -158,14 +158,14 @@ if ( ! class_exists( WP_Plugin_Name::class ) ) {
 				'source'       => 'external',
 				'required'     => true,
 				'external_url' => 'https://toolset.com/?aid=5336&affiliate_key=Lsvk04DjJOhq',
-				'version'      => '2.7.2',
+				'version'      => '2.8.0.1',
 			],
 			[
 				'name'     => 'WooCommerce',
 				'slug'     => 'woocommerce',
 				'source'   => 'repo',
 				'required' => true,
-				'version'  => '3.5.4',
+				'version'  => '3.6.1',
 			],
 			[
 				'name'         => 'WooCommerce Bookings',
@@ -173,7 +173,7 @@ if ( ! class_exists( WP_Plugin_Name::class ) ) {
 				'source'       => 'external',
 				'required'     => true,
 				'external_url' => 'https://woocommerce.com/products/woocommerce-bookings/?aff=11845',
-				'version'      => '1.12.2',
+				'version'      => '1.14.0',
 			],
 		];
 
