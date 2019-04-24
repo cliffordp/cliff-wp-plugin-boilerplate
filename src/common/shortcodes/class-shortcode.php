@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * The scaffolding for creating a new shortcode.
  *
- * @see \WP_Plugin_Name\Common\Common::$shortcode_classes Manually add your child class name here to get it to load.
+ * @see \WP_Plugin_Name\Shortcodes\Manage_Shortcodes::$shortcode_classes Manually add your child class name here to get it to load.
  */
 abstract class Shortcode {
 

@@ -7,6 +7,7 @@ use WP_Plugin_Name\Admin as Admin;
 use WP_Plugin_Name\Common as Common;
 use WP_Plugin_Name\Customizer as Customizer;
 use WP_Plugin_Name\Frontend as Frontend;
+use WP_Plugin_Name\Shortcodes as Shortcodes;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -63,6 +64,7 @@ if ( ! class_exists( Init::class ) ) {
 			$this->define_customizer_hooks();
 			$this->define_admin_hooks();
 			$this->define_public_hooks();
+			$this->register_shortcodes();
 		}
 
 		/**
@@ -99,13 +101,10 @@ if ( ! class_exists( Init::class ) ) {
 		}
 
 		/**
-		 * Register all of the hooks related to both the admin area and the
-		 * public-facing functionality of the plugin.
+		 * Register all of the hooks related to both the admin area and the public-facing functionality of the plugin.
 		 */
 		private function define_common_hooks() {
 			$plugin_common = $this->get_common();
-
-			$this->register_shortcodes();
 
 			// Example: $this->loader->add_filter( 'gform_currencies', $plugin_common, 'gf_currency_usd_whole_dollars', 50 );
 		}
@@ -114,22 +113,7 @@ if ( ! class_exists( Init::class ) ) {
 		 * Register all of the shortcodes.
 		 */
 		private function register_shortcodes() {
-			$plugin_common = $this->get_common();
-
-			// Register all of the shortcode classes
-			$shortcode_namespace = 'WP_Plugin_Name\\Shortcodes\\';
-
-			foreach ( $plugin_common->shortcode_classes as $shortcode_class ) {
-				$shortcode_class = $shortcode_namespace . $shortcode_class;
-				if (
-					! class_exists( $shortcode_class )
-					|| ! is_subclass_of( $shortcode_class, $shortcode_namespace . 'Shortcode' )
-				) {
-					continue;
-				}
-
-				$shortcode = ( new $shortcode_class )->register();
-			}
+			( new Shortcodes\Manage_Shortcodes() )->register_all_shortcodes();
 		}
 
 		/**
