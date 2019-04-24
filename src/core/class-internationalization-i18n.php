@@ -26,7 +26,7 @@ if ( ! class_exists( Internationalization_I18n::class ) ) {
 		/**
 		 * Initialize the class and set its properties.
 		 *
-		 * @param      string $plugin_text_domain The text domain of this plugin.
+		 * @param string $plugin_text_domain The text domain of this plugin.
 		 */
 		public function __construct( $plugin_text_domain ) {
 			$this->text_domain = $plugin_text_domain;

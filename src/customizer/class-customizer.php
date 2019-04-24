@@ -41,9 +41,10 @@ if ( ! class_exists( Customizer::class ) ) {
 		/**
 		 * Add plugin options to Customizer.
 		 *
+		 * @link https://developer.wordpress.org/themes/customize-api/
+		 *
 		 * @param WP_Customize_Manager $wp_customize
 		 *
-		 * @link https://developer.wordpress.org/themes/customize-api/
 		 */
 		public function customizer_options( WP_Customize_Manager $wp_customize ) {
 			/**

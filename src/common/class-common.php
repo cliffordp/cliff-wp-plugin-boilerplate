@@ -291,9 +291,9 @@ if ( ! class_exists( Common::class ) ) {
 		 *
 		 * Non-numeric array keys will be preserved but its value may be overwrittern, as per usual with merging arrays.
 		 *
-		 * @param $array
-		 *
 		 * @link https://gist.github.com/SeanCannon/6585889#gistcomment-2823537 Thanks to this collective effort.
+		 *
+		 * @param $array
 		 *
 		 * @return array
 		 */
