@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WordPress Plugin Boilerplate\n"
-"POT-Creation-Date: 2019-02-05 17:34-0600\n"
-"PO-Revision-Date: 2019-02-05 17:34-0600\n"
+"POT-Creation-Date: 2019-04-23 23:11-0500\n"
+"PO-Revision-Date: 2019-04-23 23:11-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -70,61 +70,75 @@ msgctxt "Plugin name for display"
 msgid "WordPress Plugin Boilerplate"
 msgstr ""
 
-#: src/admin/class-admin.php:117
+#: src/admin/class-settings.php:76
 msgid "Settings"
 msgstr ""
 
-#: src/admin/class-admin.php:138
+#: src/admin/class-settings.php:97
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: src/admin/class-admin.php:148
+#: src/admin/class-settings.php:107
 msgid "This plugin uses the WordPress Customizer to set its options."
 msgstr ""
 
-#: src/admin/class-admin.php:149
+#: src/admin/class-settings.php:108
 msgid ""
 "Click the button below to be taken directly to this plugin's section within "
 "the WordPress Customizer."
 msgstr ""
 
-#: src/admin/class-admin.php:151
+#: src/admin/class-settings.php:110
 msgid "TODO: Add more text here"
 msgstr ""
 
-#: src/admin/class-admin.php:156
+#: src/admin/class-settings.php:115
 msgid "Edit Plugin Settings in WP Customizer"
 msgstr ""
 
-#: src/common/class-common.php:115
+#: src/common/class-common.php:106
 #, php-format
 msgid "%1$s - Message from %2$s():%3$s%4$s%5$s"
 msgstr ""
 
-#: src/common/class-common.php:137
+#: src/common/class-common.php:128
 msgctxt "Successfully emailed from output_to_log()"
 msgid "Email sent."
 msgstr ""
 
-#: src/common/class-common.php:139
+#: src/common/class-common.php:130
 msgctxt "Unsuccessfully emailed from output_to_log()"
 msgid "Email attempted but failed."
 msgstr ""
 
-#: src/common/class-common.php:527
+#: src/common/class-common.php:450
 msgid "Facebook"
 msgstr ""
 
-#: src/common/class-common.php:532
+#: src/common/class-common.php:455
 msgid "Twitter"
 msgstr ""
 
-#: src/common/class-common.php:537
+#: src/common/class-common.php:460
 msgid "Pinterest"
 msgstr ""
 
-#: src/common/class-common.php:542
+#: src/common/class-common.php:465
 msgid "LinkedIn"
+msgstr ""
+
+#: src/common/shortcodes/class-shortcode.php:118
+msgctxt "Shortcode error cause default text"
+msgid "Unspecified"
+msgstr ""
+
+#: src/common/shortcodes/class-shortcode.php:123
+#, php-format
+msgctxt "Shortcode error message"
+msgid ""
+"Your attempt to use the `[%1$s]` shortcode resulted in an error because: "
+"%2$s. Please reference the documentation or inspect the code and try again. "
+"(Message only shown to users with the `%3$s` capability.)"
 msgstr ""
 
 #: src/customizer/class-customizer.php:71

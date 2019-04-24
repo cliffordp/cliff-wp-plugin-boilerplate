@@ -110,18 +110,18 @@ abstract class Shortcode {
 	 *
 	 * @return string
 	 */
-	public function get_error_message_to_user_with_cap( $cause = '' ) {
+	public function get_error_message_to_user_with_cap( $cause ) {
 		if (
 			! is_string( $cause )
 			|| '' === $cause
 		) {
-			$cause = esc_html_x( 'Unspecified', 'Default error cause text for [' . $this->get_tag() . ']', $this->get_text_domain() );
+			$cause = esc_html_x( 'Unspecified', 'Shortcode error cause default text', $this->get_text_domain() );
 		}
 
 		$message = sprintf(
 			esc_html_x(
-				'Your attempt to use the `%s` shortcode resulted in an error because: %s. Please reference the documentation or inspect the code and try again. (Message only shown to users with the `%s` capability.)',
-				'Shortcode error message for [' . $this->get_tag() . ']',
+				'Your attempt to use the `[%1$s]` shortcode resulted in an error because: %2$s. Please reference the documentation or inspect the code and try again. (Message only shown to users with the `%3$s` capability.)',
+				'Shortcode error message',
 				$this->get_text_domain()
 			),
 			$this->get_tag(),

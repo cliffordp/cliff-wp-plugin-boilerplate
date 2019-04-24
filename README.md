@@ -135,10 +135,10 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 Documenting this project's progress...
 
 ##### April 23, 2019
-* Remove unused `libraries` and `views` directories throughout
 * Refactor classes to be smaller and more intentional
 * Created abstract `Shortcode()` class, which should be extended when creating your own new shortcodes
 * Fix `class_exists()` checks to be namespace-aware
+* Remove unused `libraries` and `views` directories throughout
 
 ##### March 13, 2019
 * Fix `tk_request()` in *Common* to better support array values
