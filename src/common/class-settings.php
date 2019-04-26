@@ -169,7 +169,7 @@ if ( ! class_exists( Settings::class ) ) {
 		}
 
 		/**
-		 * @TODO: Example: Get data about all social networks.
+		 * @todo: Example: Get data about all social networks.
 		 *
 		 * @param string $retrieve The relevant data to retrieve about each social network.
 		 *
@@ -209,7 +209,7 @@ if ( ! class_exists( Settings::class ) ) {
 		}
 
 		/**
-		 * @TODO: Example: Get the allowed social networks options.
+		 * @todo: Example: Get the allowed social networks options.
 		 *
 		 * @return array
 		 */
@@ -218,7 +218,7 @@ if ( ! class_exists( Settings::class ) ) {
 		}
 
 		/**
-		 * @TODO: Example: Get a social network's nice name.
+		 * @todo: Example: Get a social network's nice name.
 		 *
 		 * @param string $network
 		 *
@@ -237,7 +237,7 @@ if ( ! class_exists( Settings::class ) ) {
 		}
 
 		/**
-		 * @TODO: Example: Sanitize callback for Customizer: Social Networks.
+		 * @todo: Example: Sanitize callback for Customizer: Social Networks.
 		 *
 		 * Check if what the user selected is valid. If yes, return it, else return setting's default.
 		 *
@@ -257,7 +257,7 @@ if ( ! class_exists( Settings::class ) ) {
 		}
 
 		/**
-		 * @TODO: Example: Sanitize callback for Customizer: Post Types.
+		 * @todo: Example: Sanitize callback for Customizer: Post Types.
 		 *
 		 * Check if what the user selected is valid. If yes, return it, else return setting's default.
 		 *

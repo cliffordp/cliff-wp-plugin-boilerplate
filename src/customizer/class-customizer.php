@@ -93,7 +93,7 @@ if ( ! class_exists( Customizer::class ) ) {
 		 */
 		public function customizer_edit_shortcut_setting() {
 			/**
-			 * @TODO: Example setting: Sortable checkbox list of social networks. Must choose a setting to go to, not a section or panel.
+			 * @todo: Example setting: Sortable checkbox list of social networks. Must choose a setting to go to, not a section or panel.
 			 */
 			$setting = $this->settings->common->plugin_text_domain_underscores() . '[social_networks]';
 
@@ -120,7 +120,7 @@ if ( ! class_exists( Customizer::class ) ) {
 		}
 
 		/**
-		 * @TODO: Example: Add setting for Social Networks. Notice this one has multiple sortable checkboxes.
+		 * @todo: Example: Add setting for Social Networks. Notice this one has multiple sortable checkboxes.
 		 *
 		 * @param WP_Customize_Manager $wp_customize
 		 * @param string               $section_slug The section this setting should be added to.
@@ -171,7 +171,7 @@ if ( ! class_exists( Customizer::class ) ) {
 		}
 
 		/**
-		 * @TODO: Example: Add setting for Post Types. Notice this one has multiple (but not sortable) Checkboxes, due to 'input_attrs'.
+		 * @todo: Example: Add setting for Post Types. Notice this one has multiple (but not sortable) Checkboxes, due to 'input_attrs'.
 		 *
 		 * @param WP_Customize_Manager $wp_customize
 		 * @param string               $section_slug The section this setting should be added to.
