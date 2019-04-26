@@ -127,7 +127,7 @@ if ( ! class_exists( Init::class ) ) {
 			$this->loader->add_action( 'admin_enqueue_scripts', $assets, 'enqueue_styles' );
 			$this->loader->add_action( 'admin_enqueue_scripts', $assets, 'enqueue_scripts' );
 
-			$settings = new Admin\Admin_Settings();
+			$settings = new Admin\Settings();
 
 			// Plugin action links
 			$this->loader->add_filter( 'plugin_action_links_' . $this->plugin_basename, $settings, 'add_action_links' );

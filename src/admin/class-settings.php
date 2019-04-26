@@ -10,11 +10,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( Admin_Settings::class ) ) {
+if ( ! class_exists( Settings::class ) ) {
 	/**
 	 * The admin-specific settings.
 	 */
-	class Admin_Settings {
+	class Settings {
 
 		/**
 		 * Get the Settings instance from Common.
