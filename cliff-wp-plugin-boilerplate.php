@@ -6,10 +6,11 @@
  * Plugin structure if you want to include your own classes, or third-party libraries:
  * cliff-wp-plugin-boilerplate/src/admin - admin-specific functionality
  * cliff-wp-plugin-boilerplate/src/common - functionality shared between the admin area and the public-facing parts
+ * cliff-wp-plugin-boilerplate/src/common/utilities - generic functions for things like debugging, processing multidimensional arrays, handling datetimes, etc.
  * cliff-wp-plugin-boilerplate/src/core - plugin core to register hooks, load files etc
  * cliff-wp-plugin-boilerplate/src/customizer - WordPress Customizer functionality
  * cliff-wp-plugin-boilerplate/src/frontend - public-facing functionality
- * cliff-wp-plugin-boilerplate/src/libraries - libraries that the plugin may use that aren't able to be included via Composer
+ * cliff-wp-plugin-boilerplate/src/shortcodes - where to create new shortcodes
  *
  * This file is read by WordPress to generate the plugin information in the plugin
  * admin area. This file also includes all of the dependencies used by the plugin,

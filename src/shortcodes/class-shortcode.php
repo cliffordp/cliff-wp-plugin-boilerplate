@@ -2,7 +2,7 @@
 
 namespace WP_Plugin_Name\Shortcodes;
 
-use WP_Plugin_Name as NS;
+use WP_Plugin_Name\Common\Common as Common;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -15,6 +15,20 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @see \WP_Plugin_Name\Shortcodes\Manage_Shortcodes::$shortcode_classes Manually add your child class name here to get it to load.
  */
 abstract class Shortcode {
+
+	/**
+	 * The Common instance.
+	 *
+	 * @var Common
+	 */
+	public $common;
+
+	/**
+	 * Initialize the class and set its properties.
+	 */
+	public function __construct() {
+		$this->common = new Common();
+	}
 
 	/**
 	 * Register the shortcode to WordPress.
@@ -67,15 +81,6 @@ abstract class Shortcode {
 	}
 
 	/**
-	 * Get this plugin's version.
-	 *
-	 * @return string
-	 */
-	public function get_version() {
-		return NS\PLUGIN_VERSION;
-	}
-
-	/**
 	 * Get the error message text allowed to be displayed to the user.
 	 *
 	 * @param string $fallback The text to display to an unprivileged user instead of the error message.
@@ -100,7 +105,7 @@ abstract class Shortcode {
 	 * @link https://developer.wordpress.org/themes/customize-api/advanced-usage/
 	 */
 	public function required_capability() {
-		return apply_filters( $this->get_tag() . '_required_capability', 'customize' );
+		return apply_filters( $this->get_tag() . '_required_capability', $this->common->required_capability() );
 	}
 
 	/**
@@ -115,32 +120,23 @@ abstract class Shortcode {
 			! is_string( $cause )
 			|| '' === $cause
 		) {
-			$cause = esc_html_x( 'Unspecified', 'Shortcode error cause default text', $this->get_text_domain() );
+			$cause = esc_html_x( 'Unspecified', 'Shortcode error cause default text', $this->common->plugin_text_domain() );
 		}
 
 		$message = sprintf(
 			esc_html_x(
 				'Your attempt to use the `[%1$s]` shortcode resulted in an error because: %2$s. Please reference the documentation or inspect the code and try again. (Message only shown to users with the `%3$s` capability.)',
 				'Shortcode error message',
-				$this->get_text_domain()
+				$this->common->plugin_text_domain()
 			),
 			$this->get_tag(),
 			$cause,
 			$this->required_capability()
 		);
 
-		$message = sprintf( '<p class="%s-shortcode-error shortcode-%s">%s</p>', esc_attr( $this->get_text_domain() ), esc_attr( $this->get_tag() ), $message );
+		$message = sprintf( '<p class="%s-shortcode-error shortcode-%s">%s</p>', esc_attr( $this->common->plugin_text_domain() ), esc_attr( $this->get_tag() ), $message );
 
 		return $message;
-	}
-
-	/**
-	 * Get this plugin's text domain.
-	 *
-	 * @return string
-	 */
-	public function get_text_domain() {
-		return NS\PLUGIN_TEXT_DOMAIN;
 	}
 
 	/**

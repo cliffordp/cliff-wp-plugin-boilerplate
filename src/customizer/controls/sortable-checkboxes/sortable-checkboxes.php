@@ -46,8 +46,8 @@ if ( ! class_exists( Sortable_Checkboxes_Control::class ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( $this->handle( 'js' ), plugin_dir_url( __FILE__ ) . 'js/script.js', [ 'jquery', 'jquery-ui-sortable' ], $this->common->version, true );
-			wp_enqueue_style( $this->handle(), plugin_dir_url( __FILE__ ) . 'css/style.css', [], $this->common->version, 'all' );
+			wp_enqueue_script( $this->handle( 'js' ), plugin_dir_url( __FILE__ ) . 'js/script.js', [ 'jquery', 'jquery-ui-sortable' ], $this->common->plugin_version(), true );
+			wp_enqueue_style( $this->handle(), plugin_dir_url( __FILE__ ) . 'css/style.css', [], $this->common->plugin_version(), 'all' );
 		}
 
 		/**
@@ -58,7 +58,7 @@ if ( ! class_exists( Sortable_Checkboxes_Control::class ) ) {
 		 * @return string
 		 */
 		private function handle( $suffix = '' ) {
-			$result = $this->common->plugin_text_domain . '-' . $this->type;
+			$result = $this->common->plugin_text_domain() . '-' . $this->type;
 			if ( ! empty( $suffix ) ) {
 				$result .= '-' . $suffix;
 			}

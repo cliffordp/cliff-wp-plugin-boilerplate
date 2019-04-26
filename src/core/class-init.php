@@ -92,19 +92,10 @@ if ( ! class_exists( Init::class ) ) {
 		}
 
 		/**
-		 * Get Common so we can insert it into each class that depends on it.
-		 *
-		 * @return Common\Common
-		 */
-		private function get_common() {
-			return new Common\Common();
-		}
-
-		/**
 		 * Register all of the hooks related to both the admin area and the public-facing functionality of the plugin.
 		 */
 		private function define_common_hooks() {
-			$plugin_common = $this->get_common();
+			$plugin_common = new Common\Common();
 
 			// Example: $this->loader->add_filter( 'gform_currencies', $plugin_common, 'gf_currency_usd_whole_dollars', 50 );
 		}
@@ -116,9 +107,7 @@ if ( ! class_exists( Init::class ) ) {
 		 * We could have included in Common, since it is the same loading logic, but we separate it out for sanity.
 		 */
 		private function define_customizer_hooks() {
-			$plugin_common = $this->get_common();
-
-			$plugin_customizer = new Customizer\Customizer( $plugin_common );
+			$plugin_customizer = new Customizer\Customizer();
 
 			$this->loader->add_action( 'customize_register', $plugin_customizer, 'customizer_options' );
 		}
@@ -132,15 +121,13 @@ if ( ! class_exists( Init::class ) ) {
 				return;
 			}
 
-			$plugin_common = $this->get_common();
-
-			$assets = new Admin\Assets( $plugin_common );
+			$assets = new Admin\Assets();
 
 			// Enqueue plugin's admin assets
 			$this->loader->add_action( 'admin_enqueue_scripts', $assets, 'enqueue_styles' );
 			$this->loader->add_action( 'admin_enqueue_scripts', $assets, 'enqueue_scripts' );
 
-			$settings = new Admin\Settings( $plugin_common );
+			$settings = new Admin\Admin_Settings();
 
 			// Plugin action links
 			$this->loader->add_filter( 'plugin_action_links_' . $this->plugin_basename, $settings, 'add_action_links' );
@@ -161,9 +148,7 @@ if ( ! class_exists( Init::class ) ) {
 				return;
 			}
 
-			$plugin_common = $this->get_common();
-
-			$assets = new Frontend\Assets( $plugin_common );
+			$assets = new Frontend\Assets();
 
 			// Enqueue plugin's front-end assets
 			$this->loader->add_action( 'wp_enqueue_scripts', $assets, 'enqueue_styles' );
@@ -180,7 +165,7 @@ if ( ! class_exists( Init::class ) ) {
 		/**
 		 * Retrieve the version number of the plugin.
 		 *
-		 * @return    string    The version number of the plugin.
+		 * @return string The version number of the plugin.
 		 */
 		public function get_version() {
 			return $this->version;
@@ -189,7 +174,7 @@ if ( ! class_exists( Init::class ) ) {
 		/**
 		 * Retrieve the text domain of the plugin.
 		 *
-		 * @return    string    The text domain of the plugin.
+		 * @return string The text domain of the plugin.
 		 */
 		public function get_plugin_text_domain() {
 			return $this->plugin_text_domain;
@@ -205,7 +190,7 @@ if ( ! class_exists( Init::class ) ) {
 		/**
 		 * The reference to the class that orchestrates the hooks with the plugin.
 		 *
-		 * @return    Loader    Orchestrates the hooks of the plugin.
+		 * @return Loader Orchestrates the hooks of the plugin.
 		 */
 		public function get_loader() {
 			return $this->loader;

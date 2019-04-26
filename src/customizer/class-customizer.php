@@ -4,7 +4,8 @@ namespace WP_Plugin_Name\Customizer;
 
 use WP_Customize_Manager;
 use WP_Plugin_Name as NS;
-use WP_Plugin_Name\Common\Common as Common;
+use WP_Plugin_Name\Common\Settings as Settings;
+use WP_Plugin_Name\Common\Utilities as Utils;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -23,19 +24,17 @@ if ( ! class_exists( Customizer::class ) ) {
 	class Customizer {
 
 		/**
-		 * Get the Common instance.
+		 * Get the Settings instance from Common.
 		 *
-		 * @var Common
+		 * @var Settings
 		 */
-		private $common;
+		private $settings;
 
 		/**
-		 * Initialize the class and set its properties, with Common as a dependency.
-		 *
-		 * @param Common
+		 * Initialize the class and set its properties.
 		 */
-		public function __construct( Common $common ) {
-			$this->common = $common;
+		public function __construct() {
+			$this->settings = new Settings();
 		}
 
 		/**
@@ -44,7 +43,6 @@ if ( ! class_exists( Customizer::class ) ) {
 		 * @link https://developer.wordpress.org/themes/customize-api/
 		 *
 		 * @param WP_Customize_Manager $wp_customize
-		 *
 		 */
 		public function customizer_options( WP_Customize_Manager $wp_customize ) {
 			/**
@@ -55,7 +53,7 @@ if ( ! class_exists( Customizer::class ) ) {
 			$wp_customize->selective_refresh->add_partial(
 				$this->customizer_edit_shortcut_setting(),
 				[
-					'selector'            => '.' . $this->common->get_wrapper_class(),
+					'selector'            => '.' . $this->settings->common->get_wrapper_class(),
 					'container_inclusive' => true,
 					'render_callback'     => function () {
 						// purposefully not set because the setting is dynamic
@@ -66,10 +64,10 @@ if ( ! class_exists( Customizer::class ) ) {
 
 			// Add our custom panel, within which all our sections should be added.
 			$wp_customize->add_panel(
-				$this->common->customizer_panel_id(),
+				$this->settings->customizer_panel_id(),
 				[
 					'title'       => NS\get_plugin_display_name(),
-					'description' => esc_html__( 'Plugin options and settings', $this->common->plugin_text_domain ) . $this->common->get_link_to_customizer_panel(),
+					'description' => esc_html__( 'Plugin options and settings', $this->settings->common->plugin_text_domain() ) . $this->settings->get_link_to_customizer_panel(),
 				]
 			);
 
@@ -77,9 +75,9 @@ if ( ! class_exists( Customizer::class ) ) {
 			$wp_customize->add_section(
 				$this->get_section_id( 'example' ),
 				[
-					'title'       => esc_html__( 'Example Section', $this->common->plugin_text_domain ),
-					'description' => esc_html__( 'Example Section description.', $this->common->plugin_text_domain ),
-					'panel'       => $this->common->customizer_panel_id(),
+					'title'       => esc_html__( 'Example Section', $this->settings->common->plugin_text_domain() ),
+					'description' => esc_html__( 'Example Section description.', $this->settings->common->plugin_text_domain() ),
+					'panel'       => $this->settings->customizer_panel_id(),
 				]
 			);
 
@@ -97,9 +95,9 @@ if ( ! class_exists( Customizer::class ) ) {
 			/**
 			 * @TODO: Example setting: Sortable checkbox list of social networks. Must choose a setting to go to, not a section or panel.
 			 */
-			$setting = $this->common->plugin_text_domain_underscores() . '[social_networks]';
+			$setting = $this->settings->common->plugin_text_domain_underscores() . '[social_networks]';
 
-			return (string) apply_filters( $this->common->plugin_text_domain_underscores() . '_' . __FUNCTION__, $setting );
+			return (string) apply_filters( $this->settings->common->plugin_text_domain_underscores() . '_' . __FUNCTION__, $setting );
 		}
 
 		/**
@@ -117,7 +115,7 @@ if ( ! class_exists( Customizer::class ) ) {
 			if ( empty( $slug ) ) {
 				return '';
 			} else {
-				return $this->common->plugin_text_domain_underscores() . '_section_' . $slug;
+				return $this->settings->common->plugin_text_domain_underscores() . '_section_' . $slug;
 			}
 		}
 
@@ -133,21 +131,21 @@ if ( ! class_exists( Customizer::class ) ) {
 				$this->get_setting_id( $setting_slug ),
 				[
 					'type'              => 'option',
-					'default'           => json_encode( $this->get_choices_social_networks() ), // Select all by default
-					'sanitize_callback' => [ $this->common, 'sanitize_social_networks' ],
+					'default'           => json_encode( $this->settings->get_choices_social_networks() ), // Select all by default
+					'sanitize_callback' => [ $this->settings, 'sanitize_social_networks' ],
 				]
 			);
 
 			$wp_customize->add_control(
 				new Sortable_Checkboxes_Control(
 					$wp_customize,
-					$this->common->plugin_text_domain_underscores() . '_' . $setting_slug . '_control',
+					$this->settings->common->plugin_text_domain_underscores() . '_' . $setting_slug . '_control',
 					[
-						'label'       => esc_html__( 'Social Network(s)', $this->common->plugin_text_domain ),
-						'description' => esc_html__( 'Checked ones will output; unchecked ones will not. Drag and drop to set your preferred display order.', $this->common->plugin_text_domain ),
+						'label'       => esc_html__( 'Social Network(s)', $this->settings->common->plugin_text_domain() ),
+						'description' => esc_html__( 'Checked ones will output; unchecked ones will not. Drag and drop to set your preferred display order.', $this->settings->common->plugin_text_domain() ),
 						'section'     => $this->get_section_id( $section_slug ),
 						'settings'    => $this->get_setting_id( $setting_slug ),
-						'choices'     => $this->get_choices_social_networks(),
+						'choices'     => $this->settings->get_choices_social_networks(),
 					]
 				)
 			);
@@ -168,17 +166,8 @@ if ( ! class_exists( Customizer::class ) ) {
 			if ( empty( $slug ) ) {
 				return '';
 			} else {
-				return $this->common->plugin_text_domain_underscores() . '[' . $slug . ']';
+				return $this->settings->common->plugin_text_domain_underscores() . '[' . $slug . ']';
 			}
-		}
-
-		/**
-		 * @TODO: Example: Get the allowed social networks options.
-		 *
-		 * @return array
-		 */
-		public function get_choices_social_networks() {
-			return $this->common->get_social_networks_data( 'name' );
 		}
 
 		/**
@@ -193,17 +182,17 @@ if ( ! class_exists( Customizer::class ) ) {
 				$this->get_setting_id( $setting_slug ), [
 					'type'              => 'option',
 					'default'           => '',
-					'sanitize_callback' => [ $this->common, 'sanitize_post_types' ],
+					'sanitize_callback' => [ $this->settings, 'sanitize_post_types' ],
 				]
 			);
 
 			$wp_customize->add_control(
 				new Sortable_Checkboxes_Control(
 					$wp_customize,
-					$this->common->plugin_text_domain_underscores() . '_' . $setting_slug . '_control',
+					$this->settings->common->plugin_text_domain_underscores() . '_' . $setting_slug . '_control',
 					[
-						'label'       => esc_html__( 'Post Type(s)', $this->common->plugin_text_domain ),
-						'description' => esc_html__( 'Which Post Types should be enabled?', $this->common->plugin_text_domain ),
+						'label'       => esc_html__( 'Post Type(s)', $this->settings->common->plugin_text_domain() ),
+						'description' => esc_html__( 'Which Post Types should be enabled?', $this->settings->common->plugin_text_domain() ),
 						'section'     => $this->get_section_id( $section_slug ),
 						'settings'    => $this->get_setting_id( $setting_slug ),
 						'choices'     => $this->get_choices_post_types(),
@@ -223,7 +212,7 @@ if ( ! class_exists( Customizer::class ) ) {
 		public function get_choices_post_types() {
 			$result = [];
 
-			foreach ( $this->common->get_public_post_types() as $type ) {
+			foreach ( ( new Utils\Posts() )->get_public_post_types() as $type ) {
 				// name is the registered name and label is what the user sees.
 				$result[$type->name] = $type->label;
 			}

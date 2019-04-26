@@ -134,8 +134,8 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
-##### April 23, 2019
-* Refactor classes to be smaller and more intentional
+##### April 26, 2019
+* Refactor classes to be smaller and more intentional, including multiple _utilities_ classes and consolidating settings
 * Created abstract `Shortcode()` class, which should be extended when creating your own new shortcodes
 * Fix `class_exists()` checks to be namespace-aware
 * Remove unused `libraries` and `views` directories throughout
