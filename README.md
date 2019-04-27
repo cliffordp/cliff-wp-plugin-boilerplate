@@ -21,8 +21,8 @@
 
 The Boilerplate can be installed directly into your plugins folder "as-is". You will want to rename it and the classes inside of it to fit your needs.
 
-* Go to your *wp-content/plugins* directory, copy this *cliff-wp-plugin-boilerplate* repository/directory here, and rename it to your new plugin's directory
-* Perform a *case-sensitive* search and replace at the project level as follows:
+* Copy this *cliff-wp-plugin-boilerplate* repository/directory to your *wp-content/plugins* directory and rename your new plugin's directory
+* Perform a ***case-sensitive*** *search and replace* at the project level, as follows:
     1. Rename the `cliff-wp-plugin-boilerplate` directory to `your-plugin-name`. **This is your new plugin directory and must match your text domain.**
     1. Find the text `cliff-wp-plugin-boilerplate` and replace with `your-plugin-name` in all files
     1. **If you will be publishing your plugin to WordPress.org,** find the text `Plugin_Data::plugin_text_domain()` and replace with `your-plugin-name` in all files &mdash; and then you might not need the `use` import of the `Plugin_Data` class and could remove it as well
