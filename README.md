@@ -21,10 +21,11 @@
 
 The Boilerplate can be installed directly into your plugins folder "as-is". You will want to rename it and the classes inside of it to fit your needs.
 
-* Go to your *wp-content/plugins* directory, copy this *cliff-wp-plugin-boilerplate* repository/directory here, and rename it to your new plugin's directory
-* Perform a *case-sensitive* search and replace at the project level as follows:
+* Copy this *cliff-wp-plugin-boilerplate* repository/directory to your *wp-content/plugins* directory and rename your new plugin's directory
+* Perform a ***case-sensitive*** *search and replace* at the project level, as follows:
     1. Rename the `cliff-wp-plugin-boilerplate` directory to `your-plugin-name`. **This is your new plugin directory and must match your text domain.**
     1. Find the text `cliff-wp-plugin-boilerplate` and replace with `your-plugin-name` in all files
+    1. **If you will be publishing your plugin to WordPress.org,** find the text `Plugin_Data::plugin_text_domain()` and replace with `your-plugin-name` in all files &mdash; and then you might not need the `use` import of the `Plugin_Data` class and could remove it as well
     1. Find the text `wp_plugin_name` and replace with `your_plugin_name` in all files
     1. Find the text `WordPress Plugin Boilerplate` and replace with `Your Plugin Name` in all files
     1. Find the text `WP_Plugin_Name` and replace with `Your_Plugin_Name` in all files (the *namespace*)
@@ -78,7 +79,6 @@ Following is the pre-built plugin structure. You can add your own new class file
 * `cliff-wp-plugin-boilerplate/src/core` - plugin core to register hooks, load files etc
 * `cliff-wp-plugin-boilerplate/src/customizer` - WordPress Customizer functionality
 * `cliff-wp-plugin-boilerplate/src/frontend` - public-facing functionality
-* `cliff-wp-plugin-boilerplate/src/libraries` - third-party libraries that the plugin uses (like a Composer `vendor` directory but for stuff that isn't able to be installed via Composer)
 
 ### PHP Version
 
@@ -134,6 +134,13 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 # Boilerplate's Changelog
 
 Documenting this project's progress...
+
+##### April 27, 2019
+* Refactor classes to be smaller and more intentional, including multiple _utilities_ classes and consolidating settings
+* Moved *defines* and related to `Plugin_Data` class (has static methods because of hard-coded values)
+* Created abstract `Shortcode()` class, which should be extended when creating your own new shortcodes (`[tk_request]` is still included as an example)
+* Fix `class_exists()` checks to be namespace-aware
+* Remove unused `libraries` and `views` directories throughout
 
 ##### March 13, 2019
 * Fix `tk_request()` in *Common* to better support array values

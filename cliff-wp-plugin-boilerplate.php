@@ -3,13 +3,16 @@
  * The plugin bootstrap file
  *
  * https://github.com/cliffordp/cliff-wp-plugin-boilerplate#plugin-structure
- * Plugin structure if you want to include your own classes, or third-party libraries:
+ * Introduction to the structure of this plugin's files:
+ *
+ * cliff-wp-plugin-boilerplate/src/frontend - public-facing functionality
  * cliff-wp-plugin-boilerplate/src/admin - admin-specific functionality
  * cliff-wp-plugin-boilerplate/src/common - functionality shared between the admin area and the public-facing parts
+ *
+ * cliff-wp-plugin-boilerplate/src/common/utilities - generic functions for things like debugging, processing multidimensional arrays, handling datetimes, etc.
  * cliff-wp-plugin-boilerplate/src/core - plugin core to register hooks, load files etc
  * cliff-wp-plugin-boilerplate/src/customizer - WordPress Customizer functionality
- * cliff-wp-plugin-boilerplate/src/frontend - public-facing functionality
- * cliff-wp-plugin-boilerplate/src/libraries - libraries that the plugin may use that aren't able to be included via Composer
+ * cliff-wp-plugin-boilerplate/src/shortcodes - where to create new shortcodes
  *
  * This file is read by WordPress to generate the plugin information in the plugin
  * admin area. This file also includes all of the dependencies used by the plugin,
@@ -51,27 +54,12 @@
 
 namespace WP_Plugin_Name;
 
+use WP_Plugin_Name\Plugin_Data as Plugin_Data;
+
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
-/**
- * Define Constants
- */
-// `WP_Plugin_Name\` is defined
-define( __NAMESPACE__ . '\NS', __NAMESPACE__ . '\\' );
-
-// `WP_Plugin_Name\PLUGIN_TEXT_DOMAIN` is defined
-define( NS . 'PLUGIN_TEXT_DOMAIN', 'cliff-wp-plugin-boilerplate' ); // Must match the plugin's directory and its main PHP filename
-
-define( NS . 'PLUGIN_VERSION', '1.0.0' ); // TODO: Keep current
-
-define( NS . 'PLUGIN_NAME_DIR', plugin_dir_path( __FILE__ ) );
-
-define( NS . 'PLUGIN_NAME_URL', plugin_dir_url( __FILE__ ) );
-
-define( NS . 'PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 
 /**
  * Autoloading, via Composer.
@@ -80,32 +68,27 @@ define( NS . 'PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
  */
 require_once( __DIR__ . '/vendor/autoload.php' );
 
+// Define Constants
+
 /**
  * Register Activation and Deactivation Hooks
  * This action is documented in src/core/class-activator.php
  */
-
-register_activation_hook( __FILE__, [ NS . 'Core\Activator', 'activate' ] );
+register_activation_hook( __FILE__, [ __NAMESPACE__ . '\Core\Activator', 'activate' ] );
 
 /**
  * The code that runs during plugin deactivation.
  * This action is documented src/core/class-deactivator.php
  */
+register_deactivation_hook( __FILE__, [ __NAMESPACE__ . '\Core\Deactivator', 'deactivate' ] );
 
-register_deactivation_hook( __FILE__, [ NS . 'Core\Deactivator', 'deactivate' ] );
-
-if ( ! class_exists( 'WP_Plugin_Name' ) ) {
+if ( ! class_exists( WP_Plugin_Name::class ) ) {
 	/**
 	 * Plugin Singleton Container
 	 *
 	 * Maintains a single copy of the plugin app object
 	 */
 	class WP_Plugin_Name {
-
-		/**
-		 * The required version of PHP. Should match composer.json's `"require": { "php":...`
-		 */
-		private $min_php = '5.6.0';
 
 		/**
 		 * The required parent/child theme.
@@ -134,7 +117,7 @@ if ( ! class_exists( 'WP_Plugin_Name' ) ) {
 				'source'       => 'external',
 				'required'     => true,
 				'external_url' => 'http://rocketgenius.pxf.io/c/1235520/445235/7938',
-				'version'      => '2.4.5.8',
+				'version'      => '2.4.8.9',
 			],
 			[
 				'name'         => 'GravityView',
@@ -142,7 +125,7 @@ if ( ! class_exists( 'WP_Plugin_Name' ) ) {
 				'source'       => 'external',
 				'required'     => false,
 				'external_url' => 'https://gravityview.co/?ref=332',
-				'version'      => '2.2.4',
+				'version'      => '2.3.1',
 			],
 			[
 				'name'         => 'Toolset Types',
@@ -150,7 +133,7 @@ if ( ! class_exists( 'WP_Plugin_Name' ) ) {
 				'source'       => 'external',
 				'required'     => true,
 				'external_url' => 'https://toolset.com/?aid=5336&affiliate_key=Lsvk04DjJOhq',
-				'version'      => '3.2.4',
+				'version'      => '3.2.7',
 			],
 			[
 				'name'         => 'Toolset Views',
@@ -158,14 +141,14 @@ if ( ! class_exists( 'WP_Plugin_Name' ) ) {
 				'source'       => 'external',
 				'required'     => true,
 				'external_url' => 'https://toolset.com/?aid=5336&affiliate_key=Lsvk04DjJOhq',
-				'version'      => '2.7.2',
+				'version'      => '2.8.0.1',
 			],
 			[
 				'name'     => 'WooCommerce',
 				'slug'     => 'woocommerce',
 				'source'   => 'repo',
 				'required' => true,
-				'version'  => '3.5.4',
+				'version'  => '3.6.1',
 			],
 			[
 				'name'         => 'WooCommerce Bookings',
@@ -173,7 +156,7 @@ if ( ! class_exists( 'WP_Plugin_Name' ) ) {
 				'source'       => 'external',
 				'required'     => true,
 				'external_url' => 'https://woocommerce.com/products/woocommerce-bookings/?aff=11845',
-				'version'      => '1.12.2',
+				'version'      => '1.14.0',
 			],
 		];
 
@@ -196,7 +179,7 @@ if ( ! class_exists( 'WP_Plugin_Name' ) ) {
 			 * Array of configuration settings. Amend each line as needed.
 			 */
 			$config = [
-				'id'           => PLUGIN_TEXT_DOMAIN,      // Unique ID for hashing notices for multiple instances of TGMPA.
+				'id'           => Plugin_Data::plugin_text_domain(),      // Unique ID for hashing notices for multiple instances of TGMPA.
 				'parent_slug'  => 'plugins.php',           // Parent menu slug.
 				'capability'   => 'activate_plugins',      // Capability needed to view plugin install page, should be a capability associated with the parent menu used.
 				'has_notices'  => true,                    // Show admin notices or not.
@@ -207,23 +190,23 @@ if ( ! class_exists( 'WP_Plugin_Name' ) ) {
 				'strings'      => [
 					'notice_can_install_required'    => _n_noop(
 					// translators: 1: plugin name(s).
-						get_plugin_display_name() . ' requires the following plugin: %1$s.',
-						get_plugin_display_name() . ' requires the following plugins: %1$s.',
-						PLUGIN_TEXT_DOMAIN
+						Plugin_Data::get_plugin_display_name() . ' requires the following plugin: %1$s.',
+						Plugin_Data::get_plugin_display_name() . ' requires the following plugins: %1$s.',
+						Plugin_Data::plugin_text_domain()
 					),
 					'notice_can_install_recommended' => _n_noop(
 					// translators: 1: plugin name(s).
-						get_plugin_display_name() . ' recommends the following plugin: %1$s.',
-						get_plugin_display_name() . ' recommends the following plugins: %1$s.',
-						PLUGIN_TEXT_DOMAIN
+						Plugin_Data::get_plugin_display_name() . ' recommends the following plugin: %1$s.',
+						Plugin_Data::get_plugin_display_name() . ' recommends the following plugins: %1$s.',
+						Plugin_Data::plugin_text_domain()
 					),
 					'notice_ask_to_update'           => _n_noop(
 					// translators: 1: plugin name(s).
-						'The following plugin needs to be updated to its latest version to ensure maximum compatibility with ' . get_plugin_display_name() . ': %1$s.',
-						'The following plugins need to be updated to their latest version to ensure maximum compatibility with ' . get_plugin_display_name() . ': %1$s.',
-						PLUGIN_TEXT_DOMAIN
+						'The following plugin needs to be updated to its latest version to ensure maximum compatibility with ' . Plugin_Data::get_plugin_display_name() . ': %1$s.',
+						'The following plugins need to be updated to their latest version to ensure maximum compatibility with ' . Plugin_Data::get_plugin_display_name() . ': %1$s.',
+						Plugin_Data::plugin_text_domain()
 					),
-					'plugin_needs_higher_version'    => __( 'Plugin not activated. A higher version of %s is needed for ' . get_plugin_display_name() . '. Please update the plugin.', PLUGIN_TEXT_DOMAIN ),
+					'plugin_needs_higher_version'    => __( 'Plugin not activated. A higher version of %s is needed for ' . Plugin_Data::get_plugin_display_name() . '. Please update the plugin.', Plugin_Data::plugin_text_domain() ),
 					// translators: 1: dashboard link.
 					'nag_type'                       => 'error', // Determines admin notice type - can only be one of the typical WP notice classes, such as 'updated', 'update-nag', 'notice-warning', 'notice-info' or 'error'. Some of which may not work as expected in older WP versions.
 				],
@@ -237,9 +220,9 @@ if ( ! class_exists( 'WP_Plugin_Name' ) ) {
 		 */
 		public function notice_old_php_version() {
 			$message = sprintf(
-				__( '%1$s requires at least PHP version %2$s in order to work.', PLUGIN_TEXT_DOMAIN ),
-				'<strong>' . get_plugin_display_name() . '</strong>',
-				'<strong>' . $this->min_php . '</strong>'
+				__( '%1$s requires at least PHP version %2$s in order to work.', Plugin_Data::plugin_text_domain() ),
+				'<strong>' . Plugin_Data::get_plugin_display_name() . '</strong>',
+				'<strong>' . Plugin_Data::required_min_php_version() . '</strong>'
 			);
 
 			$this->do_admin_notice( $message );
@@ -252,7 +235,7 @@ if ( ! class_exists( 'WP_Plugin_Name' ) ) {
 		 * @param string $type
 		 */
 		public function do_admin_notice( $message, $type = 'error' ) {
-			$class = sprintf( '%s %s', $type, sanitize_html_class( PLUGIN_TEXT_DOMAIN ) );
+			$class = sprintf( '%s %s', $type, sanitize_html_class( Plugin_Data::plugin_text_domain() ) );
 
 			printf( '<div class="%s"><p>%s</p></div>', $class, $message );
 		}
@@ -303,14 +286,14 @@ if ( ! class_exists( 'WP_Plugin_Name' ) ) {
 
 			if ( ! empty( $this->required_theme['child'] ) ) {
 				$child_message = sprintf(
-					__( ' and %1$s child theme ', PLUGIN_TEXT_DOMAIN ),
+					__( ' and %1$s child theme ', Plugin_Data::plugin_text_domain() ),
 					'<strong>' . $child_name . '</strong>'
 				);
 			}
 
 			$message = sprintf(
-				__( 'The %1$s plugin requires the %2$s parent theme%3$sin order to work.%4$s', PLUGIN_TEXT_DOMAIN ),
-				'<strong>' . get_plugin_display_name() . '</strong>',
+				__( 'The %1$s plugin requires the %2$s parent theme%3$sin order to work.%4$s', Plugin_Data::plugin_text_domain() ),
+				'<strong>' . Plugin_Data::get_plugin_display_name() . '</strong>',
 				'<strong>' . $parent_name . '</strong>',
 				$child_message,
 				$admin_link
@@ -327,7 +310,7 @@ if ( ! class_exists( 'WP_Plugin_Name' ) ) {
 		public function is_ready() {
 			$success = true;
 
-			if ( version_compare( PHP_VERSION, $this->min_php, '<' ) ) {
+			if ( version_compare( PHP_VERSION, Plugin_Data::required_min_php_version(), '<' ) ) {
 				add_action( 'admin_notices', [ $this, 'notice_old_php_version' ] );
 				$success = false;
 			}
@@ -463,17 +446,6 @@ if ( ! class_exists( 'WP_Plugin_Name' ) ) {
 			return true;
 		}
 	}
-}
-
-/**
- * Get the plugin's display name.
- *
- * Useful for headings, for example.
- *
- * @return string
- */
-function get_plugin_display_name() {
-	return esc_html_x( 'WordPress Plugin Boilerplate', 'Plugin name for display', PLUGIN_TEXT_DOMAIN );
 }
 
 /**

@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Activator' ) ) {
+if ( ! class_exists( Activator::class ) ) {
 	/**
 	 * Fired during plugin activation
 	 *

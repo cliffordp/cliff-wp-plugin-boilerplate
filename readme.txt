@@ -1,4 +1,5 @@
 === WordPress Plugin Boilerplate ===
+
 Contributors: cliffpaulick
 Donate link: https://www.example.com/
 Tags:

@@ -3,14 +3,14 @@
 namespace WP_Plugin_Name\Customizer;
 
 use WP_Customize_Control;
-use WP_Plugin_Name\Common\Common as Common;
+use WP_Plugin_Name\Plugin_Data as Plugin_Data;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Sortable_Checkboxes_Control' ) ) {
+if ( ! class_exists( Sortable_Checkboxes_Control::class ) ) {
 	/**
 	 * Sortable checkboxes control class.
 	 *
@@ -25,20 +25,9 @@ if ( ! class_exists( 'Sortable_Checkboxes_Control' ) ) {
 		public $type = 'sortable_checkboxes';
 
 		/**
-		 * Get the Common instance.
-		 *
-		 * @var Common
-		 */
-		private $common;
-
-		/**
 		 * Initialize the class and set its properties, extending the parent class.
 		 */
 		public function __construct( $manager, $id, $args = [], $options = [] ) {
-			// Cannot use Common as a dependency in the constructor because we're extending a WordPress core class.
-			// Also not using a "setter" method for the same reason.
-			$this->common = new Common();
-
 			parent::__construct( $manager, $id, $args );
 		}
 
@@ -46,8 +35,8 @@ if ( ! class_exists( 'Sortable_Checkboxes_Control' ) ) {
 		 * Enqueue our scripts and styles
 		 */
 		public function enqueue() {
-			wp_enqueue_script( $this->handle( 'js' ), plugin_dir_url( __FILE__ ) . 'js/script.js', [ 'jquery', 'jquery-ui-sortable' ], $this->common->version, true );
-			wp_enqueue_style( $this->handle(), plugin_dir_url( __FILE__ ) . 'css/style.css', [], $this->common->version, 'all' );
+			wp_enqueue_script( $this->handle( 'js' ), plugin_dir_url( __FILE__ ) . 'js/script.js', [ 'jquery', 'jquery-ui-sortable' ], Plugin_Data::plugin_version(), true );
+			wp_enqueue_style( $this->handle(), plugin_dir_url( __FILE__ ) . 'css/style.css', [], Plugin_Data::plugin_version(), 'all' );
 		}
 
 		/**
@@ -58,7 +47,7 @@ if ( ! class_exists( 'Sortable_Checkboxes_Control' ) ) {
 		 * @return string
 		 */
 		private function handle( $suffix = '' ) {
-			$result = $this->common->plugin_text_domain . '-' . $this->type;
+			$result = Plugin_Data::plugin_text_domain() . '-' . $this->type;
 			if ( ! empty( $suffix ) ) {
 				$result .= '-' . $suffix;
 			}

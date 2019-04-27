@@ -2,18 +2,19 @@
 
 namespace WP_Plugin_Name\Core;
 
-use WP_Plugin_Name as NS;
 use WP_Plugin_Name\Admin as Admin;
 use WP_Plugin_Name\Common as Common;
 use WP_Plugin_Name\Customizer as Customizer;
 use WP_Plugin_Name\Frontend as Frontend;
+use WP_Plugin_Name\Shortcodes as Shortcodes;
+use WP_Plugin_Name\Plugin_Data as Plugin_Data;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Init' ) ) {
+if ( ! class_exists( Init::class ) ) {
 	/**
 	 * The core plugin class.
 	 * Defines internationalization, admin-specific hooks, and public-facing site hooks.
@@ -29,40 +30,16 @@ if ( ! class_exists( 'Init' ) ) {
 		protected $loader;
 
 		/**
-		 * The unique identifier of this plugin.
-		 *
-		 * @var      string $plugin_base_name The string used to uniquely identify this plugin.
-		 */
-		protected $plugin_basename;
-
-		/**
-		 * The current version of the plugin.
-		 *
-		 * @var      string $version The current version of the plugin.
-		 */
-		protected $version;
-
-		/**
-		 * The text domain of the plugin.
-		 *
-		 * @var      string $version The current version of the plugin.
-		 */
-		protected $plugin_text_domain;
-
-		/**
 		 * Initialize and define the core functionality of the plugin.
 		 */
 		public function __construct() {
-			$this->version            = NS\PLUGIN_VERSION;
-			$this->plugin_basename    = NS\PLUGIN_BASENAME;
-			$this->plugin_text_domain = NS\PLUGIN_TEXT_DOMAIN;
-
 			$this->load_dependencies();
 			$this->set_locale();
 			$this->define_common_hooks();
 			$this->define_customizer_hooks();
 			$this->define_admin_hooks();
 			$this->define_public_hooks();
+			$this->register_shortcodes();
 		}
 
 		/**
@@ -84,31 +61,16 @@ if ( ! class_exists( 'Init' ) ) {
 		 * with WordPress.
 		 */
 		private function set_locale() {
-			$plugin_i18n = new Internationalization_I18n( $this->plugin_text_domain );
+			$plugin_i18n = new Internationalization_I18n();
 
 			$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 		}
 
 		/**
-		 * Get Common so we can insert it into each class that depends on it.
-		 *
-		 * @return Common\Common
-		 */
-		private function get_common() {
-			return new Common\Common();
-		}
-
-		/**
-		 * Register all of the hooks related to both the admin area and the
-		 * public-facing functionality of the plugin.
+		 * Register all of the hooks related to both the admin area and the public-facing functionality of the plugin.
 		 */
 		private function define_common_hooks() {
-			$plugin_common = $this->get_common();
-
-			// Add all the shortcodes
-			foreach ( $plugin_common->shortcodes as $shortcode ) {
-				add_shortcode( $shortcode, [ $plugin_common, $shortcode ] );
-			}
+			$plugin_common = new Common\Common();
 
 			// Example: $this->loader->add_filter( 'gform_currencies', $plugin_common, 'gf_currency_usd_whole_dollars', 50 );
 		}
@@ -120,9 +82,7 @@ if ( ! class_exists( 'Init' ) ) {
 		 * We could have included in Common, since it is the same loading logic, but we separate it out for sanity.
 		 */
 		private function define_customizer_hooks() {
-			$plugin_common = $this->get_common();
-
-			$plugin_customizer = new Customizer\Customizer( $plugin_common );
+			$plugin_customizer = new Customizer\Customizer();
 
 			$this->loader->add_action( 'customize_register', $plugin_customizer, 'customizer_options' );
 		}
@@ -136,32 +96,19 @@ if ( ! class_exists( 'Init' ) ) {
 				return;
 			}
 
-			$plugin_common = $this->get_common();
-
-			$plugin_admin = new Admin\Admin( $plugin_common );
+			$assets = new Admin\Assets();
 
 			// Enqueue plugin's admin assets
-			$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-			$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+			$this->loader->add_action( 'admin_enqueue_scripts', $assets, 'enqueue_styles' );
+			$this->loader->add_action( 'admin_enqueue_scripts', $assets, 'enqueue_scripts' );
+
+			$settings = new Admin\Settings();
 
 			// Plugin action links
-			$this->loader->add_filter( 'plugin_action_links_' . $this->plugin_basename, $plugin_admin, 'add_action_links' );
+			$this->loader->add_filter( 'plugin_action_links_' . Plugin_Data::plugin_basename(), $settings, 'add_action_links' );
 
 			// Admin menu
-			$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
-
-			/*
-			 * Additional Hooks go here
-			 *
-			 * e.g.
-			 *
-			 * //admin menu pages
-			 * $this->loader->add_action('admin_menu', $plugin_admin, 'add_plugin_admin_menu');
-			 *
-			 *  //plugin action links
-			 * $this->loader->add_filter( 'plugin_action_links_' . $this->plugin_basename, $plugin_admin, 'add_additional_action_link' );
-			 *
-			 */
+			$this->loader->add_action( 'admin_menu', $settings, 'add_plugin_admin_menu' );
 		}
 
 		/**
@@ -176,35 +123,18 @@ if ( ! class_exists( 'Init' ) ) {
 				return;
 			}
 
-			$plugin_common = $this->get_common();
-
-			$plugin_public = new Frontend\Frontend( $plugin_common );
+			$assets = new Frontend\Assets();
 
 			// Enqueue plugin's front-end assets
-			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
-			// Do Thing #1 here
-
-			// Do Thing #2 here
+			$this->loader->add_action( 'wp_enqueue_scripts', $assets, 'enqueue_styles' );
+			$this->loader->add_action( 'wp_enqueue_scripts', $assets, 'enqueue_scripts' );
 		}
 
 		/**
-		 * Retrieve the version number of the plugin.
-		 *
-		 * @return    string    The version number of the plugin.
+		 * Register all of the shortcodes.
 		 */
-		public function get_version() {
-			return $this->version;
-		}
-
-		/**
-		 * Retrieve the text domain of the plugin.
-		 *
-		 * @return    string    The text domain of the plugin.
-		 */
-		public function get_plugin_text_domain() {
-			return $this->plugin_text_domain;
+		private function register_shortcodes() {
+			( new Shortcodes\Manage_Shortcodes() )->register_all_shortcodes();
 		}
 
 		/**
@@ -217,7 +147,7 @@ if ( ! class_exists( 'Init' ) ) {
 		/**
 		 * The reference to the class that orchestrates the hooks with the plugin.
 		 *
-		 * @return    Loader    Orchestrates the hooks of the plugin.
+		 * @return Loader Orchestrates the hooks of the plugin.
 		 */
 		public function get_loader() {
 			return $this->loader;
