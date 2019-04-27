@@ -2,12 +2,12 @@
 
 namespace WP_Plugin_Name\Core;
 
-use WP_Plugin_Name as NS;
 use WP_Plugin_Name\Admin as Admin;
 use WP_Plugin_Name\Common as Common;
 use WP_Plugin_Name\Customizer as Customizer;
 use WP_Plugin_Name\Frontend as Frontend;
 use WP_Plugin_Name\Shortcodes as Shortcodes;
+use WP_Plugin_Name\Plugin_Data as Plugin_Data;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -30,34 +30,9 @@ if ( ! class_exists( Init::class ) ) {
 		protected $loader;
 
 		/**
-		 * The unique identifier of this plugin.
-		 *
-		 * @var      string $plugin_base_name The string used to uniquely identify this plugin.
-		 */
-		protected $plugin_basename;
-
-		/**
-		 * The current version of the plugin.
-		 *
-		 * @var      string $version The current version of the plugin.
-		 */
-		protected $version;
-
-		/**
-		 * The text domain of the plugin.
-		 *
-		 * @var      string $version The current version of the plugin.
-		 */
-		protected $plugin_text_domain;
-
-		/**
 		 * Initialize and define the core functionality of the plugin.
 		 */
 		public function __construct() {
-			$this->version            = NS\PLUGIN_VERSION;
-			$this->plugin_basename    = NS\PLUGIN_BASENAME;
-			$this->plugin_text_domain = NS\PLUGIN_TEXT_DOMAIN;
-
 			$this->load_dependencies();
 			$this->set_locale();
 			$this->define_common_hooks();
@@ -86,7 +61,7 @@ if ( ! class_exists( Init::class ) ) {
 		 * with WordPress.
 		 */
 		private function set_locale() {
-			$plugin_i18n = new Internationalization_I18n( $this->plugin_text_domain );
+			$plugin_i18n = new Internationalization_I18n();
 
 			$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 		}
@@ -130,7 +105,7 @@ if ( ! class_exists( Init::class ) ) {
 			$settings = new Admin\Settings();
 
 			// Plugin action links
-			$this->loader->add_filter( 'plugin_action_links_' . $this->plugin_basename, $settings, 'add_action_links' );
+			$this->loader->add_filter( 'plugin_action_links_' . Plugin_Data::plugin_basename(), $settings, 'add_action_links' );
 
 			// Admin menu
 			$this->loader->add_action( 'admin_menu', $settings, 'add_plugin_admin_menu' );
@@ -160,24 +135,6 @@ if ( ! class_exists( Init::class ) ) {
 		 */
 		private function register_shortcodes() {
 			( new Shortcodes\Manage_Shortcodes() )->register_all_shortcodes();
-		}
-
-		/**
-		 * Retrieve the version number of the plugin.
-		 *
-		 * @return string The version number of the plugin.
-		 */
-		public function get_version() {
-			return $this->version;
-		}
-
-		/**
-		 * Retrieve the text domain of the plugin.
-		 *
-		 * @return string The text domain of the plugin.
-		 */
-		public function get_plugin_text_domain() {
-			return $this->plugin_text_domain;
 		}
 
 		/**

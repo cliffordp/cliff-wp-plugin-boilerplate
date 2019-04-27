@@ -2,7 +2,7 @@
 
 namespace WP_Plugin_Name\Common\Utilities;
 
-use WP_Plugin_Name as NS;
+use WP_Plugin_Name\Plugin_Data as Plugin_Data;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -16,28 +16,6 @@ if ( ! class_exists( Debug::class ) ) {
 	 * Useful for things like utilities or hooking into something that affects both back-end and front-end.
 	 */
 	class Debug {
-
-		/**
-		 * The text domain of this plugin.
-		 *
-		 * @var    string $plugin_text_domain The text domain of this plugin.
-		 */
-		public $plugin_text_domain;
-
-		/**
-		 * The version of this plugin.
-		 *
-		 * @var    string $version The current version of this plugin.
-		 */
-		public $version;
-
-		/**
-		 * Initialize the class and set its properties.
-		 */
-		public function __construct() {
-			$this->plugin_text_domain = NS\PLUGIN_TEXT_DOMAIN;
-			$this->version            = NS\PLUGIN_VERSION;
-		}
 
 		/**
 		 * Write to the PHP error log and optionally send an email with the same message.
@@ -74,8 +52,8 @@ if ( ! class_exists( Debug::class ) ) {
 			}
 
 			$message = sprintf(
-				esc_html__( '%1$s - Message from %2$s():%3$s%4$s%5$s', $this->plugin_text_domain ),
-				NS\get_plugin_display_name(),
+				esc_html__( '%1$s - Message from %2$s():%3$s%4$s%5$s', Plugin_Data::plugin_text_domain() ),
+				Plugin_Data::get_plugin_display_name(),
 				__FUNCTION__,
 				PHP_EOL,
 				$who_called_me,
@@ -96,9 +74,9 @@ if ( ! class_exists( Debug::class ) ) {
 				$mail_sent = wp_mail( $email, $subject, $email_message );
 
 				if ( $mail_sent ) {
-					$message = esc_html_x( 'Email sent.', 'Successfully emailed from output_to_log()', $this->plugin_text_domain ) . ' ' . $message;
+					$message = esc_html_x( 'Email sent.', 'Successfully emailed from output_to_log()', Plugin_Data::plugin_text_domain() ) . ' ' . $message;
 				} else {
-					$message = esc_html_x( 'Email attempted but failed.', 'Unsuccessfully emailed from output_to_log()', $this->plugin_text_domain ) . ' ' . $message;
+					$message = esc_html_x( 'Email attempted but failed.', 'Unsuccessfully emailed from output_to_log()', Plugin_Data::plugin_text_domain() ) . ' ' . $message;
 				}
 			}
 

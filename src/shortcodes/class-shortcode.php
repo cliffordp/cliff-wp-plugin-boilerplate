@@ -3,6 +3,7 @@
 namespace WP_Plugin_Name\Shortcodes;
 
 use WP_Plugin_Name\Common\Common as Common;
+use WP_Plugin_Name\Plugin_Data as Plugin_Data;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -120,21 +121,21 @@ abstract class Shortcode {
 			! is_string( $cause )
 			|| '' === $cause
 		) {
-			$cause = esc_html_x( 'Unspecified', 'Shortcode error cause default text', $this->common->plugin_text_domain() );
+			$cause = esc_html_x( 'Unspecified', 'Shortcode error cause default text', Plugin_Data::plugin_text_domain() );
 		}
 
 		$message = sprintf(
 			esc_html_x(
 				'Your attempt to use the `[%1$s]` shortcode resulted in an error because: %2$s. Please reference the documentation or inspect the code and try again. (Message only shown to users with the `%3$s` capability.)',
 				'Shortcode error message',
-				$this->common->plugin_text_domain()
+				Plugin_Data::plugin_text_domain()
 			),
 			$this->get_tag(),
 			$cause,
 			$this->required_capability()
 		);
 
-		$message = sprintf( '<p class="%s-shortcode-error shortcode-%s">%s</p>', esc_attr( $this->common->plugin_text_domain() ), esc_attr( $this->get_tag() ), $message );
+		$message = sprintf( '<p class="%s-shortcode-error shortcode-%s">%s</p>', esc_attr( Plugin_Data::plugin_text_domain() ), esc_attr( $this->get_tag() ), $message );
 
 		return $message;
 	}

@@ -4,6 +4,7 @@ namespace WP_Plugin_Name\Common;
 
 use WP_Customize_Setting;
 use WP_Plugin_Name\Common\Common as Common;
+use WP_Plugin_Name\Plugin_Data as Plugin_Data;
 use WP_Plugin_Name\Common\Utilities as Utils;
 
 // Abort if this file is called directly.
@@ -48,7 +49,7 @@ if ( ! class_exists( Settings::class ) ) {
 		 * @return string
 		 */
 		public function get_settings_page_slug() {
-			return $this->common->plugin_text_domain() . '-settings';
+			return Plugin_Data::plugin_text_domain() . '-settings';
 		}
 
 		/**
@@ -57,7 +58,7 @@ if ( ! class_exists( Settings::class ) ) {
 		 * @return string
 		 */
 		public function get_settings_word() {
-			return esc_html__( 'Settings', $this->common->plugin_text_domain() );
+			return esc_html__( 'Settings', Plugin_Data::plugin_text_domain() );
 		}
 
 		/**
@@ -99,7 +100,7 @@ if ( ! class_exists( Settings::class ) ) {
 		 * @return array
 		 */
 		public function get_all_options() {
-			$plugin_options = get_option( $this->common->plugin_text_domain_underscores() );
+			$plugin_options = get_option( Plugin_Data::plugin_text_domain_underscores() );
 
 			if ( ! empty( $plugin_options ) ) {
 				return (array) $plugin_options;
@@ -136,7 +137,7 @@ if ( ! class_exists( Settings::class ) ) {
 		 * @return bool
 		 */
 		public function delete_all_options() {
-			return delete_option( $this->common->plugin_text_domain_underscores() );
+			return delete_option( Plugin_Data::plugin_text_domain_underscores() );
 		}
 
 		/**
@@ -151,7 +152,7 @@ if ( ! class_exists( Settings::class ) ) {
 			}
 
 			// add flag in the Customizer url so we know we're in this plugin's Customizer Section
-			$link_to_customizer_panel = add_query_arg( $this->common->plugin_text_domain_underscores(), 'true', wp_customize_url() );
+			$link_to_customizer_panel = add_query_arg( Plugin_Data::plugin_text_domain_underscores(), 'true', wp_customize_url() );
 
 			// auto-open the panel
 			$link_to_customizer_panel = add_query_arg( 'autofocus[panel]', $this->customizer_panel_id(), $link_to_customizer_panel );
@@ -165,7 +166,7 @@ if ( ! class_exists( Settings::class ) ) {
 		 * @return string
 		 */
 		public function customizer_panel_id() {
-			return $this->common->plugin_text_domain_underscores() . '_panel';
+			return Plugin_Data::plugin_text_domain_underscores() . '_panel';
 		}
 
 		/**
@@ -179,22 +180,22 @@ if ( ! class_exists( Settings::class ) ) {
 			$networks = [
 				[
 					'key'   => 'facebook',
-					'name'  => esc_html__( 'Facebook', $this->common->plugin_text_domain() ),
+					'name'  => esc_html__( 'Facebook', Plugin_Data::plugin_text_domain() ),
 					'color' => '#3b5998',
 				],
 				[
 					'key'   => 'twitter',
-					'name'  => esc_html__( 'Twitter', $this->common->plugin_text_domain() ),
+					'name'  => esc_html__( 'Twitter', Plugin_Data::plugin_text_domain() ),
 					'color' => '#00aced',
 				],
 				[
 					'key'   => 'pinterest',
-					'name'  => esc_html__( 'Pinterest', $this->common->plugin_text_domain() ),
+					'name'  => esc_html__( 'Pinterest', Plugin_Data::plugin_text_domain() ),
 					'color' => '#BD081C',
 				],
 				[
 					'key'   => 'linkedin',
-					'name'  => esc_html__( 'LinkedIn', $this->common->plugin_text_domain() ),
+					'name'  => esc_html__( 'LinkedIn', Plugin_Data::plugin_text_domain() ),
 					'color' => '#007bb6',
 				],
 			];

@@ -2,7 +2,7 @@
 
 namespace WP_Plugin_Name\Common;
 
-use WP_Plugin_Name as NS;
+use WP_Plugin_Name\Plugin_Data as Plugin_Data;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -18,35 +18,6 @@ if ( ! class_exists( Common::class ) ) {
 	class Common {
 
 		/**
-		 * Get this plugin's text domain.
-		 *
-		 * @return string
-		 */
-		public function plugin_version() {
-			return NS\PLUGIN_VERSION;
-		}
-
-		/**
-		 * Get this plugin's text domain.
-		 *
-		 * @return string
-		 */
-		public function plugin_text_domain() {
-			return NS\PLUGIN_TEXT_DOMAIN;
-		}
-
-		/**
-		 * Get this plugin's text domain with underscores instead of hyphens.
-		 *
-		 * Used for saving options. Also useful for building namespaced hook names, class names, URLs, etc.
-		 *
-		 * @return string 'wp_plugin_name'
-		 */
-		public function plugin_text_domain_underscores() {
-			return str_replace( '-', '_', $this->plugin_text_domain() );
-		}
-
-		/**
 		 * Capability required to access the settings, be shown error messages, etc.
 		 *
 		 * By default, 'customize' is mapped to 'edit_theme_options' (Administrator).
@@ -54,7 +25,7 @@ if ( ! class_exists( Common::class ) ) {
 		 * @link  https://developer.wordpress.org/themes/customize-api/advanced-usage/
 		 */
 		public function required_capability() {
-			return apply_filters( $this->plugin_text_domain_underscores() . '_required_capability', 'customize' );
+			return apply_filters( Plugin_Data::plugin_text_domain_underscores() . '_required_capability', 'customize' );
 		}
 
 		/**
@@ -65,7 +36,7 @@ if ( ! class_exists( Common::class ) ) {
 		 * @return string
 		 */
 		public function get_wrapper_class() {
-			$class = $this->plugin_text_domain_underscores() . '-wrapper';
+			$class = Plugin_Data::plugin_text_domain_underscores() . '-wrapper';
 
 			return (string) esc_attr( $class );
 		}

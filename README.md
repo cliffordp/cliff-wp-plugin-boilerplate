@@ -25,6 +25,7 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
 * Perform a *case-sensitive* search and replace at the project level as follows:
     1. Rename the `cliff-wp-plugin-boilerplate` directory to `your-plugin-name`. **This is your new plugin directory and must match your text domain.**
     1. Find the text `cliff-wp-plugin-boilerplate` and replace with `your-plugin-name` in all files
+    1. **If you will be publishing your plugin to WordPress.org,** find the text `Plugin_Data::plugin_text_domain()` and replace with `your-plugin-name` in all files &mdash; and then you might not need the `use` import of the `Plugin_Data` class and could remove it as well
     1. Find the text `wp_plugin_name` and replace with `your_plugin_name` in all files
     1. Find the text `WordPress Plugin Boilerplate` and replace with `Your Plugin Name` in all files
     1. Find the text `WP_Plugin_Name` and replace with `Your_Plugin_Name` in all files (the *namespace*)
@@ -134,7 +135,7 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
-##### April 26, 2019
+##### April 27, 2019
 * Refactor classes to be smaller and more intentional, including multiple _utilities_ classes and consolidating settings
 * Created abstract `Shortcode()` class, which should be extended when creating your own new shortcodes
 * Fix `class_exists()` checks to be namespace-aware
