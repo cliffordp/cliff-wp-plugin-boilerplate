@@ -137,7 +137,8 @@ Documenting this project's progress...
 
 ##### April 27, 2019
 * Refactor classes to be smaller and more intentional, including multiple _utilities_ classes and consolidating settings
-* Created abstract `Shortcode()` class, which should be extended when creating your own new shortcodes
+* Moved *defines* and related to `Plugin_Data` class (has static methods because of hard-coded values)
+* Created abstract `Shortcode()` class, which should be extended when creating your own new shortcodes (`[tk_request]` is still included as an example)
 * Fix `class_exists()` checks to be namespace-aware
 * Remove unused `libraries` and `views` directories throughout
 
