@@ -13,7 +13,7 @@ if ( ! class_exists( TK_Request::class ) ) {
 	 *
 	 * Useful for things like utilities or hooking into something that affects both back-end and front-end.
 	 */
-	class TK_Request extends Shortcode {
+	final class TK_Request extends Shortcode {
 		/**
 		 * An array of all the shortcode's possible attributes and their default values.
 		 *
