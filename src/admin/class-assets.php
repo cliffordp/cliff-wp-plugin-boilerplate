@@ -18,14 +18,14 @@ if ( ! class_exists( Assets::class ) ) {
 		/**
 		 * Register the stylesheets for the admin area.
 		 */
-		public function enqueue_styles() {
+		public function enqueue_styles(): void {
 			wp_enqueue_style( Plugin_Data::plugin_text_domain(), plugin_dir_url( __FILE__ ) . 'css/style.css', [], Plugin_Data::plugin_version(), 'all' );
 		}
 
 		/**
 		 * Register the JavaScript for the admin area.
 		 */
-		public function enqueue_scripts() {
+		public function enqueue_scripts(): void {
 			wp_enqueue_script( Plugin_Data::plugin_text_domain(), plugin_dir_url( __FILE__ ) . 'js/script.js', [ 'jquery' ], Plugin_Data::plugin_version(), false );
 		}
 	}

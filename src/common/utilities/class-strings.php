@@ -23,7 +23,7 @@ if ( ! class_exists( Strings::class ) ) {
 		 *
 		 * @return bool True if subject ends with searched string, else false.
 		 */
-		public function string_ends_with( $subject, $search_for ) {
+		public function string_ends_with( string $subject, string $search_for ): bool {
 			if (
 				! is_string( $subject )
 				|| ! is_string( $search_for )
@@ -55,7 +55,7 @@ if ( ! class_exists( Strings::class ) ) {
 		 *
 		 * @return string
 		 */
-		public function get_string_between_two_strings( $subject, $start, $end = '' ) {
+		public function get_string_between_two_strings( string $subject, string $start, string $end = '' ): string {
 			if (
 				! is_string( $subject )
 				|| ! is_string( $start )

@@ -31,7 +31,7 @@ if ( ! class_exists( Timing::class ) ) {
 		 *
 		 * @return string
 		 */
-		public function get_php_time_zone_string_from_wp( $fallback = 'America/Chicago' ) {
+		public function get_php_time_zone_string_from_wp( string $fallback = 'America/Chicago' ): string {
 			$time_zone = get_option( 'timezone_string' ); // could return NULL
 
 			if ( ! in_array( $time_zone, timezone_identifiers_list() ) ) {
@@ -48,7 +48,7 @@ if ( ! class_exists( Timing::class ) ) {
 		 *
 		 * @return DateTimeImmutable|false
 		 */
-		public function get_current_time_wp_tz_date_object() {
+		public function get_current_time_wp_tz_date_object(): string {
 			$time_zone = $this->get_php_time_zone_string_from_wp();
 
 			try {
@@ -73,7 +73,7 @@ if ( ! class_exists( Timing::class ) ) {
 		 *
 		 * @return DateTimeImmutable|string|bool
 		 */
-		public function get_datetime_from_utc_timestamp( $utc_timestamp, $format = '' ) {
+		public function get_datetime_from_utc_timestamp( int $utc_timestamp, string $format = '' ) {
 			if (
 				empty( $utc_timestamp )
 				|| ! is_int( $utc_timestamp )
@@ -122,7 +122,7 @@ if ( ! class_exists( Timing::class ) ) {
 		 *
 		 * @return bool|DateTimeImmutable|string
 		 */
-		public function get_start_end_of_day_from_datetime( $datetime, $start = true, $format = false ) {
+		public function get_start_end_of_day_from_datetime( DateTimeImmutable $datetime, bool $start = true, bool $format = false ) {
 			if ( ! $datetime instanceof DateTimeImmutable ) {
 				return false;
 			}
@@ -157,7 +157,7 @@ if ( ! class_exists( Timing::class ) ) {
 		 *
 		 * @return false|float|int Number of minutes (int|float). False if both are not DateTimeImmutable or if End is before Start.
 		 */
-		public function get_minutes_diff_between_two_datetimes( $start_datetime, $end_datetime ) {
+		public function get_minutes_diff_between_two_datetimes( DateTimeImmutable $start_datetime, DateTimeImmutable $end_datetime ) {
 			if (
 				! $start_datetime instanceof DateTimeImmutable
 				|| ! $end_datetime instanceof DateTimeImmutable
@@ -190,7 +190,7 @@ if ( ! class_exists( Timing::class ) ) {
 		 *
 		 * @return false|float|int Numeric amount. False if not valid 24 hour time format (##:##) or End is before Start.
 		 */
-		public function get_minutes_diff_between_two_times_same_day( $start_24_format, $end_24_format ) {
+		public function get_minutes_diff_between_two_times_same_day( string $start_24_format, string $end_24_format ) {
 			if (
 				false === $this->is_valid_24_hour_format_time_string( $start_24_format )
 				|| false === $this->is_valid_24_hour_format_time_string( $end_24_format )
@@ -238,7 +238,7 @@ if ( ! class_exists( Timing::class ) ) {
 		 *
 		 * @return bool
 		 */
-		public function is_valid_24_hour_format_time_string( $time_string, $allow_seconds = false ) {
+		public function is_valid_24_hour_format_time_string( string $time_string, bool $allow_seconds = false ): bool {
 			if ( ! is_string( $time_string ) ) {
 				return false;
 			}

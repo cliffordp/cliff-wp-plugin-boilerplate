@@ -23,8 +23,10 @@ if ( ! class_exists( Common::class ) ) {
 		 * By default, 'customize' is mapped to 'edit_theme_options' (Administrator).
 		 *
 		 * @link  https://developer.wordpress.org/themes/customize-api/advanced-usage/
+		 *
+		 * @return string
 		 */
-		public function required_capability() {
+		public function required_capability(): string {
 			return apply_filters( Plugin_Data::plugin_text_domain_underscores() . '_required_capability', 'customize' );
 		}
 
@@ -35,10 +37,10 @@ if ( ! class_exists( Common::class ) ) {
 		 *
 		 * @return string
 		 */
-		public function get_wrapper_class() {
+		public function get_wrapper_class(): string {
 			$class = Plugin_Data::plugin_text_domain_underscores() . '-wrapper';
 
-			return (string) esc_attr( $class );
+			return esc_attr( $class );
 		}
 	}
 }

@@ -20,7 +20,7 @@ if ( ! class_exists( Plugin_Data::class ) ) {
 		 *
 		 * @return string
 		 */
-		public static function plugin_version() {
+		public static function plugin_version(): string {
 			return '1.0.0';
 		}
 
@@ -29,10 +29,13 @@ if ( ! class_exists( Plugin_Data::class ) ) {
 		 *
 		 * Should match composer.json's `"require": { "php":...`
 		 *
+		 * @link https://wordpress.org/about/requirements/
+		 * @link https://en.wikipedia.org/wiki/PHP#Release_history
+		 *
 		 * @return string
 		 */
-		public static function required_min_php_version() {
-			return '5.6.0';
+		public static function required_min_php_version(): string {
+			return '7.1.0';
 		}
 
 		/**
@@ -42,7 +45,7 @@ if ( ! class_exists( Plugin_Data::class ) ) {
 		 *
 		 * @return string
 		 */
-		public static function plugin_text_domain() {
+		public static function plugin_text_domain(): string {
 			return 'cliff-wp-plugin-boilerplate';
 		}
 
@@ -53,7 +56,7 @@ if ( ! class_exists( Plugin_Data::class ) ) {
 		 *
 		 * @return string 'wp_plugin_name'
 		 */
-		public static function plugin_text_domain_underscores() {
+		public static function plugin_text_domain_underscores(): string {
 			return str_replace( '-', '_', self::plugin_text_domain() );
 		}
 
@@ -64,7 +67,7 @@ if ( ! class_exists( Plugin_Data::class ) ) {
 		 *
 		 * @return string
 		 */
-		public static function get_plugin_display_name() {
+		public static function get_plugin_display_name(): string {
 			return esc_html_x( 'WordPress Plugin Boilerplate', 'Plugin name for display', self::plugin_text_domain() );
 		}
 
@@ -76,7 +79,7 @@ if ( ! class_exists( Plugin_Data::class ) ) {
 		 *
 		 * @return string
 		 */
-		public static function plugin_dir_path() {
+		public static function plugin_dir_path(): string {
 			return trailingslashit( realpath( __DIR__ . DIRECTORY_SEPARATOR . '..' ) );
 		}
 
@@ -87,7 +90,7 @@ if ( ! class_exists( Plugin_Data::class ) ) {
 		 *
 		 * @return string
 		 */
-		public static function plugin_dir_url() {
+		public static function plugin_dir_url(): string {
 			return plugin_dir_url( self::main_plugin_file() );
 		}
 
@@ -96,7 +99,7 @@ if ( ! class_exists( Plugin_Data::class ) ) {
 		 *
 		 * @return string 'cliff-wp-plugin-boilerplate/cliff-wp-plugin-boilerplate.php'
 		 */
-		public static function plugin_basename() {
+		public static function plugin_basename(): string {
 			return plugin_basename( self::main_plugin_file() );
 		}
 
@@ -108,7 +111,7 @@ if ( ! class_exists( Plugin_Data::class ) ) {
 		 *
 		 * @return string
 		 */
-		public static function all_plugins_dir() {
+		public static function all_plugins_dir(): string {
 			return trailingslashit( realpath( self::plugin_dir_path() . '..' ) );
 		}
 
@@ -119,7 +122,7 @@ if ( ! class_exists( Plugin_Data::class ) ) {
 		 *
 		 * @return string
 		 */
-		private static function main_plugin_file() {
+		private static function main_plugin_file(): string {
 			return self::plugin_dir_path() . self::plugin_text_domain() . '.php';
 		}
 

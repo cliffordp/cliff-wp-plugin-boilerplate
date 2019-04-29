@@ -51,7 +51,7 @@ if ( ! class_exists( Loader::class ) ) {
 		 * @param int    $priority      Optional. he priority at which the function should be fired. Default is 10.
 		 * @param int    $accepted_args Optional. The number of arguments that should be passed to the $callback. Default is 1.
 		 */
-		public function add_action( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
+		public function add_action( string $hook, $component, string $callback, int $priority = 10, int $accepted_args = 1 ): void {
 			$this->actions = $this->add( $this->actions, $hook, $component, $callback, $priority, $accepted_args );
 		}
 
@@ -67,7 +67,7 @@ if ( ! class_exists( Loader::class ) ) {
 		 *
 		 * @return   array                                  The collection of actions and filters registered with WordPress.
 		 */
-		private function add( $hooks, $hook, $component, $callback, $priority, $accepted_args ) {
+		private function add( array $hooks, string $hook, $component, string $callback, int $priority, int $accepted_args ): array {
 			$hooks[] = [
 				'hook'          => $hook,
 				'component'     => $component,
@@ -88,14 +88,14 @@ if ( ! class_exists( Loader::class ) ) {
 		 * @param int    $priority      Optional. he priority at which the function should be fired. Default is 10.
 		 * @param int    $accepted_args Optional. The number of arguments that should be passed to the $callback. Default is 1.
 		 */
-		public function add_filter( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
+		public function add_filter( string $hook, $component, string $callback, int $priority = 10, int $accepted_args = 1 ): void {
 			$this->filters = $this->add( $this->filters, $hook, $component, $callback, $priority, $accepted_args );
 		}
 
 		/**
 		 * Register the filters and actions with WordPress.
 		 */
-		public function run() {
+		public function run(): void {
 			foreach ( $this->filters as $hook ) {
 				add_filter( $hook['hook'], [ $hook['component'], $hook['callback'] ], $hook['priority'], $hook['accepted_args'] );
 			}

@@ -92,9 +92,9 @@ if ( ! class_exists( Bootstrap::class ) ) {
 		 *
 		 * Also returns copy of the app object so 3rd party developers can interact with the plugin's hooks contained within.
 		 *
-		 * @return false|Bootstrap
-		 **/
-		public function init() {
+		 * @return Bootstrap|null
+		 */
+		public function init(): ?self {
 			$plugin = new self();
 
 			if ( $plugin->is_ready() ) {
@@ -103,7 +103,7 @@ if ( ! class_exists( Bootstrap::class ) ) {
 
 				return $plugin;
 			} else {
-				return false;
+				return null;
 			}
 		}
 
@@ -121,7 +121,7 @@ if ( ! class_exists( Bootstrap::class ) ) {
 		 *
 		 * This function is hooked into `tgmpa_register`, which is fired on the WP `init` action on priority 10.
 		 */
-		public function tgmpa_register_required_plugins() {
+		public function tgmpa_register_required_plugins(): void {
 			/*
 			 * Array of configuration settings. Amend each line as needed.
 			 */
@@ -165,11 +165,15 @@ if ( ! class_exists( Bootstrap::class ) ) {
 		/**
 		 * Output a message about unsatisfactory version of PHP.
 		 */
-		public function notice_old_php_version() {
+		public function notice_old_php_version(): void {
+			$help_link = sprintf( '<a href="%1$s" target="_blank">%1$s</a>', 'https://wordpress.org/about/requirements/' );
+
 			$message = sprintf(
-				__( '%1$s requires at least PHP version %2$s in order to work.', Plugin_Data::plugin_text_domain() ),
+				__( '%1$s requires at least PHP version %2$s in order to work. You have version %3$s. Please see %4$s for more information.', Plugin_Data::plugin_text_domain() ),
 				'<strong>' . Plugin_Data::get_plugin_display_name() . '</strong>',
-				'<strong>' . Plugin_Data::required_min_php_version() . '</strong>'
+				'<strong>' . Plugin_Data::required_min_php_version() . '</strong>',
+				'<strong>' . PHP_VERSION . '</strong>',
+				$help_link
 			);
 
 			$this->do_admin_notice( $message );
@@ -178,10 +182,10 @@ if ( ! class_exists( Bootstrap::class ) ) {
 		/**
 		 * Output a wp-admin notice.
 		 *
-		 * @param        $message
+		 * @param string $message
 		 * @param string $type
 		 */
-		public function do_admin_notice( $message, $type = 'error' ) {
+		public function do_admin_notice( string $message, string $type = 'error' ): void {
 			$class = sprintf( '%s %s', $type, sanitize_html_class( Plugin_Data::plugin_text_domain() ) );
 
 			printf( '<div class="%s"><p>%s</p></div>', $class, $message );
@@ -190,7 +194,7 @@ if ( ! class_exists( Bootstrap::class ) ) {
 		/**
 		 * Output a message about the required theme missing, and link to Themes page.
 		 */
-		public function notice_missing_required_theme() {
+		public function notice_missing_required_theme(): void {
 			$admin_link = '';
 
 			$current_screen = get_current_screen();
@@ -254,7 +258,7 @@ if ( ! class_exists( Bootstrap::class ) ) {
 		 *
 		 * @return bool
 		 */
-		public function is_ready() {
+		public function is_ready(): bool {
 			$success = true;
 
 			if ( version_compare( PHP_VERSION, Plugin_Data::required_min_php_version(), '<' ) ) {
@@ -297,7 +301,7 @@ if ( ! class_exists( Bootstrap::class ) ) {
 		 * @return bool
 		 * @return string Either file path for plugin if installed, or just the plugin slug.
 		 */
-		private function required_plugins_are_active() {
+		private function required_plugins_are_active(): bool {
 			// The file in which is_plugin_active() is located.
 			require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
@@ -350,7 +354,7 @@ if ( ! class_exists( Bootstrap::class ) ) {
 		 *
 		 * @return string Either file path for plugin directory, or just the plugin file slug.
 		 */
-		private function get_plugin_basename_from_slug( $slug ) {
+		private function get_plugin_basename_from_slug( string $slug ): string {
 			$keys = array_keys( get_plugins() );
 
 			foreach ( $keys as $key ) {
@@ -367,7 +371,7 @@ if ( ! class_exists( Bootstrap::class ) ) {
 		 *
 		 * @return bool True if no requirements set or they are met. False if requirements exist and are not met.
 		 */
-		private function required_theme_is_active() {
+		private function required_theme_is_active(): bool {
 			$current_theme = wp_get_theme();
 
 			// Check Parent

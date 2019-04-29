@@ -4,8 +4,8 @@ namespace WP_Plugin_Name\Common;
 
 use WP_Customize_Setting;
 use WP_Plugin_Name\Common\Common as Common;
-use WP_Plugin_Name\Plugin_Data as Plugin_Data;
 use WP_Plugin_Name\Common\Utilities as Utils;
+use WP_Plugin_Name\Plugin_Data as Plugin_Data;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -37,7 +37,7 @@ if ( ! class_exists( Settings::class ) ) {
 		 *
 		 * @return string
 		 */
-		public function get_main_settings_page_url() {
+		public function get_main_settings_page_url(): string {
 			$url = 'options-general.php?page=' . $this->get_settings_page_slug();
 
 			return admin_url( $url );
@@ -48,7 +48,7 @@ if ( ! class_exists( Settings::class ) ) {
 		 *
 		 * @return string
 		 */
-		public function get_settings_page_slug() {
+		public function get_settings_page_slug(): string {
 			return Plugin_Data::plugin_text_domain() . '-settings';
 		}
 
@@ -57,7 +57,7 @@ if ( ! class_exists( Settings::class ) ) {
 		 *
 		 * @return string
 		 */
-		public function get_settings_word() {
+		public function get_settings_word(): string {
 			return esc_html__( 'Settings', Plugin_Data::plugin_text_domain() );
 		}
 
@@ -67,23 +67,23 @@ if ( ! class_exists( Settings::class ) ) {
 		 * @param string $key
 		 * @param string $default
 		 *
-		 * @return mixed
+		 * @return string
 		 */
-		public function get_option_as_string( $key, $default = '' ) {
+		public function get_option_as_string( string $key, string $default = '' ): string {
 			$result = $this->get_option( $key, $default );
 
-			return (string) $result;
+			return $result;
 		}
 
 		/**
 		 * Get the raw value of a single option from the database with an optional fallback value.
 		 *
 		 * @param string $key
-		 * @param string $default
+		 * @param mixed  $default
 		 *
 		 * @return mixed
 		 */
-		public function get_option( $key, $default = '' ) {
+		public function get_option( string $key, $default = '' ) {
 			$all_options = $this->get_all_options();
 
 			// Cannot use empty() because an unchecked checkbox is boolean false, for example.
@@ -99,7 +99,7 @@ if ( ! class_exists( Settings::class ) ) {
 		 *
 		 * @return array
 		 */
-		public function get_all_options() {
+		public function get_all_options(): array {
 			$plugin_options = get_option( Plugin_Data::plugin_text_domain_underscores() );
 
 			if ( ! empty( $plugin_options ) ) {
@@ -110,14 +110,16 @@ if ( ! class_exists( Settings::class ) ) {
 		}
 
 		/**
-		 * Get a single option from the database, as an array, with an optional fallback value.
+		 * Get a single option from the database as an array with an optional fallback value.
+		 *
+		 * @todo Is array_keys() really what we want here?
 		 *
 		 * @param string $key
-		 * @param string $default
+		 * @param mixed  $default
 		 *
 		 * @return array
 		 */
-		public function get_option_as_array( $key, $default = '' ) {
+		public function get_option_as_array( string $key, $default = '' ): array {
 			$result = $this->get_option( $key, $default );
 
 			if ( is_string( $result ) ) {
@@ -134,9 +136,11 @@ if ( ! class_exists( Settings::class ) ) {
 		/**
 		 * Delete all of the saved options from the database.
 		 *
+		 * @see delete_option()
+		 *
 		 * @return bool
 		 */
-		public function delete_all_options() {
+		public function delete_all_options(): bool {
 			return delete_option( Plugin_Data::plugin_text_domain_underscores() );
 		}
 
@@ -145,7 +149,7 @@ if ( ! class_exists( Settings::class ) ) {
 		 *
 		 * @return string
 		 */
-		public function get_link_to_customizer_panel() {
+		public function get_link_to_customizer_panel(): string {
 			// Disallow generating a Customizer link if we are already in the Customizer because they will not be permitted to work anyway (cursor disabled) by the Customizer.
 			if ( is_customize_preview() ) {
 				return '';
@@ -165,7 +169,7 @@ if ( ! class_exists( Settings::class ) ) {
 		 *
 		 * @return string
 		 */
-		public function customizer_panel_id() {
+		public function customizer_panel_id(): string {
 			return Plugin_Data::plugin_text_domain_underscores() . '_panel';
 		}
 
@@ -176,7 +180,7 @@ if ( ! class_exists( Settings::class ) ) {
 		 *
 		 * @return array
 		 */
-		public function get_social_networks_data( $retrieve = '' ) {
+		public function get_social_networks_data( $retrieve = '' ): array {
 			$networks = [
 				[
 					'key'   => 'facebook',
@@ -214,7 +218,7 @@ if ( ! class_exists( Settings::class ) ) {
 		 *
 		 * @return array
 		 */
-		public function get_choices_social_networks() {
+		public function get_choices_social_networks(): array {
 			return $this->get_social_networks_data( 'name' );
 		}
 
@@ -225,7 +229,7 @@ if ( ! class_exists( Settings::class ) ) {
 		 *
 		 * @return string
 		 */
-		public function get_social_network_nice_name( $network ) {
+		public function get_social_network_nice_name( string $network ): string {
 			$array = $this->get_choices_social_networks();
 
 			if ( array_key_exists( $network, $array ) ) {
@@ -247,7 +251,7 @@ if ( ! class_exists( Settings::class ) ) {
 		 *
 		 * @return string|array
 		 */
-		public function sanitize_social_networks( $value, $setting ) {
+		public function sanitize_social_networks( $value, WP_Customize_Setting $setting ) {
 			$result = ( new Utils\Arrays() )->sanitize_multiple_values( $value, $this->get_choices_social_networks() );
 
 			if ( ! empty( $result ) ) {
@@ -262,12 +266,12 @@ if ( ! class_exists( Settings::class ) ) {
 		 *
 		 * Check if what the user selected is valid. If yes, return it, else return setting's default.
 		 *
-		 * @param array                $value   Value that is passed by the Customizer.
+		 * @param array|string         $value   When used as a Customizer callback, will be a JSON string.
 		 * @param WP_Customize_Setting $setting The setting object.
 		 *
-		 * @return string|array
+		 * @return array|string
 		 */
-		public function sanitize_post_types( $value, $setting ) {
+		public function sanitize_post_types( $value, WP_Customize_Setting $setting ) {
 			$result = ( new Utils\Arrays() )->sanitize_multiple_values( $value, ( new Utils\Posts() )->get_public_post_types() );
 
 			if ( ! empty( $result ) ) {

@@ -50,7 +50,7 @@ if ( ! class_exists( Init::class ) ) {
 		 * - Admin - Defines all hooks for the admin area.
 		 * - Frontend - Defines all hooks for the public side of the site.
 		 */
-		private function load_dependencies() {
+		private function load_dependencies(): void {
 			$this->loader = new Loader();
 		}
 
@@ -60,7 +60,7 @@ if ( ! class_exists( Init::class ) ) {
 		 * Uses the Internationalization_I18n class in order to set the domain and to register the hook
 		 * with WordPress.
 		 */
-		private function set_locale() {
+		private function set_locale(): void {
 			$plugin_i18n = new Internationalization_I18n();
 
 			$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
@@ -69,7 +69,7 @@ if ( ! class_exists( Init::class ) ) {
 		/**
 		 * Register all of the hooks related to both the admin area and the public-facing functionality of the plugin.
 		 */
-		private function define_common_hooks() {
+		private function define_common_hooks(): void {
 			$plugin_common = new Common\Common();
 
 			// Example: $this->loader->add_filter( 'gform_currencies', $plugin_common, 'gf_currency_usd_whole_dollars', 50 );
@@ -81,7 +81,7 @@ if ( ! class_exists( Init::class ) ) {
 		 * Customizer must not be within Admin or Frontend or else it won't load properly.
 		 * We could have included in Common, since it is the same loading logic, but we separate it out for sanity.
 		 */
-		private function define_customizer_hooks() {
+		private function define_customizer_hooks(): void {
 			$plugin_customizer = new Customizer\Customizer();
 
 			$this->loader->add_action( 'customize_register', $plugin_customizer, 'customizer_options' );
@@ -91,7 +91,7 @@ if ( ! class_exists( Init::class ) ) {
 		 * Register all of the hooks related to the admin area functionality of the plugin.
 		 * Also works during Ajax.
 		 */
-		private function define_admin_hooks() {
+		private function define_admin_hooks(): void {
 			if ( ! is_admin() ) {
 				return;
 			}
@@ -115,7 +115,7 @@ if ( ! class_exists( Init::class ) ) {
 		 * Register all of the hooks related to the public-facing functionality of the plugin.
 		 * Also works during Ajax.
 		 */
-		private function define_public_hooks() {
+		private function define_public_hooks(): void {
 			if (
 				is_admin()
 				&& ! wp_doing_ajax()
@@ -133,14 +133,14 @@ if ( ! class_exists( Init::class ) ) {
 		/**
 		 * Register all of the shortcodes.
 		 */
-		private function register_shortcodes() {
+		private function register_shortcodes(): void {
 			( new Shortcodes\Manage_Shortcodes() )->register_all_shortcodes();
 		}
 
 		/**
 		 * Run the loader to execute all of the hooks with WordPress.
 		 */
-		public function run() {
+		public function run(): void {
 			$this->loader->run();
 		}
 
@@ -149,7 +149,7 @@ if ( ! class_exists( Init::class ) ) {
 		 *
 		 * @return Loader Orchestrates the hooks of the plugin.
 		 */
-		public function get_loader() {
+		public function get_loader(): Loader {
 			return $this->loader;
 		}
 	}

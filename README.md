@@ -82,7 +82,7 @@ Following is the pre-built plugin structure. You can add your own new class file
 
 ### PHP Version
 
-This plugin requires PHP 5.6 or newer and will display a wp-admin error notice if activated in an environment that does not meet this or other requirements (such as required plugins or other dependencies you may code).
+This plugin requires PHP 7.1.0 or newer and will display a wp-admin error notice if activated in an environment that does not meet this or other requirements (such as required plugins or other dependencies you may code).
 
 # Developer Notes
 
@@ -137,6 +137,8 @@ Documenting this project's progress...
 
 ##### April 29, 2019
 * Declutter main plugin file by creating new `Bootstrap` class
+* Now requires PHP version 7.1.0 (up from 5.6.0)
+* Added argument type and return type declarations (including scalar, which is why 7.1+ is needed, plus 7.0 was deprecated as of December 3, 2018)
 
 ##### April 27, 2019
 * Refactor classes to be smaller and more intentional, including multiple _utilities_ classes and consolidating settings

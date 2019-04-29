@@ -18,7 +18,7 @@ if ( ! class_exists( Links::class ) ) {
 		 *
 		 * @return string
 		 */
-		public function get_current_url() {
+		public function get_current_url(): string {
 			global $wp;
 
 			$current_url = home_url( add_query_arg( [], $wp->request ) );

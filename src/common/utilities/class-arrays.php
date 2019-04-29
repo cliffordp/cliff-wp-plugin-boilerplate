@@ -22,11 +22,11 @@ if ( ! class_exists( Arrays::class ) ) {
 		 *
 		 * @link https://gist.github.com/SeanCannon/6585889#gistcomment-2823537 Thanks to this collective effort.
 		 *
-		 * @param $array
+		 * @param array $array
 		 *
 		 * @return array
 		 */
-		public function flatten_array( $array = null ) {
+		public function flatten_array( array $array ): array {
 			$result = [];
 
 			if ( ! is_array( $array ) ) {
@@ -50,12 +50,12 @@ if ( ! class_exists( Arrays::class ) ) {
 		 *
 		 * Does not support multidimensional arrays but could be altered to.
 		 *
-		 * @param array|string $values
+		 * @param array|string $values Array or JSON string.
 		 * @param array        $allowables
 		 *
-		 * @return string|array
+		 * @return string|array If original value was a string (assumed JSON), outputs as JSON string, else array.
 		 */
-		public function sanitize_multiple_values( $values, $allowables ) {
+		public function sanitize_multiple_values( $values, array $allowables ) {
 			$orig_values = $values;
 
 			// handle booleans, such as single checkbox value

@@ -26,7 +26,7 @@ if ( ! class_exists( Manage_Shortcodes::class ) ) {
 		 *
 		 * @see \WP_Plugin_Name\Shortcodes\Shortcode::register()
 		 */
-		public function register_all_shortcodes() {
+		public function register_all_shortcodes(): void {
 			foreach ( $this->shortcode_classes as $shortcode_class ) {
 				$shortcode_class = __NAMESPACE__ . '\\' . $shortcode_class;
 

@@ -3,6 +3,7 @@
 namespace WP_Plugin_Name\Customizer;
 
 use WP_Customize_Control;
+use WP_Customize_Manager;
 use WP_Plugin_Name\Plugin_Data as Plugin_Data;
 
 // Abort if this file is called directly.
@@ -26,15 +27,18 @@ if ( ! class_exists( Sortable_Checkboxes_Control::class ) ) {
 
 		/**
 		 * Initialize the class and set its properties, extending the parent class.
+		 * @param WP_Customize_Manager $manager Customizer bootstrap instance.
+		 * @param string               $id      Control ID.
+		 * @param array                $args    {
 		 */
-		public function __construct( $manager, $id, $args = [], $options = [] ) {
+		public function __construct( WP_Customize_Manager $manager, string $id, array $args = [] ) {
 			parent::__construct( $manager, $id, $args );
 		}
 
 		/**
 		 * Enqueue our scripts and styles
 		 */
-		public function enqueue() {
+		public function enqueue(): void {
 			wp_enqueue_script( $this->handle( 'js' ), plugin_dir_url( __FILE__ ) . 'js/script.js', [ 'jquery', 'jquery-ui-sortable' ], Plugin_Data::plugin_version(), true );
 			wp_enqueue_style( $this->handle(), plugin_dir_url( __FILE__ ) . 'css/style.css', [], Plugin_Data::plugin_version(), 'all' );
 		}
@@ -46,7 +50,7 @@ if ( ! class_exists( Sortable_Checkboxes_Control::class ) ) {
 		 *
 		 * @return string
 		 */
-		private function handle( $suffix = '' ) {
+		private function handle( string $suffix = '' ): string {
 			$result = Plugin_Data::plugin_text_domain() . '-' . $this->type;
 			if ( ! empty( $suffix ) ) {
 				$result .= '-' . $suffix;
@@ -58,7 +62,7 @@ if ( ! class_exists( Sortable_Checkboxes_Control::class ) ) {
 		/**
 		 * Render the control in the customizer
 		 */
-		public function render_content() {
+		public function render_content(): void {
 			$out = '';
 
 			$class = $this->type . '-checkbox_group-hidden';

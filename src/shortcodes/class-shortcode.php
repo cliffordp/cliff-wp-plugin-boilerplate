@@ -36,7 +36,7 @@ abstract class Shortcode {
 	 *
 	 * @see add_shortcode()
 	 */
-	public function register() {
+	public function register(): void {
 		$shortcode = new static();
 
 		add_shortcode( $this->get_tag(), [ $shortcode, 'init_shortcode' ] );
@@ -52,7 +52,7 @@ abstract class Shortcode {
 	 *
 	 * @return string
 	 */
-	public function get_tag() {
+	public function get_tag(): string {
 		if (
 			! empty( $this->tag )
 			&& is_string( $this->tag )
@@ -74,7 +74,7 @@ abstract class Shortcode {
 	 *
 	 * @return string
 	 */
-	private function build_tag_from_class_name() {
+	private function build_tag_from_class_name(): string {
 		$tag = str_replace( __NAMESPACE__, '', static::class );
 		$tag = str_replace( '\\', '', $tag );
 
@@ -88,7 +88,7 @@ abstract class Shortcode {
 	 *
 	 * @return string
 	 */
-	public function get_error_message( $cause = '', $fallback = '' ) {
+	public function get_error_message( string $cause = '', string $fallback = '' ): string {
 		if ( current_user_can( $this->required_capability() ) ) {
 			$message = $this->get_error_message_to_user_with_cap( $cause );
 		} else {
@@ -105,7 +105,7 @@ abstract class Shortcode {
 	 *
 	 * @link https://developer.wordpress.org/themes/customize-api/advanced-usage/
 	 */
-	public function required_capability() {
+	public function required_capability(): string {
 		return apply_filters( $this->get_tag() . '_required_capability', $this->common->required_capability() );
 	}
 
@@ -116,7 +116,7 @@ abstract class Shortcode {
 	 *
 	 * @return string
 	 */
-	public function get_error_message_to_user_with_cap( $cause ) {
+	public function get_error_message_to_user_with_cap( string $cause ): string {
 		if (
 			! is_string( $cause )
 			|| '' === $cause
@@ -146,7 +146,7 @@ abstract class Shortcode {
 	 * @param array  $atts    The raw attributes from the shortcode.
 	 * @param string $content The raw value from using an enclosing (not self-closing) shortcode.
 	 */
-	public function init_shortcode( $atts = [], $content = '' ) {
+	public function init_shortcode( array $atts = [], string $content = '' ) {
 		return $this->process_shortcode( $this->get_atts( $atts ), $content );
 	}
 
@@ -158,7 +158,7 @@ abstract class Shortcode {
 	 * @param array  $atts    The processed shortcode attributes after merging with defaults via `shortcode_atts()`.
 	 * @param string $content The raw value from using an enclosing (not self-closing) shortcode.
 	 */
-	abstract public function process_shortcode( $atts = [], $content = '' );
+	abstract public function process_shortcode( array $atts = [], string $content = '' );
 
 	/**
 	 * Get and process the attributes.
@@ -169,7 +169,7 @@ abstract class Shortcode {
 	 *
 	 * @return array
 	 */
-	public function get_atts( $atts = [] ) {
+	public function get_atts( array $atts = [] ): array {
 		return shortcode_atts( $this->get_defaults(), $atts, $this->get_tag() );
 	}
 
@@ -178,5 +178,5 @@ abstract class Shortcode {
 	 *
 	 * @return array
 	 */
-	abstract public function get_defaults();
+	abstract public function get_defaults(): array;
 }
