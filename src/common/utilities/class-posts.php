@@ -77,9 +77,7 @@ if ( ! class_exists( Posts::class ) ) {
 				'author'         => $current_user->ID
 			];
 
-			$result = new WP_Query( $args );
-
-			return $result->posts;
+			return ( new WP_Query( $args ) )->get_posts();
 		}
 
 		/**
@@ -94,9 +92,7 @@ if ( ! class_exists( Posts::class ) ) {
 				'post_type'      => 'post',
 			];
 
-			$result = new WP_Query( $args );
-
-			return $result->posts;
+			return ( new WP_Query( $args ) )->get_posts();
 		}
 
 		/**
