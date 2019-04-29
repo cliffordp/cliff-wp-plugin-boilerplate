@@ -135,6 +135,9 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
+##### April 29, 2019
+* Declutter main plugin file by creating new `Bootstrap` class
+
 ##### April 27, 2019
 * Refactor classes to be smaller and more intentional, including multiple _utilities_ classes and consolidating settings
 * Moved *defines* and related to `Plugin_Data` class (has static methods because of hard-coded values)

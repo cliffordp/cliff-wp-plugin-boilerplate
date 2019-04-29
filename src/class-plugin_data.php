@@ -69,36 +69,15 @@ if ( ! class_exists( Plugin_Data::class ) ) {
 		}
 
 		/**
-		 * Get this plugin's directory relative to this file's location.
+		 * Get this plugin's directory path, relative to this file's location.
 		 *
-		 * This file should be in `/src` and we want one level above that.
-		 *
-		 * @return string
-		 */
-		private static function parent_dir() {
-			return realpath( __DIR__ . DIRECTORY_SEPARATOR . '..' );
-		}
-
-		/**
-		 * Get this plugin's main plugin file.
-		 *
-		 * WARNING: Assumes the file exists - so don't make an epic fail!!!
-		 *
-		 * @return string
-		 */
-		private static function main_plugin_file() {
-			return trailingslashit( self::parent_dir() ) . self::plugin_text_domain() . '.php';
-		}
-
-		/**
-		 * Get this plugin's directory path.
-		 *
+		 * This file should be in `/src` and we want one level above.
 		 * Example: /app/public/wp-content/plugins/cliff-wp-plugin-boilerplate/
 		 *
 		 * @return string
 		 */
 		public static function plugin_dir_path() {
-			return plugin_dir_path( self::main_plugin_file() );
+			return trailingslashit( realpath( __DIR__ . DIRECTORY_SEPARATOR . '..' ) );
 		}
 
 		/**
@@ -121,6 +100,28 @@ if ( ! class_exists( Plugin_Data::class ) ) {
 			return plugin_basename( self::main_plugin_file() );
 		}
 
+		/**
+		 * Get this plugin's directory relative to this file's location.
+		 *
+		 * This file should be in `/src` and we want two levels above.
+		 * Example: /app/public/wp-content/plugins/
+		 *
+		 * @return string
+		 */
+		public static function all_plugins_dir() {
+			return trailingslashit( realpath( self::plugin_dir_path() . '..' ) );
+		}
+
+		/**
+		 * Get this plugin's main plugin file.
+		 *
+		 * WARNING: Assumes the file exists - so don't make an epic fail!!!
+		 *
+		 * @return string
+		 */
+		private static function main_plugin_file() {
+			return self::plugin_dir_path() . self::plugin_text_domain() . '.php';
+		}
 
 	}
 }
