@@ -50,10 +50,10 @@ if ( ! class_exists( Arrays::class ) ) {
 		 *
 		 * Does not support multidimensional arrays but could be altered to.
 		 *
-		 * @param array|string $values
+		 * @param array|string $values Array or JSON string.
 		 * @param array        $allowables
 		 *
-		 * @return string|array
+		 * @return string|array If original value was a string (assumed JSON), outputs as JSON string, else array.
 		 */
 		public function sanitize_multiple_values( $values, $allowables ) {
 			$orig_values = $values;

@@ -266,12 +266,12 @@ if ( ! class_exists( Settings::class ) ) {
 		 *
 		 * Check if what the user selected is valid. If yes, return it, else return setting's default.
 		 *
-		 * @param array                $value   Value that is passed by the Customizer.
+		 * @param array|string         $value   When used as a Customizer callback, will be a JSON string.
 		 * @param WP_Customize_Setting $setting The setting object.
 		 *
-		 * @return string|array
+		 * @return array|string
 		 */
-		public function sanitize_post_types( $value, $setting ) {
+		public function sanitize_post_types( $value, WP_Customize_Setting $setting ) {
 			$result = ( new Utils\Arrays() )->sanitize_multiple_values( $value, ( new Utils\Posts() )->get_public_post_types() );
 
 			if ( ! empty( $result ) ) {
