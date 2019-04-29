@@ -166,10 +166,14 @@ if ( ! class_exists( Bootstrap::class ) ) {
 		 * Output a message about unsatisfactory version of PHP.
 		 */
 		public function notice_old_php_version() {
+			$help_link = sprintf( '<a href="%1$s" target="_blank">%1$s</a>', 'https://wordpress.org/about/requirements/' );
+
 			$message = sprintf(
-				__( '%1$s requires at least PHP version %2$s in order to work.', Plugin_Data::plugin_text_domain() ),
+				__( '%1$s requires at least PHP version %2$s in order to work. You have version %3$s. Please see %4$s for more information.', Plugin_Data::plugin_text_domain() ),
 				'<strong>' . Plugin_Data::get_plugin_display_name() . '</strong>',
-				'<strong>' . Plugin_Data::required_min_php_version() . '</strong>'
+				'<strong>' . Plugin_Data::required_min_php_version() . '</strong>',
+				'<strong>' . PHP_VERSION . '</strong>',
+				$help_link
 			);
 
 			$this->do_admin_notice( $message );

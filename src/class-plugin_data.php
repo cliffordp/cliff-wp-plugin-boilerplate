@@ -29,10 +29,13 @@ if ( ! class_exists( Plugin_Data::class ) ) {
 		 *
 		 * Should match composer.json's `"require": { "php":...`
 		 *
+		 * @link https://wordpress.org/about/requirements/
+		 * @link https://en.wikipedia.org/wiki/PHP#Release_history
+		 *
 		 * @return string
 		 */
 		public static function required_min_php_version() {
-			return '5.6.0';
+			return '7.1.0';
 		}
 
 		/**
