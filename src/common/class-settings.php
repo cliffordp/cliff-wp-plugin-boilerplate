@@ -67,7 +67,7 @@ if ( ! class_exists( Settings::class ) ) {
 		 * @param string $key
 		 * @param string $default
 		 *
-		 * @return mixed
+		 * @return string
 		 */
 		public function get_option_as_string( $key, $default = '' ) {
 			$result = $this->get_option( $key, $default );
@@ -79,7 +79,7 @@ if ( ! class_exists( Settings::class ) ) {
 		 * Get the raw value of a single option from the database with an optional fallback value.
 		 *
 		 * @param string $key
-		 * @param string $default
+		 * @param mixed $default
 		 *
 		 * @return mixed
 		 */
