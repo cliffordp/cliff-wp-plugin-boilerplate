@@ -110,10 +110,12 @@ if ( ! class_exists( Settings::class ) ) {
 		}
 
 		/**
-		 * Get a single option from the database, as an array, with an optional fallback value.
+		 * Get a single option from the database as an array with an optional fallback value.
+		 *
+		 * @todo Is array_keys() really what we want here?
 		 *
 		 * @param string $key
-		 * @param string $default
+		 * @param mixed $default
 		 *
 		 * @return array
 		 */
@@ -133,6 +135,8 @@ if ( ! class_exists( Settings::class ) ) {
 
 		/**
 		 * Delete all of the saved options from the database.
+		 *
+		 * @see delete_option()
 		 *
 		 * @return bool
 		 */
