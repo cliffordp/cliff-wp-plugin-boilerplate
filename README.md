@@ -138,6 +138,7 @@ Documenting this project's progress...
 ##### April 29, 2019
 * Declutter main plugin file by creating new `Bootstrap` class
 * Now requires PHP version 7.1.0 (up from 5.6.0)
+* Added argument type and return type declarations (including scalar, which is why 7.1+ is needed, plus 7.0 was deprecated as of December 3, 2018)
 
 ##### April 27, 2019
 * Refactor classes to be smaller and more intentional, including multiple _utilities_ classes and consolidating settings
