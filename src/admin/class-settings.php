@@ -33,11 +33,11 @@ if ( ! class_exists( Settings::class ) ) {
 		/**
 		 * Add Settings link within Plugins List page.
 		 *
-		 * @param $links
+		 * @param array $links
 		 *
 		 * @return array
 		 */
-		public function add_action_links( $links ) {
+		public function add_action_links( array $links ): array {
 			$mylinks = [
 				'<a href="' . esc_url( $this->settings->get_main_settings_page_url() ) . '">' . $this->settings->get_settings_word() . '</a>',
 			];
@@ -48,7 +48,7 @@ if ( ! class_exists( Settings::class ) ) {
 		/**
 		 * Add the Settings page to the wp-admin menu.
 		 */
-		public function add_plugin_admin_menu() {
+		public function add_plugin_admin_menu(): void {
 			add_options_page(
 				Plugin_Data::get_plugin_display_name(),
 				Plugin_Data::get_plugin_display_name(),
@@ -61,7 +61,7 @@ if ( ! class_exists( Settings::class ) ) {
 		/**
 		 * Outputs HTML for the plugin's Settings page.
 		 */
-		public function settings_page() {
+		public function settings_page(): void {
 			if ( ! current_user_can( $this->settings->common->required_capability() ) ) {
 				wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', Plugin_Data::plugin_text_domain() ) );
 			}

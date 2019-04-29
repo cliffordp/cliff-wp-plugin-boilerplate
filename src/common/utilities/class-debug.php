@@ -29,7 +29,7 @@ if ( ! class_exists( Debug::class ) ) {
 		 * @param string              $email Either a single email address, a comma-separated list of email addresses,
 		 *                                   or 'admin' to send to the admin email address.
 		 */
-		function output_to_log( $log = '', $email = '' ) {
+		function output_to_log( $log = '', string $email = '' ): void {
 			if (
 				is_array( $log )
 				|| is_object( $log )

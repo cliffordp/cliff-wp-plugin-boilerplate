@@ -27,7 +27,7 @@ if ( ! class_exists( Numbers::class ) ) {
 		 *
 		 * @return float|int
 		 */
-		public function round_up( $value, $places = 0 ) {
+		public function round_up( $value, int $places = 0 ) {
 			$value = (float) $value;
 
 			// Avoid dividing by zero
@@ -53,7 +53,7 @@ if ( ! class_exists( Numbers::class ) ) {
 		 *
 		 * @return int
 		 */
-		public function round_up_to_next( $value = 0, $interval = 0 ) {
+		public function round_up_to_next( $value = 0, int $interval = 0 ): int {
 			if (
 				empty( $value )
 				|| ! is_numeric( $value )
@@ -65,7 +65,7 @@ if ( ! class_exists( Numbers::class ) ) {
 
 			$result = $interval * ceil( $value / $interval );
 
-			return (int) round( $result );
+			return round( $result );
 		}
 
 	}

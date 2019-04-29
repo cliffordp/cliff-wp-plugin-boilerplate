@@ -19,7 +19,7 @@ if ( ! class_exists( TK_Request::class ) ) {
 		 *
 		 * @return array
 		 */
-		public function get_defaults() {
+		public function get_defaults(): array {
 			return [
 				'parameter' => '', // Required
 				'default'   => '', // The default value to return if the parameter is not present.
@@ -40,7 +40,7 @@ if ( ! class_exists( TK_Request::class ) ) {
 		 *
 		 * @return mixed The value of the query parameter, if any.
 		 */
-		public function process_shortcode( $atts = [], $content = '' ) {
+		public function process_shortcode( array $atts = [], string $content = '' ) {
 			$atts = $this->get_atts( $atts );
 
 			$atts['parameter'] = urlencode( $atts['parameter'] );

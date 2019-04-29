@@ -3,9 +3,9 @@
 namespace WP_Plugin_Name\Customizer;
 
 use WP_Customize_Manager;
-use WP_Plugin_Name\Plugin_Data as Plugin_Data;
 use WP_Plugin_Name\Common\Settings as Settings;
 use WP_Plugin_Name\Common\Utilities as Utils;
+use WP_Plugin_Name\Plugin_Data as Plugin_Data;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -44,7 +44,7 @@ if ( ! class_exists( Customizer::class ) ) {
 		 *
 		 * @param WP_Customize_Manager $wp_customize
 		 */
-		public function customizer_options( WP_Customize_Manager $wp_customize ) {
+		public function customizer_options( WP_Customize_Manager $wp_customize ): void {
 			/**
 			 * Add edit shortcut links (pencil icon wherever output when viewing in Customizer Preview).
 			 *
@@ -91,13 +91,13 @@ if ( ! class_exists( Customizer::class ) ) {
 		 *
 		 * @return string
 		 */
-		public function customizer_edit_shortcut_setting() {
+		public function customizer_edit_shortcut_setting(): string {
 			/**
 			 * @todo: Example setting: Sortable checkbox list of social networks. Must choose a setting to go to, not a section or panel.
 			 */
 			$setting = Plugin_Data::plugin_text_domain_underscores() . '[social_networks]';
 
-			return (string) apply_filters( Plugin_Data::plugin_text_domain_underscores() . '_' . __FUNCTION__, $setting );
+			return apply_filters( Plugin_Data::plugin_text_domain_underscores() . '_' . __FUNCTION__, $setting );
 		}
 
 		/**
@@ -109,7 +109,7 @@ if ( ! class_exists( Customizer::class ) ) {
 		 *
 		 * @return string
 		 */
-		private function get_section_id( $slug = '' ) {
+		private function get_section_id( string $slug = '' ): string {
 			$slug = sanitize_key( $slug );
 
 			if ( empty( $slug ) ) {
@@ -126,7 +126,7 @@ if ( ! class_exists( Customizer::class ) ) {
 		 * @param string               $section_slug The section this setting should be added to.
 		 * @param string               $setting_slug This setting's unique slug.
 		 */
-		private function add_setting_social_networks( WP_Customize_Manager $wp_customize, $section_slug, $setting_slug ) {
+		private function add_setting_social_networks( WP_Customize_Manager $wp_customize, string $section_slug, string $setting_slug ): void {
 			$wp_customize->add_setting(
 				$this->get_setting_id( $setting_slug ),
 				[
@@ -160,7 +160,7 @@ if ( ! class_exists( Customizer::class ) ) {
 		 *
 		 * @return string
 		 */
-		private function get_setting_id( $slug = '' ) {
+		private function get_setting_id( string $slug = '' ): string {
 			$slug = sanitize_key( $slug );
 
 			if ( empty( $slug ) ) {
@@ -177,7 +177,7 @@ if ( ! class_exists( Customizer::class ) ) {
 		 * @param string               $section_slug The section this setting should be added to.
 		 * @param string               $setting_slug This setting's unique slug.
 		 */
-		private function add_setting_post_types( WP_Customize_Manager $wp_customize, $section_slug, $setting_slug ) {
+		private function add_setting_post_types( WP_Customize_Manager $wp_customize, string $section_slug, string $setting_slug ): void {
 			$wp_customize->add_setting(
 				$this->get_setting_id( $setting_slug ), [
 					'type'              => 'option',
@@ -209,7 +209,7 @@ if ( ! class_exists( Customizer::class ) ) {
 		 *
 		 * @return array
 		 */
-		public function get_choices_post_types() {
+		public function get_choices_post_types(): array {
 			$result = [];
 
 			foreach ( ( new Utils\Posts() )->get_public_post_types() as $type ) {

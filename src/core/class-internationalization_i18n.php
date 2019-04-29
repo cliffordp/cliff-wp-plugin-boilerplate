@@ -20,7 +20,7 @@ if ( ! class_exists( Internationalization_I18n::class ) ) {
 		/**
 		 * Load the plugin text domain for translation.
 		 */
-		public function load_plugin_textdomain() {
+		public function load_plugin_textdomain(): void {
 			load_plugin_textdomain(
 				Plugin_Data::plugin_text_domain(),
 				false,

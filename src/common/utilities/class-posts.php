@@ -2,12 +2,6 @@
 
 namespace WP_Plugin_Name\Common\Utilities;
 
-use DateTime;
-use DateTimeZone;
-use Exception;
-use WP_Customize_Setting;
-use WP_Plugin_Name as NS;
-use WP_Plugin_Name\Customizer\Customizer as Customizer;
 use WP_Post;
 use WP_Query;
 
@@ -60,7 +54,8 @@ if ( ! class_exists( Posts::class ) ) {
 		/**
 		 * Get all of the "Post" post type's Post IDs that the currently logged-in user has authored.
 		 *
-		 * @return false|array False if user is not logged-in. Array (may be empty) if user is logged-in.
+		 * @return false|WP_Post[]|int[] False if user is not logged-in. Array of post objects or post IDs
+		 *                               (or empty array) if user is logged-in.
 		 */
 		public function get_all_current_author_post_ids() {
 			$current_user = wp_get_current_user();
@@ -83,9 +78,9 @@ if ( ! class_exists( Posts::class ) ) {
 		/**
 		 * Get all of the "Post" post type's Post IDs.
 		 *
-		 * @return array
+		 * @return WP_Post[]|int[] Array of post objects or post IDs (or empty array).
 		 */
-		public function get_all_post_ids() {
+		public function get_all_post_ids(): array {
 			$args = [
 				'fields'         => 'ids',
 				'posts_per_page' => - 1,
@@ -102,7 +97,7 @@ if ( ! class_exists( Posts::class ) ) {
 		 *
 		 * @return array
 		 */
-		public function get_public_post_types() {
+		public function get_public_post_types(): array {
 			$result = get_post_types( [ 'public' => true ], 'object' );
 
 			uasort(
