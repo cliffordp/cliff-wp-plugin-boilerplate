@@ -80,8 +80,8 @@ Here are some quick tips to use the functionality for this plugin:
 1. The `package.json` file is the *instructions* file that tells NPM how to build the `node_modules` directory.
 1. Run `npm install` to generate your `package-lock.json` file.
 1. After that you can edit the scss files in the `development` folders and compile it with running gulp.
-1. For development purposes run `gulp watchForChanges` (so gulp looks for any changes in the folders and compiles automatically)
-1. Before createing the production ready zip file. Run `gulp productionReady`. (so every file gets compiled and minified). 
+1. For development purposes run `npm run start` (so gulp looks for any changes in the folders and compiles automatically)
+1. Before creating the production ready zip file. Run `npm build`. (so every file gets compiled and minified). 
 
 #### Generating and Distributing the .zip
 

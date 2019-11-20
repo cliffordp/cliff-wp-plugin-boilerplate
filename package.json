@@ -4,7 +4,8 @@
   "description": "This is a short description what the plugin does",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "gulp",
+    "build": "gulp build --prod"
   },
   "repository": {
     "type": "git",
@@ -25,12 +26,14 @@
     "@babel/preset-env": "^7.7.1",
     "@babel/register": "^7.7.0",
     "autoprefixer": "^9.7.2",
+    "babel-loader": "^8.0.6",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.2.0",
     "gulp-if": "^3.0.0",
     "gulp-postcss": "^8.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
+    "webpack-stream": "^5.2.1",
     "yargs": "^15.0.2"
   }
 }
