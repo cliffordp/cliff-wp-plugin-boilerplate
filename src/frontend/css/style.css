@@ -1,12 +1,22 @@
 /**
- * All of the CSS for your public-facing functionality should be included in this file.
- *
+ * All of the CSS for your public-facing functionality should be included or imported
+ * in the '/development/frontend/scss/style.scss'
  * The file is enqueued from src/frontend/class-assets.php.
  */
 p.cliff-wp-plugin-boilerplate-shortcode-error {
-	border-left: 4px solid #dc3232; /* same red as admin Error notice */
-	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
-	margin: 15px;
-	padding: 5px 12px;
-	font-style: italic;
-}
+  border-left: 4px solid #dc3232;
+  /* same red as admin Error notice */
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+  margin: 15px;
+  padding: 5px 12px;
+  font-style: italic; }
+
+p.cliff-wp-plugin-boilerplate-shortcode-error {
+  border-left: 4px solid #dc3232;
+  /* same red as admin Error notice */
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+  margin: 15px;
+  padding: 5px 12px;
+  font-style: italic; }
+
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3R5bGUuY3NzIiwic291cmNlcyI6WyJzdHlsZS5zY3NzIiwiY29tcG9uZW50cy90ZXN0Y29tcG9uZW50LnNjc3MiXSwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBBbGwgb2YgdGhlIENTUyBmb3IgeW91ciBwdWJsaWMtZmFjaW5nIGZ1bmN0aW9uYWxpdHkgc2hvdWxkIGJlIGluY2x1ZGVkIG9yIGltcG9ydGVkXG4gKiBpbiB0aGUgJy9kZXZlbG9wbWVudC9mcm9udGVuZC9zY3NzL3N0eWxlLnNjc3MnXG4gKiBUaGUgZmlsZSBpcyBlbnF1ZXVlZCBmcm9tIHNyYy9mcm9udGVuZC9jbGFzcy1hc3NldHMucGhwLlxuICovXG5AaW1wb3J0ICcuL2NvbXBvbmVudHMvdGVzdGNvbXBvbmVudC5zY3NzJztcblxuIHAuY2xpZmYtd3AtcGx1Z2luLWJvaWxlcnBsYXRlLXNob3J0Y29kZS1lcnJvciB7XG5cdGJvcmRlci1sZWZ0OiA0cHggc29saWQgI2RjMzIzMjsgLyogc2FtZSByZWQgYXMgYWRtaW4gRXJyb3Igbm90aWNlICovXG5cdGJveC1zaGFkb3c6IDAgMXB4IDFweCAwIHJnYmEoMCwgMCwgMCwgLjEpO1xuXHRtYXJnaW46IDE1cHg7XG5cdHBhZGRpbmc6IDVweCAxMnB4O1xuXHRmb250LXN0eWxlOiBpdGFsaWM7XG59IiwicC5jbGlmZi13cC1wbHVnaW4tYm9pbGVycGxhdGUtc2hvcnRjb2RlLWVycm9yIHtcblx0Ym9yZGVyLWxlZnQ6IDRweCBzb2xpZCAjZGMzMjMyOyAvKiBzYW1lIHJlZCBhcyBhZG1pbiBFcnJvciBub3RpY2UgKi9cblx0Ym94LXNoYWRvdzogMCAxcHggMXB4IDAgcmdiYSgwLCAwLCAwLCAuMSk7XG5cdG1hcmdpbjogMTVweDtcblx0cGFkZGluZzogNXB4IDEycHg7XG5cdGZvbnQtc3R5bGU6IGl0YWxpYztcbn0iXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7R0FJRztBQ0pILEFBQUEsQ0FBQyxBQUFBLDRDQUE0QyxDQUFDO0VBQzdDLFdBQVcsRUFBRSxpQkFBaUI7RUFBRSxvQ0FBb0M7RUFDcEUsVUFBVSxFQUFFLENBQUMsQ0FBQyxHQUFHLENBQUMsR0FBRyxDQUFDLENBQUMsQ0FBQyxrQkFBaUI7RUFDekMsTUFBTSxFQUFFLElBQUk7RUFDWixPQUFPLEVBQUUsUUFBUTtFQUNqQixVQUFVLEVBQUUsTUFBTSxHQUNsQjs7QURDQSxBQUFBLENBQUMsQUFBQSw0Q0FBNEMsQ0FBQztFQUM5QyxXQUFXLEVBQUUsaUJBQWlCO0VBQUUsb0NBQW9DO0VBQ3BFLFVBQVUsRUFBRSxDQUFDLENBQUMsR0FBRyxDQUFDLEdBQUcsQ0FBQyxDQUFDLENBQUMsa0JBQWlCO0VBQ3pDLE1BQU0sRUFBRSxJQUFJO0VBQ1osT0FBTyxFQUFFLFFBQVE7RUFDakIsVUFBVSxFQUFFLE1BQU0sR0FDbEIifQ== */

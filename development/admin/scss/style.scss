@@ -1,0 +1,11 @@
+/**
+ * All of the CSS for your admin-specific functionality should be included or imported in 
+ * the 'development/admin/scss/style.scss' file.
+ * The file is enqueued from src/admin/class-assets.php.
+ */
+@import './components/testcomponent.scss';
+$colour: #f03;
+
+body {
+    background-color: $colour;
+}

@@ -1,0 +1,14 @@
+/**
+ * All of the CSS for your public-facing functionality should be included or imported
+ * in the '/development/frontend/scss/style.scss'
+ * The file is enqueued from src/frontend/class-assets.php.
+ */
+@import './components/testcomponent.scss';
+
+ p.cliff-wp-plugin-boilerplate-shortcode-error {
+	border-left: 4px solid #dc3232; /* same red as admin Error notice */
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
+	margin: 15px;
+	padding: 5px 12px;
+	font-style: italic;
+}
