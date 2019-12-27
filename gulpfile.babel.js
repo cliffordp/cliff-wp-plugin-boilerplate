@@ -25,7 +25,7 @@ export const adminstyles = () => {
         .pipe(gulpif(!PRODUCTION, sourcemaps.init())) //Initializes the sourcemaps if not in production
         .pipe(sass().on('error', sass.logError)) //Converts scss to css.
         .pipe(gulpif(PRODUCTION, postcss([ autoprefixer ]))) //prefixes for firefox, ie etc.
-        .pipe(gulpif(PRODUCTION, cleanCss({compatibility:'ie8'}))) //Minifys the css if in production mode
+        .pipe(gulpif(PRODUCTION, cleanCss({compatibility:'*'}))) //Minifys the css if in production mode; compatibility '*' ie10+ compatibility mode
         .pipe(gulpif(!PRODUCTION, sourcemaps.write())) //writes the sourcemaps if not in production
         .pipe(dest('src/admin/css')); //Destination folder
 }
@@ -35,7 +35,7 @@ export const frontendstyles = () => {
         .pipe(gulpif(!PRODUCTION, sourcemaps.init())) //Initializes the sourcemaps if not in production
         .pipe(sass().on('error', sass.logError)) //Converts scss to css.
         .pipe(gulpif(PRODUCTION, postcss([ autoprefixer ]))) //prefixes for firefox, ie etc.
-        .pipe(gulpif(PRODUCTION, cleanCss({compatibility:'ie8'}))) //Minifys the css if in production mode
+        .pipe(gulpif(PRODUCTION, cleanCss({compatibility:'*'}))) //Minifys the css if in production mode; compatibility '*' ie10+ compatibility mode
         .pipe(gulpif(!PRODUCTION, sourcemaps.write())) //writes the sourcemaps if not in production
         .pipe(dest('src/frontend/css')); //Destination folder
 }
