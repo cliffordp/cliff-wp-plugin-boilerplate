@@ -3,9 +3,12 @@
  * the 'development/admin/scss/style.scss' file.
  * The file is enqueued from src/admin/class-assets.php.
  */
+ // @TODO This import is an test import. Remove for production
 @import './components/testcomponent.scss';
-$colour: #f03;
+
+// @TODO This is a red color variable example. Remove for production 
+$color: #f03;
 
 body {
-    background-color: $colour;
+    background-color: $color;
 }

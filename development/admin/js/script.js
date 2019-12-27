@@ -28,10 +28,12 @@
 	 * The file is enqueued from src/admin/class-assets.php.
 	 */
 import $ from 'jquery';
+// @TODO This is an example import. Remove for production
 import './components/test';
 
 $(document).ready(function() {
     // jQuery methods go here...
 });
 
+// @TODO This is an example console.log(). Remove for production
 console.log("script.js");

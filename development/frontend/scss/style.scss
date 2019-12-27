@@ -3,6 +3,7 @@
  * in the '/development/frontend/scss/style.scss'
  * The file is enqueued from src/frontend/class-assets.php.
  */
+ // @TODO This import is an test import. Remove for production
 @import './components/testcomponent.scss';
 
  p.cliff-wp-plugin-boilerplate-shortcode-error {
