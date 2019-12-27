@@ -36,4 +36,4 @@ $(document).ready(function() {
 });
 
 // @TODO This is an example console.log(). Remove for production
-console.log("script.js");
+console.log("admin_script.js");
