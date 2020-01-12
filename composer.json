@@ -39,7 +39,8 @@
 			"*.babel.js",
 			"*.env",
 			"*.local",
-			"*.test"
+			"*.test",
+			".all-contributorsrc"
 		]
 	},
 	"autoload": {
