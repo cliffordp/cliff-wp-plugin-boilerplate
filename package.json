@@ -1,39 +1,39 @@
 {
-  "name": "cliff-wp-plugin-boilerplate",
-  "version": "1.0.0",
-  "description": "This is a short description what the plugin does",
-  "main": "index.js",
-  "scripts": {
-    "start": "gulp",
-    "build": "gulp build --prod"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://git@github.com/cliffordp/cliff-wp-plugin-boilerplate.git"
-  },
-  "keywords": [
-    "wordpress",
-    "boilerplate"
-  ],
-  "author": "",
-  "license": "GPL-3.0-or-later",
-  "bugs": {
-    "url": "https://github.com/cliffordp/cliff-wp-plugin-boilerplate/issues"
-  },
-  "homepage": "https://github.com/cliffordp/cliff-wp-plugin-boilerplate#readme",
-  "devDependencies": {
-    "@babel/core": "^7.7.2",
-    "@babel/preset-env": "^7.7.1",
-    "@babel/register": "^7.7.0",
-    "autoprefixer": "^9.7.2",
-    "babel-loader": "^8.0.6",
-    "gulp": "^4.0.2",
-    "gulp-clean-css": "^4.2.0",
-    "gulp-if": "^3.0.0",
-    "gulp-postcss": "^8.0.0",
-    "gulp-sass": "^4.0.2",
-    "gulp-sourcemaps": "^2.6.5",
-    "webpack-stream": "^5.2.1",
-    "yargs": "^15.0.2"
-  }
+	"name": "cliff-wp-plugin-boilerplate",
+	"version": "1.0.0",
+	"description": "Here is a short description of the plugin.",
+	"main": "index.js",
+	"scripts": {
+		"start": "gulp",
+		"build": "gulp build --prod"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://git@github.com/cliffordp/cliff-wp-plugin-boilerplate.git"
+	},
+	"keywords": [
+		"wordpress",
+		"boilerplate"
+	],
+	"author": "",
+	"license": "GPL-3.0-or-later",
+	"bugs": {
+		"url": "https://github.com/cliffordp/cliff-wp-plugin-boilerplate/issues"
+	},
+	"homepage": "https://github.com/cliffordp/cliff-wp-plugin-boilerplate#readme",
+	"devDependencies": {
+		"@babel/core": "^7.7.2",
+		"@babel/preset-env": "^7.7.1",
+		"@babel/register": "^7.7.0",
+		"autoprefixer": "^9.7.2",
+		"babel-loader": "^8.0.6",
+		"gulp": "^4.0.2",
+		"gulp-clean-css": "^4.2.0",
+		"gulp-if": "^3.0.0",
+		"gulp-postcss": "^8.0.0",
+		"gulp-sass": "^4.0.2",
+		"gulp-sourcemaps": "^2.6.5",
+		"webpack-stream": "^5.2.1",
+		"yargs": "^15.0.2"
+	}
 }
