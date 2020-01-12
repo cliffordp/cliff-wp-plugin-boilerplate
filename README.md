@@ -1,4 +1,7 @@
 # WordPress Plugin Boilerplate with Support for Composer, PHP Namespaces, and WordPress Customizer
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 
 ## Features
@@ -22,6 +25,7 @@
 The Boilerplate can be installed directly into your plugins folder "as-is". You will want to rename it and the classes inside of it to fit your needs.
 
 * Copy this *cliff-wp-plugin-boilerplate* repository/directory to your *wp-content/plugins* directory and rename your new plugin's directory
+* Delete the `.all-contributorsrc` file
 * Perform a ***case-sensitive*** *search and replace* at the project level, as follows:
     1. Rename the `cliff-wp-plugin-boilerplate` directory to `your-plugin-name`. **This is your new plugin directory and must match your text domain.**
     1. Find the text `cliff-wp-plugin-boilerplate` and replace with `your-plugin-name` in all files
@@ -216,3 +220,22 @@ Documenting this project's progress...
 
 ##### September 3, 2018
 * Initial Release
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/Stefan2409"><img src="https://avatars2.githubusercontent.com/u/17899913?v=4" width="100px;" alt=""/><br /><sub><b>Stefan Jöbstl</b></sub></a><br /><a href="https://github.com/cliffordp/cliff-wp-plugin-boilerplate/commits?author=Stefan2409" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
