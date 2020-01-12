@@ -33,7 +33,13 @@
 	  "composer.json",
 	  "composer.lock",
 	  "phpunit.xml",
-	  "README.md"
+	  "README.md",
+	  "development/*",
+	  ".babelrc",
+	  "*.babel.js",
+	  "*.env",
+	  "*.local",
+	  "*.test"
 	]
   },
   "autoload": {
