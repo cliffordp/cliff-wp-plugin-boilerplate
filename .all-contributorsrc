@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "Stefan2409",
+      "name": "Stefan Jöbstl",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/17899913?v=4",
+      "profile": "https://github.com/Stefan2409",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "cliff-wp-plugin-boilerplate",
+  "projectOwner": "cliffordp",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
