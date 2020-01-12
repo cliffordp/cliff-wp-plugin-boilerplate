@@ -2,3 +2,5 @@ composer.phar
 *.zip
 vendor/
 node_modules/
+*.test
+*.local
