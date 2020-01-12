@@ -1,12 +1,5 @@
 /**
  * All of the CSS for your admin-specific functionality should be included or imported in 
  * the 'development/admin/scss/style.scss' file.
- * The file is enqueued from src/admin/class-assets.php.
+ * This file gets built via `npm` and is enqueued from `src/admin/class-assets.php`
  */
-body {
-  background-color: aqua; }
-
-body {
-  background-color: #f03; }
-
-/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3R5bGUuY3NzIiwic291cmNlcyI6WyJzdHlsZS5zY3NzIiwiY29tcG9uZW50cy90ZXN0Y29tcG9uZW50LnNjc3MiXSwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBBbGwgb2YgdGhlIENTUyBmb3IgeW91ciBhZG1pbi1zcGVjaWZpYyBmdW5jdGlvbmFsaXR5IHNob3VsZCBiZSBpbmNsdWRlZCBvciBpbXBvcnRlZCBpbiBcbiAqIHRoZSAnZGV2ZWxvcG1lbnQvYWRtaW4vc2Nzcy9zdHlsZS5zY3NzJyBmaWxlLlxuICogVGhlIGZpbGUgaXMgZW5xdWV1ZWQgZnJvbSBzcmMvYWRtaW4vY2xhc3MtYXNzZXRzLnBocC5cbiAqL1xuQGltcG9ydCAnLi9jb21wb25lbnRzL3Rlc3Rjb21wb25lbnQuc2Nzcyc7XG4kY29sb3VyOiAjZjAzO1xuXG5ib2R5IHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAkY29sb3VyO1xufSIsImJvZHkge1xuICAgIGJhY2tncm91bmQtY29sb3I6IGFxdWE7XG59Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7O0dBSUc7QUNKSCxBQUFBLElBQUksQ0FBQztFQUNELGdCQUFnQixFQUFFLElBQUksR0FDekI7O0FETUQsQUFBQSxJQUFJLENBQUM7RUFDRCxnQkFBZ0IsRUFIWCxJQUFJLEdBSVoifQ== */

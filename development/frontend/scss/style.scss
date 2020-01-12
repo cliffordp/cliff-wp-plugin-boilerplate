@@ -3,11 +3,11 @@
  * in the '/development/frontend/scss/style.scss'
  * The file is enqueued from src/frontend/class-assets.php.
  */
- // @TODO This import is an test import. Remove for production
+// @TODO This import is an test import. Remove for production
 @import './components/testcomponent.scss';
 
-// This are the error styles for the frontend and shouldn't be removed!
- p.cliff-wp-plugin-boilerplate-shortcode-error {
+// This is the styling for a shortcode error on the frontend. You probably want to keep or modify this.
+p.cliff-wp-plugin-boilerplate-shortcode-error {
 	border-left: 4px solid #dc3232; /* same red as admin Error notice */
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
 	margin: 15px;
