@@ -41,6 +41,7 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
     1. Find the text `yourname` and replace with whatever you want [as your vendor name](https://getcomposer.org/doc/04-schema.md#name)) in `composer.json` (such as your GitHub username)
     1. Make other edits to `readme.txt` as appropriate for your own plugin
 * Make sure everything in `composer.json` is appropriate to your project.
+* Make sure everything in 'package.json' is also appropriate to your project.
     1. You do not need `tgmpa/tgm-plugin-activation` if your plugin does not require or recommend any other plugins or themes.
     1. Make sure to update the main plugin file's logic accordingly if you fully remove this library.
     1. Make sure to update the main plugin file's class properties:
@@ -48,6 +49,7 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
         1. `$required_theme`
         1. `$required_plugins`
 * Run Composer `install`
+* Run npm `install`
 * Activate the plugin
 * If it works (as it should), ***delete THIS README.md FILE***
 
@@ -64,6 +66,26 @@ Here are some quick notes about Composer, in general, and this project's use of 
 1. Because `composer.json` has `"optimize-autoloader": true` inside the config key, *you will need to run Composer's `update` if you ever add a new PHP class*
     1. See https://getcomposer.org/doc/articles/autoloader-optimization.md for more details.
     1. It is set this way to lean toward distribution convenience more than development convenience.
+
+### Using NPM
+
+#### Getting Started
+
+Visit https://www.npmjs.com/ to learn all about it.
+
+### Using GULP
+
+#### Getting Started
+
+Visit https://gulpjs.com/docs/en/getting-started/quick-start
+
+Here are some quick tips to use the functionality for this plugin:
+1. You need NPM installed on your desktop/laptop, not your server.
+1. The `package.json` file is the *instructions* file that tells NPM how to build the `node_modules` directory.
+1. Run `npm install` to generate your `package-lock.json` file.
+1. After that you can edit the scss files in the `development` folders and compile it with running gulp.
+1. For development purposes run `npm run start` (so gulp looks for any changes in the folders and compiles automatically)
+1. Before creating the production ready zip file. Run `npm build`. (so every file gets compiled and minified). 
 
 #### Generating and Distributing the .zip
 

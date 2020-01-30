@@ -1,4 +1,6 @@
 composer.phar
 *.zip
 vendor/
-node_modules
+node_modules/
+*.test
+*.local
