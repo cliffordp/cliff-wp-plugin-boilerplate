@@ -1,3 +1,14 @@
-composer.phar
+*.local
+*.test
 *.zip
-vendor/
+.DS_Store
+.idea
+/.phpcs.xml
+/.phpunit.result.cache
+/composer.phar
+/logs/
+/node_modules/
+/phpcs.xml
+/phpunit.xml
+/vendor/
+_DS_Store

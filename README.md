@@ -13,11 +13,13 @@
 
 ### Highlights
 
+* Well documented throughout to help you get up and running quickly
+* Uses Composer, Sass (.scss), npm, and gulp to build the plugin and its assets (minifying CSS and JS)
 * Displays a wp-admin error notice to administrators if the required version of PHP is not met
 * Displays a wp-admin error notice to administrators if a required third-party plugin (e.g. WooCommerce) is not active
-* Easily add a new shortcode by having the shortcode named the same as a method in the `Common` class
+* Easily add a new shortcode by extending the abstract `Shortcode` class and adding to the array of shortcodes in the `Manage_Shortcodes` class
 * Adds a wp-admin Settings page with a link to the plugin's options in the WordPress Customizer
-* Includes a custom *Sortable Checkboxes* control in the WordPress Customizer and examples how to use it
+* Includes a custom *Sortable Checkboxes* control in the WordPress Customizer and examples how to use it (unfinished)
 * Includes a number of generally-helpful utility functions, such as getting all public post types, flattening an array of unknown dimensions, and option getters
 
 ## Installation
@@ -47,8 +49,12 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
         1. `$min_php`
         1. `$required_theme`
         1. `$required_plugins`
+* Make sure everything in `package.json` is also appropriate to your project.
 * Run Composer `install`
+* Run npm `install`
 * Activate the plugin
+* Check if everything's working as it should:
+    1. Plugin is able to be activated without any errors
 * If it works (as it should), ***delete THIS README.md FILE***
 
 ### Using Composer
@@ -65,12 +71,33 @@ Here are some quick notes about Composer, in general, and this project's use of 
     1. See https://getcomposer.org/doc/articles/autoloader-optimization.md for more details.
     1. It is set this way to lean toward distribution convenience more than development convenience.
 
+### Using NPM
+
+#### Getting Started
+
+Visit https://www.npmjs.com/ to learn all about it.
+
+### Using GULP
+
+#### Getting Started
+
+Visit https://gulpjs.com/docs/en/getting-started/quick-start
+
+Here are some quick tips to use the functionality for this plugin:
+1. You need NPM installed on your desktop/laptop, not your server.
+1. The `package.json` file is the *instructions* file that tells NPM how to build the `node_modules` directory.
+1. Run `npm install` to generate your `package-lock.json` file.
+1. After that you can edit the scss files in the `development` directory and compile it by running gulp.
+1. During development, run `npm run start` to have gulp watch for any changes in the `development` directories and compile the files automatically.
+1. _Leave your terminal open until done with development. Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to end the watcher._
+1. When done with development (before creating the production ready zip file), run `npm build` so every file gets compiled and minified into the plugin's appropriate asset folders.
+
 #### Generating and Distributing the .zip
 
 1. **Once ready to build the finalized .zip to distribute to your site or to others...**
     1. `php composer.phar archive --file cliff-wp-plugin-boilerplate` *(name yours correctly)*
     1. Because we did not set a `--dir` argument for the `archive` command, Composer will create the .zip right in the project's directory. *#Convenient!*
-1. Unzip this newly-created `cliff-wp-plugin-boilerplate.zip` file to make sure it got built correctly (excluding files like .gitignore, composer.json, etc).
+1. Unzip this newly-created `cliff-wp-plugin-boilerplate.zip` file to make sure it got built correctly (excluding files like `.gitignore`, `composer.json`, `package.json`, etc).
 1. Upload this .zip to your production site or wherever you want to distribute it.
 1. Delete this .zip file from your hard drive.
 
@@ -138,6 +165,9 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 # Boilerplate's Changelog
 
 Documenting this project's progress...
+
+#### January 30, 2020
+* Editable JS and CSS (moved to SCSS) moved to `development` folder and NPM build process implemented
 
 ##### April 29, 2019
 * Declutter main plugin file by creating new `Bootstrap` class

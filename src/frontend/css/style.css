@@ -1,12 +1,9 @@
 /**
- * All of the CSS for your public-facing functionality should be included in this file.
+ * Do not modify this file. It will be overwritten and your changes will be lost with each build!
  *
- * The file is enqueued from src/frontend/class-assets.php.
+ * IF YOU ARE SEEING THIS TEXT, YOU HAVE NOT YET SUCCESSFULLY RUN THE BUILD COMMAND!
+ *
+ * This file gets built via `npm` and is enqueued from `src/frontend/class-assets.php`
+ *
+ * Make all your frontend-specific CSS changes in the `development/frontend/scss/style.scss` file.
  */
-p.cliff-wp-plugin-boilerplate-shortcode-error {
-	border-left: 4px solid #dc3232; /* same red as admin Error notice */
-	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
-	margin: 15px;
-	padding: 5px 12px;
-	font-style: italic;
-}
