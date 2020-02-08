@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WordPress Plugin Boilerplate\n"
-"POT-Creation-Date: 2019-04-27 01:15-0500\n"
-"PO-Revision-Date: 2019-04-27 01:15-0500\n"
+"POT-Creation-Date: 2020-02-08 14:27-0600\n"
+"PO-Revision-Date: 2020-02-08 14:27-0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: cliff-wp-plugin-boilerplate.php\n"
@@ -19,23 +19,127 @@ msgstr ""
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: cliff-wp-plugin-boilerplate.php:193
+#: src/Admin/class-Settings.php:66
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: src/Admin/class-Settings.php:76
+msgid "This plugin uses the WordPress Customizer to set its options."
+msgstr ""
+
+#: src/Admin/class-Settings.php:77
+msgid ""
+"Click the button below to be taken directly to this plugin's section within "
+"the WordPress Customizer."
+msgstr ""
+
+#: src/Admin/class-Settings.php:79
+msgid "TODO: Add more text here"
+msgstr ""
+
+#: src/Admin/class-Settings.php:84
+msgid "Edit Plugin Settings in WP Customizer"
+msgstr ""
+
+#: src/Common/Utilities/class-Debug.php:55
+#, php-format
+msgid "%1$s - Message from %2$s():%3$s%4$s%5$s"
+msgstr ""
+
+#: src/Common/Utilities/class-Debug.php:77
+msgctxt "Successfully emailed from output_to_log()"
+msgid "Email sent."
+msgstr ""
+
+#: src/Common/Utilities/class-Debug.php:79
+msgctxt "Unsuccessfully emailed from output_to_log()"
+msgid "Email attempted but failed."
+msgstr ""
+
+#: src/Common/class-Settings.php:61
+msgid "Settings"
+msgstr ""
+
+#: src/Common/class-Settings.php:187
+msgid "Facebook"
+msgstr ""
+
+#: src/Common/class-Settings.php:192
+msgid "Twitter"
+msgstr ""
+
+#: src/Common/class-Settings.php:197
+msgid "Pinterest"
+msgstr ""
+
+#: src/Common/class-Settings.php:202
+msgid "LinkedIn"
+msgstr ""
+
+#: src/Customizer/class-Customizer.php:70
+msgid "Plugin options and settings"
+msgstr ""
+
+#: src/Customizer/class-Customizer.php:78
+msgid "Example Section"
+msgstr ""
+
+#: src/Customizer/class-Customizer.php:79
+msgid "Example Section description."
+msgstr ""
+
+#: src/Customizer/class-Customizer.php:144
+msgid "Social Network(s)"
+msgstr ""
+
+#: src/Customizer/class-Customizer.php:145
+msgid ""
+"Checked ones will output; unchecked ones will not. Drag and drop to set your "
+"preferred display order."
+msgstr ""
+
+#: src/Customizer/class-Customizer.php:194
+msgid "Post Type(s)"
+msgstr ""
+
+#: src/Customizer/class-Customizer.php:195
+msgid "Which Post Types should be enabled?"
+msgstr ""
+
+#: src/Shortcodes/class-Shortcode.php:124
+msgctxt "Shortcode error cause default text"
+msgid "Unspecified"
+msgstr ""
+
+#: src/Shortcodes/class-Shortcode.php:129
+#, php-format
+msgctxt "Shortcode error message"
+msgid ""
+"Your attempt to use the `[%1$s]` shortcode resulted in an error because: "
+"%2$s. Please reference the documentation or inspect the code and try again. "
+"(Message only shown to users with the `%3$s` capability.)"
+msgstr ""
+
+#. translators: 1: plugin name(s).
+#: src/class-Bootstrap.php:140
 #, php-format
 msgid " requires the following plugin: %1$s."
 msgid_plural " requires the following plugins: %1$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: cliff-wp-plugin-boilerplate.php:199
+#. translators: 1: plugin name(s).
+#: src/class-Bootstrap.php:146
 #, php-format
 msgid " recommends the following plugin: %1$s."
 msgid_plural " recommends the following plugins: %1$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: cliff-wp-plugin-boilerplate.php:205
+#. translators: 1: plugin name(s).
+#: src/class-Bootstrap.php:152
 msgid ""
 "The following plugin needs to be updated to its latest version to ensure "
 "maximum compatibility with "
@@ -45,130 +149,31 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: cliff-wp-plugin-boilerplate.php:209
+#: src/class-Bootstrap.php:156
 #, php-format
 msgid "Plugin not activated. A higher version of %s is needed for "
 msgstr ""
 
-#: cliff-wp-plugin-boilerplate.php:223
+#: src/class-Bootstrap.php:172
 #, php-format
-msgid "%1$s requires at least PHP version %2$s in order to work."
+msgid ""
+"%1$s requires at least PHP version %2$s in order to work. You have version "
+"%3$s. Please see %4$s for more information."
 msgstr ""
 
-#: cliff-wp-plugin-boilerplate.php:289
+#: src/class-Bootstrap.php:240
 #, php-format
 msgid " and %1$s child theme "
 msgstr ""
 
-#: cliff-wp-plugin-boilerplate.php:295
+#: src/class-Bootstrap.php:246
 #, php-format
 msgid "The %1$s plugin requires the %2$s parent theme%3$sin order to work.%4$s"
 msgstr ""
 
-#: src/Admin/class-settings.php:66
-msgid "You do not have sufficient permissions to access this page."
-msgstr ""
-
-#: src/Admin/class-settings.php:76
-msgid "This plugin uses the WordPress Customizer to set its options."
-msgstr ""
-
-#: src/Admin/class-settings.php:77
-msgid ""
-"Click the button below to be taken directly to this plugin's section within "
-"the WordPress Customizer."
-msgstr ""
-
-#: src/Admin/class-settings.php:79
-msgid "TODO: Add more text here"
-msgstr ""
-
-#: src/Admin/class-settings.php:84
-msgid "Edit Plugin Settings in WP Customizer"
-msgstr ""
-
-#: src/class-Plugin_Data.php:68
+#: src/class-Plugin_Data.php:71
 msgctxt "Plugin name for display"
 msgid "WordPress Plugin Boilerplate"
-msgstr ""
-
-#: src/common/class-settings.php:61
-msgid "Settings"
-msgstr ""
-
-#: src/common/class-settings.php:183
-msgid "Facebook"
-msgstr ""
-
-#: src/common/class-settings.php:188
-msgid "Twitter"
-msgstr ""
-
-#: src/common/class-settings.php:193
-msgid "Pinterest"
-msgstr ""
-
-#: src/common/class-settings.php:198
-msgid "LinkedIn"
-msgstr ""
-
-#: src/common/utilities/class-debug.php:55
-#, php-format
-msgid "%1$s - Message from %2$s():%3$s%4$s%5$s"
-msgstr ""
-
-#: src/common/utilities/class-debug.php:77
-msgctxt "Successfully emailed from output_to_log()"
-msgid "Email sent."
-msgstr ""
-
-#: src/common/utilities/class-debug.php:79
-msgctxt "Unsuccessfully emailed from output_to_log()"
-msgid "Email attempted but failed."
-msgstr ""
-
-#: src/customizer/class-customizer.php:70
-msgid "Plugin options and settings"
-msgstr ""
-
-#: src/customizer/class-customizer.php:78
-msgid "Example Section"
-msgstr ""
-
-#: src/customizer/class-customizer.php:79
-msgid "Example Section description."
-msgstr ""
-
-#: src/customizer/class-customizer.php:144
-msgid "Social Network(s)"
-msgstr ""
-
-#: src/customizer/class-customizer.php:145
-msgid ""
-"Checked ones will output; unchecked ones will not. Drag and drop to set your "
-"preferred display order."
-msgstr ""
-
-#: src/customizer/class-customizer.php:194
-msgid "Post Type(s)"
-msgstr ""
-
-#: src/customizer/class-customizer.php:195
-msgid "Which Post Types should be enabled?"
-msgstr ""
-
-#: src/shortcodes/class-shortcode.php:124
-msgctxt "Shortcode error cause default text"
-msgid "Unspecified"
-msgstr ""
-
-#: src/shortcodes/class-shortcode.php:129
-#, php-format
-msgctxt "Shortcode error message"
-msgid ""
-"Your attempt to use the `[%1$s]` shortcode resulted in an error because: "
-"%2$s. Please reference the documentation or inspect the code and try again. "
-"(Message only shown to users with the `%3$s` capability.)"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
