@@ -82,6 +82,5 @@ if ( ! class_exists( Debug::class ) ) {
 
 			error_log( $message );
 		}
-
 	}
 }
