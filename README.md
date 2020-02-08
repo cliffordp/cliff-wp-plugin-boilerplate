@@ -166,6 +166,9 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
+#### February 8, 2020
+* Rename PHP class file names to match class names, including capitalization, according to PSR-4
+
 #### January 30, 2020
 * Editable JS and CSS (moved to SCSS) moved to `development` folder and NPM build process implemented
 
