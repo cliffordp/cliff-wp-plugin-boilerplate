@@ -44,7 +44,7 @@ if ( ! class_exists( Sortable_Checkboxes_Control::class ) ) {
 		}
 
 		/**
-		 * Get the script or style handle, like `cp-toptal-social-sortable_checkboxes-js`.
+		 * Get the script or style handle, like `cliff-wp-plugin-boilerplate-sortable-checkboxes-js`.
 		 *
 		 * @param string $suffix
 		 *
