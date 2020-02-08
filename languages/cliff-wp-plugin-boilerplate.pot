@@ -65,25 +65,25 @@ msgstr ""
 msgid "The %1$s plugin requires the %2$s parent theme%3$sin order to work.%4$s"
 msgstr ""
 
-#: src/admin/class-settings.php:66
+#: src/Admin/class-settings.php:66
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: src/admin/class-settings.php:76
+#: src/Admin/class-settings.php:76
 msgid "This plugin uses the WordPress Customizer to set its options."
 msgstr ""
 
-#: src/admin/class-settings.php:77
+#: src/Admin/class-settings.php:77
 msgid ""
 "Click the button below to be taken directly to this plugin's section within "
 "the WordPress Customizer."
 msgstr ""
 
-#: src/admin/class-settings.php:79
+#: src/Admin/class-settings.php:79
 msgid "TODO: Add more text here"
 msgstr ""
 
-#: src/admin/class-settings.php:84
+#: src/Admin/class-settings.php:84
 msgid "Edit Plugin Settings in WP Customizer"
 msgstr ""
 

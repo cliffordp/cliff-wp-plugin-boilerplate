@@ -105,11 +105,11 @@ Here are some quick tips to use the functionality for this plugin:
 
 Following is the pre-built plugin structure. You can add your own new class files (include `namespace` and `use` at the top) by naming them correctly and putting the files in the most appropriate location.
 
-* `cliff-wp-plugin-boilerplate/src/admin` - admin-specific functionality
-* `cliff-wp-plugin-boilerplate/src/common` - functionality shared between the admin area and the public-facing parts
-* `cliff-wp-plugin-boilerplate/src/core` - plugin core to register hooks, load files etc
-* `cliff-wp-plugin-boilerplate/src/customizer` - WordPress Customizer functionality
-* `cliff-wp-plugin-boilerplate/src/frontend` - public-facing functionality
+* `cliff-wp-plugin-boilerplate/src/Admin` - admin-specific functionality
+* `cliff-wp-plugin-boilerplate/src/Common` - functionality shared between the admin area and the public-facing parts
+* `cliff-wp-plugin-boilerplate/src/Core` - plugin core to register hooks, load files etc
+* `cliff-wp-plugin-boilerplate/src/Customizer` - WordPress Customizer functionality
+* `cliff-wp-plugin-boilerplate/src/Frontend` - public-facing functionality
 
 ### PHP Version
 
