@@ -5,17 +5,17 @@
  * https://github.com/cliffordp/cliff-wp-plugin-boilerplate#plugin-structure
  * Introduction to the structure of this plugin's files:
  *
- * cliff-wp-plugin-boilerplate/src/class-plugin_data.php - hard-coded information about the plugin, such as text domain
- * cliff-wp-plugin-boilerplate/src/class-bootstrap.php - gets the plugin going, including setting required/recommended plugin dependencies
+ * cliff-wp-plugin-boilerplate/src/class-Plugin_Data.php - hard-coded information about the plugin, such as text domain
+ * cliff-wp-plugin-boilerplate/src/class-Bootstrap.php - gets the plugin going, including setting required/recommended plugin dependencies
  *
- * cliff-wp-plugin-boilerplate/src/frontend - public-facing functionality
- * cliff-wp-plugin-boilerplate/src/admin - admin-specific functionality
- * cliff-wp-plugin-boilerplate/src/common - functionality shared between the admin area and the public-facing parts
+ * cliff-wp-plugin-boilerplate/src/Frontend - public-facing functionality
+ * cliff-wp-plugin-boilerplate/src/Admin - admin-specific functionality
+ * cliff-wp-plugin-boilerplate/src/Common - functionality shared between the admin area and the public-facing parts
  *
- * cliff-wp-plugin-boilerplate/src/common/utilities - generic functions for things like debugging, processing multidimensional arrays, handling datetimes, etc.
- * cliff-wp-plugin-boilerplate/src/core - plugin core to register hooks, load files etc
- * cliff-wp-plugin-boilerplate/src/customizer - WordPress Customizer functionality
- * cliff-wp-plugin-boilerplate/src/shortcodes - where to create new shortcodes
+ * cliff-wp-plugin-boilerplate/src/Common/Utilities - generic functions for things like debugging, processing multidimensional arrays, handling datetimes, etc.
+ * cliff-wp-plugin-boilerplate/src/Core - plugin core to register hooks, load files etc
+ * cliff-wp-plugin-boilerplate/src/Customizer - WordPress Customizer functionality
+ * cliff-wp-plugin-boilerplate/src/Shortcodes - where to create new shortcodes
  *
  * This file is read by WordPress to generate the plugin information in the plugin
  * admin area. This file also includes all of the dependencies used by the plugin,
@@ -73,13 +73,13 @@ require_once( __DIR__ . '/vendor/autoload.php' );
 
 /**
  * Register Activation and Deactivation Hooks
- * This action is documented in src/core/class-activator.php
+ * This action is documented in src/Core/class-Activator.php
  */
 register_activation_hook( __FILE__, [ __NAMESPACE__ . '\Core\Activator', 'activate' ] );
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented src/core/class-deactivator.php
+ * This action is documented src/Core/class-Deactivator.php
  */
 register_deactivation_hook( __FILE__, [ __NAMESPACE__ . '\Core\Deactivator', 'deactivate' ] );
 

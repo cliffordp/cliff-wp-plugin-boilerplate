@@ -26,7 +26,7 @@ export const adminstyles = () => {
 		.pipe( gulpif( PRODUCTION, postcss( [ autoprefixer ] ) ) ) // Prefixes for firefox, ie etc.
 		.pipe( gulpif( PRODUCTION, cleanCss( { compatibility: '*' } ) ) ) // Minifies the CSS if in production mode; compatibility '*' ie10+ compatibility mode
 		.pipe( gulpif( !PRODUCTION, sourcemaps.write() ) ) // Writes the sourcemaps if not in production
-		.pipe( dest( 'src/admin/css' ) ); // Destination folder
+		.pipe( dest( 'src/Admin/css' ) ); // Destination folder
 };
 
 export const frontendstyles = () => {
@@ -36,7 +36,7 @@ export const frontendstyles = () => {
 		.pipe( gulpif( PRODUCTION, postcss( [ autoprefixer ] ) ) ) // Prefixes for firefox, ie etc.
 		.pipe( gulpif( PRODUCTION, cleanCss( { compatibility: '*' } ) ) ) // Minifies the CSS if in production mode; compatibility '*' ie10+ compatibility mode
 		.pipe( gulpif( !PRODUCTION, sourcemaps.write() ) ) // Writes the sourcemaps if not in production
-		.pipe( dest( 'src/frontend/css' ) ); // Destination folder
+		.pipe( dest( 'src/Frontend/css' ) ); // Destination folder
 };
 
 /**
@@ -76,7 +76,7 @@ export const adminscripts = () => {
 				jquery: 'jQuery',
 			},
 		} ) )
-		.pipe( dest( 'src/admin/js' ) );
+		.pipe( dest( 'src/Admin/js' ) );
 };
 
 export const frontendscripts = () => {
@@ -104,7 +104,7 @@ export const frontendscripts = () => {
 				jquery: 'jQuery',
 			},
 		} ) )
-		.pipe( dest( 'src/frontend/js' ) );
+		.pipe( dest( 'src/Frontend/js' ) );
 };
 
 // Watch task to run in development. So on save in a file everything gots recompiled.
