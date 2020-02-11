@@ -1,37 +1,63 @@
 import {src, dest, watch, series, parallel} from 'gulp';
-// Imports yargs to can retrieve commandline arguments. We use it for differentiating between production and development.
-import yargs from 'yargs';
-// We use gulp-sass to compile things
+
+/**
+ * To compile Sass to CSS.
+ *
+ * @link https://www.npmjs.com/package/gulp-sass
+ */
 import sass from 'gulp-sass';
-// We use gulp-clean-css for minifying
+
+/**
+ * To minify CSS.
+ *
+ * @link https://www.npmjs.com/package/gulp-clean-css
+ */
 import cleanCss from 'gulp-clean-css';
-// We use gulpif to differentiate if we are in production or in development
-import gulpif from 'gulp-if';
-//  We use postcss for transform CSS files
+
+/**
+ * Pipe CSS through PostCSS processors with a single parse.
+ *
+ * @link https://www.npmjs.com/package/gulp-postcss
+ */
 import postcss from 'gulp-postcss';
-// We use sourcemaps for development to see from which files our CSS comes
+
+/**
+ * Sourcemaps help developers see from which files the generated CSS comes.
+ *
+ * @link
+ */
 import sourcemaps from 'gulp-sourcemaps';
-// We use the autoprefixer for automatically prefix firefox, ie, chrome CSS.
+
+/**
+ * Automatically prefix CSS for Firefox, IE, Chrome CSS.
+ *
+ * @link
+ */
 import autoprefixer from 'autoprefixer';
-// We use webpack-stream to process our js files
+
+/**
+ * We use webpack-stream to process our js files
+ *
+ * @link
+ */
 import webpack from 'webpack-stream';
 
-// Constant used for production
-const PRODUCTION = yargs.argv.prod;
-
 export const adminstyles = () => {
-	return src( 'development/admin/scss/style.scss' ) // Main style input file. Here you should make style changes
-		.pipe( gulpif( !PRODUCTION, sourcemaps.init() ) ) // Initializes the sourcemaps if not in production
+	return src( 'development/admin/scss/style.scss' ) // Main style input file, which is where you should make style changes.
+		.pipe( sourcemaps.init() ) // Initializes the sourcemaps
 		.pipe( sass().on( 'error', sass.logError ) ) // Converts SCSS to CSS.
-		.pipe( gulpif( PRODUCTION, postcss( [ autoprefixer ] ) ) ) // Prefixes for firefox, ie etc.
-		.pipe( gulpif( PRODUCTION, cleanCss( { compatibility: '*' } ) ) ) // Minifies the CSS if in production mode; compatibility '*' ie10+ compatibility mode
-		.pipe( gulpif( !PRODUCTION, sourcemaps.write() ) ) // Writes the sourcemaps if not in production
+		.pipe( postcss( [ autoprefixer ] ) ) // Prefixes for firefox, ie etc.
+		/**
+		 * @link https://github.com/jakubpawlowicz/clean-css#compatibility-modes
+		 */
+		.pipe( cleanCss( { compatibility: '*' } ) )
+		.pipe( sourcemaps.write() ) // Writes the sourcemaps if not in production
 		.pipe( dest( 'src/Admin/css' ) ); // Destination folder
 };
 
 export const frontendstyles = () => {
 	return src( 'development/frontend/scss/style.scss' ) // Main style input file. Here you should make frontend style changes
-		.pipe( gulpif( !PRODUCTION, sourcemaps.init() ) ) // Initializes the sourcemaps if not in production
+		.pipe( sourcemaps.init() ) // Initializes the sourcemaps
 		.pipe( sass().on( 'error', sass.logError ) ) // Converts SCSS to CSS.
 		.pipe( gulpif( PRODUCTION, postcss( [ autoprefixer ] ) ) ) // Prefixes for firefox, ie etc.
 		.pipe( gulpif( PRODUCTION, cleanCss( { compatibility: '*' } ) ) ) // Minifies the CSS if in production mode; compatibility '*' ie10+ compatibility mode

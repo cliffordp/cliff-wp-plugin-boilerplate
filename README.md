@@ -13,14 +13,15 @@
 
 ### Highlights
 
-* Well documented throughout to help you get up and running quickly
-* Uses Composer, Sass (.scss), npm, and gulp to build the plugin and its assets (minifying CSS and JS)
-* Displays a wp-admin error notice to administrators if the required version of PHP is not met
-* Displays a wp-admin error notice to administrators if a required third-party plugin (e.g. WooCommerce) is not active
-* Easily add a new shortcode by extending the abstract `Shortcode` class and adding to the array of shortcodes in the `Manage_Shortcodes` class
-* Adds a wp-admin Settings page with a link to the plugin's options in the WordPress Customizer
-* Includes a custom *Sortable Checkboxes* control in the WordPress Customizer and examples how to use it (unfinished)
-* Includes a number of generally-helpful utility functions, such as getting all public post types, flattening an array of unknown dimensions, and option getters
+* Well documented throughout to help you get up and running quickly, favoring including everything and allowing you to delete what you don't need.
+* Uses [Composer](https://getcomposer.org/), [Sass (.scss)](https://sass-lang.com/), [npm](https://www.npmjs.com/), [gulp](https://gulpjs.com/), and [Babel](https://babeljs.io/) to build the plugin and its assets (CSS and JS), allowing us to serve both minified and non-minified sources, per `SCRIPT_DEBUG`, along with sourcemaps.
+* Displays a wp-admin error notice to administrators if the required version of PHP is not met.
+* Displays a wp-admin error notice to administrators if a required third-party plugin (e.g. WooCommerce) is not active.
+* Easily add a new shortcode by extending the abstract `Shortcode` class and adding to the array of shortcodes in the `Manage_Shortcodes` class.
+* Adds a wp-admin Settings page with a link to the plugin's options in the WordPress Customizer.
+* Includes a custom *Sortable Checkboxes* control in the WordPress Customizer and examples how to use it (unfinished).
+* Includes a number of generally-helpful utility functions, such as getting all public post types, flattening an array of unknown dimensions, and sane option setters and getters.
+* Uses Composer to zip the files for public distribution as an installable plugin, making sure to exclude build files and directories.
 
 ## Installation
 
@@ -115,6 +116,10 @@ Following is the pre-built plugin structure. You can add your own new class file
 
 This plugin requires PHP 7.1.0 or newer and will display a wp-admin error notice if activated in an environment that does not meet this or other requirements (such as required plugins or other dependencies you may code).
 
+You can see the current WordPress usage of each PHP version at https://wordpress.org/about/stats/. A requirement of 7.1+ meets 53.9% of all WordPress installs as of February 9, 2020. Most of those not using PHP 7.1+ are assumed to be inactive sites.
+
+Your requiring a PHP version update for anyone who might want to use your plugin will actually benefit them long-term, as their site will be quicker, more secure, and ready for future version bumps. In fact, [WordPress already recommends using PHP 7.3+](https://wordpress.org/about/requirements/) and has an ["Update PHP" help article](https://wordpress.org/support/update-php/).
+
 # Developer Notes
 
 ### Updates
@@ -165,6 +170,11 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 # Boilerplate's Changelog
 
 Documenting this project's progress...
+
+#### February 9, 2020
+* Fix the build process (JS and CSS) so unminified files get shipped so they can be loaded per the [SCRIPT_DEBUG](https://wordpress.org/support/article/debugging-in-wordpress/#script_debug) constant, according to WordPress best practices.
+* Tweak the build process so there's no longer a `PRODUCTION` argument for Gulp, since we now build things consistently and rely on the `SCRIPT_DEBUG` constant to load unminified files.
+* Improve the build process so [source maps get shipped](https://css-tricks.com/should-i-use-source-maps-in-production/). FYI: Source maps won't slow down your page load time because [they only get downloaded if using the browser's DevTools](https://stackoverflow.com/a/44316255/893907). And [security solely through obscurity](https://en.wikipedia.org/wiki/Security_through_obscurity) (e.g. obfuscation) is not secure.
 
 #### February 8, 2020
 * Rename PHP class file names to match class names, including capitalization, according to PSR-4
