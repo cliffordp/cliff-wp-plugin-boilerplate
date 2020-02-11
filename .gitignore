@@ -1,16 +1,38 @@
-*.local
-*.test
-*.zip
-.DS_Store
-_DS_Store
-.idea
-/.phpcs.xml
-/.phpunit.result.cache
+# Parcel
+.cache/
+coverage/
+dist/*
+!dist/index.html
+node_modules/
+
+# Composer
+/vendor/
 /composer.phar
+*.zip
+
+# PHP
+.phpcs.xml
+.phpunit.result.cache
+phpcs.xml
+phpunit.xml
+
+# Logs
 /logs/
 *.log
 npm-debug.log*
-/node_modules/
-/phpcs.xml
-/phpunit.xml
-/vendor/
+
+# IDE
+.idea
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Miscellaneous
+*.local
+*.test

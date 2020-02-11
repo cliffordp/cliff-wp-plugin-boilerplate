@@ -14,8 +14,9 @@
 ### Highlights
 
 * Well documented throughout to help you get up and running quickly, favoring including everything and allowing you to delete what you don't need.
-* Uses [Composer](https://getcomposer.org/), [Sass (.scss)](https://sass-lang.com/), [npm](https://www.npmjs.com/), [gulp](https://gulpjs.com/), and [Babel](https://babeljs.io/) to build the plugin and its assets (CSS and JS), allowing us to serve both minified and non-minified sources, per `SCRIPT_DEBUG`, along with sourcemaps.
-* Displays a wp-admin error notice to administrators if the required version of PHP is not met.
+* Primarily relies upon [Composer](https://getcomposer.org/) and [Parcel](https://parceljs.org/getting_started.html) to build the plugin and make some complex stuff pretty simple to get up and running quickly.
+* Plugin assets (CSS and JS) are served minified with external sourcemaps by default, but unminified files exist as well for when `SCRIPT_DEBUG` is `true`.
+* Displays a wp-admin error notice to administrators if the required version of PHP is not met, saving users from fatal.
 * Displays a wp-admin error notice to administrators if a required third-party plugin (e.g. WooCommerce) is not active.
 * Easily add a new shortcode by extending the abstract `Shortcode` class and adding to the array of shortcodes in the `Manage_Shortcodes` class.
 * Adds a wp-admin Settings page with a link to the plugin's options in the WordPress Customizer.
@@ -71,27 +72,15 @@ Here are some quick notes about Composer, in general, and this project's use of 
 1. Because `composer.json` has `"optimize-autoloader": true` inside the config key, *you will need to run Composer's `update` if you ever add a new PHP class*
     1. See https://getcomposer.org/doc/articles/autoloader-optimization.md for more details.
     1. It is set this way to lean toward distribution convenience more than development convenience.
-
-### Using NPM
-
-#### Getting Started
-
-Visit https://www.npmjs.com/ to learn all about it.
-
-### Using GULP
+    
+    
+### Using Parcel
 
 #### Getting Started
 
-Visit https://gulpjs.com/docs/en/getting-started/quick-start
+Visit https://parceljs.org/getting_started.html to run the `yarn` or `npm` command to install it.
 
-Here are some quick tips to use the functionality for this plugin:
-1. You need NPM installed on your desktop/laptop, not your server.
-1. The `package.json` file is the *instructions* file that tells NPM how to build the `node_modules` directory.
-1. Run `npm install` to generate your `package-lock.json` file.
-1. After that you can edit the scss files in the `development` directory and compile it by running gulp.
-1. During development, run `npm run start` to have gulp watch for any changes in the `development` directories and compile the files automatically.
-1. _Leave your terminal open until done with development. Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to end the watcher._
-1. When done with development (before creating the production ready zip file), run `npm build` so every file gets compiled and minified into the plugin's appropriate asset folders.
+
 
 #### Generating and Distributing the .zip
 
@@ -171,10 +160,9 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
-#### February 9, 2020
+#### February 12, 2020
 * Fix the build process (JS and CSS) so unminified files get shipped so they can be loaded per the [SCRIPT_DEBUG](https://wordpress.org/support/article/debugging-in-wordpress/#script_debug) constant, according to WordPress best practices.
-* Tweak the build process so there's no longer a `PRODUCTION` argument for Gulp, since we now build things consistently and rely on the `SCRIPT_DEBUG` constant to load unminified files.
-* Improve the build process so [source maps get shipped](https://css-tricks.com/should-i-use-source-maps-in-production/). FYI: Source maps won't slow down your page load time because [they only get downloaded if using the browser's DevTools](https://stackoverflow.com/a/44316255/893907). And [security solely through obscurity](https://en.wikipedia.org/wiki/Security_through_obscurity) (e.g. obfuscation) is not secure.
+* Entirely change the build process (from Gulp+Sass to Parcel+PostCSS) for many small gains and better foundation going forward.
 
 #### February 8, 2020
 * Rename PHP class file names to match class names, including capitalization, according to PSR-4
