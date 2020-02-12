@@ -2,34 +2,52 @@
 	"name": "cliff-wp-plugin-boilerplate",
 	"version": "1.0.0",
 	"description": "Here is a short description of the plugin.",
-	"main": "index.js",
 	"scripts": {
-		"clean": "rm dist/bundle.js",
-		"start": "parcel src/index.html",
-		"build-prod": "parcel build src/index.html"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://git@github.com/cliffordp/cliff-wp-plugin-boilerplate.git"
+		"dev": "run-s cleanup start",
+		"cleanup": "rm -rf .cache dist",
+		"start": "parcel ./_parcel/admin.js ./_parcel/frontend.js",
+		"build": "run-s cleanup build-min build-unmin",
+		"build-min": "parcel build ./_parcel/admin.js ./_parcel/frontend.js --out-dir dist/min",
+		"build-unmin": "parcel build ./_parcel/admin.js ./_parcel/frontend.js --no-minify"
 	},
 	"keywords": [
 		"wordpress",
 		"boilerplate"
 	],
-	"author": "",
 	"license": "GPL-3.0-or-later",
+	"repository": {
+		"type": "git",
+		"url": "git+https://git@github.com/cliffordp/cliff-wp-plugin-boilerplate.git"
+	},
 	"bugs": {
 		"url": "https://github.com/cliffordp/cliff-wp-plugin-boilerplate/issues"
 	},
 	"homepage": "https://github.com/cliffordp/cliff-wp-plugin-boilerplate#readme",
+	"author": {
+		"name": "Clifford Paulick",
+		"url": "https://tourkick.com/"
+	},
+	"postcss": {
+		"modules": true,
+		"plugins": {
+			"autoprefixer": {
+				"grid": true
+			}
+		}
+	},
+	"browserslist": [
+		"defaults"
+	],
 	"dependencies": {
-		"react": "^16.12.0",
-		"react-dom": "^16.12.0"
+		"@wordpress/blocks": "^6.12.0",
+		"postcss-modules": "^1.5.0"
 	},
 	"devDependencies": {
-		"parcel-bundler": "^1.12.4",
 		"@babel/core": "^7.8.4",
-		"@babel/preset-env": "^7.8.4",
-		"@babel/preset-react": "^7.8.3"
+		"@wordpress/babel-preset-default": "^4.10.0",
+		"@wordpress/components": "^9.2.0",
+		"@wordpress/scripts": "^7.1.0",
+		"npm-run-all": "^4.1.5",
+		"parcel-bundler": "^1.12.4"
 	}
 }

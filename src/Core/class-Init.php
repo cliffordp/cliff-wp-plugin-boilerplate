@@ -70,15 +70,6 @@ if ( ! class_exists( Init::class ) ) {
 		 * Register all of the hooks related to both the admin area and the public-facing functionality of the plugin.
 		 */
 		private function define_common_hooks(): void {
-			// TODO: Delete this if you don't have any assets that you want loaded on both front-end and back-end (i.e. always loaded everywhere)
-			$assets = new Common\Assets();
-
-			// Enqueue plugin's admin assets
-			$this->loader->add_action( 'wp_enqueue_scripts', $assets, 'enqueue_styles' );
-			$this->loader->add_action( 'admin_enqueue_scripts', $assets, 'enqueue_styles' );
-			$this->loader->add_action( 'wp_enqueue_scripts', $assets, 'enqueue_styles' );
-			$this->loader->add_action( 'admin_enqueue_scripts', $assets, 'enqueue_scripts' );
-
 			// $plugin_common = new Common\Common();
 			// Example: $this->loader->add_filter( 'gform_currencies', $plugin_common, 'gf_currency_usd_whole_dollars', 50 );
 		}

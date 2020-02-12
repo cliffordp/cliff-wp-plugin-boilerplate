@@ -16,6 +16,9 @@ node_modules/
 phpcs.xml
 phpunit.xml
 
+# Environment
+.env.local
+
 # Logs
 /logs/
 *.log
@@ -36,3 +39,4 @@ Thumbs.db
 # Miscellaneous
 *.local
 *.test
+*.testing

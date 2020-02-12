@@ -162,7 +162,7 @@ Documenting this project's progress...
 
 #### February 12, 2020
 * Fix the build process (JS and CSS) so unminified files get shipped so they can be loaded per the [SCRIPT_DEBUG](https://wordpress.org/support/article/debugging-in-wordpress/#script_debug) constant, according to WordPress best practices.
-* Entirely change the build process (from Gulp+Sass to Parcel+PostCSS) for many small gains and better foundation going forward.
+* Entirely change the build process (from Gulp+Sass to Parcel+PostCSS) for simplicity, many small gains, and a more flexible foundation going forward.
 
 #### February 8, 2020
 * Rename PHP class file names to match class names, including capitalization, according to PSR-4
