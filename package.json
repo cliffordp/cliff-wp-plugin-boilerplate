@@ -7,8 +7,8 @@
 		"cleanup": "rm -rf .cache dist",
 		"start": "parcel ./_parcel/admin.js ./_parcel/frontend.js",
 		"build": "run-s cleanup build-min build-unmin",
-		"build-min": "parcel build ./_parcel/admin.js ./_parcel/frontend.js --out-dir dist/min",
-		"build-unmin": "parcel build ./_parcel/admin.js ./_parcel/frontend.js --no-minify"
+		"build-min": "parcel build ./_parcel/admin.js ./_parcel/frontend.js --out-dir dist/min --public-url ./",
+		"build-unmin": "parcel build ./_parcel/admin.js ./_parcel/frontend.js --no-minify --public-url ./"
 	},
 	"keywords": [
 		"wordpress",
