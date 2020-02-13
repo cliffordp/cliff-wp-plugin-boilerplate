@@ -36,6 +36,7 @@
 		}
 	},
 	"dependencies": {
+		"jquery": "^3.4.1",
 		"postcss-modules": "^1.5.0"
 	},
 	"browserslist": [
