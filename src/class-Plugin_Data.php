@@ -95,6 +95,38 @@ if ( ! class_exists( Plugin_Data::class ) ) {
 		}
 
 		/**
+		 * Get the base URL of our assets directory, either /dist (unminified) or /dist/min (minified).
+		 *
+		 * Example usage:
+		 * Plugin_Data::get_assets_url_base() . 'admin.css'
+		 *
+		 * @return string
+		 */
+		public static function get_assets_url_base(): string {
+			$dist = 'dist/';
+
+			$path = self::plugin_dir_path() . $dist;
+
+			$min = 'min/';
+
+			if (
+				defined( 'SCRIPT_DEBUG' )
+				&& SCRIPT_DEBUG
+			) {
+				$min = '';
+			}
+
+			if(
+				! empty( $min )
+				&& ! file_exists( $path . $min )
+			) {
+				$min = '';
+			}
+
+			return self::plugin_dir_url() . $dist . $min;
+		}
+
+		/**
 		 * Get this plugin's basename.
 		 *
 		 * @return string 'cliff-wp-plugin-boilerplate/cliff-wp-plugin-boilerplate.php'
