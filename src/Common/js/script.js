@@ -1,14 +1,17 @@
+/**
+ * Code in this file will be ran in both Admin and Frontend contexts, prior to either's own JS.
+ *
+ * This file itself
+ */
 'use strict';
 
 /**
- * This is the way to make `$` usable as jQuery in other JS files.
- *
- * @link https://github.com/parcel-bundler/parcel/issues/2724#issuecomment-528201533
+ * TODO: Remove this comment and everything BELOW it if there isn't any JS to share between Admin and Frontend.
  */
-const jquery = require( 'jquery' );
-$ = window.$ = window.jQuery = jquery;
+alert( 'Common: Parcel build worked :) This is here to annoy you so you change things to your own. Work the TODOs ;o)' );
 
-$( document ).ready( () => {
-	// @TODO This is an example console.log(). Remove for production.
-	console.log( 'hello from Common. jQuery $ is working.' );
-} );
+(function ( common, $ ) {
+	$( document ).ready( () => {
+		console.log( 'Common: jQuery $ is working.' );
+	} );
+})( window.common = window.common || {}, jQuery );

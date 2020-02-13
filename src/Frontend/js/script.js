@@ -1,31 +1,15 @@
-"use strict";
+alert( 'Frontend: Parcel build worked :) This is here to annoy you so you change things to your own. Work the TODOs ;o)' );
 
 /**
- * All of the code for your public-facing JavaScript belongs in this directory, split into as many JS files as you wish.
+ * All of the code for your public-facing JavaScript belongs in this directory, split into as many JS files as you wish,
+ * such as just this one or feel free to add additional JS files.
  *
- * Note: It has been assumed you will write jQuery code here, so the
- * `$` function reference has been prepared for usage within the scope of this function.
- *
- * This enables you to define handlers, for when the DOM is ready:
- *
- * $(function() {
- *
- * });
- *
- * When the window is loaded:
- *
- * $( window ).load(function() {
- *
- * });
- *
- * ...and/or other possibilities.
- *
- * Ideally, it is not considered best practice to attach more than a
- * single DOM-ready or window-load handler for a particular page.
- *
- * The file is enqueued from src/Frontend/class-Assets.php.
+ * All *.js files in this directory get included in a build process.
+ * The single/concatenated .js file gets enqueued from src/Frontend/class-Assets.php.
  */
-$( document ).ready( () => {
-	// @TODO This is an example console.log(). Remove for production.
-	console.log( 'hello from Frontend. jQuery $ is working.' );
-} );
+(function ( frontend, $ ) {
+	$( document ).ready( () => {
+		// @TODO This is an example console.log(). Remove for production.
+		console.log( 'hello from Frontend. jQuery $ is working.' );
+	} );
+})( window.frontend = window.frontend || {}, jQuery );
