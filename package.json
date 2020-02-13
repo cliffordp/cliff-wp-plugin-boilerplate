@@ -4,8 +4,8 @@
 	"description": "Here is a short description of the plugin.",
 	"scripts": {
 		"dev": "run-s cleanup start",
-		"cleanup": "rm -rf .cache dist",
 		"start": "parcel ./_parcel/admin.js ./_parcel/frontend.js",
+		"cleanup": "rm -rf .cache .parcel-cache dist",
 		"build": "run-s cleanup build-min build-unmin",
 		"build-min": "parcel build ./_parcel/admin.js ./_parcel/frontend.js --out-dir dist/min --public-url ./",
 		"build-unmin": "parcel build ./_parcel/admin.js ./_parcel/frontend.js --no-minify --public-url ./"
