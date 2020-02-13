@@ -1,7 +1,7 @@
-import '../src/Common/css/*.pcss';
-import '../src/Admin/css/*.pcss';
+import pcssCommon from '../src/Common/pcss/*.pcss';
+import pcssAdmin from '../src/Admin/pcss/*.pcss';
 
-import '../src/Common/js/*.js';
-import '../src/Admin/js/*.js';
+import jsCommon from '../src/Common/js/*.js';
+import jsAdmin from '../src/Admin/js/*.js';
 
 console.log( 'hello from Admin' );
