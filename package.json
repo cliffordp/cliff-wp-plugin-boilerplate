@@ -27,17 +27,6 @@
 		"name": "Clifford Paulick",
 		"url": "https://tourkick.com/"
 	},
-	"postcss": {
-		"plugins": {
-			"autoprefixer": true,
-			"postcss-preset-env": true,
-			"postcss-combine-media-query": true,
-			"postcss-combine-duplicated-selectors": true
-		}
-	},
-	"dependencies": {
-		"postcss-modules": "^1.5.0"
-	},
 	"browserslist": [
 		"extends @wordpress/browserslist-config"
 	],
@@ -48,9 +37,6 @@
 		"@wordpress/browserslist-config": "^2.6.0",
 		"npm-run-all": "^4.1.5",
 		"parcel-bundler": "^1.12.4",
-		"postcss-combine-duplicated-selectors": "^8.1.0",
-		"postcss-combine-media-query": "^1.0.0",
-		"postcss-preset-env": "^6.7.0"
 		"parcel-plugin-externals": "^0.3.0"
 	}
 }
