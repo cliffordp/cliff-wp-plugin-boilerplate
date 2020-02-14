@@ -15,8 +15,8 @@
 
 * Well documented throughout to help you get up and running quickly, favoring including everything and allowing you to delete what you don't need.
 * Primarily relies upon [Composer](https://getcomposer.org/) and [Parcel](https://parceljs.org/getting_started.html) to build the plugin and make some complex stuff pretty simple to get up and running quickly.
-* Plugin assets (CSS and JS) are served minified with external sourcemaps by default, but unminified files exist as well for when `SCRIPT_DEBUG` is `true`.
-* Displays a wp-admin error notice to administrators if the required version of PHP is not met, saving users from fatal.
+* Plugin assets (CSS and JS) are served minified with external sourcemaps, but unminified files exist as well for when `SCRIPT_DEBUG` is `true` or you're running `npm run dev` for Parcel's watching / Hot Module Replacement (HMR).
+* Displays a wp-admin error notice to administrators if the required version of PHP is not met, saving users from a fatal error.
 * Displays a wp-admin error notice to administrators if a required third-party plugin (e.g. WooCommerce) is not active.
 * Easily add a new shortcode by extending the abstract `Shortcode` class and adding to the array of shortcodes in the `Manage_Shortcodes` class.
 * Adds a wp-admin Settings page with a link to the plugin's options in the WordPress Customizer.
@@ -78,9 +78,13 @@ Here are some quick notes about Composer, in general, and this project's use of 
 
 #### Getting Started
 
-Visit https://parceljs.org/getting_started.html to run the `yarn` or `npm` command to install it.
+Make sure to have _yarn_ or _npm_ installed on your computer. The following are obviously _npm_ commands:
 
-
+1. Open your plugin folder in your Terminal.
+1. Run `npm install` so your `package.json` files (*node_modules*) get installed.
+1. Run `npm run dev`, which will fire the "dev" command from the package.json's "scripts" (so you know where to look to understand the _real_ command it's running, which is Parcel).
+1. Activate your plugin and see your Admin area has goofy styles and JavaScript _alert()_ noise. This is to confirm Parcel is running successfully and to annoy you so you get started on your customizations. ;)
+1. Once your CSS and JS customizations are complete, run `npm run build` or just run Composer's _archive_ command, which will do a production build for you.
 
 #### Generating and Distributing the .zip
 
@@ -140,11 +144,9 @@ This WordPress Plugin Boilerplate is licensed under *GPL version 3 or any later 
 
 > A copy of the GNU General Public License should be included in the root of this plugin's directory. The file is named `license.txt`; if not, obtain one before using this software by visiting https://www.gnu.org/licenses/gpl-3.0.html or writing to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
-
 If you opt to use third-party code that is not compatible with this software's license, then you may need to switch to using code that is compatible.
 
 As an example, [here's a discussion](http://make.wordpress.org/themes/2013/03/04/licensing-note-apache-and-gpl/) that states GPLv2-only plugins could not bundle work licensed with Apache 2.0.
-
 
 # Credits
 
@@ -160,9 +162,11 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
-#### February 12, 2020
+#### February 13, 2020
+* Running Composer's _archive_ command now does an _npm_ build for production to ensure we've got the latest-greatest.
 * Fix the build process (JS and CSS) so unminified files get shipped so they can be loaded per the [SCRIPT_DEBUG](https://wordpress.org/support/article/debugging-in-wordpress/#script_debug) constant, according to WordPress best practices.
-* Entirely change the build process (from Gulp+Sass to Parcel+PostCSS) for simplicity, many small gains, and a more flexible foundation going forward.
+* Entirely change the build process (from Gulp+Sass to Parcel+PostCSS) for simplicity, many small gains (Hot Module Replacement + you can still use Sass instead of or in addition to PostCSS), and a more flexible foundation going forward.
+* Note that Parcel's PostCSS does nothing more than concatenate Common's _.pcss_ files with Admin's and Frontend's. It's not currently running _autoprefixer_ or other PostCSS plugins. This is an issue with Parcel 1 that I wasn't able to resolve and shipped anyway because it's still an overall improvement to the boilerplate. Parcel 2 should eventually resolve this issue.
 
 #### February 8, 2020
 * Rename PHP class file names to match class names, including capitalization, according to PSR-4
