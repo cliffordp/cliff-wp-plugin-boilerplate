@@ -24,30 +24,15 @@
 	"minimum-stability": "stable",
 	"archive": {
 		"exclude": [
+			"*",
+			".*",
+			"*/",
 			"!vendor/*",
-			"*.babel.js",
-			"*.env",
-			"*.local",
-			"*.test",
-			"*.zip",
-			"/.all-contributorsrc",
-			"/.babelrc",
-			"/.gitattributes",
-			"/.github",
-			"/.gitignore",
-			"/.phpcs.xml",
-			"/.phpunit.result.cache",
-			"/.travis.yml",
-			"/.wordpress-org",
-			"/README.md",
-			"/composer.json",
-			"/composer.lock",
-			"/composer.phar",
-			"/development/",
-			"/logs/",
-			"/node_modules/",
-			"/phpcs.xml",
-			"/phpunit.xml"
+			"!dist/*",
+			"!languages/*",
+			"!*.php",
+			"!*.txt",
+			"node_modules/"
 		]
 	},
 	"autoload": {
@@ -60,14 +45,8 @@
 		"optimize-autoloader": true
 	},
 	"scripts": {
-		"post-install-cmd": [
-			"gulp test"
-		],
-		"post-update-cmd": [
-			"gulp test"
-		],
 		"pre-archive-cmd": [
-			"gulp test"
+			"npm run build"
 		]
 	}
 }
