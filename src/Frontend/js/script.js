@@ -1,9 +1,15 @@
+alert( 'Frontend: Parcel build worked :) This is here to annoy you so you change things to your own. Work the TODOs ;o)' );
+
 /**
- * Do not modify this file. It will be overwritten and your changes will be lost with each build!
+ * All of the code for your public-facing JavaScript belongs in this directory, split into as many JS files as you wish,
+ * such as just this one or feel free to add additional JS files.
  *
- * IF YOU ARE SEEING THIS TEXT, YOU HAVE NOT YET SUCCESSFULLY RUN THE BUILD COMMAND!
- *
- * This file gets built via `npm` and is enqueued from `src/Frontend/class-Assets.php`
- *
- * Make all your frontend-specific JavaScript changes in the `development/frontend/js/script.js` file.
+ * All *.js files in this directory get included in a build process.
+ * The single/concatenated .js file gets enqueued from src/Frontend/class-Assets.php.
  */
+(function ( frontend, $ ) {
+	$( document ).ready( () => {
+		// @TODO This is an example console.log(). Remove for production.
+		console.log( 'hello from Frontend. jQuery $ is working.' );
+	} );
+})( window.frontend = window.frontend || {}, jQuery );

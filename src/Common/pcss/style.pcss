@@ -1,0 +1,17 @@
+/**
+ * TODO: Common: Remove for production.
+ * Checklist to confirm things are building successfully:
+ * - Make sure Common's rules get included in both Admin's and Frontend's, with Common's being first in the file
+ * NOTE: PostCSS plugins, including autoprefixer, are not currently with Parcel 1, so the following are things to watch out for but aren't working:
+ * - Make sure the generated CSS gets browser prefixes for `transition`
+ * - Make sure a duplicate rule (same selector and property) in Common + Admin or Common + Frontend get merged into a single rule
+ */
+a {
+	color: green;
+	font-size: 50px;
+	transition: transform 1s;
+}
+
+p {
+	color: red;
+}

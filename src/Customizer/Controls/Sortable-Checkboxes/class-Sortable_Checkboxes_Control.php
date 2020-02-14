@@ -36,7 +36,8 @@ if ( ! class_exists( Sortable_Checkboxes_Control::class ) ) {
 		}
 
 		/**
-		 * Enqueue our scripts and styles
+		 * Enqueue our scripts and styles.
+		 * TODO: `customize_controls_enqueue_scripts` hook per https://wordpress.stackexchange.com/a/138646/22702
 		 */
 		public function enqueue(): void {
 			wp_enqueue_script( $this->handle( 'js' ), plugin_dir_url( __FILE__ ) . 'js/script.js', [ 'jquery', 'jquery-ui-sortable' ], Plugin_Data::plugin_version(), true );

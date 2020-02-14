@@ -70,8 +70,7 @@ if ( ! class_exists( Init::class ) ) {
 		 * Register all of the hooks related to both the admin area and the public-facing functionality of the plugin.
 		 */
 		private function define_common_hooks(): void {
-			$plugin_common = new Common\Common();
-
+			// $plugin_common = new Common\Common();
 			// Example: $this->loader->add_filter( 'gform_currencies', $plugin_common, 'gf_currency_usd_whole_dollars', 50 );
 		}
 

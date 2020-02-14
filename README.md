@@ -13,14 +13,16 @@
 
 ### Highlights
 
-* Well documented throughout to help you get up and running quickly
-* Uses Composer, Sass (.scss), npm, and gulp to build the plugin and its assets (minifying CSS and JS)
-* Displays a wp-admin error notice to administrators if the required version of PHP is not met
-* Displays a wp-admin error notice to administrators if a required third-party plugin (e.g. WooCommerce) is not active
-* Easily add a new shortcode by extending the abstract `Shortcode` class and adding to the array of shortcodes in the `Manage_Shortcodes` class
-* Adds a wp-admin Settings page with a link to the plugin's options in the WordPress Customizer
-* Includes a custom *Sortable Checkboxes* control in the WordPress Customizer and examples how to use it (unfinished)
-* Includes a number of generally-helpful utility functions, such as getting all public post types, flattening an array of unknown dimensions, and option getters
+* Well documented throughout to help you get up and running quickly, favoring including everything and allowing you to delete what you don't need.
+* Primarily relies upon [Composer](https://getcomposer.org/) and [Parcel](https://parceljs.org/getting_started.html) to build the plugin and make some complex stuff pretty simple to get up and running quickly.
+* Plugin assets (CSS and JS) are served minified with external sourcemaps, but unminified files exist as well for when `SCRIPT_DEBUG` is `true` or you're running `npm run dev` for Parcel's watching / Hot Module Replacement (HMR).
+* Displays a wp-admin error notice to administrators if the required version of PHP is not met, saving users from a fatal error.
+* Displays a wp-admin error notice to administrators if a required third-party plugin (e.g. WooCommerce) is not active.
+* Easily add a new shortcode by extending the abstract `Shortcode` class and adding to the array of shortcodes in the `Manage_Shortcodes` class.
+* Adds a wp-admin Settings page with a link to the plugin's options in the WordPress Customizer.
+* Includes a custom *Sortable Checkboxes* control in the WordPress Customizer and examples how to use it (unfinished).
+* Includes a number of generally-helpful utility functions, such as getting all public post types, flattening an array of unknown dimensions, and sane option setters and getters.
+* Uses Composer to zip the files for public distribution as an installable plugin, making sure to exclude build files and directories.
 
 ## Installation
 
@@ -70,27 +72,19 @@ Here are some quick notes about Composer, in general, and this project's use of 
 1. Because `composer.json` has `"optimize-autoloader": true` inside the config key, *you will need to run Composer's `update` if you ever add a new PHP class*
     1. See https://getcomposer.org/doc/articles/autoloader-optimization.md for more details.
     1. It is set this way to lean toward distribution convenience more than development convenience.
-
-### Using NPM
-
-#### Getting Started
-
-Visit https://www.npmjs.com/ to learn all about it.
-
-### Using GULP
+    
+    
+### Using Parcel
 
 #### Getting Started
 
-Visit https://gulpjs.com/docs/en/getting-started/quick-start
+Make sure to have _yarn_ or _npm_ installed on your computer. The following are obviously _npm_ commands:
 
-Here are some quick tips to use the functionality for this plugin:
-1. You need NPM installed on your desktop/laptop, not your server.
-1. The `package.json` file is the *instructions* file that tells NPM how to build the `node_modules` directory.
-1. Run `npm install` to generate your `package-lock.json` file.
-1. After that you can edit the scss files in the `development` directory and compile it by running gulp.
-1. During development, run `npm run start` to have gulp watch for any changes in the `development` directories and compile the files automatically.
-1. _Leave your terminal open until done with development. Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to end the watcher._
-1. When done with development (before creating the production ready zip file), run `npm build` so every file gets compiled and minified into the plugin's appropriate asset folders.
+1. Open your plugin folder in your Terminal.
+1. Run `npm install` so your `package.json` files (*node_modules*) get installed.
+1. Run `npm run dev`, which will fire the "dev" command from the package.json's "scripts" (so you know where to look to understand the _real_ command it's running, which is Parcel).
+1. Activate your plugin and see your Admin area has goofy styles and JavaScript _alert()_ noise. This is to confirm Parcel is running successfully and to annoy you so you get started on your customizations. ;)
+1. Once your CSS and JS customizations are complete, run `npm run build` or just run Composer's _archive_ command, which will do a production build for you.
 
 #### Generating and Distributing the .zip
 
@@ -114,6 +108,10 @@ Following is the pre-built plugin structure. You can add your own new class file
 ### PHP Version
 
 This plugin requires PHP 7.1.0 or newer and will display a wp-admin error notice if activated in an environment that does not meet this or other requirements (such as required plugins or other dependencies you may code).
+
+You can see the current WordPress usage of each PHP version at https://wordpress.org/about/stats/. A requirement of 7.1+ meets 53.9% of all WordPress installs as of February 9, 2020. Most of those not using PHP 7.1+ are assumed to be inactive sites.
+
+Your requiring a PHP version update for anyone who might want to use your plugin will actually benefit them long-term, as their site will be quicker, more secure, and ready for future version bumps. In fact, [WordPress already recommends using PHP 7.3+](https://wordpress.org/about/requirements/) and has an ["Update PHP" help article](https://wordpress.org/support/update-php/).
 
 # Developer Notes
 
@@ -146,11 +144,9 @@ This WordPress Plugin Boilerplate is licensed under *GPL version 3 or any later 
 
 > A copy of the GNU General Public License should be included in the root of this plugin's directory. The file is named `license.txt`; if not, obtain one before using this software by visiting https://www.gnu.org/licenses/gpl-3.0.html or writing to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
-
 If you opt to use third-party code that is not compatible with this software's license, then you may need to switch to using code that is compatible.
 
 As an example, [here's a discussion](http://make.wordpress.org/themes/2013/03/04/licensing-note-apache-and-gpl/) that states GPLv2-only plugins could not bundle work licensed with Apache 2.0.
-
 
 # Credits
 
@@ -165,6 +161,12 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 # Boilerplate's Changelog
 
 Documenting this project's progress...
+
+#### February 13, 2020
+* Running Composer's _archive_ command now does an _npm_ build for production to ensure we've got the latest-greatest.
+* Fix the build process (JS and CSS) so unminified files get shipped so they can be loaded per the [SCRIPT_DEBUG](https://wordpress.org/support/article/debugging-in-wordpress/#script_debug) constant, according to WordPress best practices.
+* Entirely change the build process (from Gulp+Sass to Parcel+PostCSS) for simplicity, many small gains (Hot Module Replacement + you can still use Sass instead of or in addition to PostCSS), and a more flexible foundation going forward.
+* Note that Parcel's PostCSS does nothing more than concatenate Common's _.pcss_ files with Admin's and Frontend's. It's not currently running _autoprefixer_ or other PostCSS plugins. This is an issue with Parcel 1 that I wasn't able to resolve and shipped anyway because it's still an overall improvement to the boilerplate. Parcel 2 should eventually resolve this issue.
 
 #### February 8, 2020
 * Rename PHP class file names to match class names, including capitalization, according to PSR-4
