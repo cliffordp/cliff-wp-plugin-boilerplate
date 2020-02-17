@@ -1,6 +1,6 @@
 # WordPress Plugin Boilerplate with Support for Composer, PHP Namespaces, and WordPress Customizer
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 
@@ -266,6 +266,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/Stefan2409"><img src="https://avatars2.githubusercontent.com/u/17899913?v=4" width="100px;" alt=""/><br /><sub><b>Stefan Jöbstl</b></sub></a><br /><a href="https://github.com/cliffordp/cliff-wp-plugin-boilerplate/commits?author=Stefan2409" title="Code">💻</a></td>
+    <td align="center"><a href="https://neal.codes"><img src="https://avatars3.githubusercontent.com/u/5731551?v=4" width="100px;" alt=""/><br /><sub><b>Neal Fennimore</b></sub></a><br /><a href="https://github.com/cliffordp/cliff-wp-plugin-boilerplate/pulls?q=is%3Apr+reviewed-by%3Anealfennimore" title="Reviewed Pull Requests">👀</a></td>
   </tr>
 </table>
 
