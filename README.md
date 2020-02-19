@@ -52,6 +52,7 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
         1. `$required_theme`
         1. `$required_plugins`
 * Make sure everything in `package.json` is also appropriate to your project.
+* Go through all your PHP and JSON files to make sure your plugin descriptions are set.
 * Run Composer `install`
 * Run npm `install`
 * Activate the plugin
@@ -161,6 +162,9 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 # Boilerplate's Changelog
 
 Documenting this project's progress...
+
+#### February 19, 2020
+* Rework the Post Utility class' `post_id_helper()` to be simplified as well as accepting a Post Type filter.
 
 #### February 13, 2020
 * Running Composer's _archive_ command now does an _npm_ build for production to ensure we've got the latest-greatest.
