@@ -13,6 +13,24 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "nealfennimore",
+      "name": "Neal Fennimore",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/5731551?v=4",
+      "profile": "https://neal.codes",
+      "contributions": [
+        "review"
+      ]
+    },
+    {
+      "login": "scofennell",
+      "name": "Scott Fennell",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1585637?v=4",
+      "profile": "http://www.scottfennell.com/wp",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
