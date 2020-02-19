@@ -19,32 +19,32 @@ if ( ! class_exists( Posts::class ) ) {
 	class Posts {
 
 		/**
-		 * Get the Post ID from the current page or from a passed integer or WP_Post object.
+		 * Get the Post ID from a passed integer, a passed WP_Post object, or the current post.
 		 *
-		 * Helper function for getting Post ID. Accepts null or a Post ID. If no $post object exists, returns false.
+		 * Helper function for getting Post ID. Accepts `null` or a Post ID. Zero will return false.
+		 * If attempting to detect $post object and it is not found, returns `false` to avoid a PHP Notice.
 		 *
-		 * @param null|int|WP_Post $post
+		 * @param null|int|WP_Post $candidate  Post ID or object, `null` to get the ID of the global post object.
+		 * @param string|array     $post_types If post is not of one of these post types, will return false.
 		 *
-		 * @return int|false
+		 * @return int|false The verified Post ID. False if post does not exist or is not of correct type.
 		 */
-		public function post_id_helper( $post = null ) {
-			if (
-				! is_null( $post )
-				&& is_numeric( $post )
-				&& absint( $post ) > 0
-			) {
-				return (int) $post;
-			} elseif (
-				is_object( $post )
-				&& ! empty( $post->ID )
-			) {
-				return (int) $post->ID;
+		public function post_id_helper( $candidate = null, $post_types = [] ) {
+			$candidate_post = get_post( $candidate );
+
+			// Check if post exists at all.
+			if ( ! $candidate_post instanceof WP_Post ) {
+				return false;
+			}
+
+			// Check if the found post is of the correct type.
+			if ( empty( $post_types ) ) {
+				return $candidate_post->ID;
 			} else {
-				if (
-					! empty( $GLOBALS['post'] )
-					&& $GLOBALS['post'] instanceof WP_Post
-				) {
-					return get_the_ID();
+				$post_types = (array) $post_types;
+
+				if ( in_array( $candidate_post->post_type, $post_types, true ) ) {
+					return $candidate_post->ID;
 				} else {
 					return false;
 				}
@@ -69,7 +69,7 @@ if ( ! class_exists( Posts::class ) ) {
 				'fields'         => 'ids',
 				'posts_per_page' => - 1,
 				'post_type'      => 'post',
-				'author'         => $current_user->ID
+				'author'         => $current_user->ID,
 			];
 
 			return ( new WP_Query( $args ) )->get_posts();
