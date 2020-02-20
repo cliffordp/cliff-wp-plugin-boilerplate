@@ -9,9 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( TK_Request::class ) ) {
 	/**
-	 * The functionality shared between the admin and public-facing areas of the plugin.
+	 * Create `[tk_request]` to get a URL query parameter.
 	 *
-	 * Useful for things like utilities or hooking into something that affects both back-end and front-end.
+	 * TODO: This is just a demo shortcode. Remove this class unless you want to keep this little utility.
+	 *
+	 * @see \WP_Plugin_Name\Shortcodes\Manage_Shortcodes::$shortcode_classes
 	 */
 	final class TK_Request extends Shortcode {
 		/**

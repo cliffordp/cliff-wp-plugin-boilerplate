@@ -165,6 +165,8 @@ Documenting this project's progress...
 
 #### February 19, 2020
 * Rework the Post Utility class' `post_id_helper()` to be simplified as well as accepting a Post Type filter.
+* Enhance the abstract shortcode class to automatically register each shortcode with [Toolset Views](https://toolset.com/?aid=5336&affiliate_key=Lsvk04DjJOhq) (enabled/disable per shortcode).
+* Fix an array/string _type_ error in the abstract shortcode class.
 
 #### February 13, 2020
 * Running Composer's _archive_ command now does an _npm_ build for production to ensure we've got the latest-greatest.

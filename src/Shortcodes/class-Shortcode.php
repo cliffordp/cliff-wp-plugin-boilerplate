@@ -25,6 +25,13 @@ abstract class Shortcode {
 	public $common;
 
 	/**
+	 * Whether or not to register the shortcode with Toolset Views.
+	 *
+	 * @var bool
+	 */
+	public $register_with_toolset = true;
+
+	/**
 	 * Initialize the class and set its properties.
 	 */
 	public function __construct() {
@@ -40,6 +47,24 @@ abstract class Shortcode {
 		$shortcode = new static();
 
 		add_shortcode( $this->get_tag(), [ $shortcode, 'init_shortcode' ] );
+
+		if ( ! empty( $this->register_with_toolset ) ) {
+			add_filter( 'wpv_custom_inner_shortcodes', [ $shortcode, 'register_with_toolset' ] );
+		}
+	}
+
+	/**
+	 * Register the shortcode to Toolset Views automatically instead of having to do so manually at
+	 * wp-admin > Toolset > Settings > "Front-end Content" tab.
+	 *
+	 * @param array $custom_inner_api_shortcodes
+	 *
+	 * @return array
+	 */
+	public function register_with_toolset( array $custom_inner_api_shortcodes ): array {
+		$custom_inner_api_shortcodes = array_merge( $custom_inner_api_shortcodes, [ $this->get_tag() ] );
+
+		return array_unique( $custom_inner_api_shortcodes );
 	}
 
 	/**
@@ -143,11 +168,11 @@ abstract class Shortcode {
 	/**
 	 * Logic for the shortcode.
 	 *
-	 * @param array  $atts    The raw attributes from the shortcode.
-	 * @param string $content The raw value from using an enclosing (not self-closing) shortcode.
+	 * @param array|string $atts    The raw attributes from the shortcode.
+	 * @param string       $content The raw value from using an enclosing (not self-closing) shortcode.
 	 */
-	public function init_shortcode( array $atts = [], string $content = '' ) {
-		return $this->process_shortcode( $this->get_atts( $atts ), $content );
+	public function init_shortcode( $atts = [], string $content = '' ) {
+		return $this->process_shortcode( $this->get_atts( (array) $atts ), $content );
 	}
 
 	/**

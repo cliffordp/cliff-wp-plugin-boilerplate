@@ -23,14 +23,15 @@ if ( ! class_exists( Manage_Shortcodes::class ) ) {
 
 		/**
 		 * Register all of the hard-coded shortcode classes.
-		 *
-		 * @see \WP_Plugin_Name\Shortcodes\Shortcode::register()
 		 */
 		public function register_all_shortcodes(): void {
 			foreach ( $this->shortcode_classes as $shortcode_class ) {
 				$shortcode_class = __NAMESPACE__ . '\\' . $shortcode_class;
 
-				( new $shortcode_class )->register();
+				/** @var Shortcode $shortcode_class */
+				$shortcode_class = new $shortcode_class;
+
+				$shortcode_class->register();
 			}
 
 		}
