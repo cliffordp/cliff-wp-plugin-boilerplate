@@ -28,9 +28,10 @@
 
 The Boilerplate can be installed directly into your plugins folder "as-is". You will want to rename it and the classes inside of it to fit your needs.
 
-* Copy this *cliff-wp-plugin-boilerplate* repository/directory to your *wp-content/plugins* directory and rename your new plugin's directory
-* Delete the `.all-contributorsrc` file
-* Perform a ***case-sensitive*** *search and replace* at the project level, as follows:
+1. Copy this *cliff-wp-plugin-boilerplate* repository/directory to your *wp-content/plugins* directory and rename your new plugin's directory
+1. Delete the `.github` directory
+1. Delete the `.all-contributorsrc` file
+1. Perform a ***case-sensitive*** *search and replace* at the project level, as follows:
     1. Rename the `cliff-wp-plugin-boilerplate` directory to `your-plugin-name`. **This is your new plugin directory and must match your text domain.**
     1. Find the text `cliff-wp-plugin-boilerplate` and replace with `your-plugin-name` in all files
     1. **If you will be publishing your plugin to WordPress.org,** find the text `Plugin_Data::plugin_text_domain()` and replace with `your-plugin-name` in all files &mdash; and then you might not need the `use` import of the `Plugin_Data` class and could remove it as well
@@ -44,21 +45,21 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
     1. Find the text `cliffpaulick` and replace with your WordPress.org username (or delete it) in `readme.txt`
     1. Find the text `yourname` and replace with whatever you want [as your vendor name](https://getcomposer.org/doc/04-schema.md#name)) in `composer.json` (such as your GitHub username)
     1. Make other edits to `readme.txt` as appropriate for your own plugin
-* Make sure everything in `composer.json` is appropriate to your project.
+1. Make sure everything in `composer.json` is appropriate to your project.
     1. You do not need `tgmpa/tgm-plugin-activation` if your plugin does not require or recommend any other plugins or themes.
     1. Make sure to update the main plugin file's logic accordingly if you fully remove this library.
     1. Make sure to update the main plugin file's class properties:
         1. `$min_php`
         1. `$required_theme`
         1. `$required_plugins`
-* Make sure everything in `package.json` is also appropriate to your project.
-* Go through all your PHP and JSON files to make sure your plugin descriptions are set.
-* Run Composer `install`
-* Run npm `install`
-* Activate the plugin
-* Check if everything's working as it should:
+1. Make sure everything in `package.json` is also appropriate to your project.
+1. Go through all your PHP and JSON files to make sure your plugin descriptions are set.
+1. Run Composer `install`
+1. Run npm `install`
+1. Activate the plugin
+1. Check if everything's working as it should:
     1. Plugin is able to be activated without any errors
-* If it works (as it should), ***delete THIS README.md FILE***
+1. If it works (as it should), ***delete THIS README.md FILE***
 
 ### Using Composer
 
