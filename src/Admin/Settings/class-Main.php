@@ -1,6 +1,6 @@
 <?php
 
-namespace WP_Plugin_Name\Admin;
+namespace WP_Plugin_Name\Admin\Settings;
 
 use WP_Plugin_Name\Plugin_Data as Plugin_Data;
 use WP_Plugin_Name\Common\Settings as Common_Settings;
@@ -10,11 +10,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( Settings::class ) ) {
+if ( ! class_exists( Main::class ) ) {
 	/**
 	 * The admin-specific settings.
 	 */
-	class Settings {
+	class Main {
 
 		/**
 		 * Get the Settings instance from Common.
