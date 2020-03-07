@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "run-s cleanup start",
 		"cleanup": "rm -rf .cache .parcel-cache dist",
-		"start": "parcel ./_entry/admin.js ./_entry/frontend.js --public-url ./",
+		"start": "parcel ./_entry/admin.js ./_entry/frontend.js --https --hmr-hostname localhost --public-url ./",
 		"build": "run-s cleanup build-min build-unmin",
 		"build-min": "parcel build ./_entry/admin.js ./_entry/frontend.js --detailed-report --out-dir dist/min --public-url ./",
 		"build-unmin": "parcel build ./_entry/admin.js ./_entry/frontend.js --detailed-report --no-minify --public-url ./"

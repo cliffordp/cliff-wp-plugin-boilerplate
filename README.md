@@ -164,6 +164,9 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
+#### March 7, 2020
+* [Hot Module Replacement (HMR)](https://parceljs.org/hmr.html) is now working when the plugin is active on a localhost WordPress installation. This is awesome because, for example, you could edit your PCSS from `p { color: blue; }` to `p { color: green; }` and your text will be green-colored before you can even switch back from your code editor to your web browser! (Yes, it works for JavaScript, too.)
+
 #### February 19, 2020
 * Rework the Post Utility class' `post_id_helper()` to be simplified as well as accepting a Post Type filter.
 * Enhance the abstract shortcode class to automatically register each shortcode with [Toolset Views](https://toolset.com/?aid=5336&affiliate_key=Lsvk04DjJOhq) (enabled/disable per shortcode).
