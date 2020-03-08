@@ -52,7 +52,7 @@ if ( ! class_exists( Sortable_Checkboxes_Control::class ) ) {
 		 * @return string
 		 */
 		private function handle( string $suffix = '' ): string {
-			$result = Plugin_Data::plugin_text_domain() . '-' . $this->type;
+			$result = Plugin_Data::get_asset_handle( $this->type );
 			if ( ! empty( $suffix ) ) {
 				$result .= '-' . $suffix;
 			}

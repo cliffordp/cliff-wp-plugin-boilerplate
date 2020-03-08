@@ -50,6 +50,19 @@ if ( ! class_exists( Plugin_Data::class ) ) {
 		}
 
 		/**
+		 * Prefix a style/script handle with our text domain. (Make sure it's unique!)
+		 *
+		 * To be consistent while being unique. Note that we don't keep a list of each handle to prevent non-uniques.
+		 *
+		 * @param string $handle
+		 *
+		 * @return string
+		 */
+		public static function get_asset_handle( string $handle ): string {
+			return self::plugin_text_domain() . '-' . $handle;
+		}
+
+		/**
 		 * Get this plugin's text domain with underscores instead of hyphens.
 		 *
 		 * Used for saving options. Also useful for building namespaced hook names, class names, URLs, etc.

@@ -164,8 +164,13 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
-#### March 7, 2020
+#### March 8, 2020
+* Rebuild the Settings Page via React:
+    * Only loads CSS/JS for the Settings Page when we're on the Settings Page.
+    * Added a "greet box" in the heading area for things like your logo and social links.
+    * Added a few demo settings fields to help get up and running quickly.
 * [Hot Module Replacement (HMR)](https://parceljs.org/hmr.html) is now working when the plugin is active on a localhost WordPress installation. This is awesome because, for example, you could edit your PCSS from `p { color: blue; }` to `p { color: green; }` and your text will be green-colored before you can even switch back from your code editor to your web browser! (Yes, it works for JavaScript, too.)
+* Add easy asset handle maker to keep styles and scripts named consistently but uniquely. Example: `Plugin_Data::get_asset_handle( 'admin-settings' )`
 
 #### February 19, 2020
 * Rework the Post Utility class' `post_id_helper()` to be simplified as well as accepting a Post Type filter.

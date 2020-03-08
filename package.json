@@ -5,10 +5,11 @@
 	"scripts": {
 		"dev": "run-s cleanup start",
 		"cleanup": "rm -rf .cache .parcel-cache dist",
-		"start": "parcel ./_entry/admin.js ./_entry/frontend.js --https --hmr-hostname localhost --public-url ./",
+		"start": "parcel ./_entry/admin.js ./_entry/admin-settings.js ./_entry/frontend.js --https --hmr-hostname localhost --public-url ./",
 		"build": "run-s cleanup build-min build-unmin",
-		"build-min": "parcel build ./_entry/admin.js ./_entry/frontend.js --detailed-report --out-dir dist/min --public-url ./",
-		"build-unmin": "parcel build ./_entry/admin.js ./_entry/frontend.js --detailed-report --no-minify --public-url ./"
+		"build-min": "parcel build ./_entry/admin.js ./_entry/admin-settings.js ./_entry/frontend.js --detailed-report --out-dir dist/min --public-url ./",
+		"build-unmin": "parcel build ./_entry/admin.js ./_entry/admin-settings.js ./_entry/frontend.js --detailed-report --no-minify --public-url ./",
+		"check-licenses": "run-p \"wp-scripts check-licenses --prod --gpl2\" \"wp-scripts check-licenses --dev\""
 	},
 	"keywords": [
 		"wordpress",
@@ -27,16 +28,34 @@
 		"name": "Clifford Paulick",
 		"url": "https://tourkick.com/"
 	},
+	"dependencies": {
+		"@wordpress/components": "^9.2.3",
+		"@wordpress/dom-ready": "^2.7.0",
+		"classnames": "^2.2.6"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.8.7",
+		"@wordpress/browserslist-config": "^2.6.0",
+		"@wordpress/scripts": "^7.1.2",
+		"eslint-config-wordpress": "^2.0.0",
+		"eslint-plugin-wordpress": "^0.1.0",
+		"npm-run-all": "^4.1.5",
+		"parcel-bundler": "^1.12.4",
+		"parcel-plugin-externals": "^0.3.3",
+		"postcss-modules": "^1.5.0"
+	},
+	"postcss": {
+		"modules": true
+	},
+	"babel": {
+		"presets": [
+			"@wordpress/default"
+		]
+	},
 	"browserslist": [
 		"extends @wordpress/browserslist-config"
 	],
-	"external": {
+	"externals": {
 		"jquery": "*"
-	},
-	"devDependencies": {
-		"@wordpress/browserslist-config": "^2.6.0",
-		"npm-run-all": "^4.1.5",
-		"parcel-bundler": "^1.12.4",
-		"parcel-plugin-externals": "^0.3.0"
 	}
 }

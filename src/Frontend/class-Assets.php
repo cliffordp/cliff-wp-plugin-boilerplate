@@ -20,7 +20,7 @@ if ( ! class_exists( Assets::class ) ) {
 		 */
 		public function enqueue_styles(): void {
 			wp_enqueue_style(
-				Plugin_Data::plugin_text_domain(),
+				Plugin_Data::get_asset_handle( 'frontend' ),
 				Plugin_Data::get_assets_url_base() . 'frontend.css',
 				[],
 				Plugin_Data::plugin_version(),
@@ -33,7 +33,7 @@ if ( ! class_exists( Assets::class ) ) {
 		 */
 		public function enqueue_scripts(): void {
 			wp_enqueue_script(
-				Plugin_Data::plugin_text_domain(),
+				Plugin_Data::get_asset_handle( 'frontend' ),
 				Plugin_Data::get_assets_url_base() . 'frontend.js',
 				[ 'jquery' ],
 				Plugin_Data::plugin_version(),
