@@ -52,7 +52,8 @@ if ( ! class_exists( Plugin_Data::class ) ) {
 		/**
 		 * Prefix a style/script handle with our text domain. (Make sure it's unique!)
 		 *
-		 * To be consistent while being unique. Note that we don't keep a list of each handle to prevent non-uniques.
+		 * To be consistent while being unique. Note that we don't keep a list of each handle to prevent non-uniques,
+		 * and we probably shouldn't, due to things like `wp_localize_script()` needing the same handle as the enqueue.
 		 *
 		 * @param string $handle
 		 *

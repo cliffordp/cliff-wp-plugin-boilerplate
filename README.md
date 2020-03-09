@@ -15,7 +15,7 @@
 
 * Well documented throughout to help you get up and running quickly, favoring including everything and allowing you to delete what you don't need.
 * Primarily relies upon [Composer](https://getcomposer.org/) and [Parcel](https://parceljs.org/getting_started.html) to build the plugin and make some complex stuff pretty simple to get up and running quickly.
-* Plugin assets (CSS and JS) are served minified with external sourcemaps, but unminified files exist as well for when `SCRIPT_DEBUG` is `true` or you're running `npm run dev` for Parcel's watching / Hot Module Replacement (HMR).
+* Plugin assets (CSS and JS) are served minified with external sourcemaps, but unminified files exist as well for when `SCRIPT_DEBUG` is `true` or you're running Parcel's watching / Hot Module Replacement (HMR).
 * Displays a wp-admin error notice to administrators if the required version of PHP is not met, saving users from a fatal error.
 * Displays a wp-admin error notice to administrators if a required third-party plugin (e.g. WooCommerce) is not active.
 * Easily add a new shortcode by extending the abstract `Shortcode` class and adding to the array of shortcodes in the `Manage_Shortcodes` class.
@@ -164,11 +164,12 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
-#### March 8, 2020
-* Rebuild the Settings Page via React:
+#### March 9, 2020
+* Rebuild admin Settings Page:
+    * Rebuilt via React and JSX.
     * Only loads CSS/JS for the Settings Page when we're on the Settings Page.
     * Added a "greet box" in the heading area for things like your logo and social links.
-    * Added a few demo settings fields to help get up and running quickly.
+    * Added a few demo settings fields (like toggle) to help get up and running quickly.
 * [Hot Module Replacement (HMR)](https://parceljs.org/hmr.html) is now working when the plugin is active on a localhost WordPress installation. This is awesome because, for example, you could edit your PCSS from `p { color: blue; }` to `p { color: green; }` and your text will be green-colored before you can even switch back from your code editor to your web browser! (Yes, it works for JavaScript, too.)
 * Add easy asset handle maker to keep styles and scripts named consistently but uniquely. Example: `Plugin_Data::get_asset_handle( 'admin-settings' )`
 

@@ -56,23 +56,77 @@ if ( ! class_exists( Main::class ) ) {
 		 * Add the Settings page to the wp-admin menu.
 		 */
 		public function add_plugin_admin_menu(): void {
-			add_options_page(
+			$hook_suffix = add_options_page(
 				Plugin_Data::get_plugin_display_name(),
 				Plugin_Data::get_plugin_display_name(),
 				$this->settings->common->required_capability(),
 				$this->settings->get_settings_page_slug(),
 				[ $this, 'settings_page' ]
 			);
+
+			// Empty if insufficient permissions. We don't want our data put to page source in that case (but the action would not fire successfully anyway).
+			if ( ! empty( $hook_suffix ) ) {
+				add_action( "admin_print_scripts-{$hook_suffix}", [ $this, 'enqueue_settings_page_assets' ] );
+			}
+		}
+
+		/**
+		 * Register the JavaScript for the admin Settings Page area.
+		 */
+		public function enqueue_settings_page_assets() {
+			// CSS for our Settings Page.
+			wp_enqueue_style(
+				Plugin_Data::get_asset_handle( 'admin-settings' ),
+				Plugin_Data::get_assets_url_base() . 'admin-settings.css',
+				[
+					'wp-components',
+				],
+				Plugin_Data::plugin_version(),
+				'all'
+			);
+
+			// JS for our Settings Page.
+			wp_enqueue_script(
+				Plugin_Data::get_asset_handle( 'admin-settings' ),
+				Plugin_Data::get_assets_url_base() . 'admin-settings.js',
+				[
+					'wp-i18n',
+					'wp-api',
+					'wp-components',
+					'wp-element',
+				],
+				Plugin_Data::plugin_version(),
+				true
+			);
+
+			wp_localize_script(
+				Plugin_Data::get_asset_handle( 'admin-settings' ),
+				'initialData', // Only loads when on the page so shouldn't be a conflicting name.
+				[
+					'pluginInfo' => [
+						'name' => Plugin_Data::get_plugin_display_name(),
+						'version' => Plugin_Data::plugin_version(),
+					],
+					'imagesUrl'     => Plugin_Data::plugin_dir_url() . 'src/Admin/images/',
+					'opts'          => $this->settings->get_all_options(),
+				]
+			);
+
 		}
 
 		/**
 		 * Get the settings page ID, which is added as a body.class and is the $hook_suffix passed to 'admin_enqueue_scripts'.
 		 *
+		 * If you add your page as a submenu to anything other than "Settings", such as to be a top-level menu or
+		 * submenu of a Custom Post Type, you'll need to edit the hard-coded part of this function.
+		 *
+		 * @see \get_plugin_page_hookname()
+		 *
 		 * @return string
 		 */
 		public function get_settings_page_id(): string {
 			return 'settings_page_' . $this->settings->get_settings_page_slug();
-	}
+		}
 
 		/**
 		 * Detect if we are on our Settings Page.
@@ -104,7 +158,7 @@ if ( ! class_exists( Main::class ) ) {
 
 			?>
 			<div class="wrap" id="settings-page">
-				<?php echo ( new Header( $this->settings ) )->get_header_area(); ?>
+				<?php printf( '<h1>%s</h1>', Plugin_Data::get_plugin_display_name() . ' ' . $this->settings->get_settings_word() ); ?>
 
 				<p><?php esc_html_e( "This plugin uses the WordPress Customizer to set its options.", Plugin_Data::plugin_text_domain() ); ?></p>
 				<p><?php esc_html_e( "Click the button below to be taken directly to this plugin's section within the WordPress Customizer.", Plugin_Data::plugin_text_domain() ); ?></p>

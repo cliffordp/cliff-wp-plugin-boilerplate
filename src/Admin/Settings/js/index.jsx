@@ -7,9 +7,11 @@
 /**
  * Internal dependencies.
  */
+import ReactNotification from 'react-notifications-component';
 import domReady from '@wordpress/dom-ready';
-import Header from './header.js';
-import Footer from './footer.js';
+import Header from './Header.jsx';
+import Main from './Main.jsx';
+import Footer from './Footer.jsx';
 
 /**
  * WordPress dependencies.
@@ -17,7 +19,9 @@ import Footer from './footer.js';
 const App = () => {
 	return (
 		<>
+			<ReactNotification/>
 			<Header />
+			<Main />
 			<Footer />
 		</>
 	);

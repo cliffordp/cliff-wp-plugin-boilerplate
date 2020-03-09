@@ -112,6 +112,11 @@ if ( ! class_exists( Init::class ) ) {
 
 			// Admin menu
 			$this->loader->add_action( 'admin_menu', $settings, 'add_plugin_admin_menu' );
+
+			// Settings Fields
+			$fields = new Admin\Settings\Fields();
+
+			$this->loader->add_action( 'admin_init', $fields, 'register_settings' );
 		}
 
 		/**
