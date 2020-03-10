@@ -39,7 +39,6 @@ const Main = () => {
 	const [ isLoggingData, setLoggingData ] = useState( 'no' );
 
 	const settingsRef = useRef( null );
-	const notificationDOMRef = useRef( null );
 
 	const changeOptions = ( option, state, value ) => {
 		const model = new wp.api.models.Settings( {
@@ -116,10 +115,6 @@ const Main = () => {
 			dismiss: {
 				duration: 2000,
 				showIcon: true,
-			},
-			dismissable: {
-				click: true,
-				touch: true,
 			},
 		} );
 
