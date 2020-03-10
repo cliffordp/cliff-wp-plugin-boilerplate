@@ -29,23 +29,6 @@ const {
 const { _x } = wp.i18n;
 
 const Main = () => {
-	useEffect( () => {
-		wp.api.loadPromise.then( () => {
-			settingsRef.current = new wp.api.models.Settings();
-
-			if ( false === isAPILoaded ) {
-				settingsRef.current.fetch().then( response => {
-					setCSSModule( Boolean( response.themeisle_blocks_settings_css_module ) );
-					setBlocksAnimation( Boolean( response.themeisle_blocks_settings_blocks_animation ) );
-					setDefaultSection( Boolean( response.themeisle_blocks_settings_default_block ) );
-					setGoogleMapsAPI( response.themeisle_google_map_block_api_key );
-					setLoggingData( response.otter_blocks_logger_flag );
-					setAPILoaded( true );
-				} );
-			}
-		} );
-	}, [] );
-
 	const [ isAPILoaded, setAPILoaded ] = useState( false );
 	const [ isAPISaving, setAPISaving ] = useState( false );
 	const [ notification, setNotification ] = useState( null );
@@ -59,16 +42,16 @@ const Main = () => {
 	const notificationDOMRef = useRef( null );
 
 	const changeOptions = ( option, state, value ) => {
-		setAPISaving( true );
-
-		addNotification( _x( 'Updating settings…', 'notification' ), 'info' );
-
 		const model = new wp.api.models.Settings( {
 			// eslint-disable-next-line camelcase
 			[ option ]: value,
 		} );
 
 		const save = model.save();
+
+		setAPISaving( true );
+
+		addNotification( _x( 'Updating settings…', 'notification' ), 'info' );
 
 		save.success( ( response, status ) => {
 			store.removeNotification( notification );
@@ -142,6 +125,23 @@ const Main = () => {
 
 		setNotification( notification );
 	};
+
+	useEffect( () => {
+		wp.api.loadPromise.then( () => {
+			settingsRef.current = new wp.api.models.Settings();
+
+			if ( false === isAPILoaded ) {
+				settingsRef.current.fetch().then( response => {
+					setCSSModule( Boolean( response.themeisle_blocks_settings_css_module ) );
+					setBlocksAnimation( Boolean( response.themeisle_blocks_settings_blocks_animation ) );
+					setDefaultSection( Boolean( response.themeisle_blocks_settings_default_block ) );
+					setGoogleMapsAPI( response.themeisle_google_map_block_api_key );
+					setLoggingData( response.otter_blocks_logger_flag );
+					setAPILoaded( true );
+				} );
+			}
+		} );
+	}, [] );
 
 	if ( ! isAPILoaded ) {
 		return (
