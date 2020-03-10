@@ -113,8 +113,9 @@ const Main = () => {
 			container: 'bottom-left',
 			isMobile: true,
 			dismiss: {
-				duration: 2000,
+				duration: 2500,
 				showIcon: true,
+				onScreen: true,
 			},
 		} );
 
