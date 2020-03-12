@@ -77,7 +77,7 @@ if ( ! class_exists( Init::class ) ) {
 			$settings = new Common\Settings\Main();
 
 			// We need both action hooks here or else things won't work. Alternative is to just use a single 'init' hook.
-			$this->loader->add_action( 'admin_init', $settings, 'register_settings' );
+			$this->loader->add_action( 'init', $settings, 'register_settings' );
 			$this->loader->add_action( 'rest_api_init', $settings, 'register_settings' );
 		}
 
