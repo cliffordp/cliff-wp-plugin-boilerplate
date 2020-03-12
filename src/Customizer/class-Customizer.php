@@ -3,7 +3,7 @@
 namespace WP_Plugin_Name\Customizer;
 
 use WP_Customize_Manager;
-use WP_Plugin_Name\Common\Settings as Settings;
+use WP_Plugin_Name\Common\Settings\Customizer as Settings;
 use WP_Plugin_Name\Common\Utilities as Utils;
 use WP_Plugin_Name\Plugin_Data as Plugin_Data;
 

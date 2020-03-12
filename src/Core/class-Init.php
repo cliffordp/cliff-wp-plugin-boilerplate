@@ -72,6 +72,13 @@ if ( ! class_exists( Init::class ) ) {
 		private function define_common_hooks(): void {
 			// $plugin_common = new Common\Common();
 			// Example: $this->loader->add_filter( 'gform_currencies', $plugin_common, 'gf_currency_usd_whole_dollars', 50 );
+
+			// Settings Fields must not be behind an `is_admin()` check, since it's too late.
+			$settings = new Common\Settings\Main();
+
+			// We need both action hooks here or else things won't work. Alternative is to just use a single 'init' hook.
+			$this->loader->add_action( 'admin_init', $settings, 'register_settings' );
+			$this->loader->add_action( 'rest_api_init', $settings, 'register_settings' );
 		}
 
 		/**
@@ -112,11 +119,6 @@ if ( ! class_exists( Init::class ) ) {
 
 			// Admin menu
 			$this->loader->add_action( 'admin_menu', $settings, 'add_plugin_admin_menu' );
-
-			// Settings Fields
-			$fields = new Admin\Settings\Fields();
-
-			$this->loader->add_action( 'admin_init', $fields, 'register_settings' );
 		}
 
 		/**
