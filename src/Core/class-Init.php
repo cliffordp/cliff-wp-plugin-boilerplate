@@ -76,9 +76,9 @@ if ( ! class_exists( Init::class ) ) {
 			// Settings Fields must not be behind an `is_admin()` check, since it's too late.
 			$settings = new Common\Settings\Main();
 
-			// We need both action hooks here or else things won't work. Alternative is to just use a single 'init' hook.
+			// We use the single 'init' hook instead of 'admin_init' + 'rest_api_init' because that just didn't work, and this is how other plugins do it, too.
+			// This is also why registering the settings cannot be called only if is_admin().
 			$this->loader->add_action( 'init', $settings, 'register_settings' );
-			$this->loader->add_action( 'rest_api_init', $settings, 'register_settings' );
 		}
 
 		/**
