@@ -173,6 +173,7 @@ Documenting this project's progress...
 * [Hot Module Replacement (HMR)](https://parceljs.org/hmr.html) is now working when the plugin is active on a localhost WordPress installation. This is awesome because, for example, you could edit your PCSS from `p { color: blue; }` to `p { color: green; }` and your text will be green-colored before you can even switch back from your code editor to your web browser! (Yes, it works for JavaScript, too.)
 * Add easy asset handle maker to keep styles and scripts named consistently but uniquely. Example: `Plugin_Data::get_asset_handle( 'admin-settings' )`
 * `Loader()` itself now fires on `'init'` priority `3` instead of the default `10` so that we can add our own `add_action( 'init', ... );` without needing to also pass a priority greater than `10`. 
+* Add `Http` utility class, becoming a helper to get `$_REQUEST` values without needing to use the `[tk_request]` example shortcode.
 
 #### February 19, 2020
 * Rework the Post Utility class' `post_id_helper()` to be simplified as well as accepting a Post Type filter.
