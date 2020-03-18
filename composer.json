@@ -28,7 +28,7 @@
 			".*",
 			"*/",
 			"!vendor/*",
-			"!dist/*",
+			"!build/*",
 			"!languages/*",
 			"!*.php",
 			"!*.txt",

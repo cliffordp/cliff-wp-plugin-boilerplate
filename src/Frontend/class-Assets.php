@@ -2,6 +2,7 @@
 
 namespace WP_Plugin_Name\Frontend;
 
+use WP_Plugin_Name\Common\Assets as Common_Assets;
 use WP_Plugin_Name\Plugin_Data as Plugin_Data;
 
 // Abort if this file is called directly.
@@ -16,28 +17,29 @@ if ( ! class_exists( Assets::class ) ) {
 	class Assets {
 
 		/**
-		 * Register the stylesheets for the public-facing side of the site.
+		 * @var Common_Assets
 		 */
-		public function enqueue_styles(): void {
-			wp_enqueue_style(
-				Plugin_Data::get_asset_handle( 'frontend' ),
-				Plugin_Data::get_assets_url_base() . 'frontend.css',
-				[],
-				Plugin_Data::plugin_version(),
-				'all'
-			);
+		var $common_assets;
+
+		public function __construct() {
+			$this->common_assets = new Common_Assets();
 		}
 
 		/**
-		 * Register the JavaScript for the public-facing side of the site.
+		 * Enqueue the stylesheets for the public-facing side of the site.
+		 */
+		public function enqueue_styles(): void {
+			$this->common_assets->enqueue_style( 'frontend' );
+		}
+
+		/**
+		 * Enqueue the scripts for the public-facing side of the site.
 		 */
 		public function enqueue_scripts(): void {
-			wp_enqueue_script(
-				Plugin_Data::get_asset_handle( 'frontend' ),
-				Plugin_Data::get_assets_url_base() . 'frontend.js',
-				[ 'jquery' ],
-				Plugin_Data::plugin_version(),
-				false
+			$this->common_assets->enqueue_script(
+				'frontend',
+				'',
+				[ 'jquery' ]
 			);
 		}
 	}

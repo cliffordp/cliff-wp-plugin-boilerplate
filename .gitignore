@@ -1,9 +1,7 @@
-# Parcel
-.cache/
-.parcel-cache/
-coverage/
-dist/*
-!dist/index.html
+# @wordpress/scripts
+build/*
+
+# npm
 node_modules/
 
 # Composer
