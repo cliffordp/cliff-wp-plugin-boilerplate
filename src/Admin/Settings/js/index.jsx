@@ -8,28 +8,29 @@
  * Internal dependencies.
  */
 import ReactNotification from 'react-notifications-component';
-import domReady from '@wordpress/dom-ready';
 import Header from './Header.jsx';
 import Main from './Main.jsx';
 import Footer from './Footer.jsx';
+
+const {
+	Fragment
+} = wp.element;
 
 /**
  * WordPress dependencies.
  */
 const App = () => {
 	return (
-		<>
-			<ReactNotification/>
+		<Fragment>
+			<ReactNotification />
 			<Header />
 			<Main />
 			<Footer />
-		</>
+		</Fragment>
 	);
 };
 
-domReady( function() {
-	wp.element.render(
-		<App />,
-		document.getElementById( 'settings-page' )
-	);
-} );
+wp.element.render(
+	<App />,
+	document.getElementById( settingsData.entryId ),
+);

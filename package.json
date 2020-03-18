@@ -29,7 +29,6 @@
 		"url": "https://tourkick.com/"
 	},
 	"dependencies": {
-		"@wordpress/dom-ready": "^2.7.0",
 		"react-notifications-component": "^2.3.0"
 	},
 	"devDependencies": {

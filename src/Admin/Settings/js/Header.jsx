@@ -9,7 +9,7 @@ const Header = () => {
 		<header className="header">
 			<div className="greet-header">
 				<h1 className="greet-header-title">
-					{_x( `${initialData.pluginInfo.name} Settings`, "settings heading" )}
+					{_x( `${settingsData.pluginInfo.name} Settings`, "settings heading" )}
 				</h1>
 				<div className="greet-actions-right">
 					<div className="greet-actions-right">
@@ -26,16 +26,16 @@ const Header = () => {
 			</div>
 			<div className="container">
 				<img
-					src={initialData.imagesUrl + "fake-logo.png"} // Source: https://unsplash.com/photos/2LowviVHZ-E
+					src={settingsData.imagesBaseUrl + "fake-logo.png"} // Source: https://unsplash.com/photos/2LowviVHZ-E
 					alt={_x( "Logo", "logo alt text" )}
 					title={_x( "Logo", "logo title text" )}
 				/>
 
 				<span
-					title={`Version: ${initialData.pluginInfo.version}`}
+					title={`Version: ${settingsData.pluginInfo.version}`}
 					className="version"
 				>
-					{initialData.pluginInfo.version}
+					{settingsData.pluginInfo.version}
 				</span>
 			</div>
 
