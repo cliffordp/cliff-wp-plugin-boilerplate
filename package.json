@@ -9,6 +9,7 @@
 		"build-unmin": "parcel build ./_entry/admin.js ./_entry/admin-settings.js ./_entry/frontend.js --detailed-report --no-minify --public-url ./",
 		"restart": "run-s cleanup start",
 		"cleanup": "rm -rf .cache .parcel-cache dist",
+		"nuke": "rm -rf ./node_modules ./vendor; composer install; npm install; npm run restart",
 		"check-licenses": "run-p \"wp-scripts check-licenses --prod --gpl2\" \"wp-scripts check-licenses --dev\""
 	},
 	"keywords": [
