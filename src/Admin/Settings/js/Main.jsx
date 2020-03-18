@@ -78,35 +78,35 @@ const Main = () => {
 
 		save.success(
 			(
-			response,
-			status,
-		) => {
-			store.removeNotification( notification );
+				response,
+				status,
+			) => {
+				store.removeNotification( notification );
 
-			if ( 'success' === status ) {
-				setOptions( state, response[ option ] );
+				if ( 'success' === status ) {
+					setOptions( state, response[ option ] );
 
-				setTimeout( () => {
-					addNotification(
-						_x( 'Settings saved.', 'notification' ),
-						'success',
-					);
-					setAPISaving( false );
-				}, 800 );
-			}
+					setTimeout( () => {
+						addNotification(
+							_x( 'Settings saved.', 'notification' ),
+							'success',
+						);
+						setAPISaving( false );
+					}, 800 );
+				}
 
-			if ( 'error' === status ) {
-				setTimeout( () => {
-					addNotification(
-						_x( 'An unknown error occurred.', 'notification' ),
-						'danger',
-					);
-					setAPISaving( false );
-				}, 800 );
-			}
+				if ( 'error' === status ) {
+					setTimeout( () => {
+						addNotification(
+							_x( 'An unknown error occurred.', 'notification' ),
+							'danger',
+						);
+						setAPISaving( false );
+					}, 800 );
+				}
 
-			settingsRef.current.fetch();
-		} );
+				settingsRef.current.fetch();
+			} );
 
 		save.error(
 			(
@@ -190,88 +190,89 @@ const Main = () => {
 							)}
 						/>
 					</PanelRow>
-
 				</PanelBody>
 
-				<div>
-					<PanelBody
-						title={_x( 'APIs', 'panel title' )}
-					>
-						<PanelRow>
-							<BaseControl
-								label={_x( 'A text input', 'text input label' )}
-								help={'Allows lowercase, uppercase, underscores, and hyphens.'}
-							>
-								<input
-									type="text"
-									value={myTextInput}
-									placeholder={_x( 'abc_ABC-123', 'text input placeholder' )}
-									disabled={isAPISaving}
-									onChange={e => setMyTextInput( e.target.value )}
-								/>
-								<div className="text-field-button-group">
-									<Button
-										isPrimary
-										isLarge
-										disabled={isAPISaving}
-										onClick={() => changeOptions(
-											settingsData.optionsInfo.prefix + 'my_textinput',
-											'myTextInput',
-											myTextInput,
-										)}
-									>
-										{_x( 'Save', 'button text' )}
-									</Button>
-
-									<ExternalLink
-										href="https://developers.google.com/maps/documentation/javascript/get-api-key"
-									>
-										{_x( 'Get API Key', 'external link' )}
-									</ExternalLink>
-								</div>
-							</BaseControl>
-
-							<RadioControl
-								label={_x( 'My Radio', 'radio input label' )}
-								help={_x( 'Pick one of these… and only one. (FYI: They are the public post types.)', 'radio input help' )}
-								selected={myRadio}
-								options={settingsData.choicesFor.myRadio}
-								onChange={( myRadio ) => changeOptions(
-									settingsData.optionsInfo.prefix + 'my_radio',
-									'myRadio',
-									myRadio,
-								)}
+				<PanelBody
+					title={_x( 'APIs', 'panel title' )}
+				>
+					<PanelRow>
+						<BaseControl
+							label={_x( 'A text input', 'text input label' )}
+							help={'Allows lowercase, uppercase, underscores, and hyphens.'}
+						>
+							<input
+								type="text"
+								value={myTextInput}
+								placeholder={_x( 'abc_ABC-123', 'text input placeholder' )}
+								disabled={isAPISaving}
+								onChange={e => setMyTextInput( e.target.value )}
+								onBlur={event => {
+									document.getElementById( 'forMyTextInput' ).click();
+								}}
+								onKeyPress={event => {
+									if ( event.key === 'Enter' ) {
+										document.getElementById( 'forMyTextInput' ).click();
+									}
+								}}
 							/>
-						</PanelRow>
-					</PanelBody>
-				</div>
+
+							<Button
+								id={'forMyTextInput'}
+								isPrimary
+								isLarge
+								disabled={isAPISaving}
+								onClick={() => changeOptions(
+									settingsData.optionsInfo.prefix + 'my_textinput',
+									'myTextInput',
+									myTextInput,
+								)}
+							>
+								{_x( 'Save', 'button text' )}
+							</Button>
+
+							<ExternalLink
+								href="https://developers.google.com/maps/documentation/javascript/get-api-key"
+							>
+								{_x( 'Get API Key', 'external link' )}
+							</ExternalLink>
+						</BaseControl>
+
+						<RadioControl
+							label={_x( 'My Radio', 'radio input label' )}
+							help={_x( 'Pick one of these… and only one. (FYI: They are the public post types.)', 'radio input help' )}
+							selected={myRadio}
+							options={settingsData.choicesFor.myRadio}
+							onChange={( myRadio ) => changeOptions(
+								settingsData.optionsInfo.prefix + 'my_radio',
+								'myRadio',
+								myRadio,
+							)}
+						/>
+					</PanelRow>
+				</PanelBody>
 
 				<PanelBody>
-					<div className="info">
-						<h2>{_x( 'Got a question for us?', 'info section heading' )}</h2>
+					<h2>{_x( 'Got a question for us?', 'info section heading' )}</h2>
 
-						<p>{_x( 'We would love to hear from you.', 'info section paragraph' )}</p>
+					<p>{_x( 'We would love to hear from you.', 'info section paragraph' )}</p>
 
-						<div className="info-button-group">
-							<Button
-								isDefault
-								isLarge
-								target="_blank"
-								href="https://wordpress.org/support/plugin/cliff-wp-plugin-boilerplate"
-							>
-								{_x( 'Ask a question', 'button text for external support link' )}
-							</Button>
+					<Button
+						isDefault
+						isLarge
+						target="_blank"
+						href="https://wordpress.org/support/plugin/cliff-wp-plugin-boilerplate"
+					>
+						{_x( 'Ask a question', 'button text for external support link' )}
+					</Button>
 
-							<Button
-								isDefault
-								isLarge
-								target="_blank"
-								href="https://wordpress.org/support/plugin/cliff-wp-plugin-boilerplate/reviews/?rate=5#new-post"
-							>
-								{_x( 'Leave a review', 'button text for online review' )}
-							</Button>
-						</div>
-					</div>
+					<Button
+						isDefault
+						isLarge
+						target="_blank"
+						href="https://wordpress.org/support/plugin/cliff-wp-plugin-boilerplate/reviews/?rate=5#new-post"
+					>
+						{_x( 'Leave a review', 'button text for online review' )}
+					</Button>
 				</PanelBody>
 			</div>
 		</Fragment>
