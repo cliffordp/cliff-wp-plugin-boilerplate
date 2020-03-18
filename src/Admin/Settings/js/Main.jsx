@@ -36,7 +36,7 @@ const Main = () => {
 	const settingsRef = useRef( null );
 
 	// To process each one of our Settings fields, which is required in React when using "controlled inputs".
-	const [ myCheckbox, setMyCheckbox ] = useState( false );
+	const [ myToggle, setMyToggle ] = useState( false );
 	const [ myTextInput, setMyTextInput ] = useState( '' );
 	const [ myRadio, setMyRadio ] = useState( '' );
 
@@ -45,8 +45,8 @@ const Main = () => {
 		value,
 	) => {
 		switch ( option ) {
-			case 'myCheckbox':
-				setMyCheckbox( value );
+			case 'myToggle':
+				setMyToggle( value );
 				break;
 			case 'myTextInput':
 				setMyTextInput( value );
@@ -155,7 +155,7 @@ const Main = () => {
 				settingsRef.current.fetch().then( response => {
 					// 'response' is the result from the Settings API containing all the settings exposed via REST API, plus some general site info.
 					setAPILoaded( true );
-					setMyCheckbox( Boolean( response[ settingsData.optionsInfo.prefix + 'my_checkbox' ] ) );
+					setMyToggle( Boolean( response[ settingsData.optionsInfo.prefix + 'my_toggle' ] ) );
 					setMyTextInput( response[ settingsData.optionsInfo.prefix + 'my_textinput' ] );
 					setMyRadio( response[ settingsData.optionsInfo.prefix + 'my_radio' ] );
 				} );
@@ -180,13 +180,13 @@ const Main = () => {
 				>
 					<PanelRow>
 						<ToggleControl
-							label={_x( 'My Checkbox', 'toggle input label' )}
+							label={_x( 'My Toggle', 'toggle input label' )}
 							help={'The help text for this control.'}
-							checked={myCheckbox}
+							checked={myToggle}
 							onChange={() => changeOptions(
-								settingsData.optionsInfo.prefix + 'my_checkbox',
-								'myCheckbox',
-								! myCheckbox,
+								settingsData.optionsInfo.prefix + 'my_toggle',
+								'myToggle',
+								! myToggle,
 							)}
 						/>
 					</PanelRow>

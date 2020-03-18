@@ -221,7 +221,7 @@ if ( ! class_exists( Main::class ) ) {
 		public function register_settings() {
 			register_setting(
 				$this->get_option_prefix(),
-				$this->get_prefixed_option_key( 'my_checkbox' ),
+				$this->get_prefixed_option_key( 'my_toggle' ),
 				[
 					'type'              => 'boolean',
 					'default'           => false,
