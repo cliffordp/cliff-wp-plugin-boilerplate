@@ -3,7 +3,9 @@
 namespace WP_Plugin_Name\Customizer;
 
 use WP_Customize_Manager;
-use WP_Plugin_Name\Common\Settings as Settings;
+use WP_Plugin_Name\Common\Common;
+use WP_Plugin_Name\Common\Settings\Choices;
+use WP_Plugin_Name\Common\Settings\Customizer as Settings;
 use WP_Plugin_Name\Common\Utilities as Utils;
 use WP_Plugin_Name\Plugin_Data as Plugin_Data;
 
@@ -24,6 +26,20 @@ if ( ! class_exists( Customizer::class ) ) {
 	class Customizer {
 
 		/**
+		 * Get the Common instance.
+		 *
+		 * @var Common
+		 */
+		private $common;
+
+		/**
+		 * Get the Choices instance from Common.
+		 *
+		 * @var Choices
+		 */
+		private $choices;
+
+		/**
 		 * Get the Settings instance from Common.
 		 *
 		 * @var Settings
@@ -34,6 +50,8 @@ if ( ! class_exists( Customizer::class ) ) {
 		 * Initialize the class and set its properties.
 		 */
 		public function __construct() {
+			$this->common = new Common();
+			$this->choices = new Choices();
 			$this->settings = new Settings();
 		}
 
@@ -53,7 +71,7 @@ if ( ! class_exists( Customizer::class ) ) {
 			$wp_customize->selective_refresh->add_partial(
 				$this->customizer_edit_shortcut_setting(),
 				[
-					'selector'            => '.' . $this->settings->common->get_wrapper_class(),
+					'selector'            => '.' . $this->common->get_wrapper_class(),
 					'container_inclusive' => true,
 					'render_callback'     => function () {
 						// purposefully not set because the setting is dynamic
@@ -131,7 +149,7 @@ if ( ! class_exists( Customizer::class ) ) {
 				$this->get_setting_id( $setting_slug ),
 				[
 					'type'              => 'option',
-					'default'           => json_encode( $this->settings->get_choices_social_networks() ), // Select all by default
+					'default'           => json_encode( $this->choices->get_choices_social_networks() ), // Select all by default
 					'sanitize_callback' => [ $this->settings, 'sanitize_social_networks' ],
 				]
 			);
@@ -145,7 +163,7 @@ if ( ! class_exists( Customizer::class ) ) {
 						'description' => esc_html__( 'Checked ones will output; unchecked ones will not. Drag and drop to set your preferred display order.', Plugin_Data::plugin_text_domain() ),
 						'section'     => $this->get_section_id( $section_slug ),
 						'settings'    => $this->get_setting_id( $setting_slug ),
-						'choices'     => $this->settings->get_choices_social_networks(),
+						'choices'     => $this->choices->get_choices_social_networks(),
 					]
 				)
 			);
@@ -195,29 +213,13 @@ if ( ! class_exists( Customizer::class ) ) {
 						'description' => esc_html__( 'Which Post Types should be enabled?', Plugin_Data::plugin_text_domain() ),
 						'section'     => $this->get_section_id( $section_slug ),
 						'settings'    => $this->get_setting_id( $setting_slug ),
-						'choices'     => $this->get_choices_post_types(),
+						'choices'     => $this->choices->get_choices_post_types(),
 						'input_attrs' => [
 							'data-disable_sortable' => 'true',
 						],
 					]
 				)
 			);
-		}
-
-		/**
-		 * Get the Post Types options.
-		 *
-		 * @return array
-		 */
-		public function get_choices_post_types(): array {
-			$result = [];
-
-			foreach ( ( new Utils\Posts() )->get_public_post_types() as $type ) {
-				// name is the registered name and label is what the user sees.
-				$result[$type->name] = $type->label;
-			}
-
-			return $result;
 		}
 	}
 }
