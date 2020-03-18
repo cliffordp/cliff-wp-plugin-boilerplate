@@ -248,29 +248,6 @@ const Main = () => {
 					</PanelRow>
 				</PanelBody>
 
-				<PanelBody>
-					<h2>{_x( 'Got a question for us?', 'info section heading' )}</h2>
-
-					<p>{_x( 'We would love to hear from you.', 'info section paragraph' )}</p>
-
-					<Button
-						isDefault
-						isLarge
-						target="_blank"
-						href="https://wordpress.org/support/plugin/cliff-wp-plugin-boilerplate"
-					>
-						{_x( 'Ask a question', 'button text for external support link' )}
-					</Button>
-
-					<Button
-						isDefault
-						isLarge
-						target="_blank"
-						href="https://wordpress.org/support/plugin/cliff-wp-plugin-boilerplate/reviews/?rate=5#new-post"
-					>
-						{_x( 'Leave a review', 'button text for online review' )}
-					</Button>
-				</PanelBody>
 			</div>
 		</Fragment>
 	);
