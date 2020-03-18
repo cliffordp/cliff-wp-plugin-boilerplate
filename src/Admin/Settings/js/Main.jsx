@@ -206,9 +206,6 @@ const Main = () => {
 								placeholder={_x( 'abc_ABC-123', 'text input placeholder' )}
 								disabled={isAPISaving}
 								onChange={e => setMyTextInput( e.target.value )}
-								onBlur={event => {
-									document.getElementById( 'forMyTextInput' ).click();
-								}}
 								onKeyPress={event => {
 									if ( event.key === 'Enter' ) {
 										document.getElementById( 'forMyTextInput' ).click();
