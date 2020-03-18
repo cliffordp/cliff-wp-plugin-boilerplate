@@ -164,7 +164,7 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
-#### March 17, 2020
+#### March 18, 2020
 * Rebuild admin Settings Page:
     * Rebuilt via React and JSX.
     * Requires React version 16.8+ to be able to use [Hooks](https://reactjs.org/docs/hooks-intro.html), which means we now require [WordPress version 5.2+](https://core.trac.wordpress.org/browser/tags/5.2/package.json) (from [May 7, 2019](https://wordpress.org/download/releases/))
