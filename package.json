@@ -21,7 +21,7 @@
 	},
 	"scripts": {
 		"start": "wp-scripts start ./_entry/admin.js ./_entry/admin-settings.js ./_entry/frontend.js",
-		"build:wp": "wp-scripts build ./_entry/admin.js ./_entry/admin-settings.js ./_entry/frontend.js",
+		"build": "wp-scripts build ./_entry/admin.js ./_entry/admin-settings.js ./_entry/frontend.js",
 		"restart": "run-s cleanup start",
 		"cleanup": "rm -rf build",
 		"nuke": "rm -rf ./node_modules ./vendor; composer install; npm install; npm run restart",
@@ -45,8 +45,5 @@
 		"presets": [
 			"@wordpress/default"
 		]
-	},
-	"browserslist": [
-		"extends @wordpress/browserslist-config"
-	]
+	}
 }
