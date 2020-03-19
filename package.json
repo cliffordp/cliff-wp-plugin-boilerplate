@@ -52,10 +52,6 @@
 		"extends @wordpress/browserslist-config"
 	],
 	"externals": {
-		"jquery": "*",
-		"react": "*",
-		"react-dom": "*",
-		"wp": "*",
-		"lodash": "*"
+		"jquery": "*"
 	}
 }
