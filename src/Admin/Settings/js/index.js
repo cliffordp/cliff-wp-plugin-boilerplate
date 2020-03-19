@@ -8,9 +8,9 @@
  * Internal dependencies.
  */
 import ReactNotification from 'react-notifications-component';
-import Header from './Header.jsx';
-import Main from './Main.jsx';
-import Footer from './Footer.jsx';
+import Header from './Header.js';
+import Main from './Main.js';
+import Footer from './Footer.js';
 
 const {
 	Fragment

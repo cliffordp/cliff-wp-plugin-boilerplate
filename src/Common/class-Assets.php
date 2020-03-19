@@ -117,9 +117,13 @@ if ( ! class_exists( Assets::class ) ) {
 		 * @return array
 		 */
 		private function get_build_script_asset_info( string $file_name ): array {
-			$script_asset_path = $this->get_asset_php_path( $file_name );
+			// Only do this if you choose to have a single entry point that bundles all your files, which this boilerplate does not do by default.
+			// $script_asset_path = $this->get_asset_php_path( $file_name );
 
-			if ( file_exists( $script_asset_path ) ) {
+			if (
+				! empty( $script_asset_path )
+				&& file_exists( $script_asset_path )
+			) {
 				$script_asset_info = require( $script_asset_path );
 			} else {
 				$script_asset_info = [

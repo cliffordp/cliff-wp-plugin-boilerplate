@@ -26,6 +26,7 @@ if ( ! class_exists( Assets::class ) ) {
 		public function __construct() {
 			$this->common_assets = new Common_Assets();
 		}
+
 		/**
 		 * Register the stylesheets for every admin area.
 		 */

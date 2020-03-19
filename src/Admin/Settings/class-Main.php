@@ -2,6 +2,7 @@
 
 namespace WP_Plugin_Name\Admin\Settings;
 
+use WP_Plugin_Name\Common\Assets as Common_Assets;
 use WP_Plugin_Name\Common\Settings\Choices;
 use WP_Plugin_Name\Plugin_Data as Plugin_Data;
 use WP_Plugin_Name\Common\Common as Common;
@@ -27,6 +28,11 @@ if ( ! class_exists( Main::class ) ) {
 		public $common;
 
 		/**
+		 * @var Common_Assets
+		 */
+		var $common_assets;
+
+		/**
 		 * Get the Settings instance from Common.
 		 *
 		 * @var Common_Settings
@@ -37,8 +43,9 @@ if ( ! class_exists( Main::class ) ) {
 		 * Initialize the class and set its properties.
 		 */
 		public function __construct() {
-			$this->common = new Common();
-			$this->settings = new Common_Settings();
+			$this->common        = new Common();
+			$this->common_assets = new Common_Assets();
+			$this->settings      = new Common_Settings();
 		}
 
 		/**
@@ -85,56 +92,50 @@ if ( ! class_exists( Main::class ) ) {
 		 */
 		public function enqueue_settings_page_assets() {
 			// CSS for our Settings Page.
-			wp_enqueue_style(
-				Plugin_Data::get_asset_handle( 'admin-settings' ),
-				Plugin_Data::get_assets_url_base() . 'admin-settings.css',
-				[
-					'wp-components',
-				],
-				Plugin_Data::plugin_version(),
-				'all'
+			$this->common_assets->enqueue_style(
+				'admin-settings',
+				'',
+				[ 'wp-components' ]
 			);
 
 			// JS for our Settings Page.
-			wp_enqueue_script(
-				Plugin_Data::get_asset_handle( 'admin-settings' ),
-				Plugin_Data::get_assets_url_base() . 'admin-settings.js',
+			$this->common_assets->enqueue_script(
+				'admin-settings',
+				'',
 				[
 					'wp-api',
 					'wp-i18n',
 					'wp-components',
 					'wp-element',
-				],
-				Plugin_Data::plugin_version(),
-				true
+				]
 			);
 
 			$choices = new Choices();
 
 			wp_localize_script(
-				Plugin_Data::get_asset_handle( 'admin-settings' ),
+				Common_Assets::get_asset_handle( 'admin-settings' ),
 				'settingsData', // Only loads when on the page so shouldn't be a conflicting name.
 				[
 					// The CSS ID into which our React app inserts its content.
-					'entryId'     => Plugin_Data::plugin_text_domain(),
+					'entryId'       => Plugin_Data::plugin_text_domain(),
 					// Helpful for things like generating the <h1>.
-					'pluginInfo'  => [
+					'pluginInfo'    => [
 						'name'    => Plugin_Data::get_plugin_display_name(),
 						'version' => Plugin_Data::plugin_version(),
 					],
 					// The root location where we store images specific to the Admin area.
-					'imagesBaseUrl'   => Plugin_Data::plugin_dir_url() . 'src/Admin/images/',
-					'optionsInfo' => [
+					'imagesBaseUrl' => Plugin_Data::plugin_dir_url() . 'src/Admin/images/',
+					'optionsInfo'   => [
 						/**
 						 * The option prefix, in case we want to do any filtering for just our stuff.
 						 *
 						 * @see \WP_Plugin_Name\Common\Settings\Main::get_option_prefix()
 						 */
-						'prefix'     => $this->settings->get_option_prefix(),
+						'prefix'  => $this->settings->get_option_prefix(),
 						// The list of each of our option names, regardless of 'show_in_rest'.
 						'allKeys' => $this->settings->get_all_prefixed_options(),
 					],
-					'choicesFor' => [
+					'choicesFor'    => [
 						'myRadio' => $choices->get_choices_post_types( 'RadioControl' ),
 					],
 				]
