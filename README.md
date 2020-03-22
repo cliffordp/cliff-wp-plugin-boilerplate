@@ -166,6 +166,7 @@ Documenting this project's progress...
 
 #### March 22, 2020
 * Improve the JavaScript build for WordPress React, reducing the minified `admin-settings.js` file from 265.91 KB to 35.16 KB, minified (803.68 KB to 48.15 KB, unminified).
+* Improve the PostCSS build process to disable *modules* (rewriting selectors), enable writing nested CSS, and enable variables.
 * Fix Admin Settings page:
   * Protect components that get disabled while saving from getting permanently disabled if the API response never comes back (such as if PHP terminates).
   * Force displaying an error notification even if the API response was technically successful but isn't really due to a `null` response.
