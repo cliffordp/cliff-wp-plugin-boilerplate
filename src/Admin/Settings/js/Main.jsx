@@ -68,6 +68,12 @@ const Main = () => {
 
 		const save = model.save();
 
+		// In case API response never comes back (if PHP is terminated) or takes unexpectedly long (if paused during a PHP breakpoint), still clear the API Saving flag so components aren't disabled forever (avoid page reload if API failed).
+		setTimeout( () => {
+			setAPISaving( false );
+		}, 1800 ); // 1000 (updating) + 800 (saved) to match the most common scenario.
+
+
 		setAPISaving( true );
 
 		addNotification(
@@ -116,14 +122,24 @@ const Main = () => {
 				store.removeNotification( notification );
 
 				setTimeout( () => {
+					let params;
+					let msg;
+
+					if ( response.responseJSON.data.params ) {
+						params = response.responseJSON.data.params;
+						msg = params [ Object.keys( params )[ 0 ] ];
+					} else {
+						msg = response.responseJSON.message;
+					}
+
 					addNotification(
-						response.responseJSON.message
-							? response.responseJSON.message
+						msg
+							? msg
 							: _x( 'An unknown error occurred.', 'notification' ),
 						'danger',
 					);
 					setAPISaving( false );
-				}, 800 );
+				}, 1500 ); // Longer than success' to allow reading the error message.
 			} );
 	};
 

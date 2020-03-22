@@ -164,6 +164,8 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
+#### March 21, 2020
+* Admin Settings page: Protect components that get disabled while saving from getting permanently disabled if the API response never comes back (such as if PHP terminates). 
 #### March 18, 2020
 * Rebuild admin Settings Page:
     * Rebuilt via React and JSX.
