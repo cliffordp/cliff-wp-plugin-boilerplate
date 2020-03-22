@@ -1,3 +1,102 @@
 /**
- * TODO: Admin Settings styling.
+ * Full width (no padding/margin) on all widths.
  */
+.wrap {
+	margin-top: 0;
+}
+
+/**
+ * All WP Components
+ */
+.components-panel__body {
+	margin: 25px 0;
+	background: #fff;
+
+	.components-panel__body-toggle {
+		border-bottom: 1px solid #191e23; /* Same as expand/collapse arrow */
+	}
+
+	.components-panel__row {
+		padding: 20px 10px 10px;
+
+		.components-base-control {
+
+			.components-base-control__field {
+				display: flex;
+				align-items: center;
+				margin-bottom: 10px;
+			}
+
+		}
+	}
+
+}
+
+/**
+ * Notifications
+ */
+.react-notification-root {
+	.notification-container-bottom-left {
+		bottom: 30px;
+	}
+
+	.notification-container-mobile-bottom {
+		bottom: 60px;
+	}
+}
+
+
+/**
+ * Heading
+ */
+.header {
+	padding: 20px;
+	background-color: #fff;
+	box-shadow: 0 1px 0 rgba(213, 213, 213, 0.5), 0 1px 2px #eee;
+
+	img {
+		max-width: 200px;
+	}
+
+	.version {
+		background-color: #e5e5e5;
+		border-radius: 3px;
+		font-size: 0.8rem;
+		margin-left: 10px;
+		padding: 2px 7px;
+	}
+}
+
+@media ( max-width: 782px ) {
+	.header {
+		.container {
+
+			.logo {
+				justify-content: center;
+			}
+		}
+	}
+
+}
+
+
+/**
+ * Main
+ */
+
+/**
+ * Footer
+ */
+.footer {
+	text-align: center;
+	color: #72777c;
+	font-style: italic;
+	border-top: 1px #e1e1e1 solid;
+	border-bottom: 1px #e1e1e1 solid;
+	padding: 20px;
+	margin: 2rem 0 1.5rem;
+
+	.container {
+		margin: 0 auto;
+	}
+}
