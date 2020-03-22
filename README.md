@@ -169,6 +169,7 @@ Documenting this project's progress...
 Admin Settings page:
 * Protect components that get disabled while saving from getting permanently disabled if the API response never comes back (such as if PHP terminates).
 * Force displaying an error notification even if the API response was technically successful but isn't really due to a `null` response.
+* Fix the example radio button's validation logic in `register_setting()` by adding the correct "show_in_rest" > "schema" > "enum" args, removing the "sanitize_callback" arg, and using the "rest_api_init" hook.
 
 #### March 18, 2020
 * Rebuild admin Settings Page:

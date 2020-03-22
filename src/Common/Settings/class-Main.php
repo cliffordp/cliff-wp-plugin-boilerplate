@@ -241,14 +241,28 @@ if ( ! class_exists( Main::class ) ) {
 				]
 			);
 
+			/**
+			 * The "show_in_rest" > "schema" > "enum" validation is the same concept as "sanitize_callback" logic but
+			 * that's not the correct way to register a setting to be used by the REST API (e.g. wp-admin's React
+			 * Settings page). If someone tries to set a value other than these white-listed options (or our validation
+			 * is misconfigured, such as using "sanitize_callback"), the API will return a 400 error due to
+			 * "invalid parameter(s)". If we set "show_in_rest" to "true" for a "string" setting without adding "schema",
+			 * it will work and have some sanitizing/escaping by default (so script tags won't be allowed at least),
+			 * but it'll allow saving unexpected values to the database as long as it's still a string, for example.
+			 *
+			 * @see \WP_REST_Request::has_valid_params() Where the validation happens.
+			 */
 			register_setting(
 				$this->get_option_prefix(),
 				$this->get_prefixed_option_key( 'my_radio' ),
 				[
-					'type'              => 'string',
-					'sanitize_callback' => [ $this->choices, 'sanitize_post_types' ],
-					'default'           => '',
-					'show_in_rest'      => true,
+					'type'         => 'string',
+					'default'      => '',
+					'show_in_rest' => [
+						'schema' => [
+							'enum' => array_keys( $this->choices->get_choices_post_types() ),
+						],
+					],
 				]
 			);
 

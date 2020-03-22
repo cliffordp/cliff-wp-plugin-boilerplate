@@ -259,7 +259,7 @@ const Main = () => {
 							label={_x( 'My Radio', 'radio input label' )}
 							help={_x( 'Pick one of these… and only one. (FYI: They are the public post types.)', 'radio input help' )}
 							selected={myRadio}
-							options={settingsData.choicesFor.myRadio}
+							options={settingsData.choicesFor.my_radio}
 							onChange={( myRadio ) => changeOptions(
 								settingsData.optionsInfo.prefix + 'my_radio',
 								'myRadio',
