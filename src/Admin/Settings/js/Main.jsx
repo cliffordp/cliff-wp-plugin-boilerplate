@@ -203,7 +203,6 @@ const Main = () => {
 			<div className="main">
 				<PanelBody
 					title={_x( 'Modules', 'panel title' )}
-					className="this-thing"
 				>
 					<PanelRow>
 						<ToggleControl

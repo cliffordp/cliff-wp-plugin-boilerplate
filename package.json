@@ -52,6 +52,6 @@
 		"extends @wordpress/browserslist-config"
 	],
 	"externals": {
-		"jquery": "*"
+		"@wordpress/element": "wp.element"
 	}
 }
