@@ -68,10 +68,14 @@ const Main = () => {
 
 		const save = model.save();
 
-		// In case API response never comes back (if PHP is terminated) or takes unexpectedly long (if paused during a PHP breakpoint), still clear the API Saving flag so components aren't disabled forever (avoid page reload if API failed).
+		/**
+		 * In case API response never comes back (if PHP is terminated) or takes unexpectedly long (if paused during a
+		 * PHP breakpoint), still clear the API Saving flag so components aren't disabled forever (avoid page reload if
+		 * API failed). The timeout is greater than 1000 (updating notification) + 800 (saved notification).
+		 */
 		setTimeout( () => {
 			setAPISaving( false );
-		}, 1800 ); // 1000 (updating) + 800 (saved) to match the most common scenario.
+		}, 5000 );
 
 
 		setAPISaving( true );
