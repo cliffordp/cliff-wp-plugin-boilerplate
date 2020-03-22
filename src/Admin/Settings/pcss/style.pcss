@@ -9,24 +9,28 @@
  * All WP Components
  */
 .components-panel__body {
+	max-width: 1200px;
 	margin: 25px 0;
 	background: #fff;
 
 	.components-panel__body-toggle {
-		border-bottom: 1px solid #191e23; /* Same as expand/collapse arrow */
+		border-bottom: 1px solid rgba(25, 30, 35, .3);
 	}
 
 	.components-panel__row {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		justify-content: center;
 		padding: 20px 10px 10px;
 
 		.components-base-control {
+			flex: 2 1 50%;
 
 			.components-base-control__field {
-				display: flex;
-				align-items: center;
+				margin-right: 30px;
 				margin-bottom: 10px;
 			}
-
 		}
 	}
 
@@ -36,6 +40,7 @@
  * Notifications
  */
 .react-notification-root {
+
 	.notification-container-bottom-left {
 		bottom: 30px;
 	}
@@ -68,6 +73,7 @@
 }
 
 @media ( max-width: 782px ) {
+
 	.header {
 		.container {
 
