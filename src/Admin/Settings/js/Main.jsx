@@ -89,6 +89,11 @@ const Main = () => {
 			) => {
 				store.removeNotification( notification );
 
+				// Avoid showing success message when stuff really didn't happen as expected.
+				if( null === response[ option ] ) {
+					status = 'error';
+				}
+
 				if ( 'success' === status ) {
 					setOptions( state, response[ option ] );
 
