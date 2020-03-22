@@ -34,10 +34,10 @@ const Header = () => {
 				/>
 
 				<span
-					title={`Version: ${settingsData.pluginInfo.version}`}
+					title={_x( `Version: ${settingsData.pluginInfo.version}`, "version title text" )}
 					className="version"
 				>
-					{settingsData.pluginInfo.version}
+					{_x( `Version: ${settingsData.pluginInfo.version}`, "version text" )}
 				</span>
 			</div>
 
