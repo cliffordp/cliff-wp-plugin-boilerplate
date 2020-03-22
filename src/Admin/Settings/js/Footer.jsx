@@ -1,3 +1,5 @@
+/*global wp */
+
 /**
  * WordPress dependencies.
  */

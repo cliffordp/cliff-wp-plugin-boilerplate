@@ -1,3 +1,5 @@
+/*global wp, settingsData */
+
 /**
  * External dependencies.
  */
