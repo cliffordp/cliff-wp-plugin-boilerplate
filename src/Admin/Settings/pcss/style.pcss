@@ -6,12 +6,25 @@
 }
 
 /**
- * All WP Components
+ * WordPress' Components
  */
 .components-panel__body {
-	max-width: 1200px;
-	margin: 25px 0;
 	background: #fff;
+	margin: 25px 0;
+
+	&:first-child {
+		margin-top: 0;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	&:not(.is-opened) {
+		.components-button {
+			padding-right: 16px;
+		}
+	}
 
 	.components-panel__body-toggle {
 		border-bottom: 1px solid rgba(25, 30, 35, .3);
@@ -33,7 +46,99 @@
 			}
 		}
 	}
+}
 
+/**
+ * Align button Dashicons with button text.
+ */
+.components-button {
+	align-items: center;
+}
+
+/**
+ * Tab buttons don't get styling like they should so we add it ourselves.
+ */
+.components-tab-panel__tabs {
+	.components-button {
+		box-sizing: unset;
+		background-color: #e5e5e5;
+		height: 42px;
+		font-size: 1.1rem;
+		padding: 6px 12px;
+		margin-right: 4px;
+
+		&.is-active {
+			background-color: #fff;
+
+			&:not(disabled) {
+				box-shadow: inset 0 -3px $admin-color-default-primary;
+
+				body.admin-color-sunrise & {
+					box-shadow: inset 0 -3px $admin-color-sunrise-primary;
+				}
+
+				body.admin-color-ocean & {
+					box-shadow: inset 0 -3px $admin-color-ocean-primary;
+				}
+
+				body.admin-color-midnight & {
+					box-shadow: inset 0 -3px $admin-color-midnight-primary;
+				}
+
+				body.admin-color-ectoplasm & {
+					box-shadow: inset 0 -3px $admin-color-ectoplasm-primary;
+				}
+
+				body.admin-color-coffee & {
+					box-shadow: inset 0 -3px $admin-color-coffee-primary;
+				}
+
+				body.admin-color-blue & {
+					box-shadow: inset 0 -3px $admin-color-blue-primary;
+				}
+
+				body.admin-color-light & {
+					box-shadow: inset 0 -3px $admin-color-light-primary;
+				}
+			}
+		}
+	}
+}
+
+.components-tab-panel__tab-content {
+	padding: 6px;
+	border-left-width: 3px;
+	border-left-style: solid;
+
+	border-left-color: $admin-color-default-primary;
+
+	body.admin-color-sunrise & {
+		border-left-color: $admin-color-sunrise-primary;
+	}
+
+	body.admin-color-ocean & {
+		border-left-color: $admin-color-ocean-primary;
+	}
+
+	body.admin-color-midnight & {
+		border-left-color: $admin-color-midnight-primary;
+	}
+
+	body.admin-color-ectoplasm & {
+		border-left-color: $admin-color-ectoplasm-primary;
+	}
+
+	body.admin-color-coffee & {
+		border-left-color: $admin-color-coffee-primary;
+	}
+
+	body.admin-color-blue & {
+		border-left-color: $admin-color-blue-primary;
+	}
+
+	body.admin-color-light & {
+		border-left-color: $admin-color-light-primary;
+	}
 }
 
 /**
@@ -49,7 +154,6 @@
 		bottom: 60px;
 	}
 }
-
 
 /**
  * Heading
@@ -85,10 +189,12 @@
 
 }
 
-
 /**
  * Main
  */
+.main {
+	margin-top: 2rem;
+}
 
 /**
  * Footer

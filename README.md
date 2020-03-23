@@ -162,6 +162,9 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
+#### March 23, 2020
+* Admin Settings page: Add tabbed navigation with icons in the tab names and styling to support the wp-admin color schemes. [2 minute demo video](https://share.getcloudapp.com/YEuAzYGO)
+
 #### March 22, 2020
 * Improve the JavaScript build for WordPress React, reducing the `admin-settings.js` file size:
   * Minified: from 265.91 KB to 35.16 KB **(87% reduction)**

@@ -12,12 +12,14 @@ import 'react-notifications-component/dist/theme.css';
 const {
 	BaseControl,
 	Button,
+	Dashicon,
 	ExternalLink,
 	PanelBody,
 	PanelRow,
 	Placeholder,
 	RadioControl,
 	Spinner,
+	TabPanel,
 	ToggleControl,
 } = wp.components;
 
@@ -201,79 +203,117 @@ const Main = () => {
 	return (
 		<Fragment>
 			<div className="main">
-				<PanelBody
-					title={_x( 'Modules', 'panel title' )}
+				<TabPanel className="tabs"
+						  initialTabName="tab1"
+						  tabs={[
+							  {
+								  name: 'tab1',
+								  title: <Fragment><Dashicon icon="admin-settings" /> Tab 1</Fragment>,
+								  className: `tab-one`,
+							  },
+							  {
+								  name: 'tab2',
+								  title: <Fragment><Dashicon icon="external" /> Tab 2</Fragment>,
+								  className: `tab-two`,
+							  },
+						  ]}
 				>
-					<PanelRow>
-						<ToggleControl
-							label={_x( 'My Toggle', 'toggle input label' )}
-							help={'The help text for this control.'}
-							checked={myToggle}
-							onChange={() => changeOptions(
-								settingsData.optionsInfo.prefix + 'my_toggle',
-								'myToggle',
-								! myToggle,
-							)}
-						/>
-					</PanelRow>
-				</PanelBody>
+					{
+						( tab ) => {
+							if ( 'tab1' === tab.name ) {
+								return (
+									<Fragment>
+										<PanelBody
+											title={_x( 'A section with a toggle', 'panel title' )}
+										>
+											<PanelRow>
+												<ToggleControl
+													label={_x( 'My Toggle', 'toggle input label' )}
+													help={'The help text for this control.'}
+													checked={myToggle}
+													onChange={() => changeOptions(
+														settingsData.optionsInfo.prefix + 'my_toggle',
+														'myToggle',
+														! myToggle,
+													)}
+												/>
+											</PanelRow>
+										</PanelBody>
 
-				<PanelBody
-					title={_x( 'APIs', 'panel title' )}
-				>
-					<PanelRow>
-						<BaseControl
-							label={_x( 'A text input', 'text input label' )}
-							help={'Allows lowercase, uppercase, underscores, and hyphens.'}
-						>
-							<input
-								type="text"
-								value={myTextInput}
-								placeholder={_x( 'abc_ABC-123', 'text input placeholder' )}
-								disabled={isAPISaving}
-								onChange={e => setMyTextInput( e.target.value )}
-								onKeyPress={event => {
-									if ( event.key === 'Enter' ) {
-										document.getElementById( 'forMyTextInput' ).click();
-									}
-								}}
-							/>
+										<PanelBody
+											title={_x( 'Another section', 'panel title' )}
+										>
+											<div>
+												<p>Another thing goes here.</p>
+											</div>
+										</PanelBody>
+									</Fragment>
+								);
+							} else if ( 'tab2' === tab.name ) {
+								return (
+									<Fragment>
+										<PanelBody
+											title={_x( 'APIs & Posts', 'panel title' )}
+										>
+											<PanelRow>
+												<BaseControl
+													label={_x( 'A text input', 'text input label' )}
+													help={'Allows lowercase, uppercase, underscores, and hyphens.'}
+												>
+													<input
+														type="text"
+														value={myTextInput}
+														placeholder={_x( 'abc_ABC-123', 'text input placeholder' )}
+														disabled={isAPISaving}
+														onChange={e => setMyTextInput( e.target.value )}
+														onKeyPress={event => {
+															if ( event.key === 'Enter' ) {
+																document.getElementById( 'forMyTextInput' ).click();
+															}
+														}}
+													/>
 
-							<Button
-								id={'forMyTextInput'}
-								isPrimary
-								isLarge
-								disabled={isAPISaving}
-								onClick={() => changeOptions(
-									settingsData.optionsInfo.prefix + 'my_textinput',
-									'myTextInput',
-									myTextInput,
-								)}
-							>
-								{_x( 'Save', 'button text' )}
-							</Button>
+													<Button
+														id={'forMyTextInput'}
+														isPrimary
+														isLarge
+														disabled={isAPISaving}
+														onClick={() => changeOptions(
+															settingsData.optionsInfo.prefix + 'my_textinput',
+															'myTextInput',
+															myTextInput,
+														)}
+													>
+														{_x( 'Save', 'button text' )}
+													</Button>
+													<div>
+														<ExternalLink
+															href="https://developers.google.com/maps/documentation/javascript/get-api-key"
+														>
+															{_x( 'Get API Key', 'external link' )}
+														</ExternalLink>
+													</div>
+												</BaseControl>
 
-							<ExternalLink
-								href="https://developers.google.com/maps/documentation/javascript/get-api-key"
-							>
-								{_x( 'Get API Key', 'external link' )}
-							</ExternalLink>
-						</BaseControl>
-
-						<RadioControl
-							label={_x( 'My Radio', 'radio input label' )}
-							help={_x( 'Pick one of these… and only one. (FYI: They are the public post types.)', 'radio input help' )}
-							selected={myRadio}
-							options={settingsData.choicesFor.my_radio}
-							onChange={( myRadio ) => changeOptions(
-								settingsData.optionsInfo.prefix + 'my_radio',
-								'myRadio',
-								myRadio,
-							)}
-						/>
-					</PanelRow>
-				</PanelBody>
-
+												<RadioControl
+													label={_x( 'My Radio', 'radio input label' )}
+													help={_x( 'Pick one of these… and only one. (FYI: They are the public post types.)', 'radio input help' )}
+													selected={myRadio}
+													options={settingsData.choicesFor.my_radio}
+													onChange={( myRadio ) => changeOptions(
+														settingsData.optionsInfo.prefix + 'my_radio',
+														'myRadio',
+														myRadio,
+													)}
+												/>
+											</PanelRow>
+										</PanelBody>
+									</Fragment>
+								);
+							}
+						}
+					}
+				</TabPanel>
 			</div>
 		</Fragment>
 	);
