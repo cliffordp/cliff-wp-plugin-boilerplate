@@ -82,7 +82,7 @@ if ( ! class_exists( Plugin_Data::class ) ) {
 		 * @return string
 		 */
 		public static function get_plugin_display_name(): string {
-			return esc_html_x( 'WordPress Plugin Boilerplate', 'Plugin name for display', self::plugin_text_domain() );
+			return esc_html_x( 'WordPress Plugin Boilerplate', 'Plugin name for display', 'cliff-wp-plugin-boilerplate' );
 		}
 
 		/**

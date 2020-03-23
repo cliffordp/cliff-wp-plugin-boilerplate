@@ -179,7 +179,7 @@ if ( ! class_exists( Main::class ) ) {
 		 */
 		public function settings_page(): void {
 			if ( ! current_user_can( $this->common->required_capability() ) ) {
-				wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', Plugin_Data::plugin_text_domain() ) );
+				wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'cliff-wp-plugin-boilerplate' ) );
 			}
 
 			printf(

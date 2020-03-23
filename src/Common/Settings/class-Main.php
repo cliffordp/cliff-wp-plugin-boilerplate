@@ -94,7 +94,7 @@ if ( ! class_exists( Main::class ) ) {
 		 * @return string
 		 */
 		public function get_settings_word(): string {
-			return esc_html__( 'Settings', Plugin_Data::plugin_text_domain() );
+			return esc_html__( 'Settings', 'cliff-wp-plugin-boilerplate' );
 		}
 
 		/**

@@ -52,7 +52,8 @@ if ( ! class_exists( Debug::class ) ) {
 			}
 
 			$message = sprintf(
-				esc_html__( '%1$s - Message from %2$s():%3$s%4$s%5$s', Plugin_Data::plugin_text_domain() ),
+			// translators: 1: plugin display name, 2: name of debug function, 3: PHP End of Line character, 4: name of function triggering debug function, 5: debug log message
+				esc_html__( '%1$s - Message from %2$s():%3$s%4$s%5$s', 'cliff-wp-plugin-boilerplate' ),
 				Plugin_Data::get_plugin_display_name(),
 				__FUNCTION__,
 				PHP_EOL,
@@ -74,9 +75,9 @@ if ( ! class_exists( Debug::class ) ) {
 				$mail_sent = wp_mail( $email, $subject, $email_message );
 
 				if ( $mail_sent ) {
-					$message = esc_html_x( 'Email sent.', 'Successfully emailed from output_to_log()', Plugin_Data::plugin_text_domain() ) . ' ' . $message;
+					$message = esc_html_x( 'Email sent.', 'Successfully emailed from output_to_log()', 'cliff-wp-plugin-boilerplate' ) . ' ' . $message;
 				} else {
-					$message = esc_html_x( 'Email attempted but failed.', 'Unsuccessfully emailed from output_to_log()', Plugin_Data::plugin_text_domain() ) . ' ' . $message;
+					$message = esc_html_x( 'Email attempted but failed.', 'Unsuccessfully emailed from output_to_log()', 'cliff-wp-plugin-boilerplate' ) . ' ' . $message;
 				}
 			}
 

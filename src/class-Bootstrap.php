@@ -139,22 +139,25 @@ if ( ! class_exists( Bootstrap::class ) ) {
 					// translators: 1: plugin name(s).
 						Plugin_Data::get_plugin_display_name() . ' requires the following plugin: %1$s.',
 						Plugin_Data::get_plugin_display_name() . ' requires the following plugins: %1$s.',
-						Plugin_Data::plugin_text_domain()
+						'cliff-wp-plugin-boilerplate'
 					),
 					'notice_can_install_recommended' => _n_noop(
 					// translators: 1: plugin name(s).
 						Plugin_Data::get_plugin_display_name() . ' recommends the following plugin: %1$s.',
 						Plugin_Data::get_plugin_display_name() . ' recommends the following plugins: %1$s.',
-						Plugin_Data::plugin_text_domain()
+						'cliff-wp-plugin-boilerplate'
 					),
 					'notice_ask_to_update'           => _n_noop(
 					// translators: 1: plugin name(s).
 						'The following plugin needs to be updated to its latest version to ensure maximum compatibility with ' . Plugin_Data::get_plugin_display_name() . ': %1$s.',
 						'The following plugins need to be updated to their latest version to ensure maximum compatibility with ' . Plugin_Data::get_plugin_display_name() . ': %1$s.',
-						Plugin_Data::plugin_text_domain()
+						'cliff-wp-plugin-boilerplate'
 					),
-					'plugin_needs_higher_version'    => __( 'Plugin not activated. A higher version of %s is needed for ' . Plugin_Data::get_plugin_display_name() . '. Please update the plugin.', Plugin_Data::plugin_text_domain() ),
-					// translators: 1: dashboard link.
+					// translators: 1: plugin name
+					'plugin_needs_higher_version'    => __(
+						'Plugin not activated. A higher version of %s is needed for this plugin. Please update the plugin.',
+						'cliff-wp-plugin-boilerplate'
+					),
 					'nag_type'                       => 'error', // Determines admin notice type - can only be one of the typical WP notice classes, such as 'updated', 'update-nag', 'notice-warning', 'notice-info' or 'error'. Some of which may not work as expected in older WP versions.
 				],
 			];
@@ -169,7 +172,8 @@ if ( ! class_exists( Bootstrap::class ) ) {
 			$help_link = sprintf( '<a href="%1$s" target="_blank">%1$s</a>', 'https://wordpress.org/about/requirements/' );
 
 			$message = sprintf(
-				__( '%1$s requires at least PHP version %2$s in order to work. You have version %3$s. Please see %4$s for more information.', Plugin_Data::plugin_text_domain() ),
+				// translators: 1: plugin display name, 2: required minimum PHP version, 3: current PHP version, help link
+				__( '%1$s requires at least PHP version %2$s in order to work. You have version %3$s. Please see %4$s for more information.', 'cliff-wp-plugin-boilerplate' ),
 				'<strong>' . Plugin_Data::get_plugin_display_name() . '</strong>',
 				'<strong>' . Plugin_Data::required_min_php_version() . '</strong>',
 				'<strong>' . PHP_VERSION . '</strong>',
@@ -237,13 +241,15 @@ if ( ! class_exists( Bootstrap::class ) ) {
 
 			if ( ! empty( $this->required_theme['child'] ) ) {
 				$child_message = sprintf(
-					__( ' and %1$s child theme ', Plugin_Data::plugin_text_domain() ),
+					// translators: 1: child theme name
+					__( ' and %1$s child theme ', 'cliff-wp-plugin-boilerplate' ),
 					'<strong>' . $child_name . '</strong>'
 				);
 			}
 
 			$message = sprintf(
-				__( 'The %1$s plugin requires the %2$s parent theme%3$sin order to work.%4$s', Plugin_Data::plugin_text_domain() ),
+				// translators: 1: plugin display name, 2: parent theme name, 3: child theme name message, 4: wp-admin link to themes, if applicable
+				__( 'The %1$s plugin requires the %2$s parent theme%3$sin order to work.%4$s', 'cliff-wp-plugin-boilerplate' ),
 				'<strong>' . Plugin_Data::get_plugin_display_name() . '</strong>',
 				'<strong>' . $parent_name . '</strong>',
 				$child_message,
