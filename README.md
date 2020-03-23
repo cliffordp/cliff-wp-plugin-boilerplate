@@ -1,6 +1,6 @@
 # WordPress Plugin Boilerplate with Support for Composer, PHP Namespaces, and WordPress Customizer
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 
@@ -300,6 +300,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/Stefan2409"><img src="https://avatars2.githubusercontent.com/u/17899913?v=4" width="100px;" alt=""/><br /><sub><b>Stefan Jöbstl</b></sub></a><br /><a href="https://github.com/cliffordp/cliff-wp-plugin-boilerplate/commits?author=Stefan2409" title="Code">💻</a></td>
     <td align="center"><a href="https://neal.codes"><img src="https://avatars3.githubusercontent.com/u/5731551?v=4" width="100px;" alt=""/><br /><sub><b>Neal Fennimore</b></sub></a><br /><a href="https://github.com/cliffordp/cliff-wp-plugin-boilerplate/pulls?q=is%3Apr+reviewed-by%3Anealfennimore" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="http://www.scottfennell.com/wp"><img src="https://avatars3.githubusercontent.com/u/1585637?v=4" width="100px;" alt=""/><br /><sub><b>Scott Fennell</b></sub></a><br /><a href="https://github.com/cliffordp/cliff-wp-plugin-boilerplate/commits?author=scofennell" title="Code">💻</a></td>
+    <td align="center"><a href="http://www.hardeepasrani.com"><img src="https://avatars1.githubusercontent.com/u/2649903?v=4" width="100px;" alt=""/><br /><sub><b>Hardeep Asrani</b></sub></a><br /><a href="#example-HardeepAsrani" title="Examples">💡</a></td>
   </tr>
 </table>
 
