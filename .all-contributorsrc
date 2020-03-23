@@ -31,6 +31,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "HardeepAsrani",
+      "name": "Hardeep Asrani",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/2649903?v=4",
+      "profile": "http://www.hardeepasrani.com",
+      "contributions": [
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 7,
