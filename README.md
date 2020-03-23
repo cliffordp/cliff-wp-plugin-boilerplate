@@ -34,7 +34,6 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
 1. Perform a ***case-sensitive*** *search and replace* at the project level, as follows:
     1. Rename the `cliff-wp-plugin-boilerplate` directory to `your-plugin-name`. **This is your new plugin directory and must match your text domain.**
     1. Find the text `cliff-wp-plugin-boilerplate` and replace with `your-plugin-name` in all files
-    1. **If you will be publishing your plugin to WordPress.org,** find the text `Plugin_Data::plugin_text_domain()` and replace with `your-plugin-name` in all files &mdash; and then you might not need the `use` import of the `Plugin_Data` class and could remove it as well
     1. Find the text `wp_plugin_name` and replace with `your_plugin_name` in all files
     1. Find the text `WordPress Plugin Boilerplate` and replace with `Your Plugin Name` in all files
     1. Find the text `WP_Plugin_Name` and replace with `Your_Plugin_Name` in all files (the *namespace*)
@@ -127,15 +126,13 @@ For each new version, don't forget to:
   * In your main plugin file's `PLUGIN_VERSION` constant
 * [Generate a fresh POT file](https://developer.wordpress.org/plugins/internationalization/localization/#generating-pot-file)
 
-### The BoilerPlate uses a variable for the Text Domain
+### How to generate your .pot file
 
-The WordPress Plugin Boilerplate uses a **variable** (e.g. `$this->plugin_text_domain`) to store the text domain, used when internationalizing strings.
+We do not use a variable for strings' text domain because it does not work when using the WP CLI command, nor WordPress.org. [Reference](https://developer.wordpress.org/plugins/internationalization/how-to-internationalize-your-plugin/#text-domains)
 
-If you face problems translating the strings with an automated tool/process, replace `$this->plugin_text_domain` with the literal string of your plugin's text domain throughout the plugin.
+Here's the WP CLI command you can customize to your needs:
 
-### References:
-* [Here's a discussion from the original project in favor of using variables](https://github.com/DevinVinson/WordPress-Plugin-Boilerplate/issues/59)
-* [The Plugin Handbook Recommended Way (i.e. not to use variables)](https://developer.wordpress.org/plugins/internationalization/how-to-internationalize-your-plugin/#text-domains)
+`wp i18n make-pot . languages/cliff-wp-plugin-boilerplate.pot --headers='{"Report-Msgid-Bugs-To":"Your Name or Your Company <https://www.example.com/>"}'` 
 
 # License
 
@@ -175,6 +172,7 @@ Documenting this project's progress...
   * Force displaying an error notification even if the API response was technically successful but isn't really due to a `null` response.
   * Fix the example radio button's validation logic in `register_setting()` by adding the correct "show_in_rest" > "schema" > "enum" args, removing the "sanitize_callback" arg, and using the "rest_api_init" hook.
   * Added basic styling.
+* Changed plugin text domains from variable to string to allow using WP CLI command and be compliant with WordPress.org out of the box.
 
 #### March 18, 2020
 * Rebuild admin Settings Page:

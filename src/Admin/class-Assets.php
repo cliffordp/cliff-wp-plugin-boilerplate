@@ -3,7 +3,6 @@
 namespace WP_Plugin_Name\Admin;
 
 use WP_Plugin_Name\Plugin_Data as Plugin_Data;
-use WP_Plugin_Name\Admin\Settings\Main as Settings;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {

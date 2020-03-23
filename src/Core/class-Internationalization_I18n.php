@@ -19,6 +19,10 @@ if ( ! class_exists( Internationalization_I18n::class ) ) {
 
 		/**
 		 * Load the plugin text domain for translation.
+		 *
+		 * @link https://developer.wordpress.org/plugins/internationalization/how-to-internationalize-your-plugin/#loading-text-domain
+		 *
+		 * TODO: Remove if WordPress.org will provide the translation files.
 		 */
 		public function load_plugin_textdomain(): void {
 			load_plugin_textdomain(

@@ -6,7 +6,6 @@ use WP_Customize_Manager;
 use WP_Plugin_Name\Common\Common;
 use WP_Plugin_Name\Common\Settings\Choices;
 use WP_Plugin_Name\Common\Settings\Customizer as Settings;
-use WP_Plugin_Name\Common\Utilities as Utils;
 use WP_Plugin_Name\Plugin_Data as Plugin_Data;
 
 // Abort if this file is called directly.
@@ -85,7 +84,7 @@ if ( ! class_exists( Customizer::class ) ) {
 				$this->settings->customizer_panel_id(),
 				[
 					'title'       => Plugin_Data::get_plugin_display_name(),
-					'description' => esc_html__( 'Plugin options and settings', Plugin_Data::plugin_text_domain() ) . $this->settings->get_link_to_customizer_panel(),
+					'description' => esc_html__( 'Plugin options and settings', 'cliff-wp-plugin-boilerplate' ) . $this->settings->get_link_to_customizer_panel(),
 				]
 			);
 
@@ -93,8 +92,8 @@ if ( ! class_exists( Customizer::class ) ) {
 			$wp_customize->add_section(
 				$this->get_section_id( 'example' ),
 				[
-					'title'       => esc_html__( 'Example Section', Plugin_Data::plugin_text_domain() ),
-					'description' => esc_html__( 'Example Section description.', Plugin_Data::plugin_text_domain() ),
+					'title'       => esc_html__( 'Example Section', 'cliff-wp-plugin-boilerplate' ),
+					'description' => esc_html__( 'Example Section description.', 'cliff-wp-plugin-boilerplate' ),
 					'panel'       => $this->settings->customizer_panel_id(),
 				]
 			);
@@ -159,8 +158,8 @@ if ( ! class_exists( Customizer::class ) ) {
 					$wp_customize,
 					Plugin_Data::plugin_text_domain_underscores() . '_' . $setting_slug . '_control',
 					[
-						'label'       => esc_html__( 'Social Network(s)', Plugin_Data::plugin_text_domain() ),
-						'description' => esc_html__( 'Checked ones will output; unchecked ones will not. Drag and drop to set your preferred display order.', Plugin_Data::plugin_text_domain() ),
+						'label'       => esc_html__( 'Social Network(s)', 'cliff-wp-plugin-boilerplate' ),
+						'description' => esc_html__( 'Checked ones will output; unchecked ones will not. Drag and drop to set your preferred display order.', 'cliff-wp-plugin-boilerplate' ),
 						'section'     => $this->get_section_id( $section_slug ),
 						'settings'    => $this->get_setting_id( $setting_slug ),
 						'choices'     => $this->choices->get_choices_social_networks(),
@@ -209,8 +208,8 @@ if ( ! class_exists( Customizer::class ) ) {
 					$wp_customize,
 					Plugin_Data::plugin_text_domain_underscores() . '_' . $setting_slug . '_control',
 					[
-						'label'       => esc_html__( 'Post Type(s)', Plugin_Data::plugin_text_domain() ),
-						'description' => esc_html__( 'Which Post Types should be enabled?', Plugin_Data::plugin_text_domain() ),
+						'label'       => esc_html__( 'Post Type(s)', 'cliff-wp-plugin-boilerplate' ),
+						'description' => esc_html__( 'Which Post Types should be enabled?', 'cliff-wp-plugin-boilerplate' ),
 						'section'     => $this->get_section_id( $section_slug ),
 						'settings'    => $this->get_setting_id( $setting_slug ),
 						'choices'     => $this->choices->get_choices_post_types(),

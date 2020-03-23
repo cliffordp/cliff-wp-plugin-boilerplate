@@ -3,7 +3,6 @@
 namespace WP_Plugin_Name\Common\Settings;
 
 use WP_Plugin_Name\Common\Utilities as Utils;
-use WP_Plugin_Name\Plugin_Data as Plugin_Data;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -54,22 +53,22 @@ if ( ! class_exists( Choices::class ) ) {
 			$networks = [
 				[
 					'key'   => 'facebook',
-					'name'  => esc_html__( 'Facebook', Plugin_Data::plugin_text_domain() ),
+					'name'  => esc_html__( 'Facebook', 'cliff-wp-plugin-boilerplate' ),
 					'color' => '#3b5998',
 				],
 				[
 					'key'   => 'twitter',
-					'name'  => esc_html__( 'Twitter', Plugin_Data::plugin_text_domain() ),
+					'name'  => esc_html__( 'Twitter', 'cliff-wp-plugin-boilerplate' ),
 					'color' => '#00aced',
 				],
 				[
 					'key'   => 'pinterest',
-					'name'  => esc_html__( 'Pinterest', Plugin_Data::plugin_text_domain() ),
+					'name'  => esc_html__( 'Pinterest', 'cliff-wp-plugin-boilerplate' ),
 					'color' => '#BD081C',
 				],
 				[
 					'key'   => 'linkedin',
-					'name'  => esc_html__( 'LinkedIn', Plugin_Data::plugin_text_domain() ),
+					'name'  => esc_html__( 'LinkedIn', 'cliff-wp-plugin-boilerplate' ),
 					'color' => '#007bb6',
 				],
 			];
