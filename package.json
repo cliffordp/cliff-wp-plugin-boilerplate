@@ -9,7 +9,7 @@
 		"build-unmin": "parcel build ./_entry/admin.js ./_entry/admin-settings.js ./_entry/frontend.js --detailed-report --no-minify --public-url ./",
 		"restart": "run-s cleanup start",
 		"cleanup": "rm -rf .cache .parcel-cache dist",
-		"nuke": "rm -rf ./node_modules ./vendor; composer install; npm install; npm run restart",
+		"nuke": "rm -rf ./node_modules ./vendor; composer install; npm install",
 		"check-licenses": "run-p \"wp-scripts check-licenses --prod --gpl2\" \"wp-scripts check-licenses --dev\""
 	},
 	"keywords": [
@@ -38,10 +38,8 @@
 		"npm-run-all": "^4.1.5",
 		"parcel-bundler": "^1.12.4",
 		"parcel-plugin-externals": "^0.3.3",
-		"postcss-modules": "^1.5.0"
-	},
-	"postcss": {
-		"modules": true
+		"postcss-advanced-variables": "^3.0.1",
+		"postcss-nested": "^4.2.1"
 	},
 	"babel": {
 		"presets": [
@@ -52,6 +50,6 @@
 		"extends @wordpress/browserslist-config"
 	],
 	"externals": {
-		"jquery": "*"
+		"@wordpress/element": "wp.element"
 	}
 }

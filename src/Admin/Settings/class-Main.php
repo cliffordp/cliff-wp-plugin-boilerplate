@@ -135,7 +135,7 @@ if ( ! class_exists( Main::class ) ) {
 						'allKeys' => $this->settings->get_all_prefixed_options(),
 					],
 					'choicesFor' => [
-						'myRadio' => $choices->get_choices_post_types( 'RadioControl' ),
+						'my_radio' => $choices->get_choices_post_types( 'RadioControl' ),
 					],
 				]
 			);

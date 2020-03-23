@@ -4,6 +4,8 @@
  * The single/concatenated .js file gets enqueued from src/Admin/class-Assets.php.
  */
 
+/*global wp, settingsData */
+
 /**
  * Internal dependencies.
  */

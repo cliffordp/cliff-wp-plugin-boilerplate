@@ -1,3 +1,5 @@
+/*global wp, settingsData */
+
 /**
  * External dependencies.
  */
@@ -68,6 +70,16 @@ const Main = () => {
 
 		const save = model.save();
 
+		/**
+		 * In case API response never comes back (if PHP is terminated) or takes unexpectedly long (if paused during a
+		 * PHP breakpoint), still clear the API Saving flag so components aren't disabled forever (avoid page reload if
+		 * API failed). The timeout is greater than 1000 (updating notification) + 800 (saved notification).
+		 */
+		setTimeout( () => {
+			setAPISaving( false );
+		}, 5000 );
+
+
 		setAPISaving( true );
 
 		addNotification(
@@ -82,6 +94,11 @@ const Main = () => {
 				status,
 			) => {
 				store.removeNotification( notification );
+
+				// Avoid showing success message when stuff really didn't happen as expected.
+				if( null === response[ option ] ) {
+					status = 'error';
+				}
 
 				if ( 'success' === status ) {
 					setOptions( state, response[ option ] );
@@ -116,14 +133,24 @@ const Main = () => {
 				store.removeNotification( notification );
 
 				setTimeout( () => {
+					let params;
+					let msg;
+
+					if ( response.responseJSON.data.params ) {
+						params = response.responseJSON.data.params;
+						msg = params [ Object.keys( params )[ 0 ] ];
+					} else {
+						msg = response.responseJSON.message;
+					}
+
 					addNotification(
-						response.responseJSON.message
-							? response.responseJSON.message
+						msg
+							? msg
 							: _x( 'An unknown error occurred.', 'notification' ),
 						'danger',
 					);
 					setAPISaving( false );
-				}, 800 );
+				}, 1500 ); // Longer than success' to allow reading the error message.
 			} );
 	};
 
@@ -176,7 +203,6 @@ const Main = () => {
 			<div className="main">
 				<PanelBody
 					title={_x( 'Modules', 'panel title' )}
-					className="this-thing"
 				>
 					<PanelRow>
 						<ToggleControl
@@ -238,7 +264,7 @@ const Main = () => {
 							label={_x( 'My Radio', 'radio input label' )}
 							help={_x( 'Pick one of these… and only one. (FYI: They are the public post types.)', 'radio input help' )}
 							selected={myRadio}
-							options={settingsData.choicesFor.myRadio}
+							options={settingsData.choicesFor.my_radio}
 							onChange={( myRadio ) => changeOptions(
 								settingsData.optionsInfo.prefix + 'my_radio',
 								'myRadio',
