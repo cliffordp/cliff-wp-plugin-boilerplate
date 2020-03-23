@@ -40,6 +40,15 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "FlorianRappl",
+      "name": "Florian Rappl",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1766191?v=4",
+      "profile": "https://florian-rappl.de",
+      "contributions": [
+        "plugin"
+      ]
     }
   ],
   "contributorsPerLine": 7,
