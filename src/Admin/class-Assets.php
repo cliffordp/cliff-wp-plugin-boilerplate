@@ -2,6 +2,7 @@
 
 namespace WP_Plugin_Name\Admin;
 
+use WP_Plugin_Name\Common\Assets as Common_Assets;
 use WP_Plugin_Name\Plugin_Data as Plugin_Data;
 
 // Abort if this file is called directly.
@@ -18,32 +19,29 @@ if ( ! class_exists( Assets::class ) ) {
 	class Assets {
 
 		/**
+		 * @var Common_Assets
+		 */
+		var $common_assets;
+
+		public function __construct() {
+			$this->common_assets = new Common_Assets();
+		}
+
+		/**
 		 * Register the stylesheets for every admin area.
 		 */
 		public function enqueue_styles(): void {
-			// All Admin screens.
-			wp_enqueue_style(
-				Plugin_Data::get_asset_handle( 'admin-global' ),
-				Plugin_Data::get_assets_url_base() . 'admin.css',
-				[],
-				Plugin_Data::plugin_version(),
-				'all'
-			);
+			$this->common_assets->enqueue_style( 'admin' );
 		}
 
 		/**
 		 * Register the JavaScript for every admin area.
 		 */
 		public function enqueue_scripts(): void {
-			// All Admin screens.
-			wp_enqueue_script(
-				Plugin_Data::get_asset_handle( 'admin-global' ),
-				Plugin_Data::get_assets_url_base() . 'admin.js',
-				[
-					'jquery',
-				],
-				Plugin_Data::plugin_version(),
-				true
+			$this->common_assets->enqueue_script(
+				'admin',
+				'',
+				[ 'jquery' ]
 			);
 		}
 	}
