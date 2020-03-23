@@ -13,14 +13,14 @@
 
 ### Highlights
 
-* Well documented throughout to help you get up and running quickly, favoring including everything and allowing you to delete what you don't need.
-* Primarily relies upon [Composer](https://getcomposer.org/) and [Parcel](https://parceljs.org/getting_started.html) to build the plugin and make some complex stuff pretty simple to get up and running quickly.
+* Built in a way that isn't just a skeleton (blank slate) but, instead, a fully-functioning plugin out of the box. We're of the opinion that it's quicker to dev and easier to learn if you can just **delete what you don't need and rework existing code into what you do need.**
+* Thorough code documentation with regular updates.
+* Adds a wp-admin Settings page with **React** components and the Settings API (restricts to Administrators). Bonus: legacy code that direct-links to the plugin's options in the WordPress **Customizer** (so use one or both for your plugin's options).
 * Plugin assets (CSS and JS) are served minified with external sourcemaps, but unminified files exist as well for when `SCRIPT_DEBUG` is `true` or you're running Parcel's watching / Hot Module Replacement (HMR).
 * Displays a wp-admin error notice to administrators if the required version of PHP is not met, saving users from a fatal error.
-* Displays a wp-admin error notice to administrators if a required third-party plugin (e.g. WooCommerce) is not active.
 * Easily add a new shortcode by extending the abstract `Shortcode` class and adding to the array of shortcodes in the `Manage_Shortcodes` class.
-* Adds a wp-admin Settings page with a link to the plugin's options in the WordPress Customizer.
-* Includes a custom *Sortable Checkboxes* control in the WordPress Customizer and examples how to use it (unfinished).
+* Primarily relies upon [Composer](https://getcomposer.org/) and [Parcel](https://parceljs.org/getting_started.html) to build the plugin and make some complex stuff pretty simple to get up and running quickly.
+* Displays a wp-admin error notice to administrators if a required third-party plugin (e.g. WooCommerce) is not active.
 * Includes a number of generally-helpful utility functions, such as getting all public post types, flattening an array of unknown dimensions, and sane option setters and getters.
 * Uses Composer to zip the files for public distribution as an installable plugin, making sure to exclude build files and directories.
 
@@ -52,13 +52,14 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
         1. `$min_php`
         1. `$required_theme`
         1. `$required_plugins`
-1. Make sure everything in `package.json` is also appropriate to your project.
 1. Go through all your PHP and JSON files to make sure your plugin descriptions are set.
-1. Run Composer `install`
-1. Run npm `install`
+1. Make sure everything in `package.json` is also appropriate to your project.
+1. Run `composer install`
+1. Run `npm update` (we purposefully don't commit package or composer lock files in the boilerplate, but you should in your repo)
+1. Run `npm install`
+1. Run `npm run start` if actively developing in React or CSS (HMR), else `npm run build`
 1. Activate the plugin
-1. Check if everything's working as it should:
-    1. Plugin is able to be activated without any errors
+1. Check if everything's working as it should (that it can be activated and without any errors)
 1. If it works (as it should), ***delete THIS README.md FILE***
 
 ### Using Composer
