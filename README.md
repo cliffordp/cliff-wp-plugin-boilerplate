@@ -166,7 +166,8 @@ Documenting this project's progress...
 * Change the _Strings_ utility class to implement the [voku/stringy](https://github.com/voku/Stringy) [library](https://packagist.org/packages/voku/stringy).
 * Change the way Assets (CSS/JS) are handled, making them have to be registered before enqueued (best practice) and make it easier to do so for our internal assets, only needing the file name from the */dist* folder.
 * Add more reliable detection of when is a frontend request--example: `Common::current_request_is( 'frontend' )`--to improve performance, additionally being able to detect more, like REST API, Ajax, or WP-Cron requests.
-* Added "build:pot" npm command that gets ran upon Composer archive.
+* Add "build:pot" npm command that gets ran upon Composer archive.
+* Rename files, folders, class names, and namespaces to be PSR-4 compatible to avoid deprecation notices as of Composer 1.10.0 (March 10, 2020).
 
 #### March 22, 2020
 * Improve the JavaScript build for WordPress React, reducing the `admin-settings.js` file size:
