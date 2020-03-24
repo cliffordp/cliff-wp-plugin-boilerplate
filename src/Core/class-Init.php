@@ -61,17 +61,17 @@ if ( ! class_exists( Init::class ) ) {
 		 * with WordPress.
 		 */
 		private function set_locale(): void {
-			$plugin_i18n = new Internationalization_I18n();
+			$i18n = new Internationalization_I18n();
 
-			$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
+			$this->loader->add_action( 'plugins_loaded', $i18n, 'load_plugin_textdomain' );
 		}
 
 		/**
 		 * Register all of the hooks related to both the admin area and the public-facing functionality of the plugin.
 		 */
 		private function define_common_hooks(): void {
-			// $plugin_common = new Common\Common();
-			// Example: $this->loader->add_filter( 'gform_currencies', $plugin_common, 'gf_currency_usd_whole_dollars', 50 );
+			// $common = new Common\Common();
+			// Example: $this->loader->add_filter( 'gform_currencies', $common, 'gf_currency_usd_whole_dollars', 50 );
 
 			// Settings Fields must not be behind an `is_admin()` check, since it's too late.
 			$settings = new Common\Settings\Main();
@@ -92,9 +92,19 @@ if ( ! class_exists( Init::class ) ) {
 		 * We could have included in Common, since it is the same loading logic, but we separate it out for sanity.
 		 */
 		private function define_customizer_hooks(): void {
-			$plugin_customizer = new Customizer\Customizer();
+			$common = new Common\Common();
 
-			$this->loader->add_action( 'customize_register', $plugin_customizer, 'customizer_options' );
+			// Avoid REST and Cron.
+			if (
+				! $common->current_request_is( 'admin' )
+				&& ! $common->current_request_is( 'frontend' )
+			) {
+				return;
+			}
+
+			$customizer = new Customizer\Customizer();
+
+			$this->loader->add_action( 'customize_register', $customizer, 'customizer_options' );
 		}
 
 		/**
@@ -102,7 +112,9 @@ if ( ! class_exists( Init::class ) ) {
 		 * Also works during Ajax.
 		 */
 		private function define_admin_hooks(): void {
-			if ( ! is_admin() ) {
+			$common = new Common\Common();
+
+			if ( ! $common->current_request_is( 'admin' ) ) {
 				return;
 			}
 
@@ -126,14 +138,12 @@ if ( ! class_exists( Init::class ) ) {
 		}
 
 		/**
-		 * Register all of the hooks related to the public-facing functionality of the plugin.
-		 * Also works during Ajax.
+		 * Register all of the hooks related to the public-facing (is not admin or is Ajax) functionality of the plugin.
 		 */
 		private function define_public_hooks(): void {
-			if (
-				is_admin()
-				&& ! wp_doing_ajax()
-			) {
+			$common = new Common\Common();
+
+			if ( ! $common->current_request_is( 'frontend' ) ) {
 				return;
 			}
 
