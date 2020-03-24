@@ -2,6 +2,7 @@
 
 namespace WP_Plugin_Name\Common;
 
+use WP_Plugin_Name\Common\Utilities\Strings as Strings;
 use WP_Plugin_Name\Plugin_Data as Plugin_Data;
 
 // Abort if this file is called directly.
@@ -11,11 +12,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( Assets::class ) ) {
 	/**
-	 * Register and/or enqueue styles and scripts.
-	 *
-	 * @todo Add ability to register, not just enqueue.
+	 * Register and enqueue (only after registering) styles and scripts.
 	 */
 	class Assets {
+
+		/**
+		 * @var Strings
+		 */
+		var $strings;
+
+		public function __construct() {
+			$this->strings = new Strings();
+		}
 
 		/**
 		 * Get the base *URL* of our assets directory, with a trailing slash.
@@ -50,7 +58,7 @@ if ( ! class_exists( Assets::class ) ) {
 		}
 
 		/**
-		 * Enqueue our stylesheet from the 'dist' directory with a prefixed handle.
+		 * Register our stylesheet from the 'dist' directory with a prefixed handle.
 		 *
 		 * @param string $file_name Name of file that exists in the 'dist' directory, without the file extension.
 		 *                          Examples: 'frontend' or 'admin-settings'.
@@ -58,19 +66,33 @@ if ( ! class_exists( Assets::class ) ) {
 		 * @param string $version   Manually set if you wish, else will be the Plugin's version.
 		 * @param array  $deps
 		 * @param string $media
+		 *
+		 * @return bool False if file does not exist, else the result from wp_register_style().
 		 */
-		public function enqueue_style(
+		public function register_style(
 			string $file_name,
 			string $handle = '',
 			array $deps = [],
 			string $version = '',
 			string $media = 'all'
-		): void {
+		): bool {
 			if ( empty( $handle ) ) {
 				$handle = $file_name;
 			}
 
-			wp_enqueue_style(
+			// Protect against silent fails from imperfect usage.
+			$file_name = $this->strings->stringy( $file_name )
+				->removeRight( '.min.css' )
+				->removeRight( '.css' )
+				->toString();
+
+			$file_path = $this->get_file_path( $file_name, 'css' );
+
+			if ( ! file_exists( $file_path ) ) {
+				return false;
+			}
+
+			return wp_register_style(
 				self::get_asset_handle( $handle ),
 				$this->get_file_url( $file_name, 'css' ),
 				$deps,
@@ -80,7 +102,30 @@ if ( ! class_exists( Assets::class ) ) {
 		}
 
 		/**
-		 * Enqueue our script from the 'dist' directory with a prefixed handle.
+		 * Enqueue an already-registered style.
+		 *
+		 * @see register_style() Must register style before enqueuing.
+		 *
+		 * @param string $handle Must match the $handle (optional param) or $file_name (required param) from register.
+		 *                       Examples: 'frontend' or 'admin-settings'.
+		 *
+		 * @return bool True if style handle is detected as registered and enqueuing was called.
+		 *              False if style handle wasn't registered so we didn't try to enqueue.
+		 */
+		public function enqueue_style( string $handle ): bool {
+			$handle = self::get_asset_handle( $handle );
+
+			if ( wp_style_is( $handle, 'registered' ) ) {
+				wp_enqueue_style( $handle );
+
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		/**
+		 * Register our script from the 'dist' directory with a prefixed handle.
 		 *
 		 * @param string $file_name Name of file that exists in the 'dist' directory, without the file extension.
 		 *                          Examples: 'frontend' or 'admin-settings'.
@@ -88,19 +133,33 @@ if ( ! class_exists( Assets::class ) ) {
 		 * @param array  $deps      This function will auto-include the 'dist' directory's PHP file as a dependency.
 		 * @param string $version   Manually set if you wish, else will be the Plugin's version.
 		 * @param bool   $in_footer
+		 *
+		 * @return bool False if file does not exist, else the result from wp_register_script().
 		 */
-		public function enqueue_script(
+		public function register_script(
 			string $file_name,
 			string $handle = '',
 			array $deps = [],
 			string $version = '',
 			bool $in_footer = true
-		): void {
+		): bool {
+			// Protect against silent fails from imperfect usage.
+			$file_name = $this->strings->stringy( $file_name )
+				->removeRight( '.min.js' )
+				->removeRight( '.js' )
+				->toString();
+
+			$file_path = $this->get_file_path( $file_name, 'js' );
+
 			if ( empty( $handle ) ) {
 				$handle = $file_name;
 			}
 
-			wp_enqueue_script(
+			if ( ! file_exists( $file_path ) ) {
+				return false;
+			}
+
+			return wp_register_script(
 				self::get_asset_handle( $handle ),
 				$this->get_file_url( $file_name, 'js' ),
 				$deps,
@@ -110,15 +169,22 @@ if ( ! class_exists( Assets::class ) ) {
 		}
 
 		/**
-		 * Determine if SCRIPT_DEBUG is true or false.
+		 * Enqueue an already-registered script.
 		 *
-		 * @return bool
+		 * @see register_script() Must register script before enqueuing.
+		 *
+		 * @param string $handle Must match the $handle (optional param) or $file_name (required param) from register.
+		 *                       Examples: 'frontend' or 'admin-settings'.
+		 *
+		 * @return bool True if script handle is detected as registered and enqueuing was called.
+		 *              False if script handle wasn't registered so we didn't try to enqueue.
 		 */
-		public function is_script_debug() {
-			if (
-				defined( 'SCRIPT_DEBUG' )
-				&& SCRIPT_DEBUG
-			) {
+		public function enqueue_script( string $handle ): bool {
+			$handle = self::get_asset_handle( $handle );
+
+			if ( wp_script_is( $handle, 'registered' ) ) {
+				wp_enqueue_script( $handle );
+
 				return true;
 			} else {
 				return false;
@@ -145,6 +211,22 @@ if ( ! class_exists( Assets::class ) ) {
 			}
 
 			return (string) $v;
+		}
+
+		/**
+		 * Determine if SCRIPT_DEBUG is true or false.
+		 *
+		 * @return bool
+		 */
+		public function is_script_debug() {
+			if (
+				defined( 'SCRIPT_DEBUG' )
+				&& SCRIPT_DEBUG
+			) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 
 		/**

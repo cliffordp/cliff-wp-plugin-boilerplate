@@ -26,21 +26,38 @@ if ( ! class_exists( Assets::class ) ) {
 		}
 
 		/**
-		 * Enqueue the stylesheets for the public-facing side of the site.
+		 * Register and enqueue the stylesheets for the public-facing side of the site.
+		 *
+		 * Must register before we enqueue!
 		 */
 		public function enqueue_styles(): void {
-			$this->common_assets->enqueue_style( 'frontend' );
+			$file_name = 'frontend';
+
+			$registered = $this->common_assets->register_style( $file_name );
+
+			if ( $registered ) {
+				$this->common_assets->enqueue_style( $file_name );
+			}
 		}
 
 		/**
-		 * Enqueue the scripts for the public-facing side of the site.
+		 * Register and enqueue the scripts for the public-facing side of the site.
+		 *
+		 * Must register before we enqueue!
 		 */
 		public function enqueue_scripts(): void {
-			$this->common_assets->enqueue_script(
-				'frontend',
+			global $wp_scripts;
+			$file_name = 'frontend';
+
+			$registered = $this->common_assets->register_script(
+				$file_name,
 				'',
 				[ 'jquery' ]
 			);
+
+			if ( $registered ) {
+				$this->common_assets->enqueue_script( $file_name );
+			}
 		}
 	}
 }

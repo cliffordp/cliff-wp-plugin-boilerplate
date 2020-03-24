@@ -28,21 +28,37 @@ if ( ! class_exists( Assets::class ) ) {
 		}
 
 		/**
-		 * Register the stylesheets for every admin area.
+		 * Register and enqueue the stylesheets for every admin area.
+		 *
+		 * Must register before we enqueue!
 		 */
 		public function enqueue_styles(): void {
-			$this->common_assets->enqueue_style( 'admin' );
+			$file_name = 'admin';
+
+			$registered = $this->common_assets->register_style( $file_name );
+
+			if ( $registered ) {
+				$this->common_assets->enqueue_style( $file_name );
+			}
 		}
 
 		/**
-		 * Register the JavaScript for every admin area.
+		 * Register and enqueue the JavaScript for every admin area.
+		 *
+		 * Must register before we enqueue!
 		 */
 		public function enqueue_scripts(): void {
-			$this->common_assets->enqueue_script(
-				'admin',
+			$file_name = 'admin';
+
+			$registered = $this->common_assets->register_script(
+				$file_name,
 				'',
 				[ 'jquery' ]
 			);
+
+			if ( $registered ) {
+				$this->common_assets->enqueue_script( $file_name );
+			}
 		}
 	}
 }
