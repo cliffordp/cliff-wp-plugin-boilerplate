@@ -164,6 +164,7 @@ Documenting this project's progress...
 
 #### March 23, 2020
 * Admin Settings page: Add tabbed navigation with icons in the tab names and styling to support the wp-admin color schemes. [2 minute demo video](https://share.getcloudapp.com/YEuAzYGO)
+* Change the "Strings" utility class to implement the [voku/stringy](https://github.com/voku/Stringy) [library](https://packagist.org/packages/voku/stringy).
 
 #### March 22, 2020
 * Improve the JavaScript build for WordPress React, reducing the `admin-settings.js` file size:
