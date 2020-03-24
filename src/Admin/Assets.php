@@ -1,9 +1,9 @@
 <?php
 
-namespace WP_Plugin_Name\Frontend;
+namespace WpPluginName\Admin;
 
-use WP_Plugin_Name\Common\Assets as Common_Assets;
-use WP_Plugin_Name\Plugin_Data as Plugin_Data;
+use WpPluginName\Common\Assets as Common_Assets;
+use WpPluginName\PluginData as PluginData;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,7 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( Assets::class ) ) {
 	/**
-	 * Enqueues the public-facing assets.
+	 * Enqueues the global admin assets.
+	 *
+	 * Settings Page adds additional.
 	 */
 	class Assets {
 
@@ -26,12 +28,12 @@ if ( ! class_exists( Assets::class ) ) {
 		}
 
 		/**
-		 * Register and enqueue the stylesheets for the public-facing side of the site.
+		 * Register and enqueue the stylesheets for every admin area.
 		 *
 		 * Must register before we enqueue!
 		 */
 		public function enqueue_styles(): void {
-			$file_name = 'frontend';
+			$file_name = 'admin';
 
 			$registered = $this->common_assets->register_style( $file_name );
 
@@ -41,13 +43,12 @@ if ( ! class_exists( Assets::class ) ) {
 		}
 
 		/**
-		 * Register and enqueue the scripts for the public-facing side of the site.
+		 * Register and enqueue the JavaScript for every admin area.
 		 *
 		 * Must register before we enqueue!
 		 */
 		public function enqueue_scripts(): void {
-			global $wp_scripts;
-			$file_name = 'frontend';
+			$file_name = 'admin';
 
 			$registered = $this->common_assets->register_script(
 				$file_name,

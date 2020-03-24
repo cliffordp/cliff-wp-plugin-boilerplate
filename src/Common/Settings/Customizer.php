@@ -1,9 +1,9 @@
 <?php
 
-namespace WP_Plugin_Name\Common\Settings;
+namespace WpPluginName\Common\Settings;
 
 use WP_Customize_Setting;
-use WP_Plugin_Name\Plugin_Data as Plugin_Data;
+use WpPluginName\PluginData as PluginData;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -42,7 +42,7 @@ if ( ! class_exists( Customizer::class ) ) {
 			}
 
 			// add flag in the Customizer url so we know we're in this plugin's Customizer Section
-			$link_to_customizer_panel = add_query_arg( Plugin_Data::plugin_text_domain_underscores(), 'true', wp_customize_url() );
+			$link_to_customizer_panel = add_query_arg( PluginData::plugin_text_domain_underscores(), 'true', wp_customize_url() );
 
 			// auto-open the panel
 			$link_to_customizer_panel = add_query_arg( 'autofocus[panel]', $this->customizer_panel_id(), $link_to_customizer_panel );
@@ -56,7 +56,7 @@ if ( ! class_exists( Customizer::class ) ) {
 		 * @return string
 		 */
 		public function customizer_panel_id(): string {
-			return Plugin_Data::plugin_text_domain_underscores() . '_panel';
+			return PluginData::plugin_text_domain_underscores() . '_panel';
 		}
 
 		/**
@@ -78,7 +78,7 @@ if ( ! class_exists( Customizer::class ) ) {
 		 *
 		 * Check if what the user selected is valid. If yes, return it, else return setting's default.
 		 *
-		 * @see \WP_Plugin_Name\Common\Settings\Choices::sanitize_post_types()
+		 * @see \WpPluginName\Common\Settings\Choices::sanitize_post_types()
 		 *
 		 * @param array|string         $value   When used as a Customizer callback, will be a JSON string.
 		 * @param WP_Customize_Setting $setting The setting object.

@@ -1,21 +1,21 @@
 <?php
 
-namespace WP_Plugin_Name\Shortcodes;
+namespace WpPluginName\Shortcodes;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( Manage_Shortcodes::class ) ) {
+if ( ! class_exists( Manage::class ) ) {
 	/**
 	 * Handle all the shortcodes.
 	 */
-	class Manage_Shortcodes {
+	class Manage {
 		/**
 		 * Shortcodes to register.
 		 *
-		 * Enter the name of each class (without namespace) from within the `WP_Plugin_Name\Shortcodes` namespace.
+		 * Enter the name of each class (without namespace) from within the `WpPluginName\Shortcodes` namespace.
 		 */
 		public $shortcode_classes = [
 			'TK_Request',

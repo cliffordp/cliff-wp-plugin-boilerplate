@@ -5,7 +5,7 @@
  * https://github.com/cliffordp/cliff-wp-plugin-boilerplate#plugin-structure
  * Introduction to the structure of this plugin's files:
  *
- * cliff-wp-plugin-boilerplate/src/class-Plugin_Data.php - hard-coded information about the plugin, such as plugin-slug and plugin_slug.
+ * cliff-wp-plugin-boilerplate/src/class-PluginData.php - hard-coded information about the plugin, such as plugin-slug and plugin_slug.
  * cliff-wp-plugin-boilerplate/src/class-Bootstrap.php - gets the plugin going, including setting required/recommended plugin dependencies
  *
  * cliff-wp-plugin-boilerplate/src/Frontend - public-facing functionality
@@ -22,7 +22,7 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @package           WP_Plugin_Name
+ * @package           WpPluginName
  *
  * @wordpress-plugin
  * Plugin Name:       WordPress Plugin Boilerplate
@@ -55,7 +55,7 @@
  *     You are invited to use it for your own WordPress projects.
  */
 
-namespace WP_Plugin_Name;
+namespace WpPluginName;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {

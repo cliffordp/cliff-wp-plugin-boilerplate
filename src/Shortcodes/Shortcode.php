@@ -1,9 +1,9 @@
 <?php
 
-namespace WP_Plugin_Name\Shortcodes;
+namespace WpPluginName\Shortcodes;
 
-use WP_Plugin_Name\Common\Common as Common;
-use WP_Plugin_Name\Plugin_Data as Plugin_Data;
+use WpPluginName\Common\Common as Common;
+use WpPluginName\PluginData as PluginData;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * The scaffolding for creating a new shortcode.
  *
- * @see \WP_Plugin_Name\Shortcodes\Manage_Shortcodes::$shortcode_classes Manually add your child class name here to get it to load.
+ * @see \WpPluginName\Shortcodes\Manage::$shortcode_classes Manually add your child class name here to get it to load.
  */
 abstract class Shortcode {
 
@@ -161,7 +161,7 @@ abstract class Shortcode {
 			$this->required_capability()
 		);
 
-		$message = sprintf( '<p class="%s-shortcode-error shortcode-%s">%s</p>', esc_attr( Plugin_Data::plugin_text_domain() ), esc_attr( $this->get_tag() ), $message );
+		$message = sprintf( '<p class="%s-shortcode-error shortcode-%s">%s</p>', esc_attr( PluginData::plugin_text_domain() ), esc_attr( $this->get_tag() ), $message );
 
 		return $message;
 	}

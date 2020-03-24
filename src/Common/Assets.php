@@ -1,9 +1,9 @@
 <?php
 
-namespace WP_Plugin_Name\Common;
+namespace WpPluginName\Common;
 
-use WP_Plugin_Name\Common\Utilities\Strings as Strings;
-use WP_Plugin_Name\Plugin_Data as Plugin_Data;
+use WpPluginName\Common\Utilities\Strings as Strings;
+use WpPluginName\PluginData as PluginData;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -31,7 +31,7 @@ if ( ! class_exists( Assets::class ) ) {
 		 * @return string
 		 */
 		public static function get_assets_url_base(): string {
-			return Plugin_Data::plugin_dir_url() . 'dist/';
+			return PluginData::plugin_dir_url() . 'dist/';
 		}
 
 		/**
@@ -40,7 +40,7 @@ if ( ! class_exists( Assets::class ) ) {
 		 * @return string
 		 */
 		public static function get_assets_path_base(): string {
-			return Plugin_Data::plugin_dir_path() . 'dist/';
+			return PluginData::plugin_dir_path() . 'dist/';
 		}
 
 		/**
@@ -54,7 +54,7 @@ if ( ! class_exists( Assets::class ) ) {
 		 * @return string
 		 */
 		public static function get_asset_handle( string $handle ): string {
-			return Plugin_Data::plugin_text_domain() . '-' . $handle;
+			return PluginData::plugin_text_domain() . '-' . $handle;
 		}
 
 		/**
@@ -207,7 +207,7 @@ if ( ! class_exists( Assets::class ) ) {
 				$v = $version;
 			} else {
 				// Plugin's version.
-				$v = Plugin_Data::plugin_version();
+				$v = PluginData::plugin_version();
 			}
 
 			return (string) $v;

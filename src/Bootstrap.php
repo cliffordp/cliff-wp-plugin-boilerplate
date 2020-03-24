@@ -1,9 +1,9 @@
 <?php
 
-namespace WP_Plugin_Name;
+namespace WpPluginName;
 
 // Abort if this file is called directly.
-use WP_Plugin_Name\Core as Core;
+use WpPluginName\Core as Core;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -67,7 +67,7 @@ if ( ! class_exists( Bootstrap::class ) ) {
 				'external_url' => 'https://toolset.com/?aid=5336&affiliate_key=Lsvk04DjJOhq',
 				'version'      => '2.8.0.1',
 			],
-			[
+			/*[
 				'name'     => 'WooCommerce',
 				'slug'     => 'woocommerce',
 				'source'   => 'repo',
@@ -81,7 +81,7 @@ if ( ! class_exists( Bootstrap::class ) ) {
 				'required'     => true,
 				'external_url' => 'https://woocommerce.com/products/woocommerce-bookings/?aff=11845',
 				'version'      => '1.14.0',
-			],
+			],*/
 		];
 
 		/**
@@ -126,7 +126,7 @@ if ( ! class_exists( Bootstrap::class ) ) {
 			 * Array of configuration settings. Amend each line as needed.
 			 */
 			$config = [
-				'id'           => Plugin_Data::plugin_text_domain(),      // Unique ID for hashing notices for multiple instances of TGMPA.
+				'id'           => PluginData::plugin_text_domain(),      // Unique ID for hashing notices for multiple instances of TGMPA.
 				'parent_slug'  => 'plugins.php',           // Parent menu slug.
 				'capability'   => 'activate_plugins',      // Capability needed to view plugin install page, should be a capability associated with the parent menu used.
 				'has_notices'  => true,                    // Show admin notices or not.
@@ -137,20 +137,20 @@ if ( ! class_exists( Bootstrap::class ) ) {
 				'strings'      => [
 					'notice_can_install_required'    => _n_noop(
 					// translators: 1: plugin name(s).
-						Plugin_Data::get_plugin_display_name() . ' requires the following plugin: %1$s.',
-						Plugin_Data::get_plugin_display_name() . ' requires the following plugins: %1$s.',
+						PluginData::get_plugin_display_name() . ' requires the following plugin: %1$s.',
+						PluginData::get_plugin_display_name() . ' requires the following plugins: %1$s.',
 						'cliff-wp-plugin-boilerplate'
 					),
 					'notice_can_install_recommended' => _n_noop(
 					// translators: 1: plugin name(s).
-						Plugin_Data::get_plugin_display_name() . ' recommends the following plugin: %1$s.',
-						Plugin_Data::get_plugin_display_name() . ' recommends the following plugins: %1$s.',
+						PluginData::get_plugin_display_name() . ' recommends the following plugin: %1$s.',
+						PluginData::get_plugin_display_name() . ' recommends the following plugins: %1$s.',
 						'cliff-wp-plugin-boilerplate'
 					),
 					'notice_ask_to_update'           => _n_noop(
 					// translators: 1: plugin name(s).
-						'The following plugin needs to be updated to its latest version to ensure maximum compatibility with ' . Plugin_Data::get_plugin_display_name() . ': %1$s.',
-						'The following plugins need to be updated to their latest version to ensure maximum compatibility with ' . Plugin_Data::get_plugin_display_name() . ': %1$s.',
+						'The following plugin needs to be updated to its latest version to ensure maximum compatibility with ' . PluginData::get_plugin_display_name() . ': %1$s.',
+						'The following plugins need to be updated to their latest version to ensure maximum compatibility with ' . PluginData::get_plugin_display_name() . ': %1$s.',
 						'cliff-wp-plugin-boilerplate'
 					),
 					// translators: 1: plugin name
@@ -174,8 +174,8 @@ if ( ! class_exists( Bootstrap::class ) ) {
 			$message = sprintf(
 				// translators: 1: plugin display name, 2: required minimum PHP version, 3: current PHP version, help link
 				__( '%1$s requires at least PHP version %2$s in order to work. You have version %3$s. Please see %4$s for more information.', 'cliff-wp-plugin-boilerplate' ),
-				'<strong>' . Plugin_Data::get_plugin_display_name() . '</strong>',
-				'<strong>' . Plugin_Data::required_min_php_version() . '</strong>',
+				'<strong>' . PluginData::get_plugin_display_name() . '</strong>',
+				'<strong>' . PluginData::required_min_php_version() . '</strong>',
 				'<strong>' . PHP_VERSION . '</strong>',
 				$help_link
 			);
@@ -190,7 +190,7 @@ if ( ! class_exists( Bootstrap::class ) ) {
 		 * @param string $type
 		 */
 		public function do_admin_notice( string $message, string $type = 'error' ): void {
-			$class = sprintf( '%s %s', $type, sanitize_html_class( Plugin_Data::plugin_text_domain() ) );
+			$class = sprintf( '%s %s', $type, sanitize_html_class( PluginData::plugin_text_domain() ) );
 
 			printf( '<div class="%s"><p>%s</p></div>', $class, $message );
 		}
@@ -250,7 +250,7 @@ if ( ! class_exists( Bootstrap::class ) ) {
 			$message = sprintf(
 				// translators: 1: plugin display name, 2: parent theme name, 3: child theme name message, 4: wp-admin link to themes, if applicable
 				__( 'The %1$s plugin requires the %2$s parent theme%3$sin order to work.%4$s', 'cliff-wp-plugin-boilerplate' ),
-				'<strong>' . Plugin_Data::get_plugin_display_name() . '</strong>',
+				'<strong>' . PluginData::get_plugin_display_name() . '</strong>',
 				'<strong>' . $parent_name . '</strong>',
 				$child_message,
 				$admin_link
@@ -267,7 +267,7 @@ if ( ! class_exists( Bootstrap::class ) ) {
 		public function is_ready(): bool {
 			$success = true;
 
-			if ( version_compare( PHP_VERSION, Plugin_Data::required_min_php_version(), '<' ) ) {
+			if ( version_compare( PHP_VERSION, PluginData::required_min_php_version(), '<' ) ) {
 				add_action( 'admin_notices', [ $this, 'notice_old_php_version' ] );
 				$success = false;
 			}
@@ -338,7 +338,7 @@ if ( ! class_exists( Bootstrap::class ) ) {
 					continue;
 				}
 
-				$plugin_data = get_plugin_data( Plugin_Data::all_plugins_dir() . $basename );
+				$plugin_data = get_plugin_data( PluginData::all_plugins_dir() . $basename );
 
 				if (
 					empty( $plugin_data['Version'] )

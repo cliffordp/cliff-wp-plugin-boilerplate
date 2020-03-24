@@ -38,7 +38,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"WP_Plugin_Name\\": "src/"
+			"WpPluginName\\": "src/"
 		}
 	},
 	"config": {

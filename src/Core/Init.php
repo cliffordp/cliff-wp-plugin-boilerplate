@@ -1,13 +1,13 @@
 <?php
 
-namespace WP_Plugin_Name\Core;
+namespace WpPluginName\Core;
 
-use WP_Plugin_Name\Admin as Admin;
-use WP_Plugin_Name\Common as Common;
-use WP_Plugin_Name\Customizer as Customizer;
-use WP_Plugin_Name\Frontend as Frontend;
-use WP_Plugin_Name\Shortcodes as Shortcodes;
-use WP_Plugin_Name\Plugin_Data as Plugin_Data;
+use WpPluginName\Admin as Admin;
+use WpPluginName\Common as Common;
+use WpPluginName\Customizer as Customizer;
+use WpPluginName\Frontend as Frontend;
+use WpPluginName\Shortcodes as Shortcodes;
+use WpPluginName\PluginData as PluginData;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -46,7 +46,7 @@ if ( ! class_exists( Init::class ) ) {
 		 * Loads the following required dependencies for this plugin.
 		 *
 		 * - Loader - Orchestrates the hooks of the plugin.
-		 * - Internationalization_I18n - Defines internationalization functionality.
+		 * - I18n - Defines internationalization functionality.
 		 * - Admin - Defines all hooks for the admin area.
 		 * - Frontend - Defines all hooks for the public side of the site.
 		 */
@@ -57,11 +57,11 @@ if ( ! class_exists( Init::class ) ) {
 		/**
 		 * Define the locale for this plugin for internationalization.
 		 *
-		 * Uses the Internationalization_I18n class in order to set the domain and to register the hook
+		 * Uses the I18n class in order to set the domain and to register the hook
 		 * with WordPress.
 		 */
 		private function set_locale(): void {
-			$i18n = new Internationalization_I18n();
+			$i18n = new I18n();
 
 			$this->loader->add_action( 'plugins_loaded', $i18n, 'load_plugin_textdomain' );
 		}
@@ -128,7 +128,7 @@ if ( ! class_exists( Init::class ) ) {
 
 			// Plugin action links
 			$this->loader->add_filter(
-				'plugin_action_links_' . Plugin_Data::plugin_basename(),
+				'plugin_action_links_' . PluginData::plugin_basename(),
 				$settings,
 				'customize_action_links'
 			);
@@ -158,7 +158,7 @@ if ( ! class_exists( Init::class ) ) {
 		 * Register all of the shortcodes.
 		 */
 		private function register_shortcodes(): void {
-			( new Shortcodes\Manage_Shortcodes() )->register_all_shortcodes();
+			( new Shortcodes\Manage() )->register_all_shortcodes();
 		}
 
 		/**

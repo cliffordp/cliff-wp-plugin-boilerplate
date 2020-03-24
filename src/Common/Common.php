@@ -1,8 +1,8 @@
 <?php
 
-namespace WP_Plugin_Name\Common;
+namespace WpPluginName\Common;
 
-use WP_Plugin_Name\Plugin_Data as Plugin_Data;
+use WpPluginName\PluginData as PluginData;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -79,7 +79,7 @@ if ( ! class_exists( Common::class ) ) {
 		 * @return string
 		 */
 		public function required_capability(): string {
-			return apply_filters( Plugin_Data::plugin_text_domain_underscores() . '_required_capability', 'customize' );
+			return apply_filters( PluginData::plugin_text_domain_underscores() . '_required_capability', 'customize' );
 		}
 
 		/**
@@ -90,7 +90,7 @@ if ( ! class_exists( Common::class ) ) {
 		 * @return string
 		 */
 		public function get_wrapper_class(): string {
-			$class = Plugin_Data::plugin_text_domain_underscores() . '-wrapper';
+			$class = PluginData::plugin_text_domain_underscores() . '-wrapper';
 
 			return esc_attr( $class );
 		}

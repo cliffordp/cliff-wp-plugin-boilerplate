@@ -10,7 +10,7 @@ Stable tag: 1.0.0
 License: GPL version 3 or any later version
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Here is a short description of the plugin. This should be no more than 150 characters. No markup here.
+Here is a short description of the plugin's purpose & functionality. It should be no more than 150 characters or fewer. No markup is allowed in here.
 
 == Description ==
 

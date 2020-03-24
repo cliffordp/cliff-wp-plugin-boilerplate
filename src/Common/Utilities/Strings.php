@@ -1,6 +1,6 @@
 <?php
 
-namespace WP_Plugin_Name\Common\Utilities;
+namespace WpPluginName\Common\Utilities;
 
 use Stringy\Stringy as Stringy;
 

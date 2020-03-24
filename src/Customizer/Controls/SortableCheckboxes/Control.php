@@ -1,24 +1,24 @@
 <?php
 
-namespace WP_Plugin_Name\Customizer;
+namespace WpPluginName\Customizer\Controls\SortableCheckboxes;
 
 use WP_Customize_Control;
 use WP_Customize_Manager;
-use WP_Plugin_Name\Plugin_Data as Plugin_Data;
+use WpPluginName\PluginData as PluginData;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( Sortable_Checkboxes_Control::class ) ) {
+if ( ! class_exists( Control::class ) ) {
 	/**
 	 * Sortable checkboxes control class.
 	 *
 	 * @link    http://scottfennell.org/2015/05/28/adding-a-draggablesortable-multi-checkbox-control-to-the-wordpress-customizer/ Adapted from this.
 	 *          Confirmed okay to license as GPLv3+ via Twitter: https://twitter.com/TourKick/status/1089524933133303808
 	 */
-	class Sortable_Checkboxes_Control extends WP_Customize_Control {
+	class Control extends WP_Customize_Control {
 
 		/**
 		 * The type of control being rendered
@@ -40,8 +40,8 @@ if ( ! class_exists( Sortable_Checkboxes_Control::class ) ) {
 		 * TODO: `customize_controls_enqueue_scripts` hook per https://wordpress.stackexchange.com/a/138646/22702
 		 */
 		public function enqueue(): void {
-			wp_enqueue_script( $this->handle( 'js' ), plugin_dir_url( __FILE__ ) . 'js/script.js', [ 'jquery', 'jquery-ui-sortable' ], Plugin_Data::plugin_version(), true );
-			wp_enqueue_style( $this->handle(), plugin_dir_url( __FILE__ ) . 'css/style.css', [], Plugin_Data::plugin_version(), 'all' );
+			wp_enqueue_script( $this->handle( 'js' ), plugin_dir_url( __FILE__ ) . 'js/script.js', [ 'jquery', 'jquery-ui-sortable' ], PluginData::plugin_version(), true );
+			wp_enqueue_style( $this->handle(), plugin_dir_url( __FILE__ ) . 'css/style.css', [], PluginData::plugin_version(), 'all' );
 		}
 
 		/**
@@ -52,7 +52,7 @@ if ( ! class_exists( Sortable_Checkboxes_Control::class ) ) {
 		 * @return string
 		 */
 		private function handle( string $suffix = '' ): string {
-			$result = Plugin_Data::get_asset_handle( $this->type );
+			$result = PluginData::get_asset_handle( $this->type );
 			if ( ! empty( $suffix ) ) {
 				$result .= '-' . $suffix;
 			}

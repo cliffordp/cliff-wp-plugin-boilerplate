@@ -1,11 +1,11 @@
 <?php
 
-namespace WP_Plugin_Name\Admin\Settings;
+namespace WpPluginName\Admin\Settings;
 
-use WP_Plugin_Name\Common\Settings\Choices;
-use WP_Plugin_Name\Plugin_Data as Plugin_Data;
-use WP_Plugin_Name\Common\Common as Common;
-use WP_Plugin_Name\Common\Settings\Main as Common_Settings;
+use WpPluginName\Common\Settings\Choices;
+use WpPluginName\PluginData as PluginData;
+use WpPluginName\Common\Common as Common;
+use WpPluginName\Common\Settings\Main as Common_Settings;
 use WP_Screen;
 
 // Abort if this file is called directly.
@@ -67,8 +67,8 @@ if ( ! class_exists( Main::class ) ) {
 		 */
 		public function add_plugin_admin_menu(): void {
 			$hook_suffix = add_options_page(
-				Plugin_Data::get_plugin_display_name(),
-				Plugin_Data::get_plugin_display_name(),
+				PluginData::get_plugin_display_name(),
+				PluginData::get_plugin_display_name(),
 				$this->common->required_capability(),
 				$this->settings->get_settings_page_slug(),
 				[ $this, 'settings_page' ]
@@ -86,49 +86,49 @@ if ( ! class_exists( Main::class ) ) {
 		public function enqueue_settings_page_assets() {
 			// CSS for our Settings Page.
 			wp_enqueue_style(
-				Plugin_Data::get_asset_handle( 'admin-settings' ),
-				Plugin_Data::get_assets_url_base() . 'admin-settings.css',
+				PluginData::get_asset_handle( 'admin-settings' ),
+				PluginData::get_assets_url_base() . 'admin-settings.css',
 				[
 					'wp-components',
 				],
-				Plugin_Data::plugin_version(),
+				PluginData::plugin_version(),
 				'all'
 			);
 
 			// JS for our Settings Page.
 			wp_enqueue_script(
-				Plugin_Data::get_asset_handle( 'admin-settings' ),
-				Plugin_Data::get_assets_url_base() . 'admin-settings.js',
+				PluginData::get_asset_handle( 'admin-settings' ),
+				PluginData::get_assets_url_base() . 'admin-settings.js',
 				[
 					'wp-api',
 					'wp-i18n',
 					'wp-components',
 					'wp-element',
 				],
-				Plugin_Data::plugin_version(),
+				PluginData::plugin_version(),
 				true
 			);
 
 			$choices = new Choices();
 
 			wp_localize_script(
-				Plugin_Data::get_asset_handle( 'admin-settings' ),
+				PluginData::get_asset_handle( 'admin-settings' ),
 				'settingsData', // Only loads when on the page so shouldn't be a conflicting name.
 				[
 					// The CSS ID into which our React app inserts its content.
-					'entryId'     => Plugin_Data::plugin_text_domain(),
+					'entryId'     => PluginData::plugin_text_domain(),
 					// Helpful for things like generating the <h1>.
 					'pluginInfo'  => [
-						'name'    => Plugin_Data::get_plugin_display_name(),
-						'version' => Plugin_Data::plugin_version(),
+						'name'    => PluginData::get_plugin_display_name(),
+						'version' => PluginData::plugin_version(),
 					],
 					// The root location where we store images specific to the Admin area.
-					'imagesBaseUrl'   => Plugin_Data::plugin_dir_url() . 'src/Admin/images/',
+					'imagesBaseUrl'   => PluginData::plugin_dir_url() . 'src/Admin/images/',
 					'optionsInfo' => [
 						/**
 						 * The option prefix, in case we want to do any filtering for just our stuff.
 						 *
-						 * @see \WP_Plugin_Name\Common\Settings\Main::get_option_prefix()
+						 * @see \WpPluginName\Common\Settings\Main::get_option_prefix()
 						 */
 						'prefix'     => $this->settings->get_option_prefix(),
 						// The list of each of our option names, regardless of 'show_in_rest'.
@@ -184,7 +184,7 @@ if ( ! class_exists( Main::class ) ) {
 
 			printf(
 				'<div class="wrap" id="%s"></div>',
-				Plugin_Data::plugin_text_domain()
+				PluginData::plugin_text_domain()
 			);
 		}
 

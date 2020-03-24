@@ -1,6 +1,6 @@
 <?php
 
-namespace WP_Plugin_Name\Common\Utilities;
+namespace WpPluginName\Common\Utilities;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
