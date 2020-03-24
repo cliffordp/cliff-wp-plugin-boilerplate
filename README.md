@@ -162,6 +162,7 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 Documenting this project's progress...
 
 #### March 24, 2020
+* Add `declare( strict_types=1 );` to the top of all PHP files.
 * Admin Settings page: Make one of the default buttons link to our own Customizer panel.
 
 #### March 23, 2020
