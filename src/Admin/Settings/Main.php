@@ -134,9 +134,11 @@ if ( ! class_exists( Main::class ) ) {
 						 *
 						 * @see \WpPluginName\Common\Settings\Main::get_option_prefix()
 						 */
-						'prefix'     => $this->settings->get_option_prefix(),
+						'prefix' => $this->settings->get_option_prefix(),
 						// The list of each of our option names, regardless of 'show_in_rest'.
-						'allKeys' => $this->settings->get_all_prefixed_options(),
+
+						// Could be helpful but let's not by default for security reasons...
+						//'allKeys' => $this->settings->get_all_prefixed_options(),
 					],
 					'choicesFor' => [
 						'my_radio' => $choices->get_choices_post_types( 'RadioControl' ),
