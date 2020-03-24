@@ -55,6 +55,8 @@
  *     You are invited to use it for your own WordPress projects.
  */
 
+declare( strict_types=1 );
+
 namespace WpPluginName;
 
 // Abort if this file is called directly.

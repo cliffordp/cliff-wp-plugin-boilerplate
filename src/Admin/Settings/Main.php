@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types=1 );
+
 namespace WpPluginName\Admin\Settings;
 
 use WpPluginName\Common\Settings\Choices;

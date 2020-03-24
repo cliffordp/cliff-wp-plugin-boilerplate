@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types=1 );
+
 namespace WpPluginName\Common\Utilities;
 
 // Abort if this file is called directly.

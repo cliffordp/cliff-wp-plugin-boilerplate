@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types=1 );
+
 namespace WpPluginName\Admin;
 
 use WpPluginName\Common\Assets as Common_Assets;
