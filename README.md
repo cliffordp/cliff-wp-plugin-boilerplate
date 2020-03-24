@@ -125,7 +125,7 @@ For each new version, don't forget to:
   * In your `readme.txt` file's header
   * In your main plugin file's header
   * In your main plugin file's `PLUGIN_VERSION` constant
-* [Generate a fresh POT file](https://developer.wordpress.org/plugins/internationalization/localization/#generating-pot-file)
+* [Generate a fresh POT file](#march-23-2020)
 
 ### How to generate your .pot file
 
