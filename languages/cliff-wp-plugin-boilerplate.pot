@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-03-24T03:45:26+00:00\n"
+"POT-Creation-Date: 2020-03-24T05:22:36+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: cliff-wp-plugin-boilerplate\n"
@@ -34,112 +34,112 @@ msgstr ""
 msgid "https://www.example.com/"
 msgstr ""
 
-#: src/Admin/Settings/class-Main.php:182
+#: src/Admin/Settings/Main.php:182
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
 #. translators: 1: plugin name(s).
-#: src/class-Bootstrap.php:150
+#: src/Bootstrap.php:150
 msgid "The following plugin needs to be updated to its latest version to ensure maximum compatibility with "
 msgid_plural "The following plugins need to be updated to their latest version to ensure maximum compatibility with "
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: 1: plugin name
-#: src/class-Bootstrap.php:157
+#: src/Bootstrap.php:157
 msgid "Plugin not activated. A higher version of %s is needed for this plugin. Please update the plugin."
 msgstr ""
 
 #. translators: 1: plugin display name, 2: required minimum PHP version, 3: current PHP version, help link
-#: src/class-Bootstrap.php:176
+#: src/Bootstrap.php:176
 msgid "%1$s requires at least PHP version %2$s in order to work. You have version %3$s. Please see %4$s for more information."
 msgstr ""
 
 #. translators: 1: child theme name
-#: src/class-Bootstrap.php:245
+#: src/Bootstrap.php:245
 msgid " and %1$s child theme "
 msgstr ""
 
 #. translators: 1: plugin display name, 2: parent theme name, 3: child theme name message, 4: wp-admin link to themes, if applicable
-#: src/class-Bootstrap.php:252
+#: src/Bootstrap.php:252
 msgid "The %1$s plugin requires the %2$s parent theme%3$sin order to work.%4$s"
 msgstr ""
 
-#: src/class-Plugin_Data.php:85
-msgctxt "Plugin name for display"
-msgid "WordPress Plugin Boilerplate"
-msgstr ""
-
-#: src/Common/Settings/class-Choices.php:56
+#: src/Common/Settings/Choices.php:56
 msgid "Facebook"
 msgstr ""
 
-#: src/Common/Settings/class-Choices.php:61
+#: src/Common/Settings/Choices.php:61
 msgid "Twitter"
 msgstr ""
 
-#: src/Common/Settings/class-Choices.php:66
+#: src/Common/Settings/Choices.php:66
 msgid "Pinterest"
 msgstr ""
 
-#: src/Common/Settings/class-Choices.php:71
+#: src/Common/Settings/Choices.php:71
 msgid "LinkedIn"
 msgstr ""
 
-#: src/Common/Settings/class-Main.php:97
+#: src/Common/Settings/Main.php:97
 msgid "Settings"
 msgstr ""
 
 #. translators: 1: plugin display name, 2: name of debug function, 3: PHP End of Line character, 4: name of function triggering debug function, 5: debug log message
-#: src/Common/Utilities/class-Debug.php:56
+#: src/Common/Utilities/Debug.php:56
 msgid "%1$s - Message from %2$s():%3$s%4$s%5$s"
 msgstr ""
 
-#: src/Common/Utilities/class-Debug.php:78
+#: src/Common/Utilities/Debug.php:78
 msgctxt "Successfully emailed from output_to_log()"
 msgid "Email sent."
 msgstr ""
 
-#: src/Common/Utilities/class-Debug.php:80
+#: src/Common/Utilities/Debug.php:80
 msgctxt "Unsuccessfully emailed from output_to_log()"
 msgid "Email attempted but failed."
 msgstr ""
 
-#: src/Customizer/class-Customizer.php:87
+#: src/Customizer/Customizer.php:88
 msgid "Plugin options and settings"
 msgstr ""
 
-#: src/Customizer/class-Customizer.php:95
+#: src/Customizer/Customizer.php:96
 msgid "Example Section"
 msgstr ""
 
-#: src/Customizer/class-Customizer.php:96
+#: src/Customizer/Customizer.php:97
 msgid "Example Section description."
 msgstr ""
 
-#: src/Customizer/class-Customizer.php:161
+#: src/Customizer/Customizer.php:162
 msgid "Social Network(s)"
 msgstr ""
 
-#: src/Customizer/class-Customizer.php:162
+#: src/Customizer/Customizer.php:163
 msgid "Checked ones will output; unchecked ones will not. Drag and drop to set your preferred display order."
 msgstr ""
 
-#: src/Customizer/class-Customizer.php:211
+#: src/Customizer/Customizer.php:212
 msgid "Post Type(s)"
 msgstr ""
 
-#: src/Customizer/class-Customizer.php:212
+#: src/Customizer/Customizer.php:213
 msgid "Which Post Types should be enabled?"
 msgstr ""
 
-#: src/Shortcodes/class-Shortcode.php:149
+#: src/PluginData.php:85
+msgctxt "Plugin name for display"
+msgid "WordPress Plugin Boilerplate"
+msgstr ""
+
+#: src/Shortcodes/Shortcode.php:149
 msgctxt "Shortcode error cause default text"
 msgid "Unspecified"
 msgstr ""
 
 #. translators: 1: shortcode tag, 2: cause, 3: raw capability required
-#: src/Shortcodes/class-Shortcode.php:154
+#: src/Shortcodes/Shortcode.php:154
 msgctxt "Shortcode error message"
 msgid "Your attempt to use the `[%1$s]` shortcode resulted in an error because: %2$s. Please reference the documentation or inspect the code and try again. (Message only shown to users with the `%3$s` capability.)"
 msgstr ""
