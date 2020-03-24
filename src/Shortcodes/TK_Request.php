@@ -1,8 +1,8 @@
 <?php
 
-namespace WP_Plugin_Name\Shortcodes;
+namespace WpPluginName\Shortcodes;
 
-use WP_Plugin_Name\Common\Utilities\Http;
+use WpPluginName\Common\Utilities\Http;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -15,7 +15,7 @@ if ( ! class_exists( TK_Request::class ) ) {
 	 *
 	 * TODO: This is just a demo shortcode. Remove this class unless you want to keep this little utility.
 	 *
-	 * @see \WP_Plugin_Name\Shortcodes\Manage_Shortcodes::$shortcode_classes
+	 * @see \WpPluginName\Shortcodes\Manage::$shortcode_classes
 	 */
 	final class TK_Request extends Shortcode {
 		/**
@@ -34,7 +34,7 @@ if ( ! class_exists( TK_Request::class ) ) {
 		/**
 		 * Get the specified parameter from $_REQUEST (first check $_POST, then $_GET).
 		 *
-		 * @see \WP_Plugin_Name\Common\Utilities\Http::get_request_param()
+		 * @see \WpPluginName\Common\Utilities\Http::get_request_param()
 		 *
 		 * @param array  $atts    The shortcode attributes.
 		 * @param string $content The value from using an enclosing (not self-closing) shortcode.

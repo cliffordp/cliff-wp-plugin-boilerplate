@@ -36,7 +36,7 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
     1. Find the text `cliff-wp-plugin-boilerplate` and replace with `your-plugin-name` in all files
     1. Find the text `wp_plugin_name` and replace with `your_plugin_name` in all files
     1. Find the text `WordPress Plugin Boilerplate` and replace with `Your Plugin Name` in all files
-    1. Find the text `WP_Plugin_Name` and replace with `Your_Plugin_Name` in all files (the *namespace*)
+    1. Find the text `WpPluginName` and replace with `YourPluginName` in all files (the *namespace*)
     1. Rename the `pot` file under `languages` and replace the string `cliff-wp-plugin-boilerplate` with `your-plugin-name`
     1. Find the text `https://www.example.com/` and replace with your URI in all files
     1. Find the text `Your Name or Your Company` and replace with your name in all files
@@ -70,7 +70,7 @@ Visit https://getcomposer.org/ to learn all about it.
 Here are some quick notes about Composer, in general, and this project's use of it:
 1. You need to [install Composer](https://getcomposer.org/download/) on your desktop/laptop, not your server. You can download it right into your `cliff-wp-plugin-boilerplate` directory.
 1. The `composer.json` file is the *instructions* file that tells the `composer.phar` how to build your `vendor` directory (which includes the autoloader), and possibly do other things.
-1. Run `php composer.phar install` to generate your `composer.lock` file.
+1. Run `composer install` to generate your `composer.lock` file.
 1. Because `composer.json` has `"optimize-autoloader": true` inside the config key, *you will need to run Composer's `update` if you ever add a new PHP class*
     1. See https://getcomposer.org/doc/articles/autoloader-optimization.md for more details.
     1. It is set this way to lean toward distribution convenience more than development convenience.
@@ -91,7 +91,7 @@ Make sure to have _yarn_ or _npm_ installed on your computer. The following are 
 #### Generating and Distributing the .zip
 
 1. **Once ready to build the finalized .zip to distribute to your site or to others...**
-    1. `php composer.phar archive --file cliff-wp-plugin-boilerplate` *(name yours correctly)*
+    1. `composer archive --file cliff-wp-plugin-boilerplate` *(name yours correctly)*
     1. Because we did not set a `--dir` argument for the `archive` command, Composer will create the .zip right in the project's directory. *#Convenient!*
 1. Unzip this newly-created `cliff-wp-plugin-boilerplate.zip` file to make sure it got built correctly (excluding files like `.gitignore`, `composer.json`, `package.json`, etc).
 1. Upload this .zip to your production site or wherever you want to distribute it.
@@ -106,6 +106,7 @@ Following is the pre-built plugin structure. You can add your own new class file
 * `cliff-wp-plugin-boilerplate/src/Core` - plugin core to register hooks, load files etc
 * `cliff-wp-plugin-boilerplate/src/Customizer` - WordPress Customizer functionality
 * `cliff-wp-plugin-boilerplate/src/Frontend` - public-facing functionality
+* `cliff-wp-plugin-boilerplate/src/Shortcodes` - create and enable/disable new shortcodes
 
 ### PHP Version
 
@@ -130,9 +131,7 @@ For each new version, don't forget to:
 
 We do not use a variable for strings' text domain because it does not work when using the WP CLI command, nor WordPress.org. [Reference](https://developer.wordpress.org/plugins/internationalization/how-to-internationalize-your-plugin/#text-domains)
 
-Here's the WP CLI command you can customize to your needs:
-
-`wp i18n make-pot . languages/cliff-wp-plugin-boilerplate.pot --headers='{"Report-Msgid-Bugs-To":"Your Name or Your Company <https://www.example.com/>"}'` 
+The WP CLI make-pot command is part of the Composer archive (which runs the npm build) command, but make sure to customize it.
 
 # License
 
@@ -164,6 +163,11 @@ Documenting this project's progress...
 
 #### March 23, 2020
 * Admin Settings page: Add tabbed navigation with icons in the tab names and styling to support the wp-admin color schemes. [2 minute demo video](https://share.getcloudapp.com/YEuAzYGO)
+* Change the _Strings_ utility class to implement the [voku/stringy](https://github.com/voku/Stringy) [library](https://packagist.org/packages/voku/stringy).
+* Change the way Assets (CSS/JS) are handled, making them have to be registered before enqueued (best practice) and make it easier to do so for our internal assets, only needing the file name from the */dist* folder.
+* Add more reliable detection of when is a frontend request--example: `Common::current_request_is( 'frontend' )`--to improve performance, additionally being able to detect more, like REST API, Ajax, or WP-Cron requests.
+* Add "build:pot" npm command that gets ran upon Composer archive.
+* Rename files, folders, class names, and namespaces to be PSR-4 compatible to avoid deprecation notices as of Composer 1.10.0 (March 10, 2020).
 
 #### March 22, 2020
 * Improve the JavaScript build for WordPress React, reducing the `admin-settings.js` file size:

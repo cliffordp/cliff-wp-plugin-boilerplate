@@ -1,8 +1,8 @@
 <?php
 
-namespace WP_Plugin_Name\Common\Settings;
+namespace WpPluginName\Common\Settings;
 
-use WP_Plugin_Name\Plugin_Data;
+use WpPluginName\PluginData;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -48,7 +48,7 @@ if ( ! class_exists( Main::class ) ) {
 			$delimiter = '__';
 
 			if ( empty( $this->prefix ) ) {
-				$this->prefix = Plugin_Data::plugin_text_domain_underscores();
+				$this->prefix = PluginData::plugin_text_domain_underscores();
 			}
 
 			return $this->prefix . $delimiter;
@@ -85,7 +85,7 @@ if ( ! class_exists( Main::class ) ) {
 		 * @return string
 		 */
 		public function get_settings_page_slug(): string {
-			return Plugin_Data::plugin_text_domain() . '-settings';
+			return PluginData::plugin_text_domain() . '-settings';
 		}
 
 		/**
@@ -136,7 +136,7 @@ if ( ! class_exists( Main::class ) ) {
 		 * @return array
 		 */
 		public function get_all_options(): array {
-			$plugin_options = get_option( Plugin_Data::plugin_text_domain_underscores() );
+			$plugin_options = get_option( PluginData::plugin_text_domain_underscores() );
 
 			if ( ! empty( $plugin_options ) ) {
 				return (array) $plugin_options;
@@ -177,7 +177,7 @@ if ( ! class_exists( Main::class ) ) {
 		 * @return bool
 		 */
 		public function delete_all_options(): bool {
-			return delete_option( Plugin_Data::plugin_text_domain_underscores() );
+			return delete_option( PluginData::plugin_text_domain_underscores() );
 		}
 
 		/**

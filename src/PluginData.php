@@ -1,17 +1,17 @@
 <?php
 
-namespace WP_Plugin_Name;
+namespace WpPluginName;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( Plugin_Data::class ) ) {
+if ( ! class_exists( PluginData::class ) ) {
 	/**
 	 * The basic information about this plugin, like its texts (text domain and display name) and file locations.
 	 */
-	class Plugin_Data {
+	class PluginData {
 
 		/**
 		 * Get this plugin's version.
@@ -112,7 +112,7 @@ if ( ! class_exists( Plugin_Data::class ) ) {
 		 * Get the base URL of our assets directory, either /dist (unminified) or /dist/min (minified).
 		 *
 		 * Example usage:
-		 * Plugin_Data::get_assets_url_base() . 'admin.css'
+		 * PluginData::get_assets_url_base() . 'admin.css'
 		 *
 		 * @return string
 		 */

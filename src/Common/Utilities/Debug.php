@@ -1,8 +1,8 @@
 <?php
 
-namespace WP_Plugin_Name\Common\Utilities;
+namespace WpPluginName\Common\Utilities;
 
-use WP_Plugin_Name\Plugin_Data as Plugin_Data;
+use WpPluginName\PluginData as PluginData;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -54,7 +54,7 @@ if ( ! class_exists( Debug::class ) ) {
 			$message = sprintf(
 			// translators: 1: plugin display name, 2: name of debug function, 3: PHP End of Line character, 4: name of function triggering debug function, 5: debug log message
 				esc_html__( '%1$s - Message from %2$s():%3$s%4$s%5$s', 'cliff-wp-plugin-boilerplate' ),
-				Plugin_Data::get_plugin_display_name(),
+				PluginData::get_plugin_display_name(),
 				__FUNCTION__,
 				PHP_EOL,
 				$who_called_me,

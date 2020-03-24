@@ -1,8 +1,8 @@
 <?php
 
-namespace WP_Plugin_Name\Common\Settings;
+namespace WpPluginName\Common\Settings;
 
-use WP_Plugin_Name\Common\Utilities as Utils;
+use WpPluginName\Common\Utilities as Utils;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {

@@ -3,7 +3,6 @@
  *
  * This file itself
  */
-'use strict';
 
 /**
  * TODO: Remove this comment and everything BELOW it if there isn't any JS to share between Admin and Frontend.

@@ -1,6 +1,6 @@
 <?php
 
-namespace WP_Plugin_Name\Core;
+namespace WpPluginName\Core;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {

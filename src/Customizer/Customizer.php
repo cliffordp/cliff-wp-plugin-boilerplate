@@ -1,12 +1,13 @@
 <?php
 
-namespace WP_Plugin_Name\Customizer;
+namespace WpPluginName\Customizer;
 
 use WP_Customize_Manager;
-use WP_Plugin_Name\Common\Common;
-use WP_Plugin_Name\Common\Settings\Choices;
-use WP_Plugin_Name\Common\Settings\Customizer as Settings;
-use WP_Plugin_Name\Plugin_Data as Plugin_Data;
+use WpPluginName\Common\Common;
+use WpPluginName\Common\Settings\Choices;
+use WpPluginName\Common\Settings\Customizer as Settings;
+use WpPluginName\Customizer\Controls\SortableCheckboxes\Control;
+use WpPluginName\PluginData as PluginData;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -49,8 +50,8 @@ if ( ! class_exists( Customizer::class ) ) {
 		 * Initialize the class and set its properties.
 		 */
 		public function __construct() {
-			$this->common = new Common();
-			$this->choices = new Choices();
+			$this->common   = new Common();
+			$this->choices  = new Choices();
 			$this->settings = new Settings();
 		}
 
@@ -83,7 +84,7 @@ if ( ! class_exists( Customizer::class ) ) {
 			$wp_customize->add_panel(
 				$this->settings->customizer_panel_id(),
 				[
-					'title'       => Plugin_Data::get_plugin_display_name(),
+					'title'       => PluginData::get_plugin_display_name(),
 					'description' => esc_html__( 'Plugin options and settings', 'cliff-wp-plugin-boilerplate' ) . $this->settings->get_link_to_customizer_panel(),
 				]
 			);
@@ -112,9 +113,9 @@ if ( ! class_exists( Customizer::class ) ) {
 			/**
 			 * @todo: Example setting: Sortable checkbox list of social networks. Must choose a setting to go to, not a section or panel.
 			 */
-			$setting = Plugin_Data::plugin_text_domain_underscores() . '[social_networks]';
+			$setting = PluginData::plugin_text_domain_underscores() . '[social_networks]';
 
-			return apply_filters( Plugin_Data::plugin_text_domain_underscores() . '_' . __FUNCTION__, $setting );
+			return apply_filters( PluginData::plugin_text_domain_underscores() . '_' . __FUNCTION__, $setting );
 		}
 
 		/**
@@ -132,7 +133,7 @@ if ( ! class_exists( Customizer::class ) ) {
 			if ( empty( $slug ) ) {
 				return '';
 			} else {
-				return Plugin_Data::plugin_text_domain_underscores() . '_section_' . $slug;
+				return PluginData::plugin_text_domain_underscores() . '_section_' . $slug;
 			}
 		}
 
@@ -154,9 +155,9 @@ if ( ! class_exists( Customizer::class ) ) {
 			);
 
 			$wp_customize->add_control(
-				new Sortable_Checkboxes_Control(
+				new Control(
 					$wp_customize,
-					Plugin_Data::plugin_text_domain_underscores() . '_' . $setting_slug . '_control',
+					PluginData::plugin_text_domain_underscores() . '_' . $setting_slug . '_control',
 					[
 						'label'       => esc_html__( 'Social Network(s)', 'cliff-wp-plugin-boilerplate' ),
 						'description' => esc_html__( 'Checked ones will output; unchecked ones will not. Drag and drop to set your preferred display order.', 'cliff-wp-plugin-boilerplate' ),
@@ -183,7 +184,7 @@ if ( ! class_exists( Customizer::class ) ) {
 			if ( empty( $slug ) ) {
 				return '';
 			} else {
-				return Plugin_Data::plugin_text_domain_underscores() . '[' . $slug . ']';
+				return PluginData::plugin_text_domain_underscores() . '[' . $slug . ']';
 			}
 		}
 
@@ -204,9 +205,9 @@ if ( ! class_exists( Customizer::class ) ) {
 			);
 
 			$wp_customize->add_control(
-				new Sortable_Checkboxes_Control(
+				new Control(
 					$wp_customize,
-					Plugin_Data::plugin_text_domain_underscores() . '_' . $setting_slug . '_control',
+					PluginData::plugin_text_domain_underscores() . '_' . $setting_slug . '_control',
 					[
 						'label'       => esc_html__( 'Post Type(s)', 'cliff-wp-plugin-boilerplate' ),
 						'description' => esc_html__( 'Which Post Types should be enabled?', 'cliff-wp-plugin-boilerplate' ),
