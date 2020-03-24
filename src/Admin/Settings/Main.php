@@ -5,6 +5,7 @@ declare( strict_types=1 );
 namespace WpPluginName\Admin\Settings;
 
 use WpPluginName\Common\Settings\Choices;
+use WpPluginName\Common\Settings\Customizer;
 use WpPluginName\PluginData as PluginData;
 use WpPluginName\Common\Common as Common;
 use WpPluginName\Common\Settings\Main as Common_Settings;
@@ -121,8 +122,9 @@ if ( ! class_exists( Main::class ) ) {
 					'entryId'     => PluginData::plugin_text_domain(),
 					// Helpful for things like generating the <h1>.
 					'pluginInfo'  => [
-						'name'    => PluginData::get_plugin_display_name(),
-						'version' => PluginData::plugin_version(),
+						'name'               => PluginData::get_plugin_display_name(),
+						'version'            => PluginData::plugin_version(),
+						'customizerPanelUrl' => ( new Customizer() )->get_link_to_customizer_panel(),
 					],
 					// The root location where we store images specific to the Admin area.
 					'imagesBaseUrl'   => PluginData::plugin_dir_url() . 'src/Admin/images/',

@@ -161,6 +161,9 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
+#### March 24, 2020
+* Admin Settings page: Make one of the default buttons link to our own Customizer panel.
+
 #### March 23, 2020
 * Admin Settings page: Add tabbed navigation with icons in the tab names and styling to support the wp-admin color schemes. [2 minute demo video](https://share.getcloudapp.com/YEuAzYGO)
 * Change the _Strings_ utility class to implement the [voku/stringy](https://github.com/voku/Stringy) [library](https://packagist.org/packages/voku/stringy).
