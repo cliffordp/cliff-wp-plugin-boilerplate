@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-03-23T03:01:16+00:00\n"
+"POT-Creation-Date: 2020-03-24T03:45:26+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: cliff-wp-plugin-boilerplate\n"
@@ -91,16 +91,16 @@ msgid "Settings"
 msgstr ""
 
 #. translators: 1: plugin display name, 2: name of debug function, 3: PHP End of Line character, 4: name of function triggering debug function, 5: debug log message
-#: src/Common/utilities/class-Debug.php:56
+#: src/Common/Utilities/class-Debug.php:56
 msgid "%1$s - Message from %2$s():%3$s%4$s%5$s"
 msgstr ""
 
-#: src/Common/utilities/class-Debug.php:78
+#: src/Common/Utilities/class-Debug.php:78
 msgctxt "Successfully emailed from output_to_log()"
 msgid "Email sent."
 msgstr ""
 
-#: src/Common/utilities/class-Debug.php:80
+#: src/Common/Utilities/class-Debug.php:80
 msgctxt "Unsuccessfully emailed from output_to_log()"
 msgid "Email attempted but failed."
 msgstr ""

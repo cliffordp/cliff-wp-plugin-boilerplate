@@ -4,9 +4,10 @@
 	"description": "Here is a short description of the plugin.",
 	"scripts": {
 		"start": "parcel ./_entry/admin.js ./_entry/admin-settings.js ./_entry/frontend.js --https --hmr-hostname localhost --public-url ./",
-		"build": "run-s build-min build-unmin",
-		"build-min": "parcel build ./_entry/admin.js ./_entry/admin-settings.js ./_entry/frontend.js --detailed-report --out-dir dist/min --public-url ./",
-		"build-unmin": "parcel build ./_entry/admin.js ./_entry/admin-settings.js ./_entry/frontend.js --detailed-report --no-minify --public-url ./",
+		"build": "run-s build:*",
+		"build:min": "parcel build ./_entry/admin.js ./_entry/admin-settings.js ./_entry/frontend.js --detailed-report --out-dir dist/min --public-url ./",
+		"build:unmin": "parcel build ./_entry/admin.js ./_entry/admin-settings.js ./_entry/frontend.js --detailed-report --no-minify --public-url ./",
+		"build:pot": "wp i18n make-pot . languages/cliff-wp-plugin-boilerplate.pot --headers='{\"Report-Msgid-Bugs-To\":\"Your Name or Your Company <https://www.example.com/>\"}'",
 		"restart": "run-s cleanup start",
 		"cleanup": "rm -rf .cache .parcel-cache dist",
 		"nuke": "rm -rf ./node_modules ./vendor; composer install; npm install",
