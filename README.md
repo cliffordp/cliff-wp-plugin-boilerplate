@@ -86,7 +86,7 @@ Here are some quick notes about Composer, in general, and this project's use of 
 1. Run `npm run start` to get everything built and up-and-running, including Parcel's HMR.
   1. <kbd>Ctrl</kbd> + <kbd>C</kbd> to kill the Parcel watcher.
 1. Activate your plugin and see your Admin area has noticeably dumb styles (like all links as green) and JavaScript _alert()_ noise. This is to confirm Parcel is running successfully and to annoy you so you get started on your customizations. ;)
-  1. If you don't see the alerts, check your console. It could be that Parcel's HMR is disallowed by your browser because it's HTTP (if your localhost is HTTPS). In this case, click the `wss://...` to open in a new tab, it won't load, change it to `https://...` and your browser will complain because there's no valid cert. Just add the exception and then you won't have to do this again unless you delete the `.cache` directory created by Parcel.
+  1. If you don't see the alerts, check your console. It could be that Parcel's HMR is disallowed by your browser because it's HTTP (if your localhost is HTTPS). In this case, click the `wss://...` to open in a new tab, it won't load, change it to `https://...` and your browser will complain because there's no valid cert. Just add the exception and then you won't have to do this again unless you delete the `.cache` directory created by Parcel. [3 minute demo of these steps](https://share.getcloudapp.com/Qwu7J072)
   1. If you're on HTTP and not seeing the alerts, an unknown issue is the cause.
 1. Once your PHP, CSS, and JS coding is complete:
   1. If you're still running Parcel's watcher, kill it.
