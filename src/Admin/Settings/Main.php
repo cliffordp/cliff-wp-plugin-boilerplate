@@ -1,8 +1,11 @@
 <?php
 
+declare( strict_types=1 );
+
 namespace WpPluginName\Admin\Settings;
 
 use WpPluginName\Common\Settings\Choices;
+use WpPluginName\Common\Settings\Customizer;
 use WpPluginName\PluginData as PluginData;
 use WpPluginName\Common\Common as Common;
 use WpPluginName\Common\Settings\Main as Common_Settings;
@@ -119,8 +122,9 @@ if ( ! class_exists( Main::class ) ) {
 					'entryId'     => PluginData::plugin_text_domain(),
 					// Helpful for things like generating the <h1>.
 					'pluginInfo'  => [
-						'name'    => PluginData::get_plugin_display_name(),
-						'version' => PluginData::plugin_version(),
+						'name'               => PluginData::get_plugin_display_name(),
+						'version'            => PluginData::plugin_version(),
+						'customizerPanelUrl' => ( new Customizer() )->get_link_to_customizer_panel(),
 					],
 					// The root location where we store images specific to the Admin area.
 					'imagesBaseUrl'   => PluginData::plugin_dir_url() . 'src/Admin/images/',
@@ -130,9 +134,11 @@ if ( ! class_exists( Main::class ) ) {
 						 *
 						 * @see \WpPluginName\Common\Settings\Main::get_option_prefix()
 						 */
-						'prefix'     => $this->settings->get_option_prefix(),
+						'prefix' => $this->settings->get_option_prefix(),
 						// The list of each of our option names, regardless of 'show_in_rest'.
-						'allKeys' => $this->settings->get_all_prefixed_options(),
+
+						// Could be helpful but let's not by default for security reasons...
+						//'allKeys' => $this->settings->get_all_prefixed_options(),
 					],
 					'choicesFor' => [
 						'my_radio' => $choices->get_choices_post_types( 'RadioControl' ),

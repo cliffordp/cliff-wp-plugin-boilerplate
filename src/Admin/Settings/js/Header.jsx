@@ -21,7 +21,7 @@ const Header = () => {
 							href="https://wordpress.org/support/"
 						>
 							<Dashicon icon="editor-help" />
-							{_x( "Ask a question", "button help text" )}
+							{_x( "Ask a question", "button text" )}
 						</Button>
 					</div>
 				</div>
@@ -41,8 +41,11 @@ const Header = () => {
 				</span>
 			</div>
 
-			<Button isPrimary>
-				Button Text Here
+			<Button
+				isPrimary
+				href={`${settingsData.pluginInfo.customizerPanelUrl}`}
+			>
+				{_x( "Direct link to this plugin's Customizer panel", "button text" )}
 			</Button>
 		</header>
 	);

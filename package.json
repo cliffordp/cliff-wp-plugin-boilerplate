@@ -9,9 +9,10 @@
 		"build:unmin": "parcel build ./_entry/admin.js ./_entry/admin-settings.js ./_entry/frontend.js --detailed-report --no-minify --public-url ./",
 		"build:pot": "wp i18n make-pot . languages/cliff-wp-plugin-boilerplate.pot --headers='{\"Report-Msgid-Bugs-To\":\"Your Name or Your Company <https://www.example.com/>\"}'",
 		"restart": "run-s cleanup start",
-		"cleanup": "rm -rf .cache .parcel-cache dist",
-		"nuke": "rm -rf ./node_modules ./vendor; composer install; npm install",
-		"check-licenses": "run-p \"wp-scripts check-licenses --prod --gpl2\" \"wp-scripts check-licenses --dev\""
+		"cleanup": "rimraf .cache .parcel-cache dist",
+		"nuke": "rimraf ./vendor ./node_modules; composer install; npm install",
+		"check-licenses": "run-p \"wp-scripts check-licenses --prod --gpl2\" \"wp-scripts check-licenses --dev\"",
+		"zip": "composer archive --file cliff-wp-plugin-boilerplate"
 	},
 	"keywords": [
 		"wordpress",
@@ -40,7 +41,8 @@
 		"parcel-bundler": "^1.12.4",
 		"parcel-plugin-externals": "^0.3.3",
 		"postcss-advanced-variables": "^3.0.1",
-		"postcss-nested": "^4.2.1"
+		"postcss-nested": "^4.2.1",
+		"rimraf": "^3.0.2"
 	},
 	"babel": {
 		"presets": [

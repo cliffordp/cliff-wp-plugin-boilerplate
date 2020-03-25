@@ -56,7 +56,7 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
 1. Run `composer install`
 1. Run `npm update` (we purposefully don't commit package or composer lock files in the boilerplate, but you should in your repo)
 1. Run `npm install`
-1. Run `npm run start` if actively developing in React or CSS (HMR), else `npm run build`
+1. Run `npm run start` if actively working your CSS or JS (to get HMR), else `npm run build`
 1. Activate the plugin
 1. Check if everything's working as it should (that it can be activated and without any errors)
 1. If it works (as it should), ***delete THIS README.md FILE***
@@ -80,19 +80,22 @@ Here are some quick notes about Composer, in general, and this project's use of 
 
 #### Getting Started
 
-Make sure to have _yarn_ or _npm_ installed on your computer. The following are obviously _npm_ commands:
-
+1. Make sure to have npm installed on your computer.
 1. Open your plugin folder in your Terminal.
-1. Run `npm install` so your `package.json` files (*node_modules*) get installed.
-1. Run `npm run dev`, which will fire the "dev" command from the package.json's "scripts" (so you know where to look to understand the _real_ command it's running, which is Parcel).
-1. Activate your plugin and see your Admin area has goofy styles and JavaScript _alert()_ noise. This is to confirm Parcel is running successfully and to annoy you so you get started on your customizations. ;)
-1. Once your CSS and JS customizations are complete, run `npm run build` or just run Composer's _archive_ command, which will do a production build for you.
+1. Run `npm install` so *node_modules* gets installed.
+1. Run `npm run start` to get everything built and up-and-running, including Parcel's HMR.
+  1. <kbd>Ctrl</kbd> + <kbd>C</kbd> to kill the Parcel watcher.
+1. Activate your plugin and see your Admin area has noticeably dumb styles (like all links as green) and JavaScript _alert()_ noise. This is to confirm Parcel is running successfully and to annoy you so you get started on your customizations. ;)
+  1. If you don't see the alerts, check your console. It could be that Parcel's HMR is disallowed by your browser because it's HTTP (if your localhost is HTTPS). In this case, click the `wss://...` to open in a new tab, it won't load, change it to `https://...` and your browser will complain because there's no valid cert. Just add the exception and then you won't have to do this again unless you delete the `.cache` directory created by Parcel.
+  1. If you're on HTTP and not seeing the alerts, an unknown issue is the cause.
+1. Once your PHP, CSS, and JS coding is complete:
+  1. If you're still running Parcel's watcher, kill it.
+  1. Run `npm run zip` to build your installable/distributable plugin.
 
 #### Generating and Distributing the .zip
 
-1. **Once ready to build the finalized .zip to distribute to your site or to others...**
-    1. `composer archive --file cliff-wp-plugin-boilerplate` *(name yours correctly)*
-    1. Because we did not set a `--dir` argument for the `archive` command, Composer will create the .zip right in the project's directory. *#Convenient!*
+1. As stated above, run `npm run zip`.
+1. Composer will create the .zip right in the project's directory, only after first running production build and make-pot commands.
 1. Unzip this newly-created `cliff-wp-plugin-boilerplate.zip` file to make sure it got built correctly (excluding files like `.gitignore`, `composer.json`, `package.json`, etc).
 1. Upload this .zip to your production site or wherever you want to distribute it.
 1. Delete this .zip file from your hard drive.
@@ -131,7 +134,7 @@ For each new version, don't forget to:
 
 We do not use a variable for strings' text domain because it does not work when using the WP CLI command, nor WordPress.org. [Reference](https://developer.wordpress.org/plugins/internationalization/how-to-internationalize-your-plugin/#text-domains)
 
-The WP CLI make-pot command is part of the Composer archive (which runs the npm build) command, but make sure to customize it.
+The Composer archive command runs the asset build command, then the WP CLI make-pot command, ...but make sure to customize the make-pot command's arguments in the package.json script.
 
 # License
 
@@ -160,6 +163,10 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 # Boilerplate's Changelog
 
 Documenting this project's progress...
+
+#### March 24, 2020
+* Add `declare( strict_types=1 );` to the top of all PHP files.
+* Admin Settings page: Make one of the default buttons link to our own Customizer panel.
 
 #### March 23, 2020
 * Admin Settings page: Add tabbed navigation with icons in the tab names and styling to support the wp-admin color schemes. [2 minute demo video](https://share.getcloudapp.com/YEuAzYGO)
@@ -208,7 +215,7 @@ Documenting this project's progress...
 * Rename PHP class file names to match class names, including capitalization, according to PSR-4
 
 #### January 30, 2020
-* Editable JS and CSS (moved to SCSS) moved to `development` folder and NPM build process implemented
+* Editable JS and CSS (moved to SCSS) moved to `development` folder and npm build process implemented
 
 ##### April 29, 2019
 * Declutter main plugin file by creating new `Bootstrap` class

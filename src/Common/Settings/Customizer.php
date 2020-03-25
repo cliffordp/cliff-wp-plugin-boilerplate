@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types=1 );
+
 namespace WpPluginName\Common\Settings;
 
 use WP_Customize_Setting;
