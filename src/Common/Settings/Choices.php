@@ -138,16 +138,18 @@ if ( ! class_exists( Choices::class ) ) {
 		/**
 		 * Get the Post Types options.
 		 *
-		 * @param string $format Without a value, will work with Customizer. Pass 'RadioControl', for example, to format
-		 *                       the output for a <RadioControl> React component.
+		 * @param bool $for_picking If false, will work with Customizer.
+		 *                          If true, will work for React radio/select input.
 		 *
 		 * @return array
 		 */
-		public function get_choices_post_types( $format = '' ): array {
+		public function get_choices_post_types(
+			bool $for_picking = false
+		): array {
 			$result = [];
 
 			foreach ( ( new Utils\Posts() )->get_public_post_types() as $type ) {
-				if ( 'RadioControl' === $format ) {
+				if ( $for_picking ) {
 					$result[] = [
 						'label' => $type->label,
 						'value' => $type->name,
@@ -185,6 +187,46 @@ if ( ! class_exists( Choices::class ) ) {
 			}
 
 			return $default;
+		}
+
+		/**
+		 * Get an array of options for one through ten.
+		 *
+		 * @param bool $for_picking If true, will output for React radio/select input.
+		 *
+		 * @return array
+		 */
+		public function get_1_through_10(
+			bool $for_picking = false
+		): array {
+			$choices = [
+				1  => 'One',
+				2  => 'Two',
+				3  => 'Three',
+				4  => 'Four',
+				5  => 'Five',
+				6  => 'Six',
+				7  => 'Seven',
+				8  => 'Eight',
+				9  => 'Nine',
+				10 => 'Ten',
+			];
+
+			$result = [];
+
+			foreach ( $choices as $key => $value ) {
+				if ( $for_picking ) {
+					$result[] = [
+						'label'    => $value,
+						'value'    => $key,
+						'disabled' => ( 6 === $key ) ? true : false, // let's always disable Six
+					];
+				} else {
+					$result[ $key ] = $value;
+				}
+			}
+
+			return $result;
 		}
 	}
 }

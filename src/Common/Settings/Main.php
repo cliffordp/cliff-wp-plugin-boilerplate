@@ -268,6 +268,29 @@ if ( ! class_exists( Main::class ) ) {
 				]
 			);
 
+			/**
+			 * @see  \WP_REST_Settings_Controller::set_additional_properties_to_false() If using 'array', like we do for Multi Select.
+			 */
+			register_setting(
+				$this->get_option_prefix(),
+				$this->get_prefixed_option_key( 'my_multi_select' ),
+				[
+					'type'         => 'array', // could be 'array' if on WP 5.3+ and want to use in a mu
+					'default'      => '',
+					'show_in_rest' => [
+						'schema' => [
+							'items' => [
+								'type'  => 'array',
+								'items' => [
+									'type' => 'integer',
+									array_keys( $this->choices->get_1_through_10() ),
+								],
+							],
+						],
+					],
+				]
+			);
+
 		}
 
 	}

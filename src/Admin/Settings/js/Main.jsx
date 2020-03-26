@@ -18,6 +18,7 @@ const {
 	PanelRow,
 	Placeholder,
 	RadioControl,
+	SelectControl,
 	Spinner,
 	TabPanel,
 	ToggleControl,
@@ -43,6 +44,24 @@ const Main = () => {
 	const [ myToggle, setMyToggle ] = useState( false );
 	const [ myTextInput, setMyTextInput ] = useState( '' );
 	const [ myRadio, setMyRadio ] = useState( '' );
+	const [ myMultiSelect, setMyMultiSelect ] = useState( [] );
+
+	// Disable the multi-select while awaiting save to complete.
+	const getDaysOptions = (
+		disabled,
+	) => {
+		let choices = settingsData.choicesFor.my_multi_select;
+
+		if ( disabled ) {
+			return choices.map( choice => ({
+					...choice,
+					'disabled': true,
+				}),
+			);
+		}
+
+		return choices;
+	};
 
 	const setOptions = (
 		option,
@@ -57,6 +76,9 @@ const Main = () => {
 				break;
 			case 'myRadio':
 				setMyRadio( value );
+				break;
+			case 'myMultiSelect':
+				setMyMultiSelect( value );
 				break;
 		}
 	};
@@ -187,6 +209,7 @@ const Main = () => {
 					setMyToggle( Boolean( response[ settingsData.optionsInfo.prefix + 'my_toggle' ] ) );
 					setMyTextInput( response[ settingsData.optionsInfo.prefix + 'my_textinput' ] );
 					setMyRadio( response[ settingsData.optionsInfo.prefix + 'my_radio' ] );
+					setMyMultiSelect( response[ settingsData.optionsInfo.prefix + 'my_multi_select' ] );
 				} );
 			}
 		} );
@@ -296,14 +319,27 @@ const Main = () => {
 												</BaseControl>
 
 												<RadioControl
-													label={_x( 'My Radio', 'radio input label' )}
-													help={_x( 'Pick one of these… and only one. (FYI: They are the public post types.)', 'radio input help' )}
+													label={_x( 'My Radio', 'input label' )}
+													help={_x( 'Pick one of these… and only one. (FYI: They are the public post types.)', 'input help' )}
 													selected={myRadio}
 													options={settingsData.choicesFor.my_radio}
 													onChange={( myRadio ) => changeOptions(
 														settingsData.optionsInfo.prefix + 'my_radio',
 														'myRadio',
 														myRadio,
+													)}
+												/>
+
+												<SelectControl
+													multiple
+													label={_x( 'Mutli-select component', 'input label' )}
+													help={_x( 'Which one(s) do you want? Notice it disables while awaiting the save to complete. Nifty! Plus, #6 is always disabled.', 'input help' )}
+													value={myMultiSelect || []} // We need to make sure we start as an array, not as `null`, or else the component won't load at all.
+													options={getDaysOptions( isAPISaving )}
+													onChange={( myMultiSelect ) => changeOptions(
+														settingsData.optionsInfo.prefix + 'my_multi_select',
+														'myMultiSelect',
+														myMultiSelect,
 													)}
 												/>
 											</PanelRow>
