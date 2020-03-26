@@ -165,17 +165,17 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 Documenting this project's progress...
 
 #### March 25, 2020
-* Admin Settings page: Add an example multi-select option. [Demo GIF](https://share.getcloudapp.com/p9uKo1AX)
+* Admin Settings page: Add an example [multi-select option](https://developer.wordpress.org/block-editor/components/select-control/) ([demo GIF](https://share.getcloudapp.com/p9uKo1AX)), requiring quite the multidimensional array to get registered as a Setting: "show_in_rest" > "schema" > "items" (type=array) > "items" (type=integer)
 
 #### March 24, 2020
 * Add `declare( strict_types=1 );` to the top of all PHP files.
 * Admin Settings page: Make one of the default buttons link to our own Customizer panel.
 
 #### March 23, 2020
-* Admin Settings page: Add tabbed navigation with icons in the tab names and styling to support the wp-admin color schemes. [2 minute demo video](https://share.getcloudapp.com/YEuAzYGO)
+* Admin Settings page: Add [tabbed navigation](https://developer.wordpress.org/block-editor/components/tab-panel/) with [icons](https://developer.wordpress.org/block-editor/components/dashicon/) in the tab names and styling to support the wp-admin color schemes. [2 minute demo video](https://share.getcloudapp.com/YEuAzYGO)
 * Change the _Strings_ utility class to implement the [voku/stringy](https://github.com/voku/Stringy) [library](https://packagist.org/packages/voku/stringy).
 * Change the way Assets (CSS/JS) are handled, making them have to be registered before enqueued (best practice) and make it easier to do so for our internal assets, only needing the file name from the */dist* folder.
-* Add more reliable detection of when is a frontend request--example: `Common::current_request_is( 'frontend' )`--to improve performance, additionally being able to detect more, like REST API, Ajax, or WP-Cron requests.
+* Add more reliable detection of when is a frontend request--example: `Common::current_request_is( 'frontend' )`--to improve performance, additionally being able to detect more things: REST API, Ajax, or WP-Cron requests.
 * Add "build:pot" npm command that gets ran upon Composer archive.
 * Rename files, folders, class names, and namespaces to be PSR-4 compatible to avoid deprecation notices as of Composer 1.10.0 (March 10, 2020).
 
@@ -187,7 +187,7 @@ Documenting this project's progress...
 * Admin Settings page:
   * Protect components that get disabled while saving from getting permanently disabled if the API response never comes back (such as if PHP terminates).
   * Force displaying an error notification even if the API response was technically successful but isn't really due to a `null` response.
-  * Fix the example radio button's validation logic in `register_setting()` by adding the correct "show_in_rest" > "schema" > "enum" args, removing the "sanitize_callback" arg, and using the "rest_api_init" hook.
+  * Fix the example [radio button's](https://developer.wordpress.org/block-editor/components/radio-control/) validation logic in `register_setting()` by adding the correct "show_in_rest" > "schema" > "enum" args, removing the "sanitize_callback" arg, and using the "rest_api_init" hook.
   * Added basic styling.
 * Changed plugin text domains from variable to string to allow using WP CLI command and be compliant with WordPress.org out of the box.
 
@@ -196,7 +196,7 @@ Documenting this project's progress...
     * Rebuilt via React and JSX.
     * Requires React version 16.8+ to be able to use [Hooks](https://reactjs.org/docs/hooks-intro.html), which means we now require [WordPress version 5.2+](https://core.trac.wordpress.org/browser/tags/5.2/package.json) (from [May 7, 2019](https://wordpress.org/download/releases/))
     * Only loads CSS/JS for the Settings Page when we're on the Settings Page.
-    * Added a "greet box" in the heading area for things like your logo and social links.
+    * Added a heading area for things like your logo and [button links](https://developer.wordpress.org/block-editor/components/button/).
     * Added a few demo settings fields (like toggle) to help get up and running quickly.
 * [Hot Module Replacement (HMR)](https://parceljs.org/hmr.html) is now working when the plugin is active on a localhost WordPress installation. This is awesome because, for example, you could edit your PCSS from `p { color: blue; }` to `p { color: green; }` and your text will be green-colored before you can even switch back from your code editor to your web browser! (Yes, it works for JavaScript, too.)
 * Add easy asset handle maker to keep styles and scripts named consistently but uniquely. Example: `Plugin_Data::get_asset_handle( 'admin-settings' )`
