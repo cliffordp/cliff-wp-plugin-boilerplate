@@ -141,7 +141,8 @@ if ( ! class_exists( Main::class ) ) {
 						//'allKeys' => $this->settings->get_all_prefixed_options(),
 					],
 					'choicesFor' => [
-						'my_radio' => $choices->get_choices_post_types( 'RadioControl' ),
+						'my_radio'        => $choices->get_choices_post_types( true ),
+						'my_multi_select' => $choices->get_1_through_10( true ),
 					],
 				]
 			);
