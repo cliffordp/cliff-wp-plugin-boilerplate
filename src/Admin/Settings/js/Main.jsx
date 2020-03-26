@@ -332,7 +332,7 @@ const Main = () => {
 
 												<SelectControl
 													multiple
-													label={_x( 'Mutli-select component', 'input label' )}
+													label={_x( 'Multi-select component', 'input label' )}
 													help={_x( 'Which one(s) do you want? Notice it disables while awaiting the save to complete. Nifty! Plus, #6 is always disabled.', 'input help' )}
 													value={myMultiSelect || []} // We need to make sure we start as an array, not as `null`, or else the component won't load at all.
 													options={getDaysOptions( isAPISaving )}

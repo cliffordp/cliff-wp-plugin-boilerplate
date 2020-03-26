@@ -275,7 +275,7 @@ if ( ! class_exists( Main::class ) ) {
 				$this->get_option_prefix(),
 				$this->get_prefixed_option_key( 'my_multi_select' ),
 				[
-					'type'         => 'array', // could be 'array' if on WP 5.3+ and want to use in a mu
+					'type'         => 'array',
 					'default'      => '',
 					'show_in_rest' => [
 						'schema' => [
