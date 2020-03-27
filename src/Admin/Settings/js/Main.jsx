@@ -225,7 +225,7 @@ const Main = () => {
 
 	return (
 		<Fragment>
-			<div className="main">
+			<div className="main container">
 				<TabPanel className="tabs"
 						  initialTabName="tab1"
 						  tabs={[

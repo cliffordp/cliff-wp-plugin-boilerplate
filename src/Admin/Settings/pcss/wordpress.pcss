@@ -1,0 +1,131 @@
+/* purgecss start ignore */
+
+.main {
+	@apply mt-8;
+}
+
+/**
+ * WordPress' Components
+ */
+.components-panel__body {
+	@apply bg-white my-6;
+
+	&:first-child {
+		@apply mt-0;
+	}
+
+	&:last-child {
+		@apply mb-0;
+	}
+
+	.components-panel__body-toggle {
+		@apply shadow-sm;
+	}
+
+	.components-panel__row {
+		@apply flex flex-wrap items-start justify-center p-2 pt-5;
+
+		.components-base-control {
+			flex: 2 1 50%;
+
+			.components-base-control__field {
+				@apply mr-6 mb-3;
+
+				/* <SelectControl> is not resizable by default so we make it so. */
+				.components-select-control__input {
+					@apply resize;
+				}
+			}
+		}
+	}
+}
+
+/**
+ * Align button Dashicons with button text.
+ */
+.components-button {
+	@apply items-center;
+}
+
+/**
+ * Tab buttons don't get styling like they should so we add it ourselves.
+ */
+.components-tab-panel__tabs {
+	.components-button {
+		@apply text-lg h-10 py-2 px-4 mr-2;
+		box-sizing: unset;
+		background-color: theme('colors.wpAdmin.bg');
+
+		&.is-active {
+			@apply bg-white;
+
+			&:not(disabled) {
+				box-shadow: inset 0 -4px theme('colors.wpAdmin.primary.default');
+
+				body.admin-color-sunrise & {
+					box-shadow: inset 0 -4px theme('colors.wpAdmin.primary.sunrise');
+				}
+
+				body.admin-color-ocean & {
+					box-shadow: inset 0 -4px theme('colors.wpAdmin.primary.ocean');
+				}
+
+				body.admin-color-midnight & {
+					box-shadow: inset 0 -4px theme('colors.wpAdmin.primary.midnight');
+				}
+
+				body.admin-color-ectoplasm & {
+					box-shadow: inset 0 -4px theme('colors.wpAdmin.primary.ectoplasm');
+				}
+
+				body.admin-color-coffee & {
+					box-shadow: inset 0 -4px theme('colors.wpAdmin.primary.coffee');
+				}
+
+				body.admin-color-blue & {
+					box-shadow: inset 0 -4px theme('colors.wpAdmin.primary.blue');
+				}
+
+				body.admin-color-light & {
+					box-shadow: inset 0 -4px theme('colors.wpAdmin.primary.light');
+				}
+			}
+		}
+	}
+}
+
+.components-tab-panel__tab-content {
+	@apply p-2 border-l-4 border-solid;
+
+	border-left-color: theme('colors.wpAdmin.primary.default');
+
+	body.admin-color-sunrise & {
+		border-left-color: theme('colors.wpAdmin.primary.sunrise');
+	}
+
+	body.admin-color-ocean & {
+		border-left-color: theme('colors.wpAdmin.primary.ocean');
+	}
+
+	body.admin-color-midnight & {
+		border-left-color: theme('colors.wpAdmin.primary.midnight');
+	}
+
+	body.admin-color-ectoplasm & {
+		border-left-color: theme('colors.wpAdmin.primary.ectoplasm');
+	}
+
+	body.admin-color-coffee & {
+		border-left-color: theme('colors.wpAdmin.primary.coffee');
+	}
+
+	body.admin-color-blue & {
+		border-left-color: theme('colors.wpAdmin.primary.blue');
+	}
+
+	body.admin-color-light & {
+		border-left-color: theme('colors.wpAdmin.primary.light');
+	}
+}
+
+/* purgecss end ignore */

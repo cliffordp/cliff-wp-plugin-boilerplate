@@ -9,7 +9,7 @@ const { _x } = wp.i18n;
 
 const Footer = () => {
 	return (
-		<footer className="footer">
+		<footer className="container">
 			<div>
 				<h2>{_x( 'Got a question for us?', 'info section heading' )}</h2>
 

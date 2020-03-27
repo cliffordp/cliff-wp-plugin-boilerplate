@@ -165,6 +165,15 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 Documenting this project's progress...
 
 #### March 25, 2020
+* Implement [Tailwind CSS](https://tailwindcss.com/), which gives us thousands of possible class names to use throughout for layouts, [colors](https://tailwindcss.com/docs/customizing-colors#naming-your-colors), sizing, borders, transforms, [responsive](https://tailwindcss.com/docs/responsive-design), and more.
+  * Tailwind was chosen because it fit nicely into our existing PostCSS build process, has healthy community involvement, is infinitely [customizable](https://tailwindcss.com/docs/configuration) (custom colors, breakpoints, prefixing, fonts, etc.), and keeps us in our JS building stuff without having to fight against opinionated/bundled components. [What is Tailwind?](https://tailwindcss.com/#what-is-tailwind)
+  * By itself, Tailwind is about 0.6MB *minified* [out of the box](https://tailwindcss.com/docs/controlling-file-size/) so we now also run [PurgeCSS](https://purgecss.com/plugins/postcss.html#installation) so *only the classes from Tailwind that you use* will make it into your generated CSS.
+  * Therefore, this boilerplate's minified *admin-settings.css* (where all the React, JS, and CSS is) ends up around 12KB (0.01MB).
+  * This is great, except you'll need to make sure you *whitelist* external classes, such as from WordPress ([this is a start but not comprehensive](https://purgecss.com/guides/wordpress.html)).
+  * This also means you'll need to add/remove classes in your JS instead of your browser inspector because that Tailwind class actually doesn't exist in your CSS unless it's used in your JS.
+  * Yes, it works with HMR. Just add that additional class to your React component and see if it's just what you wanted in an instant.
+
+#### March 25, 2020
 * Admin Settings page: Add an example [multi-select option](https://developer.wordpress.org/block-editor/components/select-control/) ([demo GIF](https://share.getcloudapp.com/p9uKo1AX)), requiring quite the multidimensional array to get registered as a Setting: "show_in_rest" > "schema" > "items" (type=array) > "items" (type=integer)
 
 #### March 24, 2020

@@ -124,6 +124,7 @@ if ( ! class_exists( Main::class ) ) {
 					'pluginInfo'  => [
 						'name'               => PluginData::get_plugin_display_name(),
 						'version'            => PluginData::plugin_version(),
+						'settingsWord'       => $this->settings->get_settings_word(),
 						'customizerPanelUrl' => ( new Customizer() )->get_link_to_customizer_panel(),
 					],
 					// The root location where we store images specific to the Admin area.
