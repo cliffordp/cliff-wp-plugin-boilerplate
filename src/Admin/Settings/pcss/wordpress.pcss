@@ -1,6 +1,36 @@
 /* purgecss start ignore */
 
 /**
+ * Override Tailwind's normalizing in context of WordPress' specificity.
+ */
+.wrap {
+	h1 {
+		@apply text-3xl;
+	}
+
+	h2 {
+		@apply text-2xl;
+	}
+
+	h3 {
+		@apply text-xl;
+	}
+
+	p {
+		@apply text-lg pt-2;
+	}
+
+	a {
+		@apply text-blue-700 transition-colors duration-200;
+
+		&:hover,
+		&:focus {
+			@apply text-blue-500 underline;
+		}
+	}
+}
+
+/**
  * WordPress' Components
  */
 .components-panel__body {
@@ -24,12 +54,17 @@
 		.components-base-control {
 			flex: 2 1 50%;
 
+			p {
+				@apply text-sm;
+			}
+
 			.components-base-control__field {
 				@apply mr-6 mb-3;
 
-				/* <SelectControl> is not resizable by default so we make it so. */
+				/* <SelectControl> is not resizable by default, and we don't want super-wide all the time. */
+
 				.components-select-control__input {
-					@apply resize;
+					@apply resize w-auto;
 				}
 			}
 		}
@@ -94,6 +129,9 @@
 	@apply p-2 border-l-4 border-solid;
 	border-left-color: theme('colors.wpAdmin.default.primary');
 
+	button {
+		@apply text-lg;
+	}
 
 	body.admin-color-sunrise & {
 		border-left-color: theme('colors.wpAdmin.sunrise.primary');
