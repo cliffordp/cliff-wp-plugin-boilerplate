@@ -1,214 +1,60 @@
 /**
- * Full width (no padding/margin) on all widths.
+ * Surrounding imports with PurgeCSS ignore does not ignore that entire file. It has to be within each file.
+ *
+ * @link https://tailwindcss.com/docs/controlling-file-size/#setting-up-purgecss Quote:
+ * We recommend only applying Purgecss to Tailwind's utility classes, and not to base styles or component classes.
  */
-.wrap {
-	margin-top: 0;
-}
+@import './wordpress.pcss';
+@import './react-notifications.pcss';
+
+/* purgecss start ignore */
+@tailwind base;
+@tailwind components;
+/* purgecss end ignore */
+
+@tailwind utilities;
 
 /**
- * WordPress' Components
+ * Both Tailwind and WordPress add border rules to images but then remove one piece of it, both aiming to not have
+ * borders appear by default on every image, but they do it in different ways so we fix it to be what everyone expects.
  */
-.components-panel__body {
-	background: #fff;
-	margin: 25px 0;
-
-	&:first-child {
-		margin-top: 0;
-	}
-
-	&:last-child {
-		margin-bottom: 0;
-	}
-
-	&:not(.is-opened) {
-		.components-button {
-			padding-right: 16px;
-		}
-	}
-
-	.components-panel__body-toggle {
-		border-bottom: 1px solid rgba(25, 30, 35, .3);
-	}
-
-	.components-panel__row {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: flex-start;
-		justify-content: center;
-		padding: 20px 10px 10px;
-
-		.components-base-control {
-			flex: 2 1 50%;
-
-			.components-base-control__field {
-				margin-right: 30px;
-				margin-bottom: 10px;
-			}
-		}
-	}
-}
-
-/**
- * Align button Dashicons with button text.
- */
-.components-button {
-	align-items: center;
-}
-
-/**
- * Tab buttons don't get styling like they should so we add it ourselves.
- */
-.components-tab-panel__tabs {
-	.components-button {
-		box-sizing: unset;
-		background-color: #e5e5e5;
-		height: 42px;
-		font-size: 1.1rem;
-		padding: 6px 12px;
-		margin-right: 4px;
-
-		&.is-active {
-			background-color: #fff;
-
-			&:not(disabled) {
-				box-shadow: inset 0 -3px $admin-color-default-primary;
-
-				body.admin-color-sunrise & {
-					box-shadow: inset 0 -3px $admin-color-sunrise-primary;
-				}
-
-				body.admin-color-ocean & {
-					box-shadow: inset 0 -3px $admin-color-ocean-primary;
-				}
-
-				body.admin-color-midnight & {
-					box-shadow: inset 0 -3px $admin-color-midnight-primary;
-				}
-
-				body.admin-color-ectoplasm & {
-					box-shadow: inset 0 -3px $admin-color-ectoplasm-primary;
-				}
-
-				body.admin-color-coffee & {
-					box-shadow: inset 0 -3px $admin-color-coffee-primary;
-				}
-
-				body.admin-color-blue & {
-					box-shadow: inset 0 -3px $admin-color-blue-primary;
-				}
-
-				body.admin-color-light & {
-					box-shadow: inset 0 -3px $admin-color-light-primary;
-				}
-			}
-		}
-	}
-}
-
-.components-tab-panel__tab-content {
-	padding: 6px;
-	border-left-width: 3px;
-	border-left-style: solid;
-
-	border-left-color: $admin-color-default-primary;
-
-	body.admin-color-sunrise & {
-		border-left-color: $admin-color-sunrise-primary;
-	}
-
-	body.admin-color-ocean & {
-		border-left-color: $admin-color-ocean-primary;
-	}
-
-	body.admin-color-midnight & {
-		border-left-color: $admin-color-midnight-primary;
-	}
-
-	body.admin-color-ectoplasm & {
-		border-left-color: $admin-color-ectoplasm-primary;
-	}
-
-	body.admin-color-coffee & {
-		border-left-color: $admin-color-coffee-primary;
-	}
-
-	body.admin-color-blue & {
-		border-left-color: $admin-color-blue-primary;
-	}
-
-	body.admin-color-light & {
-		border-left-color: $admin-color-light-primary;
-	}
-}
-
-/**
- * Notifications
- */
-.react-notification-root {
-
-	.notification-container-bottom-left {
-		bottom: 30px;
-	}
-
-	.notification-container-mobile-bottom {
-		bottom: 60px;
-	}
+img {
+	@apply border-0 max-w-full;
 }
 
 /**
  * Heading
  */
-.header {
-	padding: 20px;
-	background-color: #fff;
-	box-shadow: 0 1px 0 rgba(213, 213, 213, 0.5), 0 1px 2px #eee;
+header {
 
 	img {
-		max-width: 200px;
+		@apply max-w-md;
 	}
 
 	.version {
-		background-color: #e5e5e5;
-		border-radius: 3px;
-		font-size: 0.8rem;
-		margin-left: 10px;
-		padding: 2px 7px;
+		@apply italic rounded py-2 px-4 text-xs;
+		background-color: theme('colors.wpAdmin.bg' );
 	}
-}
-
-@media ( max-width: 782px ) {
-
-	.header {
-		.container {
-
-			.logo {
-				justify-content: center;
-			}
-		}
-	}
-
 }
 
 /**
  * Main
  */
-.main {
-	margin-top: 2rem;
+.help-content {
+	@apply bg-white p-6;
+
+	img.help-image {
+		max-width: 220px;
+	}
 }
 
 /**
  * Footer
  */
-.footer {
-	text-align: center;
-	color: #72777c;
-	font-style: italic;
-	border-top: 1px #e1e1e1 solid;
-	border-bottom: 1px #e1e1e1 solid;
-	padding: 20px;
-	margin: 2rem 0 1.5rem;
+footer {
+	@apply text-gray-600 text-center italic p-6 border-t border-b border-gray-300 border-solid mt-8 mb-6 mx-0;
 
 	.container {
-		margin: 0 auto;
+		@apply my-0 mx-auto;
 	}
 }

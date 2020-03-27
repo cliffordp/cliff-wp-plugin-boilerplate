@@ -1,5 +1,3 @@
-alert( 'Frontend: Parcel build worked :) This is here to annoy you so you change things to your own. Work the TODOs ;o)' );
-
 /**
  * All of the code for your public-facing JavaScript belongs in this directory, split into as many JS files as you wish,
  * such as just this one or feel free to add additional JS files.
