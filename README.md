@@ -16,6 +16,7 @@
 * Built in a way that isn't just a skeleton (blank slate) but, instead, a fully-functioning plugin out of the box. We're of the opinion that it's quicker to dev and easier to learn if you can just **delete what you don't need and rework existing code into what you do need.**
 * Thorough code documentation with regular updates.
 * Adds a wp-admin Settings page with **React** components and the Settings API (restricts to Administrators). Bonus: legacy code that direct-links to the plugin's options in the WordPress **Customizer** (so use one or both for your plugin's options).
+* [Tailwind CSS framework](https://github.com/cliffordp/cliff-wp-plugin-boilerplate#march-25-2020) can be used anywhere and is optimized so all classes are available but only the used ones get built into the final CSS.
 * Plugin assets (CSS and JS) are served minified with external sourcemaps, but unminified files exist as well for when `SCRIPT_DEBUG` is `true` or you're running Parcel's watching / Hot Module Replacement (HMR).
 * Displays a wp-admin error notice to administrators if the required version of PHP is not met, saving users from a fatal error.
 * Easily add a new shortcode by extending the abstract `Shortcode` class and adding to the array of shortcodes in the `Manage_Shortcodes` class.
