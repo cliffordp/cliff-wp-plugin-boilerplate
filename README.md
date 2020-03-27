@@ -172,6 +172,10 @@ Documenting this project's progress...
   * This is great, except you'll need to make sure you *whitelist* external classes, such as from WordPress ([this is a start but not comprehensive](https://purgecss.com/guides/wordpress.html)).
   * This also means you'll need to add/remove classes in your JS instead of your browser inspector because that Tailwind class actually doesn't exist in your CSS unless it's used in your JS.
   * Yes, it works with HMR. Just add that additional class to your React component and see if it's just what you wanted in an instant.
+* Remove sourcemaps from the unminified build because they just pointed to the raw PostCSS, which isn't helpful when we're trying to figure out how it all compiled down into actual CSS (or JS). Plus, overall unzipped file size reduced over 100KB.
+  * The unminified files only load if `SCRIPT_DEBUG` is enabled.
+  * The sourcemaps are still available if loading the minified files.
+* Remove the JavaScript `alert()` from Common, Admin, and Frontend.
 
 #### March 25, 2020
 * Admin Settings page: Add an example [multi-select option](https://developer.wordpress.org/block-editor/components/select-control/) ([demo GIF](https://share.getcloudapp.com/p9uKo1AX)), requiring quite the multidimensional array to get registered as a Setting: "show_in_rest" > "schema" > "items" (type=array) > "items" (type=integer)
