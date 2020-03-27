@@ -14,15 +14,29 @@ module.exports = {
 					colors: {
 						wpAdmin: {
 							bg: '#e5e5e5', // light gray
-							primary: {
-								default: '#00a0d2', // blue
-								light: '#04a4cc', // blue
-								blue: '#52accc', // soft blue
-								coffee: '#59524c', // moss green
-								ectoplasm: '#523f6d', // orange
-								midnight: '#363b3f', // red
-								ocean: '#738e96', // tan
-								sunrise: '#cf4944', // mustard
+							default: {
+								primary: '#00a0d2', // blue
+							},
+							light: {
+								primary: '#04a4cc', // blue
+							},
+							blue: {
+								primary: '#52accc', // soft blue
+							},
+							coffee: {
+								primary: '#59524c', // moss green
+							},
+							ectoplasm: {
+								primary: '#523f6d', // orange
+							},
+							midnight: {
+								primary: '#363b3f', // red
+							},
+							ocean: {
+								primary: '#738e96', // tan
+							},
+							sunrise: {
+								primary: '#cf4944', // mustard
 							},
 						},
 					},
