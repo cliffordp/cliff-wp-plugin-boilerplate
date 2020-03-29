@@ -1,6 +1,14 @@
+const purgecss = require( '@fullhuman/postcss-purgecss' )( {
+	content: [
+		'./src/**/*.jsx',
+		'./src/**/*.js',
+	],
+	defaultExtractor: content => content.match( /[\w-/:]+(?<!:)/g ) || [],
+} );
+
 module.exports = {
-	plugins: {
-		'postcss-import': {},
+	plugins: [
+		require( 'postcss-import' ),
 		/**
 		 * Whatever would go into `tailwind.config.js` can go right here, saving us another file.
 		 *
@@ -8,7 +16,7 @@ module.exports = {
 		 *
 		 * @link https://tailwindcss.com/docs/configuration/
 		 */
-		'tailwindcss': {
+		require( 'tailwindcss' )( {
 			theme: {
 				extend: {
 					colors: {
@@ -42,20 +50,22 @@ module.exports = {
 					},
 				},
 			},
-		},
+		} ),
 		/**
 		 * Everything but `postcss-import` (if we were to use it) goes after Tailwind.
 		 *
 		 * @link https://tailwindcss.com/docs/using-with-preprocessors/#nesting
 		 */
-		'postcss-nested-ancestors': {},
-		'postcss-nested': {},
-		'postcss-advanced-variables': {
+		require( 'postcss-nested-ancestors' ),
+		require( 'postcss-nested' ),
+		require( 'postcss-advanced-variables' )( {
 			'variables': {
 				'plugin-slug': 'rankbear',
 			},
-		},
+		} ),
 		/**
+		 * Don't run during HMR, as it's extra overhead and we noticed some troubles (changes not detected).
+		 *
 		 * Should always be the last to run, other than autoprefixer.
 		 *
 		 * Tailwind has colons in class names but they never end with a colon.
@@ -65,13 +75,8 @@ module.exports = {
 		 * @link https://purgecss.com/extractors.html#default-extractor
 		 * @link https://regex101.com/r/BmADqx/2 Regex testing (confirms can't end with a colon).
 		 */
-		'@fullhuman/postcss-purgecss': {
-			content: [
-				'./src/**/*.jsx',
-				'./src/**/*.js',
-				'./src/**/*.svg',
-			],
-			defaultExtractor: content => content.match( /[\w-/:]+(?<!:)/g ) || [],
-		},
-	},
+		...process.env.NODE_ENV === 'production'
+			? [ purgecss ]
+			: [],
+	],
 };
