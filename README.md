@@ -165,6 +165,9 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
+#### August 27, 2020
+* Added CONTRIBUTING and CODE_OF_CONDUCT documentation files to the repository.
+
 #### March 25, 2020
 * Implement [Tailwind CSS](https://tailwindcss.com/), which gives us thousands of possible class names to use throughout for layouts, [colors](https://tailwindcss.com/docs/customizing-colors#naming-your-colors), sizing, borders, transforms, [responsive](https://tailwindcss.com/docs/responsive-design), and more.
   * Tailwind was chosen because it fit nicely into our existing PostCSS build process, has healthy community involvement, is infinitely [customizable](https://tailwindcss.com/docs/configuration) (custom colors, breakpoints, prefixing, fonts, etc.), and keeps us in our JS building stuff without having to fight against opinionated/bundled components. [What is Tailwind?](https://tailwindcss.com/#what-is-tailwind)
