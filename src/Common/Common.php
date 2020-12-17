@@ -18,6 +18,7 @@ if ( ! class_exists( Common::class ) ) {
 	class Common {
 
 		/**
+		 * @todo move to Http();
 		 * Determine if we are in a request of the specified type.
 		 *
 		 * Note that 'frontend' is true if Ajax.
@@ -49,6 +50,7 @@ if ( ! class_exists( Common::class ) ) {
 		}
 
 		/**
+		 * @todo move to Http();
 		 * Returns true if the request is a non-legacy REST API request.
 		 *
 		 * Legacy REST requests should still run some extra code for backwards compatibility.

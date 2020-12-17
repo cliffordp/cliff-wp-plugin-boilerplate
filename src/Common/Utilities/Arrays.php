@@ -10,11 +10,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( Arrays::class ) ) {
-	/**
-	 * The functionality shared between the admin and public-facing areas of the plugin.
-	 *
-	 * Useful for things like utilities or hooking into something that affects both back-end and front-end.
-	 */
 	class Arrays {
 
 		/**
@@ -108,6 +103,28 @@ if ( ! class_exists( Arrays::class ) ) {
 			}
 
 			return $result;
+		}
+
+		/**
+		 * Given an array having integer keys, get the maximum key.
+		 *
+		 * Will ignore any non-integer keys, such as numeric strings and floats.
+		 *
+		 * @param array $array
+		 *
+		 * @return int|false Maximum integer key (could be zero) if the array had at least one integer key, else false.
+		 */
+		public function get_max_int_key( array $array ) {
+			$keys = array_keys( $array );
+
+			$keys = array_filter( $keys, 'is_int' );
+
+			// None of the array keys were integers.
+			if ( empty( $keys ) ) {
+				return false;
+			}
+
+			return (int) max( $keys );
 		}
 
 	}

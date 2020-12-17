@@ -1,0 +1,18 @@
+[
+	{
+		"meta_key": "cliff_wp_plugin_boilerplate__color-primary",
+		"meta_value": "#441461"
+	},
+	{
+		"meta_key": "cliff_wp_plugin_boilerplate__company-name",
+		"meta_value": "Example Organization, Inc."
+	},
+	{
+		"meta_key": "cliff_wp_plugin_boilerplate__website",
+		"meta_value": "https:\/\/example.local\/"
+	},
+	{
+		"meta_key": "cliff_wp_plugin_boilerplate__checkboxes-are-nice",
+		"meta_value": "1"
+	}
+]

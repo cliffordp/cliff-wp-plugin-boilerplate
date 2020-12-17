@@ -4,7 +4,7 @@ Contributors: cliffpaulick
 Donate link: https://www.example.com/
 Tags:
 Requires at least: 5.2
-Tested up to: 5.3.2
+Tested up to: 5.6
 Requires PHP: 7.1.0
 Stable tag: 1.0.0
 License: GPL version 3 or any later version
@@ -65,14 +65,15 @@ Answer to foo bar dilemma.
 == Changelog ==
 
 = 1.0.1 =
-* December 1, 2018
+* December 1, 2020
 * A change since the previous version.
 * Another change.
 
 = 1.0.0 =
-* October 1, 2018
+* October 1, 2020
 * List versions from most recent at top to oldest at bottom.
-* Reference https://semver.org/ for determine your version numbers.
+* Reference https://semver.org/ to determine your version numbers.
+* Reference https://keepachangelog.com/ to help phrase your changelog entries.
 * Make sure to update the readme.txt header, the cliff-wp-plugin-boilerplate.php header, and the `PLUGIN_VERSION` constant each time you release a new version.
 
 == Upgrade Notice ==

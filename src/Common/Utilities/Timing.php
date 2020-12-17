@@ -12,11 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( Timing::class ) ) {
-	/**
-	 * The functionality shared between the admin and public-facing areas of the plugin.
-	 *
-	 * Useful for things like utilities or hooking into something that affects both back-end and front-end.
-	 */
 	class Timing {
 
 		/**
@@ -48,7 +43,7 @@ if ( ! class_exists( Timing::class ) ) {
 		 *
 		 * @return DateTimeImmutable|false
 		 */
-		public function get_current_time_wp_tz_date_object(): string {
+		public function get_current_time_wp_tz_date_object() {
 			$time_zone = $this->get_php_time_zone_string_from_wp();
 
 			try {

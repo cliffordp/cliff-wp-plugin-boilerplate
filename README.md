@@ -1,18 +1,18 @@
-# WordPress Plugin Boilerplate with Support for Composer, PHP Namespaces, and WordPress Customizer
+# WordPress Plugin Boilerplate, featuring automated tests, React, Composer, PHP Namespaces, and the WordPress Customizer.
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-
 ## Features
 
-* The Boilerplate is based on the [Plugin API](http://codex.wordpress.org/Plugin_API), [Coding Standards](http://codex.wordpress.org/WordPress_Coding_Standards), and [Documentation Standards](https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/php/).
+* The Boilerplate is based on the [Plugin API](https://codex.wordpress.org/Plugin_API), [Coding Standards](https://codex.wordpress.org/WordPress_Coding_Standards), and [Documentation Standards](https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/php/).
 * All classes, functions, and variables are documented so that you know what you need to change.
 * The Boilerplate uses a strict file organization scheme that corresponds both to the WordPress Plugin Repository structure, and that makes it easy to organize the files that compose the plugin.
 * The project includes a `.pot` file as a starting point for internationalization.
 
 ### Highlights
 
+* **[WPBrowser (Codeception)](https://codeception.com/for/wordpress) tests are already setup, run on GitHub Actions, and are easy to use!** See the `tests/tests.md` file for more details.
 * Built in a way that isn't just a skeleton (blank slate) but, instead, a fully-functioning plugin out of the box. We're of the opinion that it's quicker to dev and easier to learn if you can just **delete what you don't need and rework existing code into what you do need.**
 * Thorough code documentation with regular updates.
 * Adds a wp-admin Settings page with **React** components and the Settings API (restricts to Administrators). Bonus: legacy code that direct-links to the plugin's options in the WordPress **Customizer** (so use one or both for your plugin's options).
@@ -34,8 +34,8 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
 1. Delete the `.all-contributorsrc` file
 1. Perform a ***case-sensitive*** *search and replace* at the project level, as follows:
     1. Rename the `cliff-wp-plugin-boilerplate` directory to `your-plugin-name`. **This is your new plugin directory and must match your text domain.**
-    1. Find the text `cliff-wp-plugin-boilerplate` and replace with `your-plugin-name` in all files
-    1. Find the text `wp_plugin_name` and replace with `your_plugin_name` in all files
+    1. Find the text `cliff-wp-plugin-boilerplate` and replace with `your-plugin-name` in all files (will be your Text Domain)
+    1. Find the text `cliff_wp_plugin_boilerplate` and replace with `your_plugin_name` in all files (must match the above, just with underscores)
     1. Find the text `WordPress Plugin Boilerplate` and replace with `Your Plugin Name` in all files
     1. Find the text `WpPluginName` and replace with `YourPluginName` in all files (the *namespace*)
     1. Rename the `pot` file under `languages` and replace the string `cliff-wp-plugin-boilerplate` with `your-plugin-name`
@@ -75,8 +75,7 @@ Here are some quick notes about Composer, in general, and this project's use of 
 1. Because `composer.json` has `"optimize-autoloader": true` inside the config key, *you will need to run Composer's `update` if you ever add a new PHP class*
     1. See https://getcomposer.org/doc/articles/autoloader-optimization.md for more details.
     1. It is set this way to lean toward distribution convenience more than development convenience.
-    
-    
+
 ### Using Parcel
 
 #### Getting Started
@@ -111,19 +110,22 @@ Following is the pre-built plugin structure. You can add your own new class file
 * `cliff-wp-plugin-boilerplate/src/Customizer` - WordPress Customizer functionality
 * `cliff-wp-plugin-boilerplate/src/Frontend` - public-facing functionality
 * `cliff-wp-plugin-boilerplate/src/Shortcodes` - create and enable/disable new shortcodes
+* `cliff-wp-plugin-boilerplate/tests` - all the tests
 
 ### PHP Version
 
 This plugin requires PHP 7.1.0 or newer and will display a wp-admin error notice if activated in an environment that does not meet this or other requirements (such as required plugins or other dependencies you may code).
 
-You can see the current WordPress usage of each PHP version at https://wordpress.org/about/stats/. A requirement of 7.1+ meets 53.9% of all WordPress installs as of February 9, 2020. Most of those not using PHP 7.1+ are assumed to be inactive sites.
+You can see the current WordPress usage of each PHP version at https://wordpress.org/about/stats/. A requirement of 7.1+ meets 74.2% of all WordPress installs as of December 17, 2020. Most of those not using PHP 7.1+ are assumed to be inactive sites.
 
-Your requiring a PHP version update for anyone who might want to use your plugin will actually benefit them long-term, as their site will be quicker, more secure, and ready for future version bumps. In fact, [WordPress already recommends using PHP 7.3+](https://wordpress.org/about/requirements/) and has an ["Update PHP" help article](https://wordpress.org/support/update-php/).
+Your requiring a PHP version update for anyone who might want to use your plugin will actually benefit them long-term, as their site will be quicker, more secure, and ready for future version bumps. In fact, [WordPress already recommends using PHP 7.4+](https://wordpress.org/about/requirements/) and has an ["Update PHP" help article](https://wordpress.org/support/update-php/).
 
 # Developer Notes
 
 ### Updates
+
 For each new version, don't forget to:
+
 * Add a changelog entry to `readme.txt`
 * Update the version number:
   * In your `readme.txt` file's header
@@ -149,11 +151,11 @@ This WordPress Plugin Boilerplate is licensed under *GPL version 3 or any later 
 
 If you opt to use third-party code that is not compatible with this software's license, then you may need to switch to using code that is compatible.
 
-As an example, [here's a discussion](http://make.wordpress.org/themes/2013/03/04/licensing-note-apache-and-gpl/) that states GPLv2-only plugins could not bundle work licensed with Apache 2.0.
+As an example, [here's a discussion](https://make.wordpress.org/themes/2013/03/04/licensing-note-apache-and-gpl/) that states GPLv2-only plugins could not bundle work licensed with Apache 2.0.
 
 # Credits
 
-The WordPress Plugin Boilerplate was started in 2011, by [Tom McFarlin](http://twitter.com/tommcfarlin/) and has since included a number of great contributions. In March of 2015, the project was handed over by Tom to Devin Vinson.
+The WordPress Plugin Boilerplate was started in 2011, by [Tom McFarlin](https://twitter.com/tommcfarlin/) and has since included a number of great contributions. In March of 2015, the project was handed over by Tom to Devin Vinson.
 
 This plugin boilerplate was created by [Clifford Paulick](https://github.com/cliffordp/) in 2018, as a fork of [WordPress Plugin Boilerplate with Namespace and Autoloader Support](https://github.com/karannagupta/WordPress-Plugin-Boilerplate), which forked the [WordPress Plugin Boilerplate](https://github.com/DevinVinson/WordPress-Plugin-Boilerplate) project to add support for Composer (including autoloading) and namespaces.
 
@@ -164,6 +166,10 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 # Boilerplate's Changelog
 
 Documenting this project's progress...
+
+#### December 17, 2020
+* Added - WPBrowser (Codeception) tests that run via [tric](https://github.com/moderntribe/tric), just covering some of the Utilities classes as a start.
+* Updated - Corrected or enhanced various Utilities functions, thanks to implementing passing tests.
 
 #### August 27, 2020
 * Added CONTRIBUTING and CODE_OF_CONDUCT documentation files to the repository.
@@ -268,11 +274,11 @@ Documenting this project's progress...
 * Add link to plugin options screen in the Plugins List admin screen.
 * Add plugin options screen that links to WordPress Customizer panel.
 * Add methods for getting all Customizer options, deleting all options, and getting a single option (as raw, string, or array).
-* Add a custom Customizer Control for multiple checkboxes, optionally sortable. Big thanks to [Scott Fennell](http://scottfennell.org/) for the start to the code [and permission to use](https://twitter.com/TourKick/status/1089524933133303808). The version included here is heavily modified and follows this repository's license. *Still needs work if wanting to use `<select>` within each checkbox.*
+* Add a custom Customizer Control for multiple checkboxes, optionally sortable. Big thanks to [Scott Fennell](https://scottfennell.org/) for the start to the code [and permission to use](https://twitter.com/TourKick/status/1089524933133303808). The version included here is heavily modified and follows this repository's license. *Still needs work if wanting to use `<select>` within each checkbox.*
 * Add example Customizer options to help get a quick start.
 * Add utility function to detect current URL. 
 * Add utility function to get public post types, sorted by their labels.
-* Tweak - `Common` as class constructor (dependency injection) instead of singleton instance. [These](https://akrabat.com/what-problem-does-dependency-injection-solve/) [articles](http://fabien.potencier.org/what-is-dependency-injection.html) provide simple examples and explanations if you are curious.
+* Tweak - `Common` as class constructor (dependency injection) instead of singleton instance. [These](https://akrabat.com/what-problem-does-dependency-injection-solve/) [articles](https://fabien.potencier.org/what-is-dependency-injection.html) provide simple examples and explanations if you are curious.
 * Tweak - Add try/catch around DateTime(), although it shouldn't actually affect code.
 * Tweak - Wrap each class within `class_exists()`.
 * Tweak - Add `ABSPATH` check to top of all PHP files.

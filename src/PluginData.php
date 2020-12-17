@@ -68,7 +68,7 @@ if ( ! class_exists( PluginData::class ) ) {
 		 *
 		 * Used for saving options. Also useful for building namespaced hook names, class names, URLs, etc.
 		 *
-		 * @return string 'wp_plugin_name'
+		 * @return string 'cliff_wp_plugin_boilerplate'
 		 */
 		public static function plugin_text_domain_underscores(): string {
 			return str_replace( '-', '_', self::plugin_text_domain() );

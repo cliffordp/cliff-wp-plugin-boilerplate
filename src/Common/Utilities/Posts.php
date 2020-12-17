@@ -11,11 +11,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( Posts::class ) ) {
-	/**
-	 * The functionality shared between the admin and public-facing areas of the plugin.
-	 *
-	 * Useful for things like utilities or hooking into something that affects both back-end and front-end.
-	 */
 	class Posts {
 
 		/**

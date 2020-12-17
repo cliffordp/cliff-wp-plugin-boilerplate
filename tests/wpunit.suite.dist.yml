@@ -1,0 +1,26 @@
+# Codeception Test Suite Configuration
+#
+# Suite for unit or integration tests that REQUIRE WordPress globals, functions, or classes.
+
+actor: WpunitTester
+modules:
+    enabled:
+        - WPLoader
+        - \WpPluginName_Tests_Support\Helper\Wpunit
+    config:
+        WPLoader:
+            wpRootFolder: "%WP_ROOT_FOLDER%"
+            dbName: "%TEST_DB_NAME%"
+            dbHost: "%TEST_DB_HOST%"
+            dbUser: "%TEST_DB_USER%"
+            dbPassword: "%TEST_DB_PASSWORD%"
+            tablePrefix: "%TEST_TABLE_PREFIX%"
+            domain: "%TEST_SITE_WP_DOMAIN%"
+            adminEmail: "%TEST_SITE_ADMIN_EMAIL%"
+            title: "WordPress Plugin Boilerplate"
+            activatePlugins:
+                - github-updater/github-updater.php
+                - cliff-wp-plugin-boilerplate/cliff-wp-plugin-boilerplate.php
+            plugins:
+                - github-updater/github-updater.php
+                - cliff-wp-plugin-boilerplate/cliff-wp-plugin-boilerplate.php

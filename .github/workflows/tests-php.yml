@@ -1,0 +1,70 @@
+name: 'Codeception Tests'
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  release:
+jobs:
+  test:
+    strategy:
+      matrix:
+        suite: [ 'unit', 'wpunit' ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+        with:
+          path: plugins/_temp
+      - name: Setup repo's testing vars (repo slug must equal plugin slug)
+        run: |
+          echo "_PLUGINS_PATH=${PWD}/plugins" >> $GITHUB_ENV
+          echo "_PLUGIN_PATH=${PWD}/plugins/${PWD##*/}" >> $GITHUB_ENV
+          echo "_PLUGIN_SLUG=${PWD##*/}" >> $GITHUB_ENV
+      - name: Checkout tric
+        uses: actions/checkout@v2
+        with:
+          repository: moderntribe/tric
+          path: tric
+      - name: Setup tric env vars
+        run: |
+          echo "TRIC_BIN_PATH=${GITHUB_WORKSPACE}/tric/tric" >> $GITHUB_ENV
+          echo "TRIC_WP_DIR=${GITHUB_WORKSPACE}/tric/_wordpress" >> $GITHUB_ENV
+      - name: Start ssh-agent
+        run: |
+          mkdir -vp "${HOME}/.ssh";
+          ssh-agent -a /tmp/ssh_agent.sock;
+      - name: Export SSH_AUTH_SOCK env var
+        run: echo "SSH_AUTH_SOCK=/tmp/ssh_agent.sock" >> $GITHUB_ENV
+      - name: Rename '_temp' to plugin slug (not earlier step to avoid busy)
+        run: mv ./plugins/_temp ./plugins/${_PLUGIN_SLUG}
+      - name: Setup tric for CI
+        run: |
+          cd ${_PLUGINS_PATH}
+          ${TRIC_BIN_PATH} here
+          ${TRIC_BIN_PATH} interactive off
+          ${TRIC_BIN_PATH} build-prompt off
+          ${TRIC_BIN_PATH} build-subdir off
+          ${TRIC_BIN_PATH} xdebug off
+          ${TRIC_BIN_PATH} debug on
+      - name: Install all bundled plugin zips
+        run: |
+          cd ${_PLUGIN_PATH}/tests/_zips
+          for zipfname in *.zip;
+            do ${TRIC_BIN_PATH} site-cli plugin install ./wp-content/plugins/${_PLUGIN_SLUG}/tests/_zips/${zipfname};
+          done;
+      - name: Activate all installed plugins
+        run: ${TRIC_BIN_PATH} site-cli plugin activate --all
+      - name: Delete bundled plugin zips
+        run: rm -vrf ${_PLUGIN_PATH}/tests/_zips
+      - name: Setup this plugin for tric
+        run: |
+          docker network prune -f
+          ${TRIC_BIN_PATH} use ${_PLUGIN_SLUG}
+          ${TRIC_BIN_PATH} composer install
+      - name: Print the current tric info
+        run: ${TRIC_BIN_PATH} info
+      - name: Print the current tric configuration
+        run: ${TRIC_BIN_PATH} config
+      - name: Run suite tests
+        run: ${TRIC_BIN_PATH} run ${{ matrix.suite }}
