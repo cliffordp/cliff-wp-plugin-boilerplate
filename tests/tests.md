@@ -46,6 +46,7 @@ Then manually remove unnecessary ones like `_edit_last`, `_edit_lock`, and other
 * The boilerplate's default is to run tests upon Pull Requests to GitHub. If you host on BitBucket, GitLab, et. al. or otherwise don't want to use GitHub Actions (e.g. Travis CI or CircleCI), just delete the top-level `.github` directory. (But if you don't, it won't hurt anything.)
 * To get started customizing the action(s) to your own needs, reference [GitHub Actions' documentation](https://docs.github.com/free-pro-team@latest/actions) and get your hands dirty in the `.github/workflows` directory.
 * Many other actions exist in their marketplace, [some even specific to WordPress](https://github.com/marketplace?utf8=%E2%9C%93&type=actions&query=wordpress). Examples: publish a new plugin or update an existing plugin on WordPress.org, without touching SVN on your own computer.
+* Learn more [about GitHub Actions' pricing](https://docs.github.com/free-pro-team@latest/github/setting-up-and-managing-billing-and-payments-on-github/about-billing-for-github-actions) and [view your current usage](https://docs.github.com/free-pro-team@latest/github/setting-up-and-managing-billing-and-payments-on-github/viewing-your-github-actions-usage).
 * Feel free to PR to this boilerplate's repo to add additional actions that are generically helpful.
 
 ### External / Third-Party Plugins

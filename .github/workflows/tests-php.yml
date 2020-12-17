@@ -53,8 +53,6 @@ jobs:
           for zipfname in *.zip;
             do ${TRIC_BIN_PATH} site-cli plugin install ./wp-content/plugins/${_PLUGIN_SLUG}/tests/_zips/${zipfname};
           done;
-      - name: Activate all installed plugins
-        run: ${TRIC_BIN_PATH} site-cli plugin activate --all
       - name: Delete bundled plugin zips
         run: rm -vrf ${_PLUGIN_PATH}/tests/_zips
       - name: Setup this plugin for tric
