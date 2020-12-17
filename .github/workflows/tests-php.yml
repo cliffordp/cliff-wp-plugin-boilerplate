@@ -12,10 +12,12 @@ jobs:
         suite: [ 'unit', 'wpunit' ]
     runs-on: ubuntu-latest
     steps:
+      - name: Get default PHP version
+        run: php --version
       - name: Specify PHP version
         uses: shivammathur/setup-php@2.9.0
         with:
-          php-version: '7.1'
+          php-version: '7.4'
       - name: Checkout the repository
         uses: actions/checkout@v2
         with:
