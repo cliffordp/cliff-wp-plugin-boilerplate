@@ -17,6 +17,9 @@ node_modules/
 phpcs.xml
 phpunit.xml
 
+# Tests
+!tests/_zips/*.zip
+
 # Environment
 .env.local
 
