@@ -29,6 +29,10 @@
 
 The Boilerplate can be installed directly into your plugins folder "as-is". You will want to rename it and the classes inside of it to fit your needs.
 
+### Initial Creation of a New Plugin
+
+_Currently a lot of *Find and Replace*, but you're welcome to [contribute some automation](https://github.com/cliffordp/cliff-wp-plugin-boilerplate/issues/73) to improve the initial setup._
+
 1. Copy this *cliff-wp-plugin-boilerplate* repository/directory to your *wp-content/plugins* directory and rename your new plugin's directory
 1. Delete the `.github` directory
 1. Delete the `.all-contributorsrc` file
@@ -61,6 +65,13 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
 1. Activate the plugin
 1. Check if everything's working as it should (that it can be activated and without any errors)
 1. If it works (as it should), ***delete THIS README.md FILE***
+
+### _Important Notes_
+
+* You need to [install `tric` globally](https://github.com/moderntribe/tric/blob/main/docs/setup.md)
+* So that you can run `tric composer install` and `tric composer update` commands, **ESPECIALLY not running Composer's _update_ command _outside of tric_,** or else your GitHub Actions will likely fail due to not finding a set of installable components.
+* That being said, you _still do_ need to install Composer to your computer because the `npm run zip` script fires a Composer command _without_ tric. ([Until tric #69](https://github.com/moderntribe/tric/issues/69))
+* You should also [install NVM](https://github.com/nvm-sh/nvm#installing-and-updating) and keep the `.nvmrc` file updated as you decide is appropriate.
 
 ### Using Composer
 
@@ -166,6 +177,9 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 # Boilerplate's Changelog
 
 Documenting this project's progress...
+
+#### December 18, 2020
+* Updated - Explicit instructions how to generate the zip, now that `tric` is in the mix.
 
 #### December 17, 2020
 * Added - WPBrowser (Codeception) tests that run via [tric](https://github.com/moderntribe/tric), just covering some of the Utilities classes as a start.
