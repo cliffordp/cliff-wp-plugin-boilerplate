@@ -1,6 +1,6 @@
 # WordPress Plugin Boilerplate, featuring automated tests, React, Composer, PHP Namespaces, and the WordPress Customizer.
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Features
@@ -340,6 +340,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://www.scottfennell.com/wp"><img src="https://avatars3.githubusercontent.com/u/1585637?v=4" width="100px;" alt=""/><br /><sub><b>Scott Fennell</b></sub></a><br /><a href="https://github.com/cliffordp/cliff-wp-plugin-boilerplate/commits?author=scofennell" title="Code">💻</a></td>
     <td align="center"><a href="http://www.hardeepasrani.com"><img src="https://avatars1.githubusercontent.com/u/2649903?v=4" width="100px;" alt=""/><br /><sub><b>Hardeep Asrani</b></sub></a><br /><a href="#example-HardeepAsrani" title="Examples">💡</a></td>
     <td align="center"><a href="https://florian-rappl.de"><img src="https://avatars3.githubusercontent.com/u/1766191?v=4" width="100px;" alt=""/><br /><sub><b>Florian Rappl</b></sub></a><br /><a href="#plugin-FlorianRappl" title="Plugin/utility libraries">🔌</a></td>
+    <td align="center"><a href="http://theaveragedev.com"><img src="https://avatars1.githubusercontent.com/u/2749650?v=4" width="100px;" alt=""/><br /><sub><b>theAverageDev (Luca Tumedei)</b></sub></a><br /><a href="https://github.com/cliffordp/cliff-wp-plugin-boilerplate/commits?author=lucatume" title="Tests">⚠️</a></td>
   </tr>
 </table>
 

@@ -49,6 +49,15 @@
       "contributions": [
         "plugin"
       ]
+    },
+    {
+      "login": "lucatume",
+      "name": "theAverageDev (Luca Tumedei)",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/2749650?v=4",
+      "profile": "http://theaveragedev.com",
+      "contributions": [
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
