@@ -1,0 +1,8 @@
+# Codeception Test Suite Configuration
+#
+# Suite for unit or integration tests that DO NOT require WordPress globals, functions, or classes.
+
+actor: UnitTester
+modules:
+    enabled:
+        - \WpPluginName_Tests_Support\Helper\Unit

@@ -4,7 +4,7 @@ declare( strict_types=1 );
 
 namespace WpPluginName\Common\Utilities;
 
-use WpPluginName\PluginData as PluginData;
+use WpPluginName\PluginData;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,11 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( Debug::class ) ) {
-	/**
-	 * The functionality shared between the admin and public-facing areas of the plugin.
-	 *
-	 * Useful for things like utilities or hooking into something that affects both back-end and front-end.
-	 */
 	class Debug {
 
 		/**

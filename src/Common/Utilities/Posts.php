@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types=1 );
+
 namespace WpPluginName\Common\Utilities;
 
 use WP_Post;
@@ -11,11 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( Posts::class ) ) {
-	/**
-	 * The functionality shared between the admin and public-facing areas of the plugin.
-	 *
-	 * Useful for things like utilities or hooking into something that affects both back-end and front-end.
-	 */
 	class Posts {
 
 		/**
@@ -69,7 +66,7 @@ if ( ! class_exists( Posts::class ) ) {
 				'fields'         => 'ids',
 				'posts_per_page' => - 1,
 				'post_type'      => 'post',
-				'author'         => $current_user->ID,
+				'author'         => $current_user->ID
 			];
 
 			return ( new WP_Query( $args ) )->get_posts();

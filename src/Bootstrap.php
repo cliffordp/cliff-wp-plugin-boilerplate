@@ -1,10 +1,12 @@
 <?php
 
+// Cannot `declare( strict_types=1 );` to avoid fatal if prior to PHP 7.0.0, since this is called from main plugin file and handles the PHP version checking.
+
 namespace WpPluginName;
 
-// Abort if this file is called directly.
 use WpPluginName\Core as Core;
 
+// Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -40,8 +42,8 @@ if ( ! class_exists( Bootstrap::class ) ) {
 				'slug'         => 'gravityforms',
 				'source'       => 'external',
 				'required'     => true,
-				'external_url' => 'http://rocketgenius.pxf.io/c/1235520/445235/7938',
-				'version'      => '2.4.8.9',
+				'external_url' => 'https://rocketgenius.pxf.io/c/1235520/445235/7938',
+				'version'      => '2.4',
 			],
 			[
 				'name'         => 'GravityView',
@@ -49,7 +51,7 @@ if ( ! class_exists( Bootstrap::class ) ) {
 				'source'       => 'external',
 				'required'     => false,
 				'external_url' => 'https://gravityview.co/?ref=332',
-				'version'      => '2.3.1',
+				'version'      => '2.9',
 			],
 			[
 				'name'         => 'Toolset Types',
@@ -57,22 +59,14 @@ if ( ! class_exists( Bootstrap::class ) ) {
 				'source'       => 'external',
 				'required'     => true,
 				'external_url' => 'https://toolset.com/?aid=5336&affiliate_key=Lsvk04DjJOhq',
-				'version'      => '3.2.7',
-			],
-			[
-				'name'         => 'Toolset Views',
-				'slug'         => 'types',
-				'source'       => 'external',
-				'required'     => true,
-				'external_url' => 'https://toolset.com/?aid=5336&affiliate_key=Lsvk04DjJOhq',
-				'version'      => '2.8.0.1',
+				'version'      => '3.4',
 			],
 			/*[
 				'name'     => 'WooCommerce',
 				'slug'     => 'woocommerce',
 				'source'   => 'repo',
 				'required' => true,
-				'version'  => '3.6.1',
+				'version'  => '4.8',
 			],
 			[
 				'name'         => 'WooCommerce Bookings',
@@ -80,7 +74,7 @@ if ( ! class_exists( Bootstrap::class ) ) {
 				'source'       => 'external',
 				'required'     => true,
 				'external_url' => 'https://woocommerce.com/products/woocommerce-bookings/?aff=11845',
-				'version'      => '1.14.0',
+				'version'      => '1.15',
 			],*/
 		];
 
@@ -209,7 +203,6 @@ if ( ! class_exists( Bootstrap::class ) ) {
 			) {
 				$admin_link = sprintf( ' <a href="%1$s">%1$s</a>', admin_url( 'themes.php' ) );
 			}
-
 
 			// Check Parent
 			if ( ! empty( $this->required_theme['parent'] ) ) {

@@ -55,7 +55,7 @@
  *     You are invited to use it for your own WordPress projects.
  */
 
-declare( strict_types=1 );
+// Cannot `declare( strict_types=1 );` to avoid fatal if prior to PHP 7.0.0, since we did not yet verify the PHP version.
 
 namespace WpPluginName;
 

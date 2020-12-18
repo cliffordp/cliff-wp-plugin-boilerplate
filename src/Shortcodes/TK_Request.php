@@ -19,9 +19,7 @@ if ( ! class_exists( TK_Request::class ) ) {
 	 */
 	final class TK_Request extends Shortcode {
 		/**
-		 * An array of all the shortcode's possible attributes and their default values.
-		 *
-		 * @return array
+		 * @inheritDoc
 		 */
 		public function get_defaults(): array {
 			return [
@@ -32,12 +30,9 @@ if ( ! class_exists( TK_Request::class ) ) {
 		}
 
 		/**
-		 * Get the specified parameter from $_REQUEST (first check $_POST, then $_GET).
+		 * @inheritDoc
 		 *
 		 * @see \WpPluginName\Common\Utilities\Http::get_request_param()
-		 *
-		 * @param array  $atts    The shortcode attributes.
-		 * @param string $content The value from using an enclosing (not self-closing) shortcode.
 		 *
 		 * @return mixed The value of the query parameter, if any.
 		 */
