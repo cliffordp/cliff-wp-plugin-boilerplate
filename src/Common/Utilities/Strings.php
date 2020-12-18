@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types=1 );
+
 namespace WpPluginName\Common\Utilities;
 
 use Stringy\Stringy as Stringy;

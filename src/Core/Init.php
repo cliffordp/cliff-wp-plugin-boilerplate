@@ -92,12 +92,12 @@ if ( ! class_exists( Init::class ) ) {
 		 * We could have included in Common, since it is the same loading logic, but we separate it out for sanity.
 		 */
 		private function define_customizer_hooks(): void {
-			$common = new Common\Common();
+			$http = new Common\Utilities\Http();
 
 			// Avoid REST and Cron.
 			if (
-				! $common->current_request_is( 'admin' )
-				&& ! $common->current_request_is( 'frontend' )
+				! $http->current_request_is( 'admin' )
+				&& ! $http->current_request_is( 'frontend' )
 			) {
 				return;
 			}
@@ -112,9 +112,9 @@ if ( ! class_exists( Init::class ) ) {
 		 * Also works during Ajax.
 		 */
 		private function define_admin_hooks(): void {
-			$common = new Common\Common();
+			$http = new Common\Utilities\Http();
 
-			if ( ! $common->current_request_is( 'admin' ) ) {
+			if ( ! $http->current_request_is( 'admin' ) ) {
 				return;
 			}
 
@@ -141,9 +141,9 @@ if ( ! class_exists( Init::class ) ) {
 		 * Register all of the hooks related to the public-facing (is not admin or is Ajax) functionality of the plugin.
 		 */
 		private function define_public_hooks(): void {
-			$common = new Common\Common();
+			$http = new Common\Utilities\Http();
 
-			if ( ! $common->current_request_is( 'frontend' ) ) {
+			if ( ! $http->current_request_is( 'frontend' ) ) {
 				return;
 			}
 

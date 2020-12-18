@@ -170,6 +170,7 @@ Documenting this project's progress...
 #### December 17, 2020
 * Added - WPBrowser (Codeception) tests that run via [tric](https://github.com/moderntribe/tric), just covering some of the Utilities classes as a start.
 * Updated - Corrected or enhanced various Utilities functions, thanks to implementing passing tests.
+* Updated - Moved `current_request_is()` from Common to Http.
 
 #### August 27, 2020
 * Added CONTRIBUTING and CODE_OF_CONDUCT documentation files to the repository.

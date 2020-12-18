@@ -4,7 +4,7 @@ declare( strict_types=1 );
 
 namespace WpPluginName\Common\Utilities;
 
-use WpPluginName\PluginData as PluginData;
+use WpPluginName\PluginData;
 
 // Abort if this file is called directly.
 if ( ! defined( 'ABSPATH' ) ) {

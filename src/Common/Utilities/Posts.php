@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types=1 );
+
 namespace WpPluginName\Common\Utilities;
 
 use WP_Post;
@@ -64,7 +66,7 @@ if ( ! class_exists( Posts::class ) ) {
 				'fields'         => 'ids',
 				'posts_per_page' => - 1,
 				'post_type'      => 'post',
-				'author'         => $current_user->ID,
+				'author'         => $current_user->ID
 			];
 
 			return ( new WP_Query( $args ) )->get_posts();
