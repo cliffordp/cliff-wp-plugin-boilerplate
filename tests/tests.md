@@ -4,6 +4,10 @@
 
 The [tric](https://github.com/moderntribe/tric) (Modern **Tri**be **C**ontainers) CLI command provides a containerized and consistent environment for running automated tests.
 
+Because it offers consistency, it is from where you should run Composer and NPM commands.
+
+**Gotcha:** If you run `composer upgrade` within your own command line and not `tric composer upgrade` like you're supposed to, you could make it so your tests cannot run anymore via tric (and therefore GitHub Actions). Same for NPM commands. If this won't work for your purposes, look into pointing tric to your own Docker container.
+
 ### Quick example how to run tests via `tric` on your localhost
 
 1. Make sure [`tric` is setup](https://github.com/moderntribe/tric/blob/main/docs/setup.md) and ready to run.
