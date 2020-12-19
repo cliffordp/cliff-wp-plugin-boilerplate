@@ -19,7 +19,7 @@ msgid "WordPress Plugin Boilerplate"
 msgstr ""
 
 #. Plugin URI of the plugin
-msgid "https://www.example.com/cliff-wp-plugin-boilerplate-uri/"
+msgid "https://www.example.com/cliff-wp-plugin-boilerplate/"
 msgstr ""
 
 #. Description of the plugin
