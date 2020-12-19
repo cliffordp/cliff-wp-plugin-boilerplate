@@ -299,7 +299,6 @@ const Main = () => {
 													<Button
 														id={'forMyTextInput'}
 														isPrimary
-														isLarge
 														disabled={isAPISaving}
 														onClick={() => changeOptions(
 															settingsData.optionsInfo.prefix + 'my_textinput',

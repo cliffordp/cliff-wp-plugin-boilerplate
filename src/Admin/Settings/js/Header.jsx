@@ -42,7 +42,8 @@ const Header = () => {
 			</div>
 			<div>
 				<Button
-					isDefault
+					isSecondary
+					isSmall
 					target="_blank"
 					href="https://wordpress.org/support/"
 				>
@@ -53,6 +54,7 @@ const Header = () => {
 			<div className='mt-1'>
 				<Button
 					isPrimary
+					isSmall
 					href={`${settingsData.pluginInfo.customizerPanelUrl}`}
 				>
 					{_x( 'Direct link to this plugin\'s Customizer panel', 'button text' )}

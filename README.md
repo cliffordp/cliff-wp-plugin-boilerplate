@@ -29,6 +29,10 @@
 
 The Boilerplate can be installed directly into your plugins folder "as-is". You will want to rename it and the classes inside of it to fit your needs.
 
+### Initial Creation of a New Plugin
+
+_Currently a lot of *Find and Replace*, but you're welcome to [contribute some automation](https://github.com/cliffordp/cliff-wp-plugin-boilerplate/issues/73) to improve the initial setup._
+
 1. Copy this *cliff-wp-plugin-boilerplate* repository/directory to your *wp-content/plugins* directory and rename your new plugin's directory
 1. Delete the `.github` directory
 1. Delete the `.all-contributorsrc` file
@@ -62,6 +66,12 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
 1. Check if everything's working as it should (that it can be activated and without any errors)
 1. If it works (as it should), ***delete THIS README.md FILE***
 
+### _Important Notes_
+
+* You need to [install `tric` globally](https://github.com/moderntribe/tric/blob/main/docs/setup.md)
+* So that you can run `tric composer install` and `tric composer update` commands, **ESPECIALLY not running Composer's _update_ command _outside of tric_,** or else your GitHub Actions will likely fail due to not finding a set of installable components.
+* You should also [install NVM](https://github.com/nvm-sh/nvm#installing-and-updating) and keep the `.nvmrc` file updated as you decide is appropriate.
+
 ### Using Composer
 
 #### Getting Started
@@ -84,13 +94,13 @@ Here are some quick notes about Composer, in general, and this project's use of 
 1. Open your plugin folder in your Terminal.
 1. Run `npm install` so *node_modules* gets installed.
 1. Run `npm run start` to get everything built and up-and-running, including Parcel's HMR.
-  1. <kbd>Ctrl</kbd> + <kbd>C</kbd> to kill the Parcel watcher.
+    1. <kbd>Ctrl</kbd> + <kbd>C</kbd> to kill the Parcel watcher.
 1. Activate your plugin and see your Admin area has noticeably dumb styles (like all links as green) and JavaScript _alert()_ noise. This is to confirm Parcel is running successfully and to annoy you so you get started on your customizations. ;)
-  1. If you don't see the alerts, check your console. It could be that Parcel's HMR is disallowed by your browser because it's HTTP (if your localhost is HTTPS). In this case, click the `wss://...` to open in a new tab, it won't load, change it to `https://...` and your browser will complain because there's no valid cert. Just add the exception and then you won't have to do this again unless you delete the `.cache` directory created by Parcel. [3 minute demo of these steps](https://share.getcloudapp.com/Qwu7J072)
-  1. If you're on HTTP and not seeing the alerts, an unknown issue is the cause.
-1. Once your PHP, CSS, and JS coding is complete:
-  1. If you're still running Parcel's watcher, kill it.
-  1. Run `npm run zip` to build your installable/distributable plugin.
+    1. If you don't see the alerts, check your console. It could be that Parcel's HMR is disallowed by your browser because it's HTTP (if your localhost is HTTPS). In this case, click the `wss://...` to open in a new tab, it won't load, change it to `https://...` and your browser will complain because there's no valid cert. Just add the exception and then you won't have to do this again unless you delete the `.cache` directory created by Parcel. [3 minute demo of these steps](https://share.getcloudapp.com/Qwu7J072)
+    1. If you're on HTTP and not seeing the alerts, an unknown issue is the cause.
+1. **Once your PHP, CSS, and JS coding is complete:**
+    1. If you're still running Parcel's watcher, kill it.
+    1. Run `npm run zip` to build your installable/distributable plugin.
 
 #### Generating and Distributing the .zip
 
@@ -124,14 +134,14 @@ Your requiring a PHP version update for anyone who might want to use your plugin
 
 ### Updates
 
-For each new version, don't forget to:
+For each new version, before running the zip process, don't forget to:
 
 * Add a changelog entry to `readme.txt`
-* Update the version number:
-  * In your `readme.txt` file's header
-  * In your main plugin file's header
-  * In your main plugin file's `PLUGIN_VERSION` constant
-* [Generate a fresh POT file](#march-23-2020)
+* Update the version number in your...
+    * `readme.txt` file's header
+    * `package.json` file
+    * main plugin file's header
+    * main plugin file's `PLUGIN_VERSION` constant
 
 ### How to generate your .pot file
 
@@ -167,6 +177,11 @@ This plugin boilerplate was created by [Clifford Paulick](https://github.com/cli
 
 Documenting this project's progress...
 
+#### December 18, 2020
+* Updated - Instructions and commands for generating the zip, now that `tric` is in the mix.
+* Updated - NPM package versions.
+* Updated - WordPress' React _Button_ components to replace `isDefault` with `isSecondary` and remove `isLarge` and add `isSmall` on buttons that were not `isLarge`.
+
 #### December 17, 2020
 * Added - WPBrowser (Codeception) tests that run via [tric](https://github.com/moderntribe/tric), just covering some of the Utilities classes as a start.
 * Updated - Corrected or enhanced various Utilities functions, thanks to implementing passing tests.
@@ -177,15 +192,15 @@ Documenting this project's progress...
 
 #### March 25, 2020
 * Implement [Tailwind CSS](https://tailwindcss.com/), which gives us thousands of possible class names to use throughout for layouts, [colors](https://tailwindcss.com/docs/customizing-colors#naming-your-colors), sizing, borders, transforms, [responsive](https://tailwindcss.com/docs/responsive-design), and more.
-  * Tailwind was chosen because it fit nicely into our existing PostCSS build process, has healthy community involvement, is infinitely [customizable](https://tailwindcss.com/docs/configuration) (custom colors, breakpoints, prefixing, fonts, etc.), and keeps us in our JS building stuff without having to fight against opinionated/bundled components. [What is Tailwind?](https://tailwindcss.com/#what-is-tailwind)
-  * By itself, Tailwind is about 0.6MB *minified* [out of the box](https://tailwindcss.com/docs/controlling-file-size/) so we now also run [PurgeCSS](https://purgecss.com/plugins/postcss.html#installation) so *only the classes from Tailwind that you use* will make it into your generated CSS.
-  * Therefore, this boilerplate's minified *admin-settings.css* (where all the React, JS, and CSS is) ends up around 12KB (0.01MB).
-  * This is great, except you'll need to make sure you *whitelist* external classes, such as from WordPress ([this is a start but not comprehensive](https://purgecss.com/guides/wordpress.html)).
-  * This also means you'll need to add/remove classes in your JS instead of your browser inspector because that Tailwind class actually doesn't exist in your CSS unless it's used in your JS.
-  * Yes, it works with HMR. Just add that additional class to your React component and see if it's just what you wanted in an instant.
+    * Tailwind was chosen because it fit nicely into our existing PostCSS build process, has healthy community involvement, is infinitely [customizable](https://tailwindcss.com/docs/configuration) (custom colors, breakpoints, prefixing, fonts, etc.), and keeps us in our JS building stuff without having to fight against opinionated/bundled components. [What is Tailwind?](https://tailwindcss.com/#what-is-tailwind)
+    * By itself, Tailwind is about 0.6MB *minified* [out of the box](https://tailwindcss.com/docs/controlling-file-size/) so we now also run [PurgeCSS](https://purgecss.com/plugins/postcss.html#installation) so *only the classes from Tailwind that you use* will make it into your generated CSS.
+    * Therefore, this boilerplate's minified *admin-settings.css* (where all the React, JS, and CSS is) ends up around 12KB (0.01MB).
+    * This is great, except you'll need to make sure you *whitelist* external classes, such as from WordPress ([this is a start but not comprehensive](https://purgecss.com/guides/wordpress.html)).
+    * This also means you'll need to add/remove classes in your JS instead of your browser inspector because that Tailwind class actually doesn't exist in your CSS unless it's used in your JS.
+    * Yes, it works with HMR. Just add that additional class to your React component and see if it's just what you wanted in an instant.
 * Remove sourcemaps from the unminified build because they just pointed to the raw PostCSS, which isn't helpful when we're trying to figure out how it all compiled down into actual CSS (or JS). Plus, overall unzipped file size reduced over 100KB.
-  * The unminified files only load if `SCRIPT_DEBUG` is enabled.
-  * The sourcemaps are still available if loading the minified files.
+    * The unminified files only load if `SCRIPT_DEBUG` is enabled.
+    * The sourcemaps are still available if loading the minified files.
 * Remove the JavaScript `alert()` from Common, Admin, and Frontend.
 
 #### March 25, 2020
@@ -205,14 +220,14 @@ Documenting this project's progress...
 
 #### March 22, 2020
 * Improve the JavaScript build for WordPress React, reducing the `admin-settings.js` file size:
-  * Minified: from 265.91 KB to 35.16 KB **(87% reduction)**
-  * Unminified: from 803.68 KB to 48.15 KB **(94% reduction)**
+    * Minified: from 265.91 KB to 35.16 KB **(87% reduction)**
+    * Unminified: from 803.68 KB to 48.15 KB **(94% reduction)**
 * Improve the PostCSS build process to disable *modules* (rewriting selectors), enable writing nested CSS, and enable variables.
 * Admin Settings page:
-  * Protect components that get disabled while saving from getting permanently disabled if the API response never comes back (such as if PHP terminates).
-  * Force displaying an error notification even if the API response was technically successful but isn't really due to a `null` response.
-  * Fix the example [radio button's](https://developer.wordpress.org/block-editor/components/radio-control/) validation logic in `register_setting()` by adding the correct "show_in_rest" > "schema" > "enum" args, removing the "sanitize_callback" arg, and using the "rest_api_init" hook.
-  * Added basic styling.
+    * Protect components that get disabled while saving from getting permanently disabled if the API response never comes back (such as if PHP terminates).
+    * Force displaying an error notification even if the API response was technically successful but isn't really due to a `null` response.
+    * Fix the example [radio button's](https://developer.wordpress.org/block-editor/components/radio-control/) validation logic in `register_setting()` by adding the correct "show_in_rest" > "schema" > "enum" args, removing the "sanitize_callback" arg, and using the "rest_api_init" hook.
+    * Added basic styling.
 * Changed plugin text domains from variable to string to allow using WP CLI command and be compliant with WordPress.org out of the box.
 
 #### March 18, 2020
@@ -297,16 +312,16 @@ Documenting this project's progress...
 ##### December 2, 2018
 * Add ability to require a parent and/or child theme.
 * Implement [TGM Plugin Activation](http://tgmpluginactivation.com/) for required plugins (does not handle requiring a theme). At this time, it does not handle non-bundled premium plugins very well (adding incorrect download links to the TGMPA admin screen), but it does enhance some functionality:
-  * displaying plugin nice name
-  * requiring a minimum version number
-  * adding the ability to mark a plugin recommended without being required
-  * adding the ability to link to the plugin (the only way to tell people where to download the plugin manually)
+    * displaying plugin nice name
+    * requiring a minimum version number
+    * adding the ability to mark a plugin recommended without being required
+    * adding the ability to link to the plugin (the only way to tell people where to download the plugin manually)
 
 ##### December 1, 2018
 * Improve main plugin class' loading, removing static methods and singleton.
 * `Common` class: Use a singleton instead of static methods.
 * Removed all `@author` DocBlocks, [per WordPress' best practices](https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/php/#other-tags):
-  * > It is WordPress policy not to use the `@author` tag, except in the case of maintaining it in external libraries. We do not want to imply any sort of "ownership" over code that might discourage contribution.
+    * > It is WordPress policy not to use the `@author` tag, except in the case of maintaining it in external libraries. We do not want to imply any sort of "ownership" over code that might discourage contribution.
 * Fix `Common::post_id_helper()` to not return `0` when passed `0`. Instead, will go through to the logic to automatically determine the Post ID.
 
 ##### October 6, 2018

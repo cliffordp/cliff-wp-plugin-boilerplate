@@ -18,8 +18,7 @@ const Footer = () => {
 				<p>{_x( 'We would love to hear from you.', 'info section paragraph' )}</p>
 
 				<Button
-					isDefault
-					isLarge
+					isSecondary
 					target="_blank"
 					href="https://wordpress.org/support/plugin/cliff-wp-plugin-boilerplate"
 				>
@@ -27,8 +26,7 @@ const Footer = () => {
 				</Button>
 
 				<Button
-					isDefault
-					isLarge
+					isSecondary
 					target="_blank"
 					href="https://wordpress.org/support/plugin/cliff-wp-plugin-boilerplate/reviews/?rate=5#new-post"
 				>

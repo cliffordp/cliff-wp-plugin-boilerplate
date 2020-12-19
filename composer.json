@@ -1,91 +1,87 @@
 {
-	"name": "yourname/cliff-wp-plugin-boilerplate",
-	"description": "Here is a short description of the plugin.",
-	"type": "project",
-	"license": "GPL-3.0-or-later",
-	"authors": [
-		{
-			"name": "Your Name or Your Company",
-			"email": "your@email.address",
-			"homepage": "https://www.example.com/",
-			"role": "Developer"
-		},
-		{
-			"name": "TourKick LLC (Clifford Paulick)",
-			"email": "tko@tourkick.com",
-			"homepage": "https://tourkick.com/",
-			"role": "Developer"
-		}
-	],
-	"repositories": [
-		{
-			"name": "moderntribe/TribalScents",
-			"type": "github",
-			"url": "https://github.com/moderntribe/TribalScents",
-			"no-api": true
-		}
-	],
-	"require": {
-		"ext-json": "*",
-		"tgmpa/tgm-plugin-activation": "dev-develop",
-		"voku/stringy": "^6.2"
-	},
-	"require-dev": {
-		"php": "^7.0 || ^8.0",
-		"automattic/vipwpcs": "^2.0",
-		"codeception/module-asserts": "^1.0",
-		"codeception/module-cli": "^1.0",
-		"codeception/module-db": "^1.0",
-		"codeception/module-filesystem": "^1.0",
-		"codeception/module-phpbrowser": "^1.0",
-		"codeception/module-webdriver": "^1.0",
-		"codeception/util-universalframework": "^1.0",
-		"dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
-		"lucatume/wp-browser": "^2.6",
-		"moderntribe/tribalscents": "dev-master",
-		"phpunit/phpunit": "<9.5",
-		"wp-coding-standards/wpcs": "^2.1"
-	},
-	"minimum-stability": "stable",
-	"archive": {
-		"exclude": [
-			"*",
-			"*/",
-			"!css/*",
-			"!dist/*",
-			"!js/*",
-			"!languages/*",
-			"!src/*",
-			"!vendor/*",
-			"!*.{php,txt}",
-			"*.zip",
-			".*",
-			"/*.{js,json,md}",
-			"*.{jsx,pcss,sass,scss}",
-			"node_modules/",
-			"cliff-wp-plugin-boilerplate/"
-		]
-	},
-	"autoload": {
-		"psr-4": {
-			"WpPluginName\\": "src/"
-		}
-	},
-	"autoload-dev": {
-		"psr-4": {
-			"WpPluginName_Tests\\": "tests/",
-			"WpPluginName_Tests_Support\\": "tests/_support/",
-			"WpPluginName_Tests_Unit\\": "tests/unit/",
-			"WpPluginName_Tests_Wpunit\\": "tests/wpunit/"
-		}
-	},
-	"config": {
-		"archive-format": "zip",
-		"optimize-autoloader": true
-	},
-	"scripts": {
-		"pre-archive-cmd": [
-			"npm run build"
-		]
-	}
+    "name": "yourname/cliff-wp-plugin-boilerplate",
+    "description": "Here is a short description of the plugin.",
+    "type": "project",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Your Name or Your Company",
+            "email": "your@email.address",
+            "homepage": "https://www.example.com/",
+            "role": "Developer"
+        },
+        {
+            "name": "TourKick LLC (Clifford Paulick)",
+            "email": "tko@tourkick.com",
+            "homepage": "https://tourkick.com/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "ext-json": "*",
+        "tgmpa/tgm-plugin-activation": "dev-develop",
+        "voku/stringy": "^6.2"
+    },
+    "require-dev": {
+        "php": "^7.0 || ^8.0",
+        "automattic/vipwpcs": "^2.0",
+        "codeception/module-asserts": "^1.0",
+        "codeception/module-cli": "^1.0",
+        "codeception/module-db": "^1.0",
+        "codeception/module-filesystem": "^1.0",
+        "codeception/module-phpbrowser": "^1.0",
+        "codeception/module-webdriver": "^1.0",
+        "codeception/util-universalframework": "^1.0",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
+        "lucatume/wp-browser": "^2.6",
+        "moderntribe/tribalscents": "dev-master",
+        "phpunit/phpunit": "<9.5",
+        "wp-coding-standards/wpcs": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "WpPluginName\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "WpPluginName_Tests\\": "tests/",
+            "WpPluginName_Tests_Support\\": "tests/_support/",
+            "WpPluginName_Tests_Unit\\": "tests/unit/",
+            "WpPluginName_Tests_Wpunit\\": "tests/wpunit/"
+        }
+    },
+    "minimum-stability": "stable",
+    "repositories": [
+        {
+            "name": "moderntribe/TribalScents",
+            "type": "github",
+            "url": "https://github.com/moderntribe/TribalScents",
+            "no-api": true
+        }
+    ],
+    "config": {
+        "archive-format": "zip"
+    },
+    "archive": {
+        "exclude": [
+            "*",
+            "*/",
+            "!css/*",
+            "!dist/*",
+            "!js/*",
+            "!languages/*",
+            "!src/*",
+            "!vendor/*",
+            "!*.{php,txt}",
+            "*.zip",
+            ".*",
+            "/*.{js,json,md}",
+            "*.{jsx,pcss,sass,scss}",
+            "node_modules/",
+            "test/",
+            "tests/",
+            "cliff-wp-plugin-boilerplate/"
+        ]
+    }
 }
