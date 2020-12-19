@@ -63,6 +63,8 @@
 			"/*.{js,json,md}",
 			"*.{jsx,pcss,sass,scss}",
 			"node_modules/",
+			"test/",
+			"tests/",
 			"cliff-wp-plugin-boilerplate/"
 		]
 	},
@@ -80,12 +82,6 @@
 		}
 	},
 	"config": {
-		"archive-format": "zip",
-		"optimize-autoloader": true
-	},
-	"scripts": {
-		"pre-archive-cmd": [
-			"npm run build"
-		]
+		"archive-format": "zip"
 	}
 }

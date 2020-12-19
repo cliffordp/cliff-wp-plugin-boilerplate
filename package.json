@@ -7,12 +7,18 @@
 		"build": "run-s build:*",
 		"build:min": "parcel build ./_entry/admin.js ./_entry/admin-settings.js ./_entry/frontend.js --detailed-report --out-dir dist/min --public-url ./",
 		"build:unmin": "parcel build ./_entry/admin.js ./_entry/admin-settings.js ./_entry/frontend.js --detailed-report --no-minify --no-source-maps --public-url ./",
-		"build:pot": "wp i18n make-pot . languages/cliff-wp-plugin-boilerplate.pot --headers='{\"Report-Msgid-Bugs-To\":\"Your Name or Your Company <https://www.example.com/>\"}'",
+		"build:pot": "tric site-cli i18n make-pot ./wp-content/plugins/cliff-wp-plugin-boilerplate ./wp-content/plugins/cliff-wp-plugin-boilerplate/languages/cliff-wp-plugin-boilerplate.pot --headers='{\"Report-Msgid-Bugs-To\":\"Your Name or Your Company <https://www.example.com/>\"}' --exclude=\".cache,.github,.parcel-cache,_entry,test,tests\" --debug",
 		"restart": "run-s cleanup start",
 		"cleanup": "rimraf .cache .parcel-cache dist",
 		"nuke": "rimraf ./vendor ./node_modules; tric composer install; npm install",
 		"check-licenses": "run-p \"wp-scripts check-licenses --prod --gpl2\" \"wp-scripts check-licenses --dev\"",
-		"zip": "composer archive --file cliff-wp-plugin-boilerplate"
+		"tric": "echo \"***tric: (!!!assuming command initiated from this plugin folder!!!) make sure current target...***\"; cd ..; tric here; cd cliff-wp-plugin-boilerplate; tric use; tric site-cli cli info",
+		"zip": "run-s zip:*",
+		"zip:0": "npm run tric",
+		"zip:1": "echo \"*** Composer: only production packages before zip... ***\"; tric composer install --no-dev --optimize-autoloader;",
+		"zip:2": "echo \"*** NPM: build the distributables... ***\"; npm run build",
+		"zip:3": "echo \"*** Composer: generate the zip with production files... ***\"; tric composer archive --file cliff-wp-plugin-boilerplate",
+		"zip:4": "echo \"*** Composer: add back development packages after zip... ***\"; tric composer install; tric composer dump-autoload;"
 	},
 	"keywords": [
 		"wordpress",
