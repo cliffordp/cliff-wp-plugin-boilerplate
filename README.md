@@ -179,6 +179,8 @@ Documenting this project's progress...
 
 #### December 18, 2020
 * Updated - Instructions and commands for generating the zip, now that `tric` is in the mix.
+* Updated - NPM package versions.
+* Updated - WordPress' React _Button_ components to replace `isDefault` with `isSecondary` and remove `isLarge` and add `isSmall` on buttons that were not `isLarge`.
 
 #### December 17, 2020
 * Added - WPBrowser (Codeception) tests that run via [tric](https://github.com/moderntribe/tric), just covering some of the Utilities classes as a start.
