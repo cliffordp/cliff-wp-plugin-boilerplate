@@ -34,7 +34,7 @@ The Boilerplate can be installed directly into your plugins folder "as-is". You 
 _Currently a lot of *Find and Replace*, but you're welcome to [contribute some automation](https://github.com/cliffordp/cliff-wp-plugin-boilerplate/issues/73) to improve the initial setup._
 
 1. Copy this *cliff-wp-plugin-boilerplate* repository/directory to your *wp-content/plugins* directory and rename your new plugin's directory
-1. Delete the `.github` directory
+1. Delete the `.github/FUNDING.yml` file
 1. Delete the `.all-contributorsrc` file
 1. Perform a ***case-sensitive*** *search and replace* at the project level, as follows:
     1. Rename the `cliff-wp-plugin-boilerplate` directory to `your-plugin-name`. **This is your new plugin directory and must match your text domain.**
