@@ -41,6 +41,8 @@ read NEWREPO
 DEFAULT_PLUGIN_NAME="WordPress Plugin Boilerplate"
 DEFAULT_PLUGIN_NAME_DASHES="cliff-wp-plugin-boilerplate"
 DEFAULT_PLUGIN_NAME_UNDERSCORE="cliff_wp_plugin_boilerplate"
+DEFAULT_PLUGIN_CLASS="WpPluginName"
+DEFAULT_WP_USER="cliffpaulick"
 
 DIRECTORY=${FOLDER}/${PLUGIN_NAME_DASHES}
 
@@ -77,15 +79,15 @@ case "$uname" in
     ;;
 esac;
 
-eval "$searchReplaceCmd 's/cliff-wp-plugin-boilerplate/$PLUGIN_NAME_DASHES/g'"
+eval "$searchReplaceCmd 's/$DEFAULT_PLUGIN_NAME_DASHES/$PLUGIN_NAME_DASHES/g'"
 
-eval "$searchReplaceCmd 's/cliff_wp_plugin_boilerplate/$PLUGIN_NAME_UNDERSCORE/g'"
+eval "$searchReplaceCmd 's/$DEFAULT_PLUGIN_NAME_UNDERSCORE/$PLUGIN_NAME_UNDERSCORE/g'"
 
-eval "$searchReplaceCmd 's/WordPress Plugin Boilerplate/$PLUGIN_NAME/g'"
+eval "$searchReplaceCmd 's/$DEFAULT_PLUGIN_NAME/$PLUGIN_NAME/g'"
 
-eval "$searchReplaceCmd 's/WpPluginName/$PLUGIN_NAME_CAMELCASE/g'"
+eval "$searchReplaceCmd 's/$DEFAULT_PLUGIN_CLASS/$PLUGIN_NAME_CAMELCASE/g'"
 
-mv languages/cliff-wp-plugin-boilerplate.pot languages/$PLUGIN_NAME_DASHES.pot
+mv languages/$DEFAULT_PLUGIN_NAME_DASHES.pot languages/$PLUGIN_NAME_DASHES.pot
 
 if [ -n "$AUTHOR_NAME" ]; then
   eval "$searchReplaceCmd 's/Your Name or Your Company/$AUTHOR_NAME/g'"
@@ -96,11 +98,12 @@ if [ -n "$AUTHOR_EMAIL" ]; then
 fi
 
 if [ -n "$AUTHOR_URL" ]; then
-  eval "$searchReplaceCmd 's/https:\/\/www.example.com\//$AUTHOR_URL/g'"
+  DEFAULT_URL="https://www.example.com/"
+  eval "$searchReplaceCmd 's/$DEFAULT_URL/$AUTHOR_URL/g'"
 fi
 
 if [ -n "$WP_USERNAME" ]; then
-  eval "$searchReplaceCmd 's/cliffpaulick/$WP_USERNAME/g'"
+  eval "$searchReplaceCmd 's/$DEFAULT_WP_USER/$WP_USERNAME/g'"
 fi
 
 if [ -n "$VENDOR_NAME" ]; then
